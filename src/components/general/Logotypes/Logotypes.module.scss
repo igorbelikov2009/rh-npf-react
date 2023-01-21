@@ -1,21 +1,22 @@
-.logotype-link {
+.logotype {
   text-decoration: none;
   outline: none;
 
-  // logotype-link__block
-  &__block {
+  // logotype__large
+  &__large {
     display: none;
 
     @media screen and (min-width: 576px) {
       display: block;
     }
+  }
 
-    &:last-of-type {
-      display: block;
+  // logotype__small
+  &__small {
+    display: block;
 
-      @media screen and (min-width: 576px) {
-        display: none;
-      }
+    @media screen and (min-width: 576px) {
+      display: none;
     }
   }
 }

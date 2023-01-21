@@ -11,15 +11,13 @@ interface LogotypesProps {
 }
 
 const Logotypes: FC<LogotypesProps> = ({ isBackgroundWhite }) => {
-  // console.log(isBackgroundWhite);
-
   return (
-    <a className={styles["logotype-link"]} href="#">
-      <div className={styles["logotype-link__block"]}>
+    <a className={styles.logotype} href="#">
+      <div className={styles["logotype__large"]}>
         <img src={isBackgroundWhite ? logoColored : logoWhite} alt="logotype" />
       </div>
 
-      <div className={styles["logotype-link__block"]}>
+      <div className={styles["logotype__small"]}>
         <img src={isBackgroundWhite ? logoColoredSmall : logoWhiteSmall} alt="logotype" />
       </div>
     </a>
