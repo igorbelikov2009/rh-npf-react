@@ -5,8 +5,6 @@ import AppRouter from "../AppRouter";
 const App: FC = () => {
   return (
     <div className={styles.App}>
-      <h1>Working</h1>
-
       <AppRouter />
     </div>
   );

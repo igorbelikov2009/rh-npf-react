@@ -1,0 +1,21 @@
+.logotype-link {
+  text-decoration: none;
+  outline: none;
+
+  // logotype-link__block
+  &__block {
+    display: none;
+
+    @media screen and (min-width: 576px) {
+      display: block;
+    }
+
+    &:last-of-type {
+      display: block;
+
+      @media screen and (min-width: 576px) {
+        display: none;
+      }
+    }
+  }
+}
