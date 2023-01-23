@@ -48,10 +48,11 @@ const TopMenu: FC = () => {
         <div className="top-menu__right-block">
           <div className="top-menu__contacts">
             <div className="top-menu__phone">
-              <a className="top-menu__phone-link" href="tel:+78002004766">
-                <div className={isBackgroundWhite ? "top-menu__link  top-menu__link_news" : "top-menu__link"}>
-                  8 800 200-47-66
-                </div>
+              <a
+                className={isBackgroundWhite ? "top-menu__link  top-menu__link_news" : "top-menu__link"}
+                href="tel:+78002004766"
+              >
+                8 800 200-47-66
               </a>
             </div>
           </div>
@@ -63,9 +64,9 @@ const TopMenu: FC = () => {
           >
             <TripleIcon icon="User" light={!isBackgroundWhite} hovered={isPrivateOfficeHovered} />
 
-            <div className={isBackgroundWhite ? "top-menu__title  top-menu__title_news" : "top-menu__title"}>
+            <p className={isBackgroundWhite ? "top-menu__title  top-menu__title_news" : "top-menu__title"}>
               Личный кабинет
-            </div>
+            </p>
           </div>
         </div>
       </div>

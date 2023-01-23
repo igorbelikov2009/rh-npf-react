@@ -12,6 +12,7 @@ import News from "../pages/News";
 import NewsPage from "../pages/NewsPage";
 import Notfoundpage from "../pages/Notfoundpage";
 import ServiceSupport from "../pages/ServiceSupport";
+import Taxation from "../pages/Taxation";
 import Layout from "./Layout";
 
 const AppRouter: FC = () => {
@@ -29,6 +30,7 @@ const AppRouter: FC = () => {
         <Route path="news/:id" element={<NewsPage />} />
         <Route path="notfoundpage" element={<Notfoundpage />} />
         <Route path="support" element={<ServiceSupport />} />
+        <Route path="taxation" element={<Taxation />} />
       </Route>
     </Routes>
   );

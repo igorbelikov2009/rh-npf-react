@@ -1,14 +1,13 @@
-import { Link, useMatch } from "react-router-dom";
 import React, { FC } from "react";
-import styles from "./MenuLink.module.scss";
+import { Link, useMatch } from "react-router-dom";
+import styles from "./FooterLink.module.scss";
 
-export interface MenuLinkProps {
+export interface FooterLinkProps {
   children: string;
   to: string;
-  isBackgroundWhite?: boolean;
 }
 
-const MenuLink: FC<MenuLinkProps> = ({ children, to, isBackgroundWhite, ...props }) => {
+const FooterLink: FC<FooterLinkProps> = ({ children, to, ...props }) => {
   //параметром useMatch будет объект настройки
   const match = useMatch({
     path: to,
@@ -19,19 +18,11 @@ const MenuLink: FC<MenuLinkProps> = ({ children, to, isBackgroundWhite, ...props
   });
   //   console.log(match);
 
-  if (isBackgroundWhite) {
-    return (
-      <Link to={to} className={match ? styles["link-dark_active"] : styles["link-dark"]} {...props}>
-        {children}
-      </Link>
-    );
-  }
-
   return (
-    <Link to={to} className={match ? styles["link-light_active"] : styles["link-light"]} {...props}>
+    <Link to={to} className={match ? styles["link-active"] : styles["link"]}>
       {children}
     </Link>
   );
 };
 
-export default MenuLink;
+export default FooterLink;
