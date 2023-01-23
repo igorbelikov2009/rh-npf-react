@@ -1,11 +1,14 @@
 import { Link, useMatch } from "react-router-dom";
 import React, { FC } from "react";
-interface CustomLinkProps {
+import styles from "./MenuLink.module.scss";
+
+interface MenuLinkProps {
   children: any;
   to: any;
+  isBackgroundWhite: boolean;
 }
 
-const CustomLink: FC<CustomLinkProps> = ({ children, to, ...props }) => {
+const MenuLink: FC<MenuLinkProps> = ({ children, to, isBackgroundWhite, ...props }) => {
   //параметром useMatch будет объект настройки
   const match = useMatch({
     path: to,
@@ -16,11 +19,20 @@ const CustomLink: FC<CustomLinkProps> = ({ children, to, ...props }) => {
   });
   //   console.log(match);
 
+  if (isBackgroundWhite) {
+    return (
+      <Link to={to} className={match ? styles["link-dark_active"] : styles["link-dark"]} {...props}>
+        {children}
+      </Link>
+    );
+  }
+
   return (
-    <Link to={to} className="routes" style={{ color: match ? "var(--color-active)" : "white" }} {...props}>
+    <Link to={to} className={match ? styles["link-light_active"] : styles["link-light"]} {...props}>
       {children}
     </Link>
   );
 };
 
-export { CustomLink };
+// export { MenuLink };
+export default MenuLink;

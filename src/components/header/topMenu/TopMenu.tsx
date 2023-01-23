@@ -5,6 +5,7 @@ import Logotypes from "../../general/Logotypes/Logotypes";
 // import TripleIcon from "../../general/TripleIcon/TripleIcon";
 import Hamburger from "../../../assets/icons/triple/Hamburger/Dark.svg";
 import User from "../../../assets/icons/triple/User/dark.svg";
+import MenuLink from "../../ui/MenuLink/MenuLink";
 
 const TopMenu: FC = () => {
   const [isBackgroundWhite] = useState(true);
@@ -22,33 +23,24 @@ const TopMenu: FC = () => {
           </div>
 
           <div className="top-menu__nav">
-            <Link className={isBackgroundWhite ? "top-menu__link  top-menu__link_news" : "top-menu__link"} to="/">
+            <MenuLink isBackgroundWhite={isBackgroundWhite} to="/">
               Главная
-            </Link>
-            <Link className={isBackgroundWhite ? "top-menu__link  top-menu__link_news" : "top-menu__link"} to="/about">
+            </MenuLink>
+            <MenuLink isBackgroundWhite={isBackgroundWhite} to="/about">
               О нас
-            </Link>
-            <Link
-              className={isBackgroundWhite ? "top-menu__link  top-menu__link_news" : "top-menu__link"}
-              to="/business"
-            >
+            </MenuLink>
+            <MenuLink isBackgroundWhite={isBackgroundWhite} to="/business">
               Для бизнеса
-            </Link>
-            <Link
-              className={isBackgroundWhite ? "top-menu__link  top-menu__link_news" : "top-menu__link"}
-              to="/contacts"
-            >
+            </MenuLink>
+            <MenuLink isBackgroundWhite={isBackgroundWhite} to="/contacts">
               Контакты
-            </Link>
-            <Link className={isBackgroundWhite ? "top-menu__link  top-menu__link_news" : "top-menu__link"} to="/news">
+            </MenuLink>
+            <MenuLink isBackgroundWhite={isBackgroundWhite} to="/news">
               Новости
-            </Link>
-            <Link
-              className={isBackgroundWhite ? "top-menu__link  top-menu__link_news" : "top-menu__link"}
-              to="/investment"
-            >
+            </MenuLink>
+            <MenuLink isBackgroundWhite={isBackgroundWhite} to="/investment">
               Инвестиции
-            </Link>
+            </MenuLink>
           </div>
         </div>
 
