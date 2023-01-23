@@ -3,7 +3,7 @@ import "./TopMenu.scss";
 // import { Link } from "react-router-dom";
 
 import Logotypes from "../../general/Logotypes/Logotypes";
-import MenuLink from "../../ui/MenuLink/MenuLink";
+import MenuLink, { MenuLinkProps } from "../../ui/MenuLink/MenuLink";
 import TripleIcon from "../../general/TripleIcon/TripleIcon";
 
 const TopMenu: FC = () => {
@@ -11,8 +11,17 @@ const TopMenu: FC = () => {
   const [isPrivateOfficeHovered, setPrivateOfficeHovered] = useState(false);
   const [isHamburgerHovered, setHamburgerHovered] = useState(false);
 
+  const TopMenuLinks: MenuLinkProps[] = [
+    { to: "/", children: "Главная" },
+    { to: "/about", children: "О нас" },
+    { to: "/business", children: "Для бизнеса" },
+    { to: "/contacts", children: "Контакты" },
+    { to: "/news", children: "Новости" },
+    { to: "/investment", children: "Инвестиции" },
+  ];
+
   return (
-    <header className={isBackgroundWhite ? "top-menu top-menu_news" : "top-menu "}>
+    <header className={isBackgroundWhite ? "top-menu top-menu__with-border" : "top-menu "}>
       <div className="top-menu__container">
         <div className="top-menu__left-block">
           <div
@@ -24,28 +33,15 @@ const TopMenu: FC = () => {
           </div>
 
           <div>
-            <Logotypes isBackgroundWhite={isBackgroundWhite} />
+            <Logotypes isBackgroundWhite />
           </div>
 
           <div className="top-menu__nav">
-            <MenuLink isBackgroundWhite={isBackgroundWhite} to="/">
-              Главная
-            </MenuLink>
-            <MenuLink isBackgroundWhite={isBackgroundWhite} to="/about">
-              О нас
-            </MenuLink>
-            <MenuLink isBackgroundWhite={isBackgroundWhite} to="/business">
-              Для бизнеса
-            </MenuLink>
-            <MenuLink isBackgroundWhite={isBackgroundWhite} to="/contacts">
-              Контакты
-            </MenuLink>
-            <MenuLink isBackgroundWhite={isBackgroundWhite} to="/news">
-              Новости
-            </MenuLink>
-            <MenuLink isBackgroundWhite={isBackgroundWhite} to="/investment">
-              Инвестиции
-            </MenuLink>
+            {TopMenuLinks.map((link) => (
+              <MenuLink key={link.to} to={link.to} isBackgroundWhite>
+                {link.children}
+              </MenuLink>
+            ))}
           </div>
         </div>
 

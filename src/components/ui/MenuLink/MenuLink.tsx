@@ -2,10 +2,10 @@ import { Link, useMatch } from "react-router-dom";
 import React, { FC } from "react";
 import styles from "./MenuLink.module.scss";
 
-interface MenuLinkProps {
+export interface MenuLinkProps {
   children: string;
   to: string;
-  isBackgroundWhite: boolean;
+  isBackgroundWhite?: boolean;
 }
 
 const MenuLink: FC<MenuLinkProps> = ({ children, to, isBackgroundWhite, ...props }) => {

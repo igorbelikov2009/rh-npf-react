@@ -7,7 +7,7 @@ import logoColoredSmall from "../../../assets/logotype/logoColoredSmall.svg";
 import logoWhiteSmall from "../../../assets/logotype/logoWhiteSmall.svg";
 
 interface LogotypesProps {
-  isBackgroundWhite: Boolean;
+  isBackgroundWhite?: Boolean;
 }
 
 const Logotypes: FC<LogotypesProps> = ({ isBackgroundWhite }) => {

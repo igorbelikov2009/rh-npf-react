@@ -3,10 +3,8 @@
   height: 72px;
   position: absolute;
   top: 0;
-  // background-color: gray;
 
-  // top-menu_news
-  &_news {
+  &__with-border {
     border-bottom: 1px solid #e4e4e4;
   }
 
@@ -47,10 +45,10 @@
 
   &__nav {
     display: none;
-    justify-content: space-between;
 
     @media (min-width: 1160px) {
       display: flex;
+      justify-content: space-between;
       margin-left: 12px;
     }
   }
