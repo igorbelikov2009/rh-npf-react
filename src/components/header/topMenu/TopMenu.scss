@@ -3,10 +3,10 @@
   height: 72px;
   position: absolute;
   top: 0;
+  // background-color: gray;
 
   // top-menu_news
   &_news {
-    // position: relative;
     border-bottom: 1px solid #e4e4e4;
   }
 
@@ -32,24 +32,16 @@
     align-items: center;
   }
 
-  &__icon-hamburger {
+  &__hamburger {
     cursor: pointer;
     display: block;
     width: 24px;
     height: 24px;
+    margin-right: 16px;
 
     @media (min-width: 1160px) {
       display: none;
       // display: block;
-    }
-  }
-
-  &__logotype {
-    display: block;
-    margin-left: 36px;
-
-    @media (min-width: 1160px) {
-      margin-left: 0;
     }
   }
 

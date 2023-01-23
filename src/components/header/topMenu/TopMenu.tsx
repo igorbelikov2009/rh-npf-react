@@ -1,24 +1,29 @@
 import React, { FC, useState } from "react";
 import "./TopMenu.scss";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+
 import Logotypes from "../../general/Logotypes/Logotypes";
-// import TripleIcon from "../../general/TripleIcon/TripleIcon";
-import Hamburger from "../../../assets/icons/triple/Hamburger/Dark.svg";
-import User from "../../../assets/icons/triple/User/dark.svg";
 import MenuLink from "../../ui/MenuLink/MenuLink";
+import TripleIcon from "../../general/TripleIcon/TripleIcon";
 
 const TopMenu: FC = () => {
   const [isBackgroundWhite] = useState(true);
+  const [isPrivateOfficeHovered, setPrivateOfficeHovered] = useState(false);
+  const [isHamburgerHovered, setHamburgerHovered] = useState(false);
 
   return (
     <header className={isBackgroundWhite ? "top-menu top-menu_news" : "top-menu "}>
       <div className="top-menu__container">
         <div className="top-menu__left-block">
-          <div className="top-menu__icon-hamburger">
-            <img src={Hamburger} alt="Hamburger" className="triple-icon" />
+          <div
+            onMouseOver={() => setHamburgerHovered(true)}
+            onMouseOut={() => setHamburgerHovered(false)}
+            className="top-menu__hamburger"
+          >
+            <TripleIcon icon="Hamburger" light={!isBackgroundWhite} hovered={isHamburgerHovered} />
           </div>
 
-          <div className="top-menu__logotype">
+          <div>
             <Logotypes isBackgroundWhite={isBackgroundWhite} />
           </div>
 
@@ -55,8 +60,12 @@ const TopMenu: FC = () => {
             </div>
           </div>
 
-          <div className="top-menu__private-office">
-            <img src={User} alt="Hamburger" className="triple-icon" />
+          <div
+            onMouseOver={() => setPrivateOfficeHovered(true)}
+            onMouseOut={() => setPrivateOfficeHovered(false)}
+            className="top-menu__private-office"
+          >
+            <TripleIcon icon="User" light={!isBackgroundWhite} hovered={isPrivateOfficeHovered} />
 
             <div className={isBackgroundWhite ? "top-menu__title  top-menu__title_news" : "top-menu__title"}>
               Личный кабинет

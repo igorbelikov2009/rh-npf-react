@@ -3,8 +3,8 @@ import React, { FC } from "react";
 import styles from "./MenuLink.module.scss";
 
 interface MenuLinkProps {
-  children: any;
-  to: any;
+  children: string;
+  to: string;
   isBackgroundWhite: boolean;
 }
 
@@ -34,5 +34,4 @@ const MenuLink: FC<MenuLinkProps> = ({ children, to, isBackgroundWhite, ...props
   );
 };
 
-// export { MenuLink };
 export default MenuLink;

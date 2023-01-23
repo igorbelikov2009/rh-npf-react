@@ -1,22 +1,28 @@
 import React, { FC, useState } from "react";
 import styles from "./TripleIcon.module.scss";
-// import imgUrl from "../../../assets/icons/triple/Hamburger/Dark.svg";
 
 interface TripleIconProps {
-  isBackgroundWhite: boolean;
   icon: string;
+  light: boolean;
+  hovered: boolean;
 }
 
-const TripleIcon: FC<TripleIconProps> = ({ isBackgroundWhite, icon }) => {
-  // const [isLocalHovered, setIsLocalHovered] = useState(false);
-  // const state = "Colored";
-  // let imgUrl = `../../../assets/icons/triple/${icon}/Dark.svg`;
+const TripleIcon: FC<TripleIconProps> = ({ icon, light, hovered }) => {
+  const [isLocalHovered, setIsLocalHovered] = useState(false);
 
-  //   useEffect(()=> {
-  //     return imgUrl:
-  //   },[])
+  let state = light ? "light" : "dark";
 
-  return <img src={`../../../assets/icons/triple/Hamburger/Dark.svg`} alt={icon} className={styles["triple-icon"]} />;
+  if (isLocalHovered || hovered) state = "colored";
+
+  return (
+    <img
+      onMouseOver={() => setIsLocalHovered(true)}
+      onMouseOut={() => setIsLocalHovered(false)}
+      src={`/icons/triple/${icon}/${state}.svg`}
+      alt={icon}
+      className={styles["triple-icon"]}
+    />
+  );
 };
 
 export default TripleIcon;
