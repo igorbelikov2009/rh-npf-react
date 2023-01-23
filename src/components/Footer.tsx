@@ -1,9 +1,11 @@
 import React, { FC } from "react";
-import Logotypes from "../general/Logotypes/Logotypes";
-import FooterLink, { FooterLinkProps } from "../ui/FooterLink/FooterLink";
-import "./Footer.scss";
+import Logotypes from "./general/Logotypes/Logotypes";
+import FooterLink, { FooterLinkProps } from "./ui/FooterLink/FooterLink";
+import "../styles/Footer.scss";
+import { useNavigate } from "react-router-dom";
 
 const Footer: FC = () => {
+  const navigate = useNavigate();
   const FirstBlock: FooterLinkProps[] = [
     {
       to: "/support",
@@ -20,12 +22,12 @@ const Footer: FC = () => {
 
   const SecondBlock: FooterLinkProps[] = [
     {
-      children: "Раскрытие информации",
-      to: "/info",
+      children: "Новости",
+      to: "/news",
     },
     {
-      children: "Инвестиционная деятельность",
-      to: "/investment",
+      children: "Налогообложение",
+      to: "/taxation",
     },
     {
       children: "Для бизнеса",
@@ -39,28 +41,28 @@ const Footer: FC = () => {
   ];
   const ThirdBlock: FooterLinkProps[] = [
     {
-      children: "Новости",
-      to: "/newspages",
+      children: "Раскрытие информации",
+      to: "/info",
     },
     {
-      children: "Налогообложение",
-      to: "/taxation",
+      children: "Инвестиционная деятельность",
+      to: "/investment",
     },
   ];
 
   return (
     <footer className="footer">
       <div className="footer__top-block">
-        <div className="footer__logotype">
+        <div onClick={() => navigate("/", { replace: true })} className="footer__logotype">
           <Logotypes isBackgroundWhite />
         </div>
 
         <div>
-          <img className="footer__logos-items" src="/icons/logoNapf.svg" alt="logo" />
+          <img className="footer__logos" src="/icons/logoNapf.svg" alt="logo" />
 
-          <img className="footer__logos-items" src="/icons/logoAeb.svg" alt="logo" />
+          <img className="footer__logos" src="/icons/logoAeb.svg" alt="logo" />
 
-          <img className="footer__logos-items" src="/icons/logoExpert.svg" alt="logo" />
+          <img className="footer__logos" src="/icons/logoExpert.svg" alt="logo" />
         </div>
       </div>
 
@@ -72,7 +74,7 @@ const Footer: FC = () => {
         <div className="footer__nav">
           <div className="footer__column">
             {FirstBlock.map((link) => (
-              <FooterLink key={link.to} to={link.to}>
+              <FooterLink key={link.children} to={link.to}>
                 {link.children}
               </FooterLink>
             ))}
@@ -93,10 +95,8 @@ const Footer: FC = () => {
               </FooterLink>
             ))}
           </div>
-        </div>
 
-        <div className="footer__copyright-wrapper">
-          <div className="footer__copyright">
+          <div className="footer__column">
             <a
               className="footer__copyright-link"
               href="/pdf/infoOpening/archive-aktsionerov/01 Beneficiaries structure 16.03.2021.pdf"
@@ -106,9 +106,9 @@ const Footer: FC = () => {
               Банка России).
             </a>
 
-            <p className="footer__copyright-npf">©2009-2019 НПФРенессанс. Пенсии.</p>
+            <p className="footer__copyright">©2009-2019 НПФРенессанс. Пенсии.</p>
 
-            <p className="footer__copyright-license">Лицензия № 383/2 от 16 июня 2009 года</p>
+            <p className="footer__copyright">Лицензия № 383/2 от 16 июня 2009 года</p>
           </div>
         </div>
       </div>

@@ -1,23 +1,24 @@
 import React, { FC, useState } from "react";
-import "./TopMenu.scss";
-// import { Link } from "react-router-dom";
+import "../styles/TopMenu.scss";
+import { useNavigate } from "react-router-dom";
 
-import Logotypes from "../../general/Logotypes/Logotypes";
-import MenuLink, { MenuLinkProps } from "../../ui/MenuLink/MenuLink";
-import TripleIcon from "../../general/TripleIcon/TripleIcon";
+import Logotypes from "./general/Logotypes/Logotypes";
+import MenuLink, { MenuLinkProps } from "./ui/MenuLink/MenuLink";
+import TripleIcon from "./general/TripleIcon/TripleIcon";
 
 const TopMenu: FC = () => {
+  const navigate = useNavigate();
   const [isBackgroundWhite] = useState(true);
   const [isPrivateOfficeHovered, setPrivateOfficeHovered] = useState(false);
   const [isHamburgerHovered, setHamburgerHovered] = useState(false);
 
   const TopMenuLinks: MenuLinkProps[] = [
-    { to: "/", children: "Главная" },
     { to: "/about", children: "О нас" },
-    { to: "/business", children: "Для бизнеса" },
-    { to: "/contacts", children: "Контакты" },
-    { to: "/news", children: "Новости" },
     { to: "/investment", children: "Инвестиции" },
+    { to: "/business", children: "Для бизнеса" },
+    { to: "/news", children: "Новости" },
+    { to: "/support", children: "Поддержка" },
+    { to: "/contacts", children: "Контакты" },
   ];
 
   return (
@@ -32,7 +33,7 @@ const TopMenu: FC = () => {
             <TripleIcon icon="Hamburger" light={!isBackgroundWhite} hovered={isHamburgerHovered} />
           </div>
 
-          <div>
+          <div onClick={() => navigate("/", { replace: true })}>
             <Logotypes isBackgroundWhite />
           </div>
 
