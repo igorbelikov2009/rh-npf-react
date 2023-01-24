@@ -1,10 +1,18 @@
 import React, { FC } from "react";
+import TopBlock from "../components/general/TopBlock";
+import mainImage from "../assets/images/main/mainTop.jpg";
 
 const MainPage: FC = () => {
   return (
-    <div>
-      <h1>MainPage</h1>
-    </div>
+    <>
+      <TopBlock
+        heading="Уверенность в будущем,"
+        headingSpan=" доступная каждому"
+        subheading="Обеспечьте себе стабильность и приступайте"
+        subheadingSpan=" к реализации своих самых смелых планов!"
+        image={mainImage}
+      />
+    </>
   );
 };
 

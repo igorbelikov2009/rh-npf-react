@@ -8,7 +8,7 @@ import TripleIcon from "./general/TripleIcon/TripleIcon";
 
 const TopMenu: FC = () => {
   const navigate = useNavigate();
-  const [isBackgroundWhite] = useState(true);
+  const [isBackgroundWhite] = useState(false);
   const [isPrivateOfficeHovered, setPrivateOfficeHovered] = useState(false);
   const [isHamburgerHovered, setHamburgerHovered] = useState(false);
 
@@ -34,12 +34,12 @@ const TopMenu: FC = () => {
           </div>
 
           <div onClick={() => navigate("/", { replace: true })}>
-            <Logotypes isBackgroundWhite />
+            <Logotypes isBackgroundWhite={isBackgroundWhite} />
           </div>
 
           <div className="top-menu__nav">
             {TopMenuLinks.map((link) => (
-              <MenuLink key={link.to} to={link.to} isBackgroundWhite>
+              <MenuLink key={link.to} to={link.to} isBackgroundWhite={isBackgroundWhite}>
                 {link.children}
               </MenuLink>
             ))}

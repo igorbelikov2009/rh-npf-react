@@ -1,11 +1,14 @@
 .top-menu {
   width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
   height: 72px;
   position: fixed;
   top: 0;
 
   &__with-border {
     border-bottom: 1px solid #e4e4e4;
+    // box-shadow: 0 8px 8px rgb(26 65 101 / 25%);
   }
 
   &__container {
@@ -67,7 +70,11 @@
 
   &__phone {
     min-width: 124px;
-    margin-right: 64px;
+    margin-right: 32px;
+
+    @media (min-width: 1200px) {
+      margin-right: 64px;
+    }
   }
 
   &__link {
@@ -106,14 +113,6 @@
     &:hover .top-menu_title {
       color: #b5bdc8;
     }
-
-    // &:hover .icon-user__icon:first-of-type {
-    //   display: block;
-    // }
-
-    // &:hover .icon-user__icon:nth-of-type(2) {
-    //   display: none;
-    // }
   }
 
   &__title {
@@ -122,7 +121,11 @@
     line-height: 24px;
     cursor: pointer;
     display: none;
-    color: white;
+
+    color: #b5bdc8;
+    &:hover {
+      color: white;
+    }
 
     @media (min-width: 768px) {
       display: block;
@@ -142,12 +145,6 @@
 // .stop-scrolling {
 //   height: 100%;
 //   overflow: hidden;
-// }
-
-// .icon-user__icon {
-//   &:first-of-type {
-//     display: none;
-//   }
 // }
 
 .triple-icon {

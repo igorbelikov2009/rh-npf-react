@@ -2,15 +2,15 @@ import { Outlet } from "react-router-dom";
 import React, { FC } from "react";
 import Footer from "./Footer";
 import TopMenu from "./TopMenu";
+import "../styles/Layout.scss";
 
 const Layout: FC = () => {
   return (
     <>
-      <TopMenu />
-
-      <main className="container">
+      <main className="layuot">
         <Outlet />
       </main>
+      <TopMenu />
 
       <Footer />
     </>
