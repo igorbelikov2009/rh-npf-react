@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import TopBlock from "../components/general/TopBlock";
 import mainImage from "../assets/images/main/mainTop.jpg";
 import Info from "../components/mainPage/Info/Info";
+import Statistics from "../components/mainPage/statistics/Statistics/Statistics";
 
 const MainPage: FC = () => {
   return (
@@ -14,6 +15,7 @@ const MainPage: FC = () => {
         image={mainImage}
       />
       <Info />
+      <Statistics />
     </>
   );
 };
