@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import TopBlock from "../components/general/TopBlock";
-import investImage from "../assets/images/invest/investTop.jpg";
+import investImage from "../assets/images/invest/InvestTop.jpg";
 
 const Investment: FC = () => {
   return (

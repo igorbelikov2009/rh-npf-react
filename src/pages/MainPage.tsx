@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import TopBlock from "../components/general/TopBlock";
 import mainImage from "../assets/images/main/mainTop.jpg";
+import Info from "../components/mainPage/Info/Info";
 
 const MainPage: FC = () => {
   return (
@@ -12,6 +13,7 @@ const MainPage: FC = () => {
         subheadingSpan=" к реализации своих самых смелых планов!"
         image={mainImage}
       />
+      <Info />
     </>
   );
 };
