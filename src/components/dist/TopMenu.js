@@ -12,7 +12,7 @@ var TopMenu = function () {
     var _b = react_1.useState(false), isPrivateOfficeHovered = _b[0], setPrivateOfficeHovered = _b[1];
     var _c = react_1.useState(false), isHamburgerHovered = _c[0], setHamburgerHovered = _c[1];
     var pathname = react_router_dom_1.useLocation().pathname;
-    console.log(pathname);
+    // console.log(pathname);
     var TopMenuLinks = [
         { to: "/about", children: "О нас" },
         { to: "/investment", children: "Инвестиции" },
@@ -33,11 +33,9 @@ var TopMenu = function () {
             pathname === "/support" ||
             pathname === "/taxation") {
             setIsBackgroundWhite(false);
-            console.log("no Ok");
         }
         else {
             setIsBackgroundWhite(true);
-            console.log("Ok!");
         }
     }, [pathname]);
     return (react_1["default"].createElement("header", { className: isBackgroundWhite ? "top-menu top-menu__with-border" : "top-menu " },

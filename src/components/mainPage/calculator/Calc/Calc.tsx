@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import PrimaryButton from "../../../ui/buttons/PrimaryButton/PrimaryButton";
 import RadioSecondary from "../../../ui/radios/RadioSecondary/RadioSecondary";
 import Slider from "../../../ui/Slider/Slider";
@@ -22,15 +22,15 @@ interface SliderProps {
 }
 
 const Calculator: FC = () => {
-  const genderValue = 65; // гендерный возраст выхода на пенсию
+  const [genderValue, setGenderValue] = useState(65); // гендерный возраст выхода на пенсию
   const ageValue = 30; // текущий возраст
-  const numberOfYears = 35; // срок инвестирования
-  const firstInvestValue = ""; // первичный взнос
-  const monthInvestValue = ""; // ежемесячный взнос
-  const timePaymentsValue = ""; // срок выплат пенсии
-  const yearPersent = 0.05; // годовой процент накопления
-  const generalAccumValue = 5143933; // общие накопления
-  const pensionValue = 28577; // размер выплаты пенсии
+  const numberOfYears = 35; // срок инвестирования => investmentTerm
+  const firstInvestValue = ""; // первичный взнос => downPayment
+  const monthInvestValue = ""; // ежемесячный взнос => monthlyInstallment
+  const timePaymentsValue = ""; // срок выплат пенсии => periodPaymentPension
+  const yearPersent = 0.05; // годовой процент накопления => annualPercentage
+  const generalAccumValue = 5143933; // общие накопления => generalSavings
+  const pensionValue = 28577; // размер выплаты пенсии => pension
 
   const radioItems: RadioItemProps[] = [
     { value: 65, title: "М" },
@@ -79,6 +79,11 @@ const Calculator: FC = () => {
   //   ageSlider: { required, numeric },
   // },
 
+  const onChangeGenderRadio = (valueRadio: React.SetStateAction<number>) => {
+    setGenderValue(valueRadio);
+    console.log("genderValue :" + genderValue);
+  };
+
   return (
     <section id="calculator" className={styles["calculator"]}>
       <div className={styles["calculator__container"]}>
@@ -90,7 +95,7 @@ const Calculator: FC = () => {
               <form className={styles["slider-block"]}>
                 <div className={styles["slider-block__age"]}>
                   <div className={styles["slider-block__switch"]}>
-                    <RadioSecondary radioItems={radioItems} />
+                    <RadioSecondary radioItems={radioItems} emitValue={onChangeGenderRadio} />
                     {/* <GuiRadioSecondary
                     :radioItems="radioItems"
                     @onChangeRadio="onChangeGenderRadio"
@@ -103,7 +108,7 @@ const Calculator: FC = () => {
                     min={ageSlider.min}
                     max={ageSlider.max}
                     step={ageSlider.step}
-                    // :value="ageSlider.currentValue"
+                    //  value={ageSlider.currentValue}
                     // @input="onInputAgeSlider"
                   />
 
@@ -132,11 +137,11 @@ const Calculator: FC = () => {
                   <label role="checkbox" aria-checked="false" aria-labelledby="foo" className={styles["r-checkbox"]}>
                     <span className={styles["r-checkbox__checker"]}></span>
 
-                    <button className="r-checkbox__switch r-checkbox__switch_invisible"></button>
+                    <button className={styles["r-checkbox__switch_invisible"]}></button>
 
                     <input id="Checkbox" type="checkbox" className={styles["r-checkbox__input"]} />
 
-                    <div className="r-checkbox__agree-link">Учитывать социальный налоговый вычет</div>
+                    <div className={styles["r-checkbox__agree-link"]}>Учитывать социальный налоговый вычет</div>
                   </label>
                 </div>
 

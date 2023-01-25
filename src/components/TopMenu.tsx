@@ -12,7 +12,7 @@ const TopMenu: FC = () => {
   const [isPrivateOfficeHovered, setPrivateOfficeHovered] = useState(false);
   const [isHamburgerHovered, setHamburgerHovered] = useState(false);
   const pathname = useLocation().pathname;
-  console.log(pathname);
+  // console.log(pathname);
 
   const TopMenuLinks: MenuLinkProps[] = [
     { to: "/about", children: "О нас" },
@@ -37,10 +37,8 @@ const TopMenu: FC = () => {
       pathname === "/taxation"
     ) {
       setIsBackgroundWhite(false);
-      console.log("no Ok");
     } else {
       setIsBackgroundWhite(true);
-      console.log("Ok!");
     }
   }, [pathname]);
 

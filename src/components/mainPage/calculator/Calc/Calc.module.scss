@@ -204,8 +204,8 @@
       background-color: transparent;
     }
   }
-  // r-checkbox__switch"
-  &__switch {
+  // r-checkbox__switch_invisible
+  &__switch_invisible {
     content: "";
     width: 10px;
     height: 10px;
@@ -217,15 +217,23 @@
     transform: scale(1.2);
     transition: all 0.2s linear;
 
-    // r-checkbox__switch_invisible
-    &_invisible {
-      display: none;
-    }
+    display: none;
+  }
 
-    // r-checkbox__switch_visible
-    &_visible {
-      display: block;
-    }
+  // r-checkbox__switch_visible
+  &__switch_visible {
+    content: "";
+    width: 10px;
+    height: 10px;
+
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    background-color: #00d2ff;
+    transform: scale(1.2);
+    transition: all 0.2s linear;
+
+    display: block;
   }
 
   &__input {
