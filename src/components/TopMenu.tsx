@@ -1,6 +1,6 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import "../styles/TopMenu.scss";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import Logotypes from "./general/Logotypes/Logotypes";
 import MenuLink, { MenuLinkProps } from "./ui/MenuLink/MenuLink";
@@ -8,9 +8,11 @@ import TripleIcon from "./general/TripleIcon/TripleIcon";
 
 const TopMenu: FC = () => {
   const navigate = useNavigate();
-  const [isBackgroundWhite] = useState(false);
+  const [isBackgroundWhite, setIsBackgroundWhite] = useState(false);
   const [isPrivateOfficeHovered, setPrivateOfficeHovered] = useState(false);
   const [isHamburgerHovered, setHamburgerHovered] = useState(false);
+  const pathname = useLocation().pathname;
+  console.log(pathname);
 
   const TopMenuLinks: MenuLinkProps[] = [
     { to: "/about", children: "О нас" },
@@ -20,6 +22,27 @@ const TopMenu: FC = () => {
     { to: "/support", children: "Поддержка" },
     { to: "/contacts", children: "Контакты" },
   ];
+
+  useEffect(() => {
+    if (
+      pathname === "/" ||
+      pathname === "/about" ||
+      pathname === "/business" ||
+      pathname === "/info" ||
+      pathname === "/investment" ||
+      pathname === "/managment" ||
+      pathname === "/news" ||
+      pathname === "/notfoundpage" ||
+      pathname === "/support" ||
+      pathname === "/taxation"
+    ) {
+      setIsBackgroundWhite(false);
+      console.log("no Ok");
+    } else {
+      setIsBackgroundWhite(true);
+      console.log("Ok!");
+    }
+  }, [pathname]);
 
   return (
     <header className={isBackgroundWhite ? "top-menu top-menu__with-border" : "top-menu "}>
