@@ -1,22 +1,14 @@
 import React, { FC, SetStateAction, useState } from "react";
-import { RadioItemProps } from "../../../mainPage/calculator/Calc/Calc";
+import { RadioProps } from "../../../../models/types";
 import RadioSecondaryLabel from "../RadioSecondaryLabel/RadioSecondaryLabel";
 import styles from "./RadioSecondary.module.scss";
 
-interface RadioSecondaryProps {
-  radioItems: RadioItemProps[];
-  // emitValue: (event: React.ChangeEvent<HTMLInputElement>) => void;
-
-  emitValue: (event: React.SetStateAction<string>) => void;
-}
-
-const RadioSecondary: FC<RadioSecondaryProps> = ({ radioItems, emitValue }) => {
+const RadioSecondary: FC<RadioProps> = ({ radioItems, emitValue }) => {
   const [valueRadio, setValueRadio] = useState<SetStateAction<string>>("65");
 
-  const onChangeRadio = (value: string) => {
+  const onChangeRadio = (value: SetStateAction<string>) => {
     console.log(value);
     setValueRadio(value);
-
     if (valueRadio) {
       emitValue(valueRadio);
     }

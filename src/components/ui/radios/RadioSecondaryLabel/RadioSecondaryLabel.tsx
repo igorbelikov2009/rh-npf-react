@@ -1,23 +1,15 @@
 import React, { FC, useState } from "react";
+import { RadioLabelProps } from "../../../../models/types";
 import styles from "./RadioSecondaryLabel.module.scss";
 
-export interface RadioSecondaryLabelProps {
-  value: string;
-  title: string;
-  name: string;
-  isActive?: boolean;
-  emitValue: (event: any) => void;
-}
-const RadioSecondaryLabel: FC<RadioSecondaryLabelProps> = ({ value, title, isActive, name, emitValue }) => {
+const RadioSecondaryLabel: FC<RadioLabelProps> = ({ value, title, name, isActive, emitValue }) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [valueRadio, setValueRadio] = useState<string>();
 
   const radioHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log(event.target.value);
     setValueRadio(event.target.value);
-
     emitValue(event.target.value);
-    // console.log(valueRadio);
   };
 
   return (

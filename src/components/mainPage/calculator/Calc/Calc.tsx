@@ -1,17 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FC, useState } from "react";
+import { RadioItemProps } from "../../../../models/types";
 import PrimaryButton from "../../../ui/buttons/PrimaryButton/PrimaryButton";
 import RadioSecondary from "../../../ui/radios/RadioSecondary/RadioSecondary";
 import Slider from "../../../ui/Slider/Slider";
 import Graph from "../Graph/Graph";
 import PensionInfo from "../PensionInfo/PensionInfo";
 import styles from "./Calc.module.scss";
-
-export interface RadioItemProps {
-  value: string;
-  title: string;
-  name: string;
-}
 
 interface SliderProps {
   title: string;
