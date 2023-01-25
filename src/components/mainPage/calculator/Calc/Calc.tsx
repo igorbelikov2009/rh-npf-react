@@ -8,8 +8,9 @@ import PensionInfo from "../PensionInfo/PensionInfo";
 import styles from "./Calc.module.scss";
 
 export interface RadioItemProps {
-  value: number;
+  value: string;
   title: string;
+  name: string;
 }
 
 interface SliderProps {
@@ -22,7 +23,9 @@ interface SliderProps {
 }
 
 const Calculator: FC = () => {
-  const [genderValue, setGenderValue] = useState(65); // гендерный возраст выхода на пенсию
+  const [genderValue, setGenderValue] = useState("65"); // гендерный возраст выхода на пенсию
+
+  // console.log(genderValue);
   const ageValue = 30; // текущий возраст
   const numberOfYears = 35; // срок инвестирования => investmentTerm
   const firstInvestValue = ""; // первичный взнос => downPayment
@@ -33,8 +36,8 @@ const Calculator: FC = () => {
   const pensionValue = 28577; // размер выплаты пенсии => pension
 
   const radioItems: RadioItemProps[] = [
-    { value: 65, title: "М" },
-    { value: 60, title: "Ж" },
+    { value: "65", title: "М", name: "gender" },
+    { value: "60", title: "Ж", name: "gender" },
   ];
 
   const ageSlider: SliderProps = {
@@ -79,7 +82,7 @@ const Calculator: FC = () => {
   //   ageSlider: { required, numeric },
   // },
 
-  const onChangeGenderRadio = (valueRadio: React.SetStateAction<number>) => {
+  const onChangeGenderRadio = (valueRadio: React.SetStateAction<string>) => {
     setGenderValue(valueRadio);
     console.log("genderValue :" + genderValue);
   };
@@ -96,10 +99,6 @@ const Calculator: FC = () => {
                 <div className={styles["slider-block__age"]}>
                   <div className={styles["slider-block__switch"]}>
                     <RadioSecondary radioItems={radioItems} emitValue={onChangeGenderRadio} />
-                    {/* <GuiRadioSecondary
-                    :radioItems="radioItems"
-                    @onChangeRadio="onChangeGenderRadio"
-                  /> */}
                   </div>
 
                   <Slider

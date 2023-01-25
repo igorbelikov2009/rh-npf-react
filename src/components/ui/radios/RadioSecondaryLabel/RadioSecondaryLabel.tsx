@@ -2,24 +2,33 @@ import React, { FC, useState } from "react";
 import styles from "./RadioSecondaryLabel.module.scss";
 
 export interface RadioSecondaryLabelProps {
-  value: any;
+  value: string;
   title: string;
-  isActive: boolean;
-  emitValue: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  name: string;
+  isActive?: boolean;
+  emitValue: (event: any) => void;
 }
-const RadioSecondaryLabel: FC<RadioSecondaryLabelProps> = ({ title, isActive, value, emitValue }) => {
-  const [valueRadio, setValueRadio] = useState(0);
+const RadioSecondaryLabel: FC<RadioSecondaryLabelProps> = ({ value, title, isActive, name, emitValue }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [valueRadio, setValueRadio] = useState<string>();
 
-  const onChangeRadio = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValueRadio(Number(event.target.value));
-    value = valueRadio;
-    emitValue(value);
-    console.log(value);
+  const radioHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(event.target.value);
+    setValueRadio(event.target.value);
+
+    emitValue(event.target.value);
+    // console.log(valueRadio);
   };
 
   return (
     <label className={isActive ? styles["radio-secondary-label_active"] : styles["radio-secondary-label"]}>
-      <input className={styles["radio-secondary-label__field"]} type="radio" value={value} onChange={onChangeRadio} />
+      <input
+        className={styles["radio-secondary-label__field"]}
+        type="radio"
+        value={value}
+        name={name}
+        onChange={radioHandler}
+      />
 
       <p className={styles["radio-secondary-label__title"]}>{title}</p>
     </label>

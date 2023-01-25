@@ -9,7 +9,8 @@ var Graph_1 = require("../Graph/Graph");
 var PensionInfo_1 = require("../PensionInfo/PensionInfo");
 var Calc_module_scss_1 = require("./Calc.module.scss");
 var Calculator = function () {
-    var _a = react_1.useState(65), genderValue = _a[0], setGenderValue = _a[1]; // гендерный возраст выхода на пенсию
+    var _a = react_1.useState("65"), genderValue = _a[0], setGenderValue = _a[1]; // гендерный возраст выхода на пенсию
+    // console.log(genderValue);
     var ageValue = 30; // текущий возраст
     var numberOfYears = 35; // срок инвестирования => investmentTerm
     var firstInvestValue = ""; // первичный взнос => downPayment
@@ -19,8 +20,8 @@ var Calculator = function () {
     var generalAccumValue = 5143933; // общие накопления => generalSavings
     var pensionValue = 28577; // размер выплаты пенсии => pension
     var radioItems = [
-        { value: 65, title: "М" },
-        { value: 60, title: "Ж" },
+        { value: "65", title: "М", name: "gender" },
+        { value: "60", title: "Ж", name: "gender" },
     ];
     var ageSlider = {
         title: "Возраст, лет",
