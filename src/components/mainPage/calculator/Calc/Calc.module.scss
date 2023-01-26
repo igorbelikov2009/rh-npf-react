@@ -155,15 +155,10 @@
     display: block;
   }
 
-  &__button-container {
-    width: 100%;
-    max-width: 272px;
-    display: block;
-    margin-top: 64px;
-
-    @media screen and (min-width: 576px) {
-      max-width: 200px;
-    }
+  &__checkbox-value {
+    font-size: 11px;
+    line-height: 15px;
+    color: #5a646e;
   }
 }
 // sliders

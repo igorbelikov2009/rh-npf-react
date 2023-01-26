@@ -156,16 +156,10 @@
   width: 100%;
   display: block;
 }
-.slider-block__button-container {
-  width: 100%;
-  max-width: 272px;
-  display: block;
-  margin-top: 64px;
-}
-@media screen and (min-width: 576px) {
-  .slider-block__button-container {
-    max-width: 200px;
-  }
+.slider-block__checkbox-value {
+  font-size: 11px;
+  line-height: 15px;
+  color: #5a646e;
 }
 
 .r-checkbox {

@@ -25,6 +25,8 @@ const Calculator: FC = () => {
   // const timePaymentsValue = ""; // срок выплат пенсии => periodPaymentPension
   const [periodPaymentPension, setPeriodPaymentPension] = useState(15); // срок выплат пенсии => periodPaymentPension
 
+  const [earlyRretirement, setEarlyRretirement] = useState(true); // ускоренный выход на пенсию
+
   const yearPersent = 0.05; // годовой процент накопления => annualPercentage
   const generalAccumValue = 5143933; // общие накопления => generalSavings
   const pensionValue = 28577; // размер выплаты пенсии => pension
@@ -105,6 +107,11 @@ const Calculator: FC = () => {
     setPeriodPaymentPension(periodPaymentPension);
   };
 
+  const toogleChecked = () => {
+    console.log("toogleChecked");
+    setEarlyRretirement((prev) => !prev);
+  };
+
   return (
     <section id="calculator" className={styles["calculator"]}>
       <div className={styles["calculator__container"]}>
@@ -130,53 +137,69 @@ const Calculator: FC = () => {
                   />
                 </div>
 
-                <Slider
-                  title={downPaymentSlider.title}
-                  name={downPaymentSlider.name}
-                  min={downPaymentSlider.min}
-                  max={downPaymentSlider.max}
-                  step={downPaymentSlider.step}
-                  value={downPaymentSlider.value}
-                  emitValue={downPaymentSliderHandler}
-                />
-                <Slider
-                  title={monthlyInstallmenSlider.title}
-                  name={monthlyInstallmenSlider.name}
-                  min={monthlyInstallmenSlider.min}
-                  max={monthlyInstallmenSlider.max}
-                  step={monthlyInstallmenSlider.step}
-                  value={monthlyInstallmenSlider.value}
-                  emitValue={monthlyInstallmenSliderHandler}
-                />
-                <Slider
-                  title={periodPaymentPensionSlider.title}
-                  name={periodPaymentPensionSlider.name}
-                  min={periodPaymentPensionSlider.min}
-                  max={periodPaymentPensionSlider.max}
-                  step={periodPaymentPensionSlider.step}
-                  value={periodPaymentPensionSlider.value}
-                  emitValue={periodPaymentPensionSliderHandler}
-                />
+                <div>
+                  <Slider
+                    title={downPaymentSlider.title}
+                    name={downPaymentSlider.name}
+                    min={downPaymentSlider.min}
+                    max={downPaymentSlider.max}
+                    step={downPaymentSlider.step}
+                    value={downPaymentSlider.value}
+                    emitValue={downPaymentSliderHandler}
+                  />
+                  <Slider
+                    title={monthlyInstallmenSlider.title}
+                    name={monthlyInstallmenSlider.name}
+                    min={monthlyInstallmenSlider.min}
+                    max={monthlyInstallmenSlider.max}
+                    step={monthlyInstallmenSlider.step}
+                    value={monthlyInstallmenSlider.value}
+                    emitValue={monthlyInstallmenSliderHandler}
+                  />
+                  <Slider
+                    title={periodPaymentPensionSlider.title}
+                    name={periodPaymentPensionSlider.name}
+                    min={periodPaymentPensionSlider.min}
+                    max={periodPaymentPensionSlider.max}
+                    step={periodPaymentPensionSlider.step}
+                    value={periodPaymentPensionSlider.value}
+                    emitValue={periodPaymentPensionSliderHandler}
+                  />
+                </div>
 
                 <div className={styles["slider-block__checkbox"]}>
-                  <label role="checkbox" aria-checked="false" aria-labelledby="foo" className={styles["r-checkbox"]}>
-                    <span className={styles["r-checkbox__checker"]}></span>
+                  <label role="checkbox" aria-checked={true} aria-labelledby="foo" className={styles["r-checkbox"]}>
+                    <span
+                      onChange={() => setEarlyRretirement(!earlyRretirement)}
+                      className={styles["r-checkbox__checker"]}
+                    ></span>
 
-                    <button className={styles["r-checkbox__switch_invisible"]}></button>
+                    <div
+                      className={
+                        earlyRretirement ? styles["r-checkbox__switch_visible"] : styles["r-checkbox__switch_invisible"]
+                      }
+                    ></div>
 
-                    <input id="Checkbox" type="checkbox" className={styles["r-checkbox__input"]} />
+                    <input
+                      type="checkbox"
+                      checked={earlyRretirement}
+                      onChange={() => toogleChecked()}
+                      className={styles["r-checkbox__input"]}
+                    />
 
-                    <div className={styles["r-checkbox__agree-link"]}>Учитывать социальный налоговый вычет</div>
+                    <div className={styles["r-checkbox__agree-link"]}>Выход на пенсию в 55/60 лет*</div>
                   </label>
                 </div>
 
-                <div className={styles["slider-block__button-container"]}>
-                  <PrimaryButton children="Оформить договор" />
-                </div>
+                {!earlyRretirement && (
+                  <p className={styles["slider-block__checkbox-value"]}>
+                    * Расчет производится на основании достижения возраста, дающего право на получение страховой пенсии
+                    по старости, в случае если это предусмотрено пенсионным договором.
+                  </p>
+                )}
               </form>
             </div>
             <PensionInfo generalAccumValue={generalAccumValue} pensionValue={pensionValue} />
-            {/* <PensionInfo  pensionValue="pensionValue" generalAccumValue="generalAccumValue" /> */}
           </div>
 
           <div className={styles["calculator__graph-container"]}>
