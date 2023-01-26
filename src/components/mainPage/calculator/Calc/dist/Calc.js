@@ -32,7 +32,10 @@ var Calculator = function () {
         min: 18,
         max: ageSliderMax,
         step: 1,
-        value: 30
+        value: 30,
+        emitValue: function (event) {
+            throw new Error("Function not implemented.");
+        }
     };
     var downPaymentSlider = {
         title: " Первоначальный взнос, р",
@@ -40,7 +43,10 @@ var Calculator = function () {
         min: 0,
         max: 1000000,
         step: 10000,
-        value: 10000
+        value: 10000,
+        emitValue: function (event) {
+            throw new Error("Function not implemented.");
+        }
     };
     var monthlyInstallmenSlider = {
         title: "Ежемесячный взнос, р.",
@@ -48,7 +54,10 @@ var Calculator = function () {
         min: 0,
         max: 50000,
         step: 500,
-        value: 5000
+        value: 5000,
+        emitValue: function (event) {
+            throw new Error("Function not implemented.");
+        }
     };
     var periodPaymentPensionSlider = {
         title: "Срок выплаты пенсии, лет",
@@ -56,13 +65,11 @@ var Calculator = function () {
         min: 5,
         max: 30,
         step: 1,
-        value: 15
+        value: 15,
+        emitValue: function (event) {
+            throw new Error("Function not implemented.");
+        }
     };
-    // validations: {
-    //   genderValue: { minValue: minValue(65), maxValue: maxValue(65) },
-    //   sliders: { required, numeric },
-    //   ageSlider: { required, numeric },
-    // },
     var onChangeGenderRadio = function (valueRadio) {
         setGenderValue(valueRadio);
         console.log(typeof valueRadio);
@@ -85,7 +92,6 @@ var Calculator = function () {
     };
     var periodPaymentPensionSliderHandler = function (periodPaymentPension) {
         setPeriodPaymentPension(periodPaymentPension);
-        console.log(periodPaymentPension);
     };
     return (react_1["default"].createElement("section", { id: "calculator", className: Calc_module_scss_1["default"]["calculator"] },
         react_1["default"].createElement("div", { className: Calc_module_scss_1["default"]["calculator__container"] },

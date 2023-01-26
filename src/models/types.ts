@@ -20,15 +20,6 @@ export interface RadioLabelProps {
 // RadioProps
 
 // SliderProps
-// export interface SliderProps {
-//   title: string;
-//   name: string;
-//   min: string | number | undefined;
-//   max: string | number | undefined;
-//   step: string | number | undefined;
-//   value: string | number | readonly string[] | undefined;
-//   emitValue: (event: React.SetStateAction<number>) => void;
-// }
 export interface SliderProps {
   title: string;
   name: string;

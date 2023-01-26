@@ -1,22 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FC, useState } from "react";
-import { RadioItemProps } from "../../../../models/types";
+import { RadioItemProps, SliderProps } from "../../../../models/types";
 import PrimaryButton from "../../../ui/buttons/PrimaryButton/PrimaryButton";
 import RadioSecondary from "../../../ui/radios/RadioSecondary/RadioSecondary";
 import Slider from "../../../ui/Slider/Slider";
 import Graph from "../Graph/Graph";
 import PensionInfo from "../PensionInfo/PensionInfo";
 import styles from "./Calc.module.scss";
-
-interface SliderProps {
-  title: string;
-  name: string;
-  min: number;
-  max: number;
-  step: number;
-  value: number;
-  currentValue?: number;
-}
 
 const Calculator: FC = () => {
   const [genderValue, setGenderValue] = useState("65"); // гендерный возраст выхода на пенсию
@@ -51,6 +41,9 @@ const Calculator: FC = () => {
     max: ageSliderMax,
     step: 1,
     value: 30,
+    emitValue: function (event: React.SetStateAction<number>): void {
+      throw new Error("Function not implemented.");
+    },
   };
 
   const downPaymentSlider: SliderProps = {
@@ -60,6 +53,9 @@ const Calculator: FC = () => {
     max: 1000000,
     step: 10000,
     value: 10000,
+    emitValue: function (event: React.SetStateAction<number>): void {
+      throw new Error("Function not implemented.");
+    },
   };
   const monthlyInstallmenSlider: SliderProps = {
     title: "Ежемесячный взнос, р.",
@@ -68,6 +64,9 @@ const Calculator: FC = () => {
     max: 50000,
     step: 500,
     value: 5000,
+    emitValue: function (event: React.SetStateAction<number>): void {
+      throw new Error("Function not implemented.");
+    },
   };
   const periodPaymentPensionSlider: SliderProps = {
     title: "Срок выплаты пенсии, лет",
@@ -76,13 +75,10 @@ const Calculator: FC = () => {
     max: 30,
     step: 1,
     value: 15,
+    emitValue: function (event: React.SetStateAction<number>): void {
+      throw new Error("Function not implemented.");
+    },
   };
-
-  // validations: {
-  //   genderValue: { minValue: minValue(65), maxValue: maxValue(65) },
-  //   sliders: { required, numeric },
-  //   ageSlider: { required, numeric },
-  // },
 
   const onChangeGenderRadio = (valueRadio: React.SetStateAction<string>) => {
     setGenderValue(valueRadio);
@@ -107,7 +103,6 @@ const Calculator: FC = () => {
   };
   const periodPaymentPensionSliderHandler = (periodPaymentPension: React.SetStateAction<number>) => {
     setPeriodPaymentPension(periodPaymentPension);
-    console.log(periodPaymentPension);
   };
 
   return (
