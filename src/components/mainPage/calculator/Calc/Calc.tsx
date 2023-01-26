@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import PrimaryButton from "../../../ui/buttons/PrimaryButton/PrimaryButton";
 import Checkbox from "../../../ui/Checkbox/Checkbox";
 import RadioSecondary, { RadioItemProps } from "../../../ui/radios/RadioSecondary/RadioSecondary";
@@ -14,7 +15,8 @@ const Calculator: FC = () => {
   const [ageValue, setAgeValue] = useState(30); // текущий возраст
   const [ageSliderMax, setAgeSliderMax] = useState(65);
 
-  const numberOfYears = 35; // срок инвестирования => investmentTerm
+  // const numberOfYears = 35; // срок инвестирования => investmentTerm
+  const [investmentTerm, setInvestmentTerm] = useState(35); // срок инвестирования => investmentTerm
 
   // const firstInvestValue = ""; // первичный взнос => downPayment
   const [downPayment, setDownPayment] = useState(1000); // первичный взнос => downPayment
@@ -25,11 +27,10 @@ const Calculator: FC = () => {
   // const timePaymentsValue = ""; // срок выплат пенсии => periodPaymentPension
   const [periodPaymentPension, setPeriodPaymentPension] = useState(15); // срок выплат пенсии => periodPaymentPension
 
-  const [earlyRretirement, setEarlyRretirement] = useState(true); // ускоренный выход на пенсию
-
   const yearPersent = 0.05; // годовой процент накопления => annualPercentage
-  const generalAccumValue = 5143933; // общие накопления => generalSavings
-  const pensionValue = 28577; // размер выплаты пенсии => pension
+  let [generalAccumValue, setGeneralAccumValue] = useState(5143933); // общие накопления => generalSavings
+  let [pensionValue, setPensionValue] = useState(28577); // размер выплаты пенсии => pension
+  const [earlyRretirement, setEarlyRretirement] = useState(true); // ускоренный выход на пенсию
 
   const radioItems: RadioItemProps[] = [
     { value: "65", title: "М", name: "gender" },
@@ -89,6 +90,7 @@ const Calculator: FC = () => {
       setAgeSliderMax(60);
     }
   };
+
   const ageSliderHandler = (ageSliderValue: React.SetStateAction<number>) => {
     setAgeValue(ageSliderValue);
   };
@@ -105,6 +107,53 @@ const Calculator: FC = () => {
   const toogleChecked = () => {
     setEarlyRretirement((prev) => !prev);
   };
+
+  useEffect(() => {
+    setInvestmentTerm(Number(genderValue) - ageValue);
+    // console.log(genderValue);
+    // console.log("investmentTerm :" + investmentTerm);
+    // console.log("downPayment :" + downPayment);
+    // console.log("monthlyInstallment :" + monthlyInstallment);
+    // console.log("periodPaymentPension :" + periodPaymentPension);
+    // // обнуляем каждый раз накопления от первичного взноса
+    let firstInvestAccumValue = 0;
+    // // обнуляем каждый раз накопления ежемесячных взносов
+    let monthInvestAccumValue = 0;
+
+    // // вычисляем общий процент накопления за несколько лет
+    let generalPercent = 1 + yearPersent;
+    const percentNumberOfYears = generalPercent ** investmentTerm;
+    // console.log("percent:", percentNumberOfYears);
+
+    // // вычисляем накопления от первичного взноса
+    firstInvestAccumValue = downPayment * percentNumberOfYears;
+    firstInvestAccumValue = Math.round(firstInvestAccumValue);
+    // console.log("firstInvestAccumValue:" + firstInvestAccumValue);
+
+    // // вычисляем количество месяцев ежемесячных взносов
+    let numberOfMonths = investmentTerm * 12;
+    // console.log("numberOfMonths:" + numberOfMonths);
+
+    // // вычисляем накопления ежемесячных взносов за нескольк лет (количество месяцев ежемесячных взносов)
+    monthInvestAccumValue = 0; // обнуляем при каждом новом движении слайдера или свиттча
+    monthInvestAccumValue = Math.round(
+      monthlyInstallment * numberOfMonths +
+        monthlyInstallment * (numberOfMonths - 1) * ((yearPersent * numberOfMonths) / 24)
+    );
+    // console.log("monthInvestAccumValue:" + monthInvestAccumValue);
+
+    // // вычисляем общие накопления
+    generalAccumValue = 0;
+    generalAccumValue = Math.round(firstInvestAccumValue + monthInvestAccumValue);
+    setGeneralAccumValue(Math.round(firstInvestAccumValue + monthInvestAccumValue));
+    // console.log("generalAccumValue:" + generalAccumValue);
+
+    // // вычисляем размер ежемесячной пенсии
+    pensionValue = Math.round(generalAccumValue / periodPaymentPension / 12);
+    setPensionValue(Math.round(generalAccumValue / periodPaymentPension / 12));
+    // console.log("pensionValue:", pensionValue);
+    // console.log("finish");
+  }, [genderValue, ageValue, investmentTerm, downPayment, monthlyInstallment, periodPaymentPension]);
 
   return (
     <section id="calculator" className={styles["calculator"]}>
