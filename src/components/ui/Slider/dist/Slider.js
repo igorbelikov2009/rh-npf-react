@@ -7,7 +7,7 @@ var Slider = function (_a) {
     var _b = react_1.useState(value), currentValue = _b[0], setCurrentValue = _b[1];
     var sliderHandler = function (event) {
         setCurrentValue(Number(event.target.value));
-        console.log(Number(event.target.value));
+        // console.log(Number(event.target.value));
         value = Number(event.target.value);
         emitValue(Number(event.target.value));
     };

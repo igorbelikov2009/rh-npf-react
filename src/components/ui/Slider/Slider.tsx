@@ -1,23 +1,13 @@
 import React, { FC, useState } from "react";
+import { SliderProps } from "../../../models/types";
 import styles from "./Slider.module.scss";
-
-interface SliderProps {
-  title: string;
-  name: string;
-  min: number;
-  // max: number | React.SetStateAction<number>;
-  max: any;
-  step: number;
-  value: number;
-  emitValue: (event: React.SetStateAction<number>) => void;
-}
 
 const Slider: FC<SliderProps> = ({ title, name, min, max, step, value, emitValue }) => {
   const [currentValue, setCurrentValue] = useState(value);
 
   const sliderHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentValue(Number(event.target.value));
-    console.log(Number(event.target.value));
+    // console.log(Number(event.target.value));
     value = Number(event.target.value);
     emitValue(Number(event.target.value));
   };
