@@ -1,6 +1,15 @@
 import React, { FC, useState } from "react";
-import { SliderProps } from "../../../models/types";
 import styles from "./Slider.module.scss";
+
+export interface SliderProps {
+  title: string;
+  name: string;
+  min: number;
+  max: number;
+  step: number;
+  value: number;
+  emitValue: (event: React.SetStateAction<number>) => void;
+}
 
 const Slider: FC<SliderProps> = ({ title, name, min, max, step, value, emitValue }) => {
   const [currentValue, setCurrentValue] = useState(value);

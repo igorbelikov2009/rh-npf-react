@@ -1,13 +1,22 @@
 import React, { FC, SetStateAction, useState } from "react";
-import { RadioProps } from "../../../../models/types";
 import RadioSecondaryLabel from "../RadioSecondaryLabel/RadioSecondaryLabel";
 import styles from "./RadioSecondary.module.scss";
+
+export interface RadioItemProps {
+  value: string;
+  title: string;
+  name: string;
+}
+
+export interface RadioProps {
+  radioItems: RadioItemProps[];
+  emitValue: (event: React.SetStateAction<string>) => void;
+}
 
 const RadioSecondary: FC<RadioProps> = ({ radioItems, emitValue }) => {
   const [valueRadio, setValueRadio] = useState<SetStateAction<string>>("65");
 
   const onChangeRadio = (value: SetStateAction<string>) => {
-    // console.log(value);
     setValueRadio(value);
     if (valueRadio) {
       emitValue(value);

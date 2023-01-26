@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FC, useState } from "react";
-import { RadioItemProps, SliderProps } from "../../../../models/types";
 import PrimaryButton from "../../../ui/buttons/PrimaryButton/PrimaryButton";
-import RadioSecondary from "../../../ui/radios/RadioSecondary/RadioSecondary";
-import Slider from "../../../ui/Slider/Slider";
+import Checkbox from "../../../ui/Checkbox/Checkbox";
+import RadioSecondary, { RadioItemProps } from "../../../ui/radios/RadioSecondary/RadioSecondary";
+import Slider, { SliderProps } from "../../../ui/Slider/Slider";
 import Graph from "../Graph/Graph";
 import PensionInfo from "../PensionInfo/PensionInfo";
 import styles from "./Calc.module.scss";
@@ -35,7 +35,6 @@ const Calculator: FC = () => {
     { value: "65", title: "М", name: "gender" },
     { value: "60", title: "Ж", name: "gender" },
   ];
-
   const ageSlider: SliderProps = {
     title: "Возраст, лет",
     name: "ageSlider",
@@ -47,7 +46,6 @@ const Calculator: FC = () => {
       throw new Error("Function not implemented.");
     },
   };
-
   const downPaymentSlider: SliderProps = {
     title: " Первоначальный взнос, р",
     name: "downPayment",
@@ -84,16 +82,13 @@ const Calculator: FC = () => {
 
   const onChangeGenderRadio = (valueRadio: React.SetStateAction<string>) => {
     setGenderValue(valueRadio);
-    console.log(typeof valueRadio);
 
     if (valueRadio === "65") {
       setAgeSliderMax(65);
     } else {
       setAgeSliderMax(60);
     }
-    // console.log(ageSlider.max);
   };
-
   const ageSliderHandler = (ageSliderValue: React.SetStateAction<number>) => {
     setAgeValue(ageSliderValue);
   };
@@ -108,7 +103,6 @@ const Calculator: FC = () => {
   };
 
   const toogleChecked = () => {
-    console.log("toogleChecked");
     setEarlyRretirement((prev) => !prev);
   };
 
@@ -125,7 +119,6 @@ const Calculator: FC = () => {
                   <div className={styles["slider-block__switch"]}>
                     <RadioSecondary radioItems={radioItems} emitValue={onChangeGenderRadio} />
                   </div>
-
                   <Slider
                     title={ageSlider.title}
                     name={ageSlider.name}
@@ -168,27 +161,7 @@ const Calculator: FC = () => {
                 </div>
 
                 <div className={styles["slider-block__checkbox"]}>
-                  <label role="checkbox" aria-checked={true} aria-labelledby="foo" className={styles["r-checkbox"]}>
-                    <span
-                      onChange={() => setEarlyRretirement(!earlyRretirement)}
-                      className={styles["r-checkbox__checker"]}
-                    ></span>
-
-                    <div
-                      className={
-                        earlyRretirement ? styles["r-checkbox__switch_visible"] : styles["r-checkbox__switch_invisible"]
-                      }
-                    ></div>
-
-                    <input
-                      type="checkbox"
-                      checked={earlyRretirement}
-                      onChange={() => toogleChecked()}
-                      className={styles["r-checkbox__input"]}
-                    />
-
-                    <div className={styles["r-checkbox__agree-link"]}>Выход на пенсию в 55/60 лет*</div>
-                  </label>
+                  <Checkbox checkedValue={earlyRretirement} toogleChecked={toogleChecked} />
                 </div>
 
                 {!earlyRretirement && (

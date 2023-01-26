@@ -7,7 +7,6 @@ var RadioSecondary = function (_a) {
     var radioItems = _a.radioItems, emitValue = _a.emitValue;
     var _b = react_1.useState("65"), valueRadio = _b[0], setValueRadio = _b[1];
     var onChangeRadio = function (value) {
-        // console.log(value);
         setValueRadio(value);
         if (valueRadio) {
             emitValue(value);

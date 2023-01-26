@@ -1,6 +1,13 @@
 import React, { FC, useState } from "react";
-import { RadioLabelProps } from "../../../../models/types";
 import styles from "./RadioSecondaryLabel.module.scss";
+
+export interface RadioLabelProps {
+  value: string;
+  title: string;
+  name: string;
+  isActive: boolean;
+  emitValue: (event: React.SetStateAction<string>) => void;
+}
 
 const RadioSecondaryLabel: FC<RadioLabelProps> = ({ value, title, name, isActive, emitValue }) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -2,6 +2,7 @@
 exports.__esModule = true;
 /* eslint-disable @typescript-eslint/no-unused-vars */
 var react_1 = require("react");
+var Checkbox_1 = require("../../../ui/Checkbox/Checkbox");
 var RadioSecondary_1 = require("../../../ui/radios/RadioSecondary/RadioSecondary");
 var Slider_1 = require("../../../ui/Slider/Slider");
 var Graph_1 = require("../Graph/Graph");
@@ -72,14 +73,12 @@ var Calculator = function () {
     };
     var onChangeGenderRadio = function (valueRadio) {
         setGenderValue(valueRadio);
-        console.log(typeof valueRadio);
         if (valueRadio === "65") {
             setAgeSliderMax(65);
         }
         else {
             setAgeSliderMax(60);
         }
-        // console.log(ageSlider.max);
     };
     var ageSliderHandler = function (ageSliderValue) {
         setAgeValue(ageSliderValue);
@@ -94,7 +93,6 @@ var Calculator = function () {
         setPeriodPaymentPension(periodPaymentPension);
     };
     var toogleChecked = function () {
-        console.log("toogleChecked");
         setEarlyRretirement(function (prev) { return !prev; });
     };
     return (react_1["default"].createElement("section", { id: "calculator", className: Calc_module_scss_1["default"]["calculator"] },
@@ -114,11 +112,7 @@ var Calculator = function () {
                                 react_1["default"].createElement(Slider_1["default"], { title: monthlyInstallmenSlider.title, name: monthlyInstallmenSlider.name, min: monthlyInstallmenSlider.min, max: monthlyInstallmenSlider.max, step: monthlyInstallmenSlider.step, value: monthlyInstallmenSlider.value, emitValue: monthlyInstallmenSliderHandler }),
                                 react_1["default"].createElement(Slider_1["default"], { title: periodPaymentPensionSlider.title, name: periodPaymentPensionSlider.name, min: periodPaymentPensionSlider.min, max: periodPaymentPensionSlider.max, step: periodPaymentPensionSlider.step, value: periodPaymentPensionSlider.value, emitValue: periodPaymentPensionSliderHandler })),
                             react_1["default"].createElement("div", { className: Calc_module_scss_1["default"]["slider-block__checkbox"] },
-                                react_1["default"].createElement("label", { role: "checkbox", "aria-checked": true, "aria-labelledby": "foo", className: Calc_module_scss_1["default"]["r-checkbox"] },
-                                    react_1["default"].createElement("span", { onChange: function () { return setEarlyRretirement(!earlyRretirement); }, className: Calc_module_scss_1["default"]["r-checkbox__checker"] }),
-                                    react_1["default"].createElement("div", { className: earlyRretirement ? Calc_module_scss_1["default"]["r-checkbox__switch_visible"] : Calc_module_scss_1["default"]["r-checkbox__switch_invisible"] }),
-                                    react_1["default"].createElement("input", { type: "checkbox", checked: earlyRretirement, onChange: function () { return toogleChecked(); }, className: Calc_module_scss_1["default"]["r-checkbox__input"] }),
-                                    react_1["default"].createElement("div", { className: Calc_module_scss_1["default"]["r-checkbox__agree-link"] }, "\u0412\u044B\u0445\u043E\u0434 \u043D\u0430 \u043F\u0435\u043D\u0441\u0438\u044E \u0432 55/60 \u043B\u0435\u0442*"))),
+                                react_1["default"].createElement(Checkbox_1["default"], { checkedValue: earlyRretirement, toogleChecked: toogleChecked })),
                             !earlyRretirement && (react_1["default"].createElement("p", { className: Calc_module_scss_1["default"]["slider-block__checkbox-value"] }, "* \u0420\u0430\u0441\u0447\u0435\u0442 \u043F\u0440\u043E\u0438\u0437\u0432\u043E\u0434\u0438\u0442\u0441\u044F \u043D\u0430 \u043E\u0441\u043D\u043E\u0432\u0430\u043D\u0438\u0438 \u0434\u043E\u0441\u0442\u0438\u0436\u0435\u043D\u0438\u044F \u0432\u043E\u0437\u0440\u0430\u0441\u0442\u0430, \u0434\u0430\u044E\u0449\u0435\u0433\u043E \u043F\u0440\u0430\u0432\u043E \u043D\u0430 \u043F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u0435 \u0441\u0442\u0440\u0430\u0445\u043E\u0432\u043E\u0439 \u043F\u0435\u043D\u0441\u0438\u0438 \u043F\u043E \u0441\u0442\u0430\u0440\u043E\u0441\u0442\u0438, \u0432 \u0441\u043B\u0443\u0447\u0430\u0435 \u0435\u0441\u043B\u0438 \u044D\u0442\u043E \u043F\u0440\u0435\u0434\u0443\u0441\u043C\u043E\u0442\u0440\u0435\u043D\u043E \u043F\u0435\u043D\u0441\u0438\u043E\u043D\u043D\u044B\u043C \u0434\u043E\u0433\u043E\u0432\u043E\u0440\u043E\u043C.")))),
                     react_1["default"].createElement(PensionInfo_1["default"], { generalAccumValue: generalAccumValue, pensionValue: pensionValue })),
                 react_1["default"].createElement("div", { className: Calc_module_scss_1["default"]["calculator__graph-container"] },
