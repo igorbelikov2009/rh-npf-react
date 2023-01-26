@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { RadioItemProps } from "../../../../models/types";
 import PrimaryButton from "../../../ui/buttons/PrimaryButton/PrimaryButton";
 import RadioSecondary from "../../../ui/radios/RadioSecondary/RadioSecondary";
@@ -14,14 +14,17 @@ interface SliderProps {
   min: number;
   max: number;
   step: number;
-  currentValue: number;
+  value: number;
+  currentValue?: number;
 }
 
 const Calculator: FC = () => {
   const [genderValue, setGenderValue] = useState("65"); // гендерный возраст выхода на пенсию
-
   // console.log(genderValue);
-  const ageValue = 30; // текущий возраст
+
+  const [ageValue, setAgeValue] = useState(30); // текущий возраст
+  const [ageSliderMax, setAgeSliderMax] = useState(65);
+
   const numberOfYears = 35; // срок инвестирования => investmentTerm
   const firstInvestValue = ""; // первичный взнос => downPayment
   const monthInvestValue = ""; // ежемесячный взнос => monthlyInstallment
@@ -39,37 +42,41 @@ const Calculator: FC = () => {
     title: "Возраст, лет",
     name: "ageSlider",
     min: 18,
-    max: 65,
+    max: ageSliderMax,
     step: 1,
-    currentValue: 30,
+    value: 30,
+    // currentValue: 30,
   };
 
-  const sliders: SliderProps[] = [
-    {
-      title: " Первоначальный взнос, р",
-      name: "firstPayment",
-      min: 0,
-      max: 1000000,
-      step: 10000,
-      currentValue: 10000,
-    },
-    {
-      title: "Ежемесячный взнос, р.",
-      name: "monthlyPayment",
-      min: 0,
-      max: 50000,
-      step: 500,
-      currentValue: 5000,
-    },
-    {
-      title: "Срок выплаты пенсии, лет",
-      name: "dueDate",
-      min: 5,
-      max: 30,
-      step: 1,
-      currentValue: 15,
-    },
-  ];
+  // const sliders: SliderProps[] = [
+  //   {
+  //     title: " Первоначальный взнос, р",
+  //     name: "firstPayment",
+  //     min: 0,
+  //     max: 1000000,
+  //     step: 10000,
+  //     value: 10000,
+  //     // currentValue: 10000,
+  //   },
+  //   {
+  //     title: "Ежемесячный взнос, р.",
+  //     name: "monthlyPayment",
+  //     min: 0,
+  //     max: 50000,
+  //     step: 500,
+  //     value: 5000,
+  //     // currentValue: 5000,
+  //   },
+  //   {
+  //     title: "Срок выплаты пенсии, лет",
+  //     name: "dueDate",
+  //     min: 5,
+  //     max: 30,
+  //     step: 1,
+  //     value: 15,
+  //     // currentValue: 15,
+  //   },
+  // ];
 
   // validations: {
   //   genderValue: { minValue: minValue(65), maxValue: maxValue(65) },
@@ -79,8 +86,24 @@ const Calculator: FC = () => {
 
   const onChangeGenderRadio = (valueRadio: React.SetStateAction<string>) => {
     setGenderValue(valueRadio);
-    console.log("genderValue :" + genderValue);
+    console.log(typeof valueRadio);
+
+    if (valueRadio === "65") {
+      setAgeSliderMax(65);
+      // ageSlider.value = 23.5;
+    } else {
+      setAgeSliderMax(60);
+      // ageSlider.value = 21;
+    }
+    console.log(ageSlider.max);
   };
+
+  const ageSliderHandler = (ageSliderValue: React.SetStateAction<number>) => {
+    setAgeValue(ageSliderValue);
+    console.log(ageSliderValue);
+  };
+
+  useEffect(() => {}, []);
 
   return (
     <section id="calculator" className={styles["calculator"]}>
@@ -102,15 +125,12 @@ const Calculator: FC = () => {
                     min={ageSlider.min}
                     max={ageSlider.max}
                     step={ageSlider.step}
-                    //  value={ageSlider.currentValue}
-                    // @input="onInputAgeSlider"
+                    value={ageSlider.value}
+                    emitValue={ageSliderHandler}
                   />
-
-                  {/*  Так @input связать без метода
-                     @input="ageSlider.currentValue = $event"--> */}
                 </div>
 
-                {sliders.map((slid, index) => (
+                {/* {sliders.map((slid, index) => (
                   <Slider
                     key={index}
                     title={slid.title}
@@ -118,14 +138,11 @@ const Calculator: FC = () => {
                     min={slid.min}
                     max={slid.max}
                     step={slid.step}
-                    //   :value="slider.currentValue"
+                    value={slid.value}
+                    emitValue={onHandler}
                     // @input="onInputSlider($event, slider.name)"
                   />
-                ))}
-                {/* <Slider /> */}
-
-                {/*  onInputSlider($event, slider.name)
-                         @input="slider.currentValue = $event" --> */}
+                ))} */}
 
                 <div className={styles["slider-block__checkbox"]}>
                   <label role="checkbox" aria-checked="false" aria-labelledby="foo" className={styles["r-checkbox"]}>

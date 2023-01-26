@@ -7,7 +7,7 @@ var RadioSecondaryLabel = function (_a) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     var _b = react_1.useState(), valueRadio = _b[0], setValueRadio = _b[1];
     var radioHandler = function (event) {
-        console.log(event.target.value);
+        // console.log(event.target.value);
         setValueRadio(event.target.value);
         emitValue(event.target.value);
     };

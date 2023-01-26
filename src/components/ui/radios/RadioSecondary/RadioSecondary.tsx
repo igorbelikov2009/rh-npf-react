@@ -7,12 +7,11 @@ const RadioSecondary: FC<RadioProps> = ({ radioItems, emitValue }) => {
   const [valueRadio, setValueRadio] = useState<SetStateAction<string>>("65");
 
   const onChangeRadio = (value: SetStateAction<string>) => {
-    console.log(value);
+    // console.log(value);
     setValueRadio(value);
     if (valueRadio) {
-      emitValue(valueRadio);
+      emitValue(value);
     }
-    console.log(value);
   };
 
   return (

@@ -7,7 +7,7 @@ const RadioSecondaryLabel: FC<RadioLabelProps> = ({ value, title, name, isActive
   const [valueRadio, setValueRadio] = useState<string>();
 
   const radioHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     setValueRadio(event.target.value);
     emitValue(event.target.value);
   };

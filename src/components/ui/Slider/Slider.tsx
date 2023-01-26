@@ -5,18 +5,21 @@ interface SliderProps {
   title: string;
   name: string;
   min: number;
-  max: number;
+  // max: number | React.SetStateAction<number>;
+  max: any;
   step: number;
-  //   value: number;
+  value: number;
+  emitValue: (event: React.SetStateAction<number>) => void;
 }
 
-const Slider: FC<SliderProps> = ({ title, name, min, max, step }) => {
-  const [value, setValue] = useState(0);
+const Slider: FC<SliderProps> = ({ title, name, min, max, step, value, emitValue }) => {
+  const [currentValue, setCurrentValue] = useState(value);
 
-  const emitValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.stopPropagation();
-    setValue(Number(event.target.value));
-    console.log(value);
+  const sliderHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCurrentValue(Number(event.target.value));
+    console.log(Number(event.target.value));
+    value = Number(event.target.value);
+    emitValue(Number(event.target.value));
   };
 
   return (
@@ -24,7 +27,7 @@ const Slider: FC<SliderProps> = ({ title, name, min, max, step }) => {
       <div className={styles["slider__description"]}>
         <p className={styles["slider__title"]}>{title}</p>
 
-        <p className={styles["slider__output"]}>{value}</p>
+        <p className={styles["slider__output"]}>{currentValue}</p>
       </div>
 
       <input
@@ -34,8 +37,8 @@ const Slider: FC<SliderProps> = ({ title, name, min, max, step }) => {
         min={min}
         max={max}
         step={step}
-        value={value}
-        onChange={emitValue}
+        value={currentValue}
+        onChange={sliderHandler}
       />
     </div>
   );
