@@ -22,7 +22,7 @@ var Calculator = function () {
     var yearPersent = 0.05; // годовой процент накопления => annualPercentage
     var _k = react_1.useState(0), generalAccumValue = _k[0], setGeneralAccumValue = _k[1]; // общие накопления => generalSavings
     var _l = react_1.useState(0), pensionValue = _l[0], setPensionValue = _l[1]; // размер выплаты пенсии => pension
-    var _m = react_1.useState(true), earlyRretirement = _m[0], setEarlyRretirement = _m[1]; // ускоренный выход на пенсию
+    var _m = react_1.useState(false), earlyRretirement = _m[0], setEarlyRretirement = _m[1]; // ускоренный выход на пенсию
     var _o = react_1.useState(5), earlyRretirementPeriod = _o[0], setEarlyRretirementPeriod = _o[1]; // на сколько лет ускоренный выход на пенсию
     var radioItems = [
         { value: ageMan, title: "М", name: "gender" },
@@ -75,13 +75,21 @@ var Calculator = function () {
     var onChangeGenderRadio = function (valueRadio) {
         setGenderValue(valueRadio);
         console.log(earlyRretirement);
-        // if(earlyRretirement){
-        // }
-        if (valueRadio === "65") {
-            setAgeSliderMax(65);
+        if (earlyRretirement) {
+            if (valueRadio === "60") {
+                setAgeSliderMax(55);
+            }
+            else {
+                setAgeSliderMax(60);
+            }
         }
         else {
-            setAgeSliderMax(60);
+            if (valueRadio === "65") {
+                setAgeSliderMax(65);
+            }
+            else {
+                setAgeSliderMax(60);
+            }
         }
     };
     var ageSliderHandler = function (ageSliderValue) {
@@ -99,7 +107,16 @@ var Calculator = function () {
     var toogleChecked = function () {
         setEarlyRretirement(function (prev) { return !prev; });
     };
-    react_1.useEffect(function () { }, [earlyRretirement]);
+    react_1.useEffect(function () {
+        if (earlyRretirement) {
+            setAgeMan("60");
+            setAgeWoman("55");
+        }
+        else {
+            setAgeMan("65");
+            setAgeWoman("60");
+        }
+    }, [earlyRretirement]);
     react_1.useEffect(function () {
         console.log(genderValue);
         // console.log(ageValue);

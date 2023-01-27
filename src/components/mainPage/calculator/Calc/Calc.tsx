@@ -23,7 +23,7 @@ const Calculator: FC = () => {
   const [generalAccumValue, setGeneralAccumValue] = useState(0); // общие накопления => generalSavings
   const [pensionValue, setPensionValue] = useState(0); // размер выплаты пенсии => pension
 
-  const [earlyRretirement, setEarlyRretirement] = useState(true); // ускоренный выход на пенсию
+  const [earlyRretirement, setEarlyRretirement] = useState(false); // ускоренный выход на пенсию
   const [earlyRretirementPeriod, setEarlyRretirementPeriod] = useState(5); // на сколько лет ускоренный выход на пенсию
 
   const radioItems: RadioItemProps[] = [
@@ -79,14 +79,18 @@ const Calculator: FC = () => {
   const onChangeGenderRadio = (valueRadio: React.SetStateAction<string>) => {
     setGenderValue(valueRadio);
     console.log(earlyRretirement);
-    // if(earlyRretirement){
-
-    // }
-
-    if (valueRadio === "65") {
-      setAgeSliderMax(65);
+    if (earlyRretirement) {
+      if (valueRadio === "60") {
+        setAgeSliderMax(55);
+      } else {
+        setAgeSliderMax(60);
+      }
     } else {
-      setAgeSliderMax(60);
+      if (valueRadio === "65") {
+        setAgeSliderMax(65);
+      } else {
+        setAgeSliderMax(60);
+      }
     }
   };
 
@@ -107,10 +111,19 @@ const Calculator: FC = () => {
     setEarlyRretirement((prev) => !prev);
   };
 
-  useEffect(() => {}, [earlyRretirement]);
+  useEffect(() => {
+    if (earlyRretirement) {
+      setAgeMan("60");
+      setAgeWoman("55");
+    } else {
+      setAgeMan("65");
+      setAgeWoman("60");
+    }
+  }, [earlyRretirement]);
 
   useEffect(() => {
     console.log(genderValue);
+
     // console.log(ageValue);
 
     // // console.log(earlyRretirement);
