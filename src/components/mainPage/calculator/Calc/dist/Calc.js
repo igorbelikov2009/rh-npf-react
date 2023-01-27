@@ -11,20 +11,22 @@ var PensionInfo_1 = require("../PensionInfo/PensionInfo");
 var Calc_module_scss_1 = require("./Calc.module.scss");
 var Calculator = function () {
     var _a = react_1.useState("65"), genderValue = _a[0], setGenderValue = _a[1]; // гендерный возраст выхода на пенсию
-    var _b = react_1.useState(30), ageValue = _b[0], setAgeValue = _b[1]; // текущий возраст
-    var _c = react_1.useState(65), ageSliderMax = _c[0], setAgeSliderMax = _c[1]; // устанавливаем атрибуты для ageSlider
-    var _d = react_1.useState(35), investmentTerm = _d[0], setInvestmentTerm = _d[1]; // срок инвестирования => investmentTerm
-    var _e = react_1.useState(1000), downPayment = _e[0], setDownPayment = _e[1]; // первичный взнос => downPayment
-    var _f = react_1.useState(5000), monthlyInstallment = _f[0], setMonthlyInstallment = _f[1]; // ежемесячный взнос => monthlyInstallment
-    var _g = react_1.useState(15), periodPaymentPension = _g[0], setPeriodPaymentPension = _g[1]; // срок выплат пенсии => periodPaymentPension
+    var _b = react_1.useState("65"), ageMan = _b[0], setAgeMan = _b[1]; // возраст выхода на пенсию мужчины
+    var _c = react_1.useState("60"), ageWoman = _c[0], setAgeWoman = _c[1]; // возраст выхода на пенсию женщины
+    var _d = react_1.useState(30), ageValue = _d[0], setAgeValue = _d[1]; // текущий возраст
+    var _e = react_1.useState(65), ageSliderMax = _e[0], setAgeSliderMax = _e[1]; // устанавливаем атрибуты для ageSlider
+    var _f = react_1.useState(35), investmentTerm = _f[0], setInvestmentTerm = _f[1]; // срок инвестирования => investmentTerm
+    var _g = react_1.useState(1000), downPayment = _g[0], setDownPayment = _g[1]; // первичный взнос => downPayment
+    var _h = react_1.useState(5000), monthlyInstallment = _h[0], setMonthlyInstallment = _h[1]; // ежемесячный взнос => monthlyInstallment
+    var _j = react_1.useState(15), periodPaymentPension = _j[0], setPeriodPaymentPension = _j[1]; // срок выплат пенсии => periodPaymentPension
     var yearPersent = 0.05; // годовой процент накопления => annualPercentage
-    var _h = react_1.useState(0), generalAccumValue = _h[0], setGeneralAccumValue = _h[1]; // общие накопления => generalSavings
-    var _j = react_1.useState(0), pensionValue = _j[0], setPensionValue = _j[1]; // размер выплаты пенсии => pension
-    var _k = react_1.useState(true), earlyRretirement = _k[0], setEarlyRretirement = _k[1]; // ускоренный выход на пенсию
-    var _l = react_1.useState(5), earlyRretirementPeriod = _l[0], setEarlyRretirementPeriod = _l[1]; // на сколько лет ускоренный выход на пенсию
+    var _k = react_1.useState(0), generalAccumValue = _k[0], setGeneralAccumValue = _k[1]; // общие накопления => generalSavings
+    var _l = react_1.useState(0), pensionValue = _l[0], setPensionValue = _l[1]; // размер выплаты пенсии => pension
+    var _m = react_1.useState(true), earlyRretirement = _m[0], setEarlyRretirement = _m[1]; // ускоренный выход на пенсию
+    var _o = react_1.useState(5), earlyRretirementPeriod = _o[0], setEarlyRretirementPeriod = _o[1]; // на сколько лет ускоренный выход на пенсию
     var radioItems = [
-        { value: "65", title: "М", name: "gender" },
-        { value: "60", title: "Ж", name: "gender" },
+        { value: ageMan, title: "М", name: "gender" },
+        { value: ageWoman, title: "Ж", name: "gender" },
     ];
     var ageSlider = {
         title: "Возраст, лет",
@@ -72,6 +74,9 @@ var Calculator = function () {
     };
     var onChangeGenderRadio = function (valueRadio) {
         setGenderValue(valueRadio);
+        console.log(earlyRretirement);
+        // if(earlyRretirement){
+        // }
         if (valueRadio === "65") {
             setAgeSliderMax(65);
         }
@@ -94,17 +99,17 @@ var Calculator = function () {
     var toogleChecked = function () {
         setEarlyRretirement(function (prev) { return !prev; });
     };
+    react_1.useEffect(function () { }, [earlyRretirement]);
     react_1.useEffect(function () {
-        // console.log(genderValue);
+        console.log(genderValue);
         // console.log(ageValue);
-        // console.log(earlyRretirement);
-        if (earlyRretirement) {
-            setEarlyRretirementPeriod(5);
-        }
-        else {
-            setEarlyRretirementPeriod(0);
-        }
-        //  console.log(earlyRretirementPeriod);
+        // // console.log(earlyRretirement);
+        // if (earlyRretirement) {
+        //   setEarlyRretirementPeriod(5);
+        // } else {
+        //   setEarlyRretirementPeriod(0);
+        // }
+        // //  console.log(earlyRretirementPeriod);
         setInvestmentTerm(Number(genderValue) - ageValue - earlyRretirementPeriod);
         // console.log("investmentTerm :" + investmentTerm);
         // console.log("downPayment :" + downPayment);

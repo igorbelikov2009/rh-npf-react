@@ -11,6 +11,8 @@ import styles from "./Calc.module.scss";
 
 const Calculator: FC = () => {
   const [genderValue, setGenderValue] = useState<string>("65"); // гендерный возраст выхода на пенсию
+  const [ageMan, setAgeMan] = useState("65"); // возраст выхода на пенсию мужчины
+  const [ageWoman, setAgeWoman] = useState("60"); // возраст выхода на пенсию женщины
   const [ageValue, setAgeValue] = useState(30); // текущий возраст
   const [ageSliderMax, setAgeSliderMax] = useState(65); // устанавливаем атрибуты для ageSlider
   const [investmentTerm, setInvestmentTerm] = useState(35); // срок инвестирования => investmentTerm
@@ -25,9 +27,10 @@ const Calculator: FC = () => {
   const [earlyRretirementPeriod, setEarlyRretirementPeriod] = useState(5); // на сколько лет ускоренный выход на пенсию
 
   const radioItems: RadioItemProps[] = [
-    { value: "65", title: "М", name: "gender" },
-    { value: "60", title: "Ж", name: "gender" },
+    { value: ageMan, title: "М", name: "gender" },
+    { value: ageWoman, title: "Ж", name: "gender" },
   ];
+
   const ageSlider: SliderProps = {
     title: "Возраст, лет",
     name: "ageSlider",
@@ -75,6 +78,10 @@ const Calculator: FC = () => {
 
   const onChangeGenderRadio = (valueRadio: React.SetStateAction<string>) => {
     setGenderValue(valueRadio);
+    console.log(earlyRretirement);
+    // if(earlyRretirement){
+
+    // }
 
     if (valueRadio === "65") {
       setAgeSliderMax(65);
@@ -100,17 +107,19 @@ const Calculator: FC = () => {
     setEarlyRretirement((prev) => !prev);
   };
 
-  useEffect(() => {
-    // console.log(genderValue);
-    // console.log(ageValue);
-    // console.log(earlyRretirement);
+  useEffect(() => {}, [earlyRretirement]);
 
-    if (earlyRretirement) {
-      setEarlyRretirementPeriod(5);
-    } else {
-      setEarlyRretirementPeriod(0);
-    }
-    //  console.log(earlyRretirementPeriod);
+  useEffect(() => {
+    console.log(genderValue);
+    // console.log(ageValue);
+
+    // // console.log(earlyRretirement);
+    // if (earlyRretirement) {
+    //   setEarlyRretirementPeriod(5);
+    // } else {
+    //   setEarlyRretirementPeriod(0);
+    // }
+    // //  console.log(earlyRretirementPeriod);
 
     setInvestmentTerm(Number(genderValue) - ageValue - earlyRretirementPeriod);
 
