@@ -108,7 +108,7 @@
   .calculator__graph-container {
     width: 47.92%;
     position: absolute;
-    bottom: 41px;
+    bottom: 0;
     right: 0;
     z-index: 0;
   }
