@@ -5,20 +5,23 @@ import styles from "./NewsLinkContainer.module.scss";
 interface NewsLinkContainerProps {
   isClear: boolean;
   link: NewsLinkProps;
+  emitValueWidth: (value: React.SetStateAction<number>) => void;
 }
 
-const NewsLinkContainer: FC<NewsLinkContainerProps> = ({ isClear, link }) => {
-  const [linkContainerWidth, setLinkContainerWidth] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
+const NewsLinkContainer: FC<NewsLinkContainerProps> = ({ isClear, link, emitValueWidth }) => {
+  const [width, setWidth] = useState(0);
+  const refNewsLinkContainer = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setLinkContainerWidth(ref.current ? ref.current.offsetWidth : 0);
-    console.log(linkContainerWidth);
-  }, []);
+    if (refNewsLinkContainer.current) {
+      setWidth(refNewsLinkContainer.current.offsetWidth);
+      // console.log(width);
+    }
+    emitValueWidth(width);
+  }, [emitValueWidth, width]);
 
   return (
-    <div ref={ref} className={isClear ? styles["container__clear"] : styles["container__blurry"]}>
-      {/* ref="newsLinkContainer" */}
+    <div ref={refNewsLinkContainer} className={isClear ? styles["container__clear"] : styles["container__blurry"]}>
       <NewsLink date={link.date} title={link.title} id={link.id} />
     </div>
   );

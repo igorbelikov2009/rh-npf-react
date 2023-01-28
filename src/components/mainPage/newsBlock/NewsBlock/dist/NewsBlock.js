@@ -13,9 +13,10 @@ var NewsBlock = function () {
     var _d = react_1.useState(false), isBlurredRight = _d[0], setIsBlurredRight = _d[1];
     var onClickLeftArrow = function () { };
     var onClickRightArrow = function () { };
-    // для MainCarousel
-    var _e = react_1.useState(0), q = _e[0], setQ = _e[1]; // значение счётчика, индекс columns[q], который по центру экрана
-    var _f = react_1.useState(0), j = _f[0], setJ = _f[1]; // если (this.screenWidth > 855), то по центру экрана два элемента:
+    // для MainCarousel // вычисляем и скролим scrollableElement
+    var _e = react_1.useState(0), widthLink = _e[0], setWidthLink = _e[1]; // ширина контейнера ссылок
+    var _f = react_1.useState(0), q = _f[0], setQ = _f[1]; // значение счётчика, индекс columns[q], который по центру экрана
+    var _g = react_1.useState(0), j = _g[0], setJ = _g[1]; // если (this.screenWidth > 855), то по центру экрана два элемента:
     //  this.columns[q] и this.columns[j]
     var news = [
         {
@@ -95,10 +96,14 @@ var NewsBlock = function () {
             ]
         },
     ];
+    var getLinkContainerWidth = function (width) {
+        setWidthLink(width);
+        console.log(widthLink);
+    };
     return (react_1["default"].createElement("div", null,
         react_1["default"].createElement(CarouselHeader_1["default"], { headerTitle: "\u041D\u043E\u0432\u043E\u0441\u0442\u0438", isBlurredLeft: isBlurredLeft, isBlurredRight: isBlurredRight, isNoCursorLeft: isNoCursorLeft, isNoCursorRight: isNoCursorRight, onClickLeft: onClickLeftArrow, onClickRight: onClickRightArrow }),
         react_1["default"].createElement("div", { className: NewsBlock_module_scss_1["default"]["carousel"] },
             react_1["default"].createElement("div", { className: NewsBlock_module_scss_1["default"]["carousel-tape"] },
-                react_1["default"].createElement(MainCarousel_1["default"], { qq: q, jj: j, carouselLinks: news })))));
+                react_1["default"].createElement(MainCarousel_1["default"], { qq: q, jj: j, carouselLinks: news, emitValueWidth: getLinkContainerWidth })))));
 };
 exports["default"] = NewsBlock;

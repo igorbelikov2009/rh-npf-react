@@ -13,7 +13,8 @@ const NewsBlock = () => {
   const [isBlurredRight, setIsBlurredRight] = useState(false);
   const onClickLeftArrow = () => {};
   const onClickRightArrow = () => {};
-  // для MainCarousel
+  // для MainCarousel // вычисляем и скролим scrollableElement
+  const [widthLink, setWidthLink] = useState(0); // ширина контейнера ссылок
   const [q, setQ] = useState(0); // значение счётчика, индекс columns[q], который по центру экрана
   const [j, setJ] = useState(0); // если (this.screenWidth > 855), то по центру экрана два элемента:
   //  this.columns[q] и this.columns[j]
@@ -99,6 +100,11 @@ const NewsBlock = () => {
     },
   ];
 
+  const getLinkContainerWidth = (width: React.SetStateAction<number>) => {
+    setWidthLink(width);
+    console.log(widthLink);
+  };
+
   return (
     <div>
       <CarouselHeader
@@ -116,7 +122,7 @@ const NewsBlock = () => {
           {/* style={{"scrollableElementStyle"}} */}
           {/*  ref="scrollableElement" */}
 
-          <MainCarousel qq={q} jj={j} carouselLinks={news} />
+          <MainCarousel qq={q} jj={j} carouselLinks={news} emitValueWidth={getLinkContainerWidth} />
         </div>
       </div>
     </div>
