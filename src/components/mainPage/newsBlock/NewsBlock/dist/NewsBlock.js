@@ -7,6 +7,7 @@ var MainCarousel_1 = require("../MainCarousel/MainCarousel");
 var NewsBlock_module_scss_1 = require("./NewsBlock.module.scss");
 var NewsBlock = function () {
     // для CarouselHeader
+    // меняем цвет у стрелок и свойства курсора на "cursor: default;"
     var _a = react_1.useState(true), isNoCursorLeft = _a[0], setIsNoCursorLeft = _a[1];
     var _b = react_1.useState(true), isBlurredLeft = _b[0], setIsBlurredLeft = _b[1];
     var _c = react_1.useState(false), isNoCursorRight = _c[0], setIsNoCursorRight = _c[1];
@@ -14,10 +15,16 @@ var NewsBlock = function () {
     var onClickLeftArrow = function () { };
     var onClickRightArrow = function () { };
     // для MainCarousel // вычисляем и скролим scrollableElement
+    var screenWidth = document.documentElement.clientWidth; // получаем ширину экрана
     var _e = react_1.useState(0), widthLink = _e[0], setWidthLink = _e[1]; // ширина контейнера ссылок
-    var _f = react_1.useState(0), q = _f[0], setQ = _f[1]; // значение счётчика, индекс columns[q], который по центру экрана
-    var _g = react_1.useState(0), j = _g[0], setJ = _g[1]; // если (this.screenWidth > 855), то по центру экрана два элемента:
-    //  this.columns[q] и this.columns[j]
+    var _f = react_1.useState(0), amountChildren = _f[0], setAmountChildren = _f[1]; // количество детей newsContainer
+    var _g = react_1.useState(0), overallWidth = _g[0], setOverallWidth = _g[1]; // общая длина newsContainer
+    var _h = react_1.useState(0), scrollWidth = _h[0], setScrollWidth = _h[1]; // вычисляемая длина прокрутки scrollableElement
+    var _j = react_1.useState(0), right = _j[0], setRight = _j[1]; // значение прокрутки scrollableElement, записываемое в его атрибут style
+    //
+    var _k = react_1.useState(0), q = _k[0], setQ = _k[1]; // значение счётчика, индекс columns[q], который по центру экрана
+    var _l = react_1.useState(0), j = _l[0], setJ = _l[1]; // если (screenWidth > 855), то по центру экрана два элемента:
+    //  columns[q] и columns[j]
     var news = [
         {
             id: 7,
@@ -96,14 +103,30 @@ var NewsBlock = function () {
             ]
         },
     ];
+    // ширина контейнера ссылок
     var getLinkContainerWidth = function (width) {
         setWidthLink(width);
-        console.log(widthLink);
+        // console.log(widthLink);
     };
+    // получаем количество детей массива, новостных колонок (NewsLinkContainer)
+    var getAmountChildren = function () {
+        setAmountChildren(news.length);
+    };
+    // высчитываем общую длину карусельной ленты (carousel-tape)
+    var getOverallWidth = function () {
+        setOverallWidth(widthLink * amountChildren);
+    };
+    react_1.useEffect(function () {
+        getAmountChildren();
+        getOverallWidth();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+    console.log("amountChildren :" + amountChildren);
+    console.log("overallWidth:" + overallWidth);
     return (react_1["default"].createElement("div", null,
         react_1["default"].createElement(CarouselHeader_1["default"], { headerTitle: "\u041D\u043E\u0432\u043E\u0441\u0442\u0438", isBlurredLeft: isBlurredLeft, isBlurredRight: isBlurredRight, isNoCursorLeft: isNoCursorLeft, isNoCursorRight: isNoCursorRight, onClickLeft: onClickLeftArrow, onClickRight: onClickRightArrow }),
         react_1["default"].createElement("div", { className: NewsBlock_module_scss_1["default"]["carousel"] },
-            react_1["default"].createElement("div", { className: NewsBlock_module_scss_1["default"]["carousel-tape"] },
+            react_1["default"].createElement("div", { className: NewsBlock_module_scss_1["default"]["carousel-tape"], style: { right: right + "px" } },
                 react_1["default"].createElement(MainCarousel_1["default"], { qq: q, jj: j, carouselLinks: news, emitValueWidth: getLinkContainerWidth })))));
 };
 exports["default"] = NewsBlock;

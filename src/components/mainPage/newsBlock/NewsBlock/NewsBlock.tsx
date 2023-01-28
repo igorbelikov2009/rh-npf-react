@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import CarouselHeader from "../../../general/carousel/CarouselHeader/CarouselHeader";
 import { NewsLinkProps } from "../../../news/NewsLink/NewsLink";
 import MainCarousel from "../MainCarousel/MainCarousel";
@@ -7,17 +7,26 @@ import styles from "./NewsBlock.module.scss";
 
 const NewsBlock = () => {
   // для CarouselHeader
+  // меняем цвет у стрелок и свойства курсора на "cursor: default;"
   const [isNoCursorLeft, setIsNoCursorLeft] = useState(true);
   const [isBlurredLeft, setIsBlurredLeft] = useState(true);
   const [isNoCursorRight, setIsNoCursorRight] = useState(false);
   const [isBlurredRight, setIsBlurredRight] = useState(false);
   const onClickLeftArrow = () => {};
   const onClickRightArrow = () => {};
+
   // для MainCarousel // вычисляем и скролим scrollableElement
+  const screenWidth = document.documentElement.clientWidth; // получаем ширину экрана
   const [widthLink, setWidthLink] = useState(0); // ширина контейнера ссылок
+  const [amountChildren, setAmountChildren] = useState(0); // количество детей newsContainer
+  const [overallWidth, setOverallWidth] = useState(0); // общая длина newsContainer
+  const [scrollWidth, setScrollWidth] = useState(0); // вычисляемая длина прокрутки scrollableElement
+  const [right, setRight] = useState(0); // значение прокрутки scrollableElement, записываемое в его атрибут style
+
+  //
   const [q, setQ] = useState(0); // значение счётчика, индекс columns[q], который по центру экрана
-  const [j, setJ] = useState(0); // если (this.screenWidth > 855), то по центру экрана два элемента:
-  //  this.columns[q] и this.columns[j]
+  const [j, setJ] = useState(0); // если (screenWidth > 855), то по центру экрана два элемента:
+  //  columns[q] и columns[j]
   const news: NewsLinkProps[] = [
     {
       id: 7,
@@ -100,10 +109,30 @@ const NewsBlock = () => {
     },
   ];
 
+  // ширина контейнера ссылок
   const getLinkContainerWidth = (width: React.SetStateAction<number>) => {
     setWidthLink(width);
-    console.log(widthLink);
+    // console.log(widthLink);
   };
+
+  // получаем количество детей массива, новостных колонок (NewsLinkContainer)
+  const getAmountChildren = () => {
+    setAmountChildren(news.length);
+  };
+
+  // высчитываем общую длину карусельной ленты (carousel-tape)
+  const getOverallWidth = () => {
+    setOverallWidth(widthLink * amountChildren);
+  };
+
+  useEffect(() => {
+    getAmountChildren();
+    getOverallWidth();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  console.log("amountChildren :" + amountChildren);
+  console.log("overallWidth:" + overallWidth);
 
   return (
     <div>
@@ -118,10 +147,7 @@ const NewsBlock = () => {
       />
 
       <div className={styles["carousel"]}>
-        <div className={styles["carousel-tape"]}>
-          {/* style={{"scrollableElementStyle"}} */}
-          {/*  ref="scrollableElement" */}
-
+        <div className={styles["carousel-tape"]} style={{ right: `${right}px` }}>
           <MainCarousel qq={q} jj={j} carouselLinks={news} emitValueWidth={getLinkContainerWidth} />
         </div>
       </div>
