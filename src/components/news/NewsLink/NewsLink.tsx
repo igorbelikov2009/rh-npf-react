@@ -5,6 +5,7 @@ export interface NewsLinkProps {
   title: string;
   date: string;
   id: number;
+  paragraphs?: string[];
 }
 
 const NewsLink: FC<NewsLinkProps> = ({ title, date, id }) => {
