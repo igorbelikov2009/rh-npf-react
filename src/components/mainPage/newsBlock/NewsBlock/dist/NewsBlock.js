@@ -2,7 +2,7 @@
 exports.__esModule = true;
 /* eslint-disable @typescript-eslint/no-unused-vars */
 var react_1 = require("react");
-var CarouselHeader_1 = require("../../general/carousel/CarouselHeader/CarouselHeader");
+var CarouselHeader_1 = require("../../../general/carousel/CarouselHeader/CarouselHeader");
 var NewsBlock_module_scss_1 = require("./NewsBlock.module.scss");
 var NewsBlock = function () {
     var _a = react_1.useState(true), isNoCursorLeft = _a[0], setIsNoCursorLeft = _a[1];

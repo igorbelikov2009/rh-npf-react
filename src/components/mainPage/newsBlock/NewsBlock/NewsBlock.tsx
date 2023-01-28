@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from "react";
-import CarouselHeader from "../../general/carousel/CarouselHeader/CarouselHeader";
+import CarouselHeader from "../../../general/carousel/CarouselHeader/CarouselHeader";
 import styles from "./NewsBlock.module.scss";
 
 const NewsBlock = () => {
