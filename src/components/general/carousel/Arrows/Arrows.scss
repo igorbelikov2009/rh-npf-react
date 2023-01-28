@@ -1,0 +1,75 @@
+.arrows {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+
+  &__left-arrow {
+    position: relative;
+    width: 24px;
+    height: 26px;
+    cursor: pointer;
+
+    &:hover .arrows__left-image:first-of-type {
+      display: block;
+    }
+
+    // arrows__left-arrow_no-cursor
+    // добавляем в ("arrows__left-arrow") !!!
+    &_no-cursor {
+      cursor: default;
+
+      &:hover .arrows__left-image:first-of-type {
+        display: none;
+      }
+    }
+  }
+
+  &__right-arrow {
+    position: relative;
+    width: 24px;
+    height: 26px;
+    cursor: pointer;
+
+    &:hover .arrows__right-image:first-of-type {
+      display: block;
+    }
+
+    // arrows__right-arrow_no-cursor
+    // добавляем в ("history__right-arrow") !!!
+    &_no-cursor {
+      cursor: default;
+
+      &:hover .arrows__right-image:first-of-type {
+        display: none;
+      }
+    }
+  }
+
+  &__left-image {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotate(180deg);
+  }
+
+  &__right-image {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  // arrows__opacity-04
+  &__opacity-04 {
+    opacity: 0.4;
+  }
+
+  // arrows__not-visible
+  &__not-visible {
+    display: none;
+  }
+}

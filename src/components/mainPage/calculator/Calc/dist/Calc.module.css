@@ -92,6 +92,7 @@
 @media screen and (min-width: 1024px) {
   .calculator__sliders {
     width: 41.66%;
+    margin-bottom: 96px;
   }
 }
 .calculator__graph-container {
