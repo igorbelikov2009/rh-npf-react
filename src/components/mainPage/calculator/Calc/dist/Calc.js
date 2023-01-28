@@ -74,7 +74,7 @@ var Calculator = function () {
     };
     var onChangeGenderRadio = function (valueRadio) {
         setGenderValue(valueRadio);
-        console.log(earlyRretirement);
+        // console.log(earlyRretirement); //
         if (earlyRretirement) {
             if (valueRadio === "60") {
                 setAgeSliderMax(55);
@@ -118,7 +118,7 @@ var Calculator = function () {
         }
     }, [earlyRretirement]);
     react_1.useEffect(function () {
-        console.log(genderValue);
+        // console.log(genderValue); ///
         // console.log(ageValue);
         // // console.log(earlyRretirement);
         // if (earlyRretirement) {

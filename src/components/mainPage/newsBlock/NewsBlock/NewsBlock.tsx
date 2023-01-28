@@ -12,8 +12,6 @@ const NewsBlock = () => {
   const [isBlurredLeft, setIsBlurredLeft] = useState(true);
   const [isNoCursorRight, setIsNoCursorRight] = useState(false);
   const [isBlurredRight, setIsBlurredRight] = useState(false);
-  const onClickLeftArrow = () => {};
-  const onClickRightArrow = () => {};
 
   // для MainCarousel // вычисляем и скролим scrollableElement
   const screenWidth = document.documentElement.clientWidth; // получаем ширину экрана
@@ -125,14 +123,91 @@ const NewsBlock = () => {
     setOverallWidth(widthLink * amountChildren);
   };
 
+  // get value j в зависимости от ширины экрана screenWidth (< 855 или > 855 )
+  // во время постройки DOM, определяем данный метод в хук useEffect.
+  // Для работы с кликом - в  onClickLeft() и в  onClickRight()
+  const getValueJ = () => {
+    if (screenWidth < 855) {
+      setJ(q);
+    } else {
+      setJ(q + 1);
+    }
+  };
+
   useEffect(() => {
     getAmountChildren();
-    getOverallWidth();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    getValueJ();
   }, []);
+  // console.log("amountChildren :" + amountChildren);
+  // console.log("q: " + q, "j: " + j);
 
-  console.log("amountChildren :" + amountChildren);
-  console.log("overallWidth:" + overallWidth);
+  // Получаем значение q
+  const getValueQOnClickArrowLeft = () => {
+    if (q !== 0) {
+      setQ((prev) => prev - 1);
+    }
+    if (q < 0) {
+      setQ(0);
+    }
+    // console.log("q: " + q);
+  };
+
+  const getValueQOnClickArrowRight = () => {
+    if (screenWidth < 855) {
+      if (q < amountChildren - 1) {
+        setQ((prev) => prev + 1);
+      }
+    }
+    if (screenWidth > 855) {
+      if (q < amountChildren - 2) {
+        setQ((prev) => prev + 1);
+      }
+    }
+    // console.log("q: " + q);
+  };
+
+  // scrolling
+  const scrollToTheLeft = () => {
+    setScrollWidth(q * widthLink);
+    setRight(scrollWidth);
+    console.log("scrollToTheLeft. right :" + right);
+  };
+
+  const scrollToTheRight = () => {
+    setScrollWidth(q * widthLink);
+    setRight(scrollWidth);
+    console.log("scrollToTheRight. right :" + right);
+    if (screenWidth < 855) {
+      console.log("scrollToTheRight. right :" + right);
+      if (scrollWidth >= overallWidth) {
+        setRight(overallWidth - widthLink);
+        console.log("scrollToTheRight. right :" + right);
+      }
+    }
+
+    if (screenWidth > 855) {
+      if (scrollWidth >= overallWidth - widthLink) {
+        setRight(overallWidth - 2 * widthLink);
+        // console.log('scrollToTheRight. right :' + right)
+      }
+    }
+  };
+
+  // клик по левой стрелке
+  const onClickLeftArrow = () => {
+    getOverallWidth();
+    getValueQOnClickArrowLeft();
+    scrollToTheLeft();
+  };
+
+  // клик по правой стрелке
+  const onClickRightArrow = () => {
+    getOverallWidth();
+    getValueQOnClickArrowRight();
+    scrollToTheRight();
+  };
+
+  // console.log("overallWidth:" + overallWidth);
 
   return (
     <div>
@@ -147,7 +222,7 @@ const NewsBlock = () => {
       />
 
       <div className={styles["carousel"]}>
-        <div className={styles["carousel-tape"]} style={{ right: `${right}px` }}>
+        <div className={styles["scrollableElement"]} style={{ right: `${right}px` }}>
           <MainCarousel qq={q} jj={j} carouselLinks={news} emitValueWidth={getLinkContainerWidth} />
         </div>
       </div>

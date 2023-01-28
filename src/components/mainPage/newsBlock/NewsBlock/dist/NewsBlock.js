@@ -12,8 +12,6 @@ var NewsBlock = function () {
     var _b = react_1.useState(true), isBlurredLeft = _b[0], setIsBlurredLeft = _b[1];
     var _c = react_1.useState(false), isNoCursorRight = _c[0], setIsNoCursorRight = _c[1];
     var _d = react_1.useState(false), isBlurredRight = _d[0], setIsBlurredRight = _d[1];
-    var onClickLeftArrow = function () { };
-    var onClickRightArrow = function () { };
     // для MainCarousel // вычисляем и скролим scrollableElement
     var screenWidth = document.documentElement.clientWidth; // получаем ширину экрана
     var _e = react_1.useState(0), widthLink = _e[0], setWidthLink = _e[1]; // ширина контейнера ссылок
@@ -116,17 +114,87 @@ var NewsBlock = function () {
     var getOverallWidth = function () {
         setOverallWidth(widthLink * amountChildren);
     };
+    // get value j в зависимости от ширины экрана screenWidth (< 855 или > 855 )
+    // во время постройки DOM, определяем данный метод в хук useEffect.
+    // Для работы с кликом - в  onClickLeft() и в  onClickRight()
+    var getValueJ = function () {
+        if (screenWidth < 855) {
+            setJ(q);
+        }
+        else {
+            setJ(q + 1);
+        }
+    };
     react_1.useEffect(function () {
         getAmountChildren();
-        getOverallWidth();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        getValueJ();
     }, []);
-    console.log("amountChildren :" + amountChildren);
-    console.log("overallWidth:" + overallWidth);
+    // console.log("amountChildren :" + amountChildren);
+    // console.log("q: " + q, "j: " + j);
+    // Получаем значение q
+    var getValueQOnClickArrowLeft = function () {
+        if (q !== 0) {
+            setQ(function (prev) { return prev - 1; });
+        }
+        if (q < 0) {
+            setQ(0);
+        }
+        // console.log("q: " + q);
+    };
+    var getValueQOnClickArrowRight = function () {
+        if (screenWidth < 855) {
+            if (q < amountChildren - 1) {
+                setQ(function (prev) { return prev + 1; });
+            }
+        }
+        if (screenWidth > 855) {
+            if (q < amountChildren - 2) {
+                setQ(function (prev) { return prev + 1; });
+            }
+        }
+        // console.log("q: " + q);
+    };
+    // scrolling
+    var scrollToTheLeft = function () {
+        setScrollWidth(q * widthLink);
+        setRight(scrollWidth);
+        console.log("scrollToTheLeft. right :" + right);
+    };
+    var scrollToTheRight = function () {
+        setScrollWidth(q * widthLink);
+        setRight(scrollWidth);
+        console.log("scrollToTheRight. right :" + right);
+        if (screenWidth < 855) {
+            console.log("scrollToTheRight. right :" + right);
+            if (scrollWidth >= overallWidth) {
+                setRight(overallWidth - widthLink);
+                console.log("scrollToTheRight. right :" + right);
+            }
+        }
+        if (screenWidth > 855) {
+            if (scrollWidth >= overallWidth - widthLink) {
+                setRight(overallWidth - 2 * widthLink);
+                // console.log('scrollToTheRight. right :' + right)
+            }
+        }
+    };
+    // клик по левой стрелке
+    var onClickLeftArrow = function () {
+        getOverallWidth();
+        getValueQOnClickArrowLeft();
+        scrollToTheLeft();
+    };
+    // клик по правой стрелке
+    var onClickRightArrow = function () {
+        getOverallWidth();
+        getValueQOnClickArrowRight();
+        scrollToTheRight();
+    };
+    // console.log("overallWidth:" + overallWidth);
     return (react_1["default"].createElement("div", null,
         react_1["default"].createElement(CarouselHeader_1["default"], { headerTitle: "\u041D\u043E\u0432\u043E\u0441\u0442\u0438", isBlurredLeft: isBlurredLeft, isBlurredRight: isBlurredRight, isNoCursorLeft: isNoCursorLeft, isNoCursorRight: isNoCursorRight, onClickLeft: onClickLeftArrow, onClickRight: onClickRightArrow }),
         react_1["default"].createElement("div", { className: NewsBlock_module_scss_1["default"]["carousel"] },
-            react_1["default"].createElement("div", { className: NewsBlock_module_scss_1["default"]["carousel-tape"], style: { right: right + "px" } },
+            react_1["default"].createElement("div", { className: NewsBlock_module_scss_1["default"]["scrollableElement"], style: { right: right + "px" } },
                 react_1["default"].createElement(MainCarousel_1["default"], { qq: q, jj: j, carouselLinks: news, emitValueWidth: getLinkContainerWidth })))));
 };
 exports["default"] = NewsBlock;

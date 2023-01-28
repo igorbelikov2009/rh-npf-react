@@ -78,7 +78,7 @@ const Calculator: FC = () => {
 
   const onChangeGenderRadio = (valueRadio: React.SetStateAction<string>) => {
     setGenderValue(valueRadio);
-    console.log(earlyRretirement);
+    // console.log(earlyRretirement); //
     if (earlyRretirement) {
       if (valueRadio === "60") {
         setAgeSliderMax(55);
@@ -122,7 +122,7 @@ const Calculator: FC = () => {
   }, [earlyRretirement]);
 
   useEffect(() => {
-    console.log(genderValue);
+    // console.log(genderValue); ///
 
     // console.log(ageValue);
 
