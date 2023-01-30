@@ -110,27 +110,17 @@ var NewsBlock = function () {
     var getAmountChildren = function () {
         setAmountChildren(news.length);
     };
+    react_1.useEffect(function () {
+        getAmountChildren();
+        getValueJ();
+    }, [q]);
+    // console.log("amountChildren :" + amountChildren);
+    console.log("q: " + q, "j: " + j);
     // высчитываем общую длину карусельной ленты (carousel-tape)
     var getOverallWidth = function () {
         setOverallWidth(widthLink * amountChildren);
     };
-    // get value j в зависимости от ширины экрана screenWidth (< 855 или > 855 )
-    // во время постройки DOM, определяем данный метод в хук useEffect.
-    // Для работы с кликом - в  onClickLeft() и в  onClickRight()
-    var getValueJ = function () {
-        if (screenWidth < 855) {
-            setJ(q);
-        }
-        else {
-            setJ(q + 1);
-        }
-    };
-    react_1.useEffect(function () {
-        getAmountChildren();
-        getValueJ();
-    }, []);
-    // console.log("amountChildren :" + amountChildren);
-    // console.log("q: " + q, "j: " + j);
+    // console.log("overallWidth:" + overallWidth);
     // Получаем значение q
     var getValueQOnClickArrowLeft = function () {
         if (q !== 0) {
@@ -154,6 +144,17 @@ var NewsBlock = function () {
         }
         // console.log("q: " + q);
     };
+    // get value j в зависимости от ширины экрана screenWidth (< 855 или > 855 )
+    // во время постройки DOM, определяем данный метод в хук useEffect.
+    // Для работы с кликом - в  onClickLeft() и в  onClickRight()
+    var getValueJ = function () {
+        if (screenWidth < 855) {
+            setJ(q);
+        }
+        else {
+            setJ(q + 1);
+        }
+    };
     // scrolling
     var scrollToTheLeft = function () {
         setScrollWidth(q * widthLink);
@@ -161,20 +162,23 @@ var NewsBlock = function () {
         console.log("scrollToTheLeft. right :" + right);
     };
     var scrollToTheRight = function () {
+        // console.log("q =" + q, "widthLink = " + widthLink);
         setScrollWidth(q * widthLink);
+        // console.log("scrollWidth :" + scrollWidth);
         setRight(scrollWidth);
-        console.log("scrollToTheRight. right :" + right);
+        // console.log("right =" + right);
         if (screenWidth < 855) {
-            console.log("scrollToTheRight. right :" + right);
+            // console.log("scrollToTheRight. right :" + right);
             if (scrollWidth >= overallWidth) {
-                setRight(overallWidth - widthLink);
-                console.log("scrollToTheRight. right :" + right);
+                // setRight(overallWidth - widthLink);
+                // console.log("scrollToTheRight. right :" + right);
             }
         }
         if (screenWidth > 855) {
+            console.log("right =" + right);
             if (scrollWidth >= overallWidth - widthLink) {
                 setRight(overallWidth - 2 * widthLink);
-                // console.log('scrollToTheRight. right :' + right)
+                // console.log("scrollToTheRight. right :" + right);
             }
         }
     };
@@ -182,15 +186,16 @@ var NewsBlock = function () {
     var onClickLeftArrow = function () {
         getOverallWidth();
         getValueQOnClickArrowLeft();
+        // getValueJ();
         scrollToTheLeft();
     };
     // клик по правой стрелке
     var onClickRightArrow = function () {
         getOverallWidth();
         getValueQOnClickArrowRight();
+        // getValueJ();
         scrollToTheRight();
     };
-    // console.log("overallWidth:" + overallWidth);
     return (react_1["default"].createElement("div", null,
         react_1["default"].createElement(CarouselHeader_1["default"], { headerTitle: "\u041D\u043E\u0432\u043E\u0441\u0442\u0438", isBlurredLeft: isBlurredLeft, isBlurredRight: isBlurredRight, isNoCursorLeft: isNoCursorLeft, isNoCursorRight: isNoCursorRight, onClickLeft: onClickLeftArrow, onClickRight: onClickRightArrow }),
         react_1["default"].createElement("div", { className: NewsBlock_module_scss_1["default"]["carousel"] },

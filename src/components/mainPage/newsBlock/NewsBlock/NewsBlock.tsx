@@ -118,28 +118,19 @@ const NewsBlock = () => {
     setAmountChildren(news.length);
   };
 
+  useEffect(() => {
+    getAmountChildren();
+    getValueJ();
+  }, [q]);
+  // console.log("amountChildren :" + amountChildren);
+  console.log("q: " + q, "j: " + j);
+
   // высчитываем общую длину карусельной ленты (carousel-tape)
   const getOverallWidth = () => {
     setOverallWidth(widthLink * amountChildren);
   };
 
-  // get value j в зависимости от ширины экрана screenWidth (< 855 или > 855 )
-  // во время постройки DOM, определяем данный метод в хук useEffect.
-  // Для работы с кликом - в  onClickLeft() и в  onClickRight()
-  const getValueJ = () => {
-    if (screenWidth < 855) {
-      setJ(q);
-    } else {
-      setJ(q + 1);
-    }
-  };
-
-  useEffect(() => {
-    getAmountChildren();
-    getValueJ();
-  }, []);
-  // console.log("amountChildren :" + amountChildren);
-  // console.log("q: " + q, "j: " + j);
+  // console.log("overallWidth:" + overallWidth);
 
   // Получаем значение q
   const getValueQOnClickArrowLeft = () => {
@@ -166,6 +157,17 @@ const NewsBlock = () => {
     // console.log("q: " + q);
   };
 
+  // get value j в зависимости от ширины экрана screenWidth (< 855 или > 855 )
+  // во время постройки DOM, определяем данный метод в хук useEffect.
+  // Для работы с кликом - в  onClickLeft() и в  onClickRight()
+  const getValueJ = () => {
+    if (screenWidth < 855) {
+      setJ(q);
+    } else {
+      setJ(q + 1);
+    }
+  };
+
   // scrolling
   const scrollToTheLeft = () => {
     setScrollWidth(q * widthLink);
@@ -174,21 +176,26 @@ const NewsBlock = () => {
   };
 
   const scrollToTheRight = () => {
+    // console.log("q =" + q, "widthLink = " + widthLink);
+
     setScrollWidth(q * widthLink);
+    // console.log("scrollWidth :" + scrollWidth);
     setRight(scrollWidth);
-    console.log("scrollToTheRight. right :" + right);
+    // console.log("right =" + right);
     if (screenWidth < 855) {
-      console.log("scrollToTheRight. right :" + right);
+      // console.log("scrollToTheRight. right :" + right);
       if (scrollWidth >= overallWidth) {
-        setRight(overallWidth - widthLink);
-        console.log("scrollToTheRight. right :" + right);
+        // setRight(overallWidth - widthLink);
+        // console.log("scrollToTheRight. right :" + right);
       }
     }
 
     if (screenWidth > 855) {
+      console.log("right =" + right);
+
       if (scrollWidth >= overallWidth - widthLink) {
         setRight(overallWidth - 2 * widthLink);
-        // console.log('scrollToTheRight. right :' + right)
+        // console.log("scrollToTheRight. right :" + right);
       }
     }
   };
@@ -197,6 +204,7 @@ const NewsBlock = () => {
   const onClickLeftArrow = () => {
     getOverallWidth();
     getValueQOnClickArrowLeft();
+    // getValueJ();
     scrollToTheLeft();
   };
 
@@ -204,10 +212,9 @@ const NewsBlock = () => {
   const onClickRightArrow = () => {
     getOverallWidth();
     getValueQOnClickArrowRight();
+    // getValueJ();
     scrollToTheRight();
   };
-
-  // console.log("overallWidth:" + overallWidth);
 
   return (
     <div>
