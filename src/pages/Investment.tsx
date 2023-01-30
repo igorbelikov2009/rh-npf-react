@@ -1,9 +1,25 @@
 import React, { FC } from "react";
 import TopBlock from "../components/general/TopBlock";
 import investImage from "../assets/images/invest/InvestTop.jpg";
-import InvestmentRules from "../components/investment/InvestmentRules/InvestmentRules";
+import { CardsCardProps } from "../components/general/cards/CardsCard/CardsCard";
+import Cards from "../components/general/cards/Cards/Cards";
 
 const Investment: FC = () => {
+  const cards: CardsCardProps[] = [
+    { icon: "Money", subtitle: "Сохранение и приумножение средств вкладчиков и участников" },
+    { icon: "Separation", subtitle: "Диверсификация активов" },
+
+    { icon: "Magnifier", subtitle: "Четкий контроль и прозрачность всех операций" },
+    {
+      icon: "Book",
+      subtitle: "Соответствие Российским законодательным требованиям и лучшим мировым практикам",
+    },
+    {
+      icon: "Partner",
+      subtitle: "Независимость в выборе партнеров – на основе открытых тендеров",
+    },
+  ];
+
   return (
     <>
       <TopBlock
@@ -13,7 +29,7 @@ const Investment: FC = () => {
         image={investImage}
       />
 
-      <InvestmentRules />
+      <Cards cards={cards} />
     </>
   );
 };

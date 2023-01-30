@@ -21,7 +21,8 @@ const InvestmentRules = () => {
   return (
     <div className={styles["investment-rules"]}>
       <h1 className={styles["investment-rules__heading"]}>Правила инвестирования</h1>
-      <div className={styles["investment-rules__row"]}>
+
+      <div className={styles["investment-rules__cards"]}>
         {cards.map((card, index) => (
           <InvestmentRulesCard key={index} icon={card.icon} title={card.title} />
         ))}

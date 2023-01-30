@@ -9,12 +9,14 @@ export interface InvestmentRulesCardProps {
 
 const InvestmentRulesCard: FC<InvestmentRulesCardProps> = ({ icon, title }) => {
   return (
-    <div className={styles["investment-rules__block"]}>
-      <div className={styles["investment-rules__icon"]}>
+    <div className={styles["investment-card"]}>
+      <div className={styles["investment-card__icon"]}>
         <DarkIcon icon={icon} />
       </div>
 
-      <p className={styles["investment-rules__title"]}>{title}</p>
+      <div>
+        <p className={styles["investment-card__title"]}>{title}</p>
+      </div>
     </div>
   );
 };

@@ -121,9 +121,10 @@ const NewsBlock = () => {
   useEffect(() => {
     getAmountChildren();
     getValueJ();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [q]);
   // console.log("amountChildren :" + amountChildren);
-  console.log("q: " + q, "j: " + j);
+  // console.log("q: " + q, "j: " + j);
 
   // высчитываем общую длину карусельной ленты (carousel-tape)
   const getOverallWidth = () => {
