@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import DarkIcon from "../../../general/DarkIcon/DarkIcon";
-import styles from "./StatisticsCard.module.scss";
+import styles from "./index.module.scss";
 
 export interface StatisticsCardProps {
   icon: string;

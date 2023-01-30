@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
 var react_1 = require("react");
-var StatisticsCard_1 = require("../StatisticsCard/StatisticsCard");
-var Statistics_module_scss_1 = require("./Statistics.module.scss");
+var StatisticsCard_1 = require("../StatisticsCard");
+var index_module_scss_1 = require("./index.module.scss");
 var Statistics = function () {
     var cards = [
         {
@@ -36,9 +36,9 @@ var Statistics = function () {
             subtitle: "пенсионных резервов в Фонде"
         },
     ];
-    return (react_1["default"].createElement("section", { className: Statistics_module_scss_1["default"]["statistics"] },
-        react_1["default"].createElement("div", { className: Statistics_module_scss_1["default"]["statistics__container"] },
-            react_1["default"].createElement("h2", { className: Statistics_module_scss_1["default"]["statistics__heading"] }, "\u0424\u043E\u043D\u0434 \u0432 \u0446\u0438\u0444\u0440\u0430\u0445"),
-            react_1["default"].createElement("div", { className: Statistics_module_scss_1["default"]["statistics__block"] }, cards.map(function (card) { return (react_1["default"].createElement(StatisticsCard_1["default"], { key: card.icon, icon: card.icon, span: card.span, title: card.title, subtitle: card.subtitle })); })))));
+    return (react_1["default"].createElement("section", { className: index_module_scss_1["default"]["statistics"] },
+        react_1["default"].createElement("div", { className: index_module_scss_1["default"]["statistics__container"] },
+            react_1["default"].createElement("h2", { className: index_module_scss_1["default"]["statistics__heading"] }, "\u0424\u043E\u043D\u0434 \u0432 \u0446\u0438\u0444\u0440\u0430\u0445"),
+            react_1["default"].createElement("div", { className: index_module_scss_1["default"]["statistics__block"] }, cards.map(function (card) { return (react_1["default"].createElement(StatisticsCard_1["default"], { key: card.icon, icon: card.icon, span: card.span, title: card.title, subtitle: card.subtitle })); })))));
 };
 exports["default"] = Statistics;

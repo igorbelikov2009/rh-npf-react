@@ -1,6 +1,7 @@
 import React from "react";
-import StatisticsCard, { StatisticsCardProps } from "../StatisticsCard/StatisticsCard";
-import styles from "./Statistics.module.scss";
+
+import StatisticsCard, { StatisticsCardProps } from "../StatisticsCard";
+import styles from "./index.module.scss";
 
 const Statistics = () => {
   const cards: StatisticsCardProps[] = [
