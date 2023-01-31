@@ -5,6 +5,7 @@ import { CardsCardProps } from "../components/general/cards/CardsCard/CardsCard"
 import Cards from "../components/general/cards/Cards/Cards";
 import InvestmentDescription from "../components/investment/InvestmentDescription/InvestmentDescription";
 import InvestmentArchive from "../components/investment/InvestmentArchive/InvestmentArchive";
+import PortfolioStructure from "../components/investment/portfolioStructure/PortfolioStructure/PortfolioStructure";
 
 const Investment: FC = () => {
   const cards: CardsCardProps[] = [
@@ -41,6 +42,7 @@ const Investment: FC = () => {
       />
 
       <Cards cards={cards} />
+      <PortfolioStructure />
       <InvestmentArchive />
       <InvestmentDescription />
     </>
