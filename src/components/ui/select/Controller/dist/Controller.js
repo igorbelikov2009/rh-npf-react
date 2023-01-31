@@ -3,11 +3,11 @@ exports.__esModule = true;
 var react_1 = require("react");
 var Controller_module_scss_1 = require("./Controller.module.scss");
 var Controller = function (_a) {
-    var value = _a.value, ifPressed = _a.ifPressed, onPressedController = _a.onPressedController;
+    var value = _a.value, ifPressed = _a.ifPressed, onClickController = _a.onClickController;
     return (react_1["default"].createElement("div", { className: Controller_module_scss_1["default"]["select-controller"] },
         react_1["default"].createElement("div", { className: Controller_module_scss_1["default"]["changing-title"] },
             react_1["default"].createElement("div", { className: ifPressed ? Controller_module_scss_1["default"]["border-gray"] : Controller_module_scss_1["default"]["border-white"] },
-                react_1["default"].createElement("div", { className: ifPressed ? Controller_module_scss_1["default"]["container-backgr-gray"] : Controller_module_scss_1["default"]["container-backgr-white"], onClick: onPressedController },
+                react_1["default"].createElement("div", { className: ifPressed ? Controller_module_scss_1["default"]["container-backgr-gray"] : Controller_module_scss_1["default"]["container-backgr-white"], onClick: onClickController },
                     react_1["default"].createElement("div", { className: Controller_module_scss_1["default"]["controller-date"] },
                         react_1["default"].createElement("div", null,
                             react_1["default"].createElement("p", { className: Controller_module_scss_1["default"]["select-controller-date"] }, value))),

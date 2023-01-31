@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 import Option from "../Option/Option";
 import styles from "./OptionsBlock.module.scss";
 
-interface IOptionItem {
+export interface IOptionItem {
   date: string;
   value: string;
   id: string;

@@ -1,10 +1,32 @@
-import React, { FC, useRef } from "react";
+import React, { FC, useRef, useEffect } from "react";
+import Controller from "../../../ui/select/Controller/Controller";
 import Graph from "../Graph/Graph";
 import Percents, { PercentProps } from "../Percents/Percents";
 import styles from "./PortfolioStructure.module.scss";
 
-const PortfolioStructure: FC = () => {
-  const selectController = useRef();
+interface PortfolioStructureProps {
+  // isSelectionBlockVisible:boolean;
+  ifPressed: boolean;
+  controllerValue: string;
+  idOptions: number;
+  onClickController: () => void;
+  emitCoords: (top: number, bottom: number, left: number, width: number, height: number) => void;
+}
+
+const PortfolioStructure: FC<PortfolioStructureProps> = ({
+  ifPressed,
+  controllerValue,
+  idOptions,
+  onClickController,
+  emitCoords,
+}) => {
+  let top = 0;
+  let bottom = 0;
+  let left = 0;
+  let width = 0;
+  let height = 0;
+
+  const selectController = useRef<HTMLDivElement>(null);
 
   const percentsBlocks: PercentProps[] = [
     {
@@ -209,17 +231,58 @@ const PortfolioStructure: FC = () => {
     },
   ];
 
+  const getSelectControllerCoords = () => {
+    if (selectController.current) {
+      top = selectController.current.getBoundingClientRect().top;
+      bottom = selectController.current.getBoundingClientRect().bottom;
+      console.log("top :" + top, "bottom :" + bottom);
+    }
+  };
+
+  const getSelectControllerSize = () => {
+    if (selectController.current) {
+      left = selectController.current.getBoundingClientRect().left;
+      width = selectController.current.getBoundingClientRect().width;
+      height = selectController.current.getBoundingClientRect().height;
+
+      console.log("left :" + left, "width :" + width, "height :" + height);
+    }
+  };
+
+  useEffect(() => {
+    getSelectControllerSize();
+  });
+
+  useEffect(() => {
+    document.addEventListener("scroll", scrollHandler);
+    return function () {
+      document.removeEventListener("scroll", scrollHandler);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const scrollHandler = (event: any) => {
+    getSelectControllerCoords();
+    //
+    // emitCoords(top, bottom, left, width, height); // Не трогать!!!
+    //
+    // console.log(event.target.documentElement.scrollHeight); // Не трогать!!!
+    // console.log(event.target.documentElement.scrollTop); // Не трогать!!!
+    // console.log(window.innerHeight); // Не трогать!!!
+    if (
+      event.target.documentElement.scrollHeight - (event.target.documentElement.scrollTop + window.innerHeight) <
+      100
+    ) {
+      console.log("Нижний край < 100");
+    }
+  };
+
   return (
     <section className={styles["portfolie-structure"]}>
       <h1 className={styles["portfolie-structure__heading"]}>Структура портфеля</h1>
 
-      <div className={styles["portfolie-structure__selection"]} ref={selectController.current}>
-        {/* <GuiSelectController
-        :ifSelectionOptionsBlock="isSelectionBlockVisible"
-        :value="controllerValue"
-        :selectionElements="selectionElements"
-        @onClickSelectionController="onClickSelectionController"
-      /> */}
+      <div className={styles["portfolie-structure__selection"]} ref={selectController}>
+        <Controller ifPressed={ifPressed} value={controllerValue} onClickController={onClickController} />
       </div>
 
       <div className={styles["portfolie-structure__content"]}>
@@ -234,14 +297,10 @@ const PortfolioStructure: FC = () => {
             percent04={block.percent04}
             percent05={block.percent05}
             percent06={block.percent06}
-            isVisible={true}
+            // isVisible={true}
+            isVisible={idOptions === index}
           />
         ))}
-
-        {/*     v-for="(percentBlock, index) in percentBlocks"
-        :key="index"
-        :percent="percentBlock"
-        :isContainerVisible="idOptions === index" */}
       </div>
     </section>
   );

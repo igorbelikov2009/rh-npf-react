@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import TopBlock from "../components/general/TopBlock";
 import investImage from "../assets/images/invest/InvestTop.jpg";
 import { CardsCardProps } from "../components/general/cards/CardsCard/CardsCard";
@@ -8,6 +8,7 @@ import InvestmentArchive from "../components/investment/InvestmentArchive/Invest
 import PortfolioStructure from "../components/investment/portfolioStructure/PortfolioStructure/PortfolioStructure";
 
 const Investment: FC = () => {
+  const [firstSelectionValue, setFirstSelectionValue] = useState("30 November 2021 г.");
   const cards: CardsCardProps[] = [
     {
       icon: "Money",
@@ -32,6 +33,28 @@ const Investment: FC = () => {
     },
   ];
 
+  const firstSelectionBlock = {
+    idOptions: 0,
+    height: 0,
+    top: 0,
+    isVisible: false,
+  };
+
+  const onClickFirstSelectController = () => {
+    // this.firstSelectionBlock.isVisible = !this.firstSelectionBlock.isVisible;
+    // this.secondSelectionBlock.isVisible = false;
+    // this.firstSelectionBlock.top = this.firstSelectController.bottom;
+  };
+  const onScrollPortfolioStructure = () => {
+    // (top, bottom, left, width, height)=>
+    // this.getFirstSelectionBlockCoordsTop();
+    // this.firstSelectController.top = top;
+    // this.firstSelectController.bottom = bottom;
+    // this.firstSelectController.left = left;
+    // this.firstSelectController.width = width;
+    // this.firstSelectController.height = height;
+    // this.getClientHeight();
+  };
   return (
     <>
       <TopBlock
@@ -42,7 +65,13 @@ const Investment: FC = () => {
       />
 
       <Cards cards={cards} />
-      <PortfolioStructure />
+      <PortfolioStructure
+        ifPressed={firstSelectionBlock.isVisible}
+        controllerValue={firstSelectionValue}
+        idOptions={firstSelectionBlock.idOptions}
+        onClickController={onClickFirstSelectController}
+        emitCoords={onScrollPortfolioStructure}
+      />
       <InvestmentArchive />
       <InvestmentDescription />
     </>

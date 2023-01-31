@@ -4,17 +4,17 @@ import styles from "./Controller.module.scss";
 interface ControllerProps {
   value: string;
   ifPressed: boolean;
-  onPressedController: () => void;
+  onClickController: () => void;
 }
 
-const Controller: FC<ControllerProps> = ({ value, ifPressed, onPressedController }) => {
+const Controller: FC<ControllerProps> = ({ value, ifPressed, onClickController }) => {
   return (
     <div className={styles["select-controller"]}>
       <div className={styles["changing-title"]}>
         <div className={ifPressed ? styles["border-gray"] : styles["border-white"]}>
           <div
             className={ifPressed ? styles["container-backgr-gray"] : styles["container-backgr-white"]}
-            onClick={onPressedController}
+            onClick={onClickController}
           >
             <div className={styles["controller-date"]}>
               <div>
