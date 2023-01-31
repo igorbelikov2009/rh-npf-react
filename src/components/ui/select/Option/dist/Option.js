@@ -8,7 +8,7 @@ var Option = function (_a) {
     var _b = react_1.useState(""), valueRadio = _b[0], setValueRadio = _b[1];
     var selectHandler = function (event) {
         setValueRadio(event.target.value);
-        emitValue(event.target.value);
+        emitValue(event.target.value, id);
     };
     return (react_1["default"].createElement("label", { className: isActive ? Option_module_scss_1["default"]["option-active"] : Option_module_scss_1["default"]["option"] },
         date,

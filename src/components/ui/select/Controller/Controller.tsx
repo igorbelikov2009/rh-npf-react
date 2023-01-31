@@ -4,7 +4,6 @@ import styles from "./Controller.module.scss";
 interface ControllerProps {
   value: string;
   ifPressed: boolean;
-  //   selectionElements: OptionProps[];
   onPressedController: () => void;
 }
 

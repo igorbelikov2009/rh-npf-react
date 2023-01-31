@@ -6,7 +6,7 @@ export interface OptionProps {
   date: string;
   value: string;
   id: string;
-  emitValue: (event: React.SetStateAction<string>) => void;
+  emitValue: (event: React.SetStateAction<string>, id: string) => void;
 }
 
 const Option: FC<OptionProps> = ({ isActive, date, value, id, emitValue }) => {
@@ -15,7 +15,7 @@ const Option: FC<OptionProps> = ({ isActive, date, value, id, emitValue }) => {
 
   const selectHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValueRadio(event.target.value);
-    emitValue(event.target.value);
+    emitValue(event.target.value, id);
   };
 
   return (
