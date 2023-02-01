@@ -7,11 +7,11 @@ var Percents_1 = require("../Percents/Percents");
 var PortfolioStructure_module_scss_1 = require("./PortfolioStructure.module.scss");
 var PortfolioStructure = function (_a) {
     var ifPressed = _a.ifPressed, controllerValue = _a.controllerValue, idOptions = _a.idOptions, onClickController = _a.onClickController, emitCoords = _a.emitCoords;
-    var top = 0;
-    var bottom = 0;
-    var left = 0;
-    var width = 0;
-    var height = 0;
+    var _b = react_1.useState(0), top = _b[0], setTop = _b[1];
+    var _c = react_1.useState(0), bottom = _c[0], setBottom = _c[1];
+    var _d = react_1.useState(0), left = _d[0], setLeft = _d[1];
+    var _e = react_1.useState(0), width = _e[0], setWidth = _e[1];
+    var _f = react_1.useState(0), height = _f[0], setHeight = _f[1];
     var selectController = react_1.useRef(null);
     var percentsBlocks = [
         {
@@ -217,42 +217,38 @@ var PortfolioStructure = function (_a) {
     ];
     var getSelectControllerCoords = function () {
         if (selectController.current) {
-            top = selectController.current.getBoundingClientRect().top;
-            bottom = selectController.current.getBoundingClientRect().bottom;
-            console.log("top :" + top, "bottom :" + bottom);
+            setTop(selectController.current.getBoundingClientRect().top);
+            setBottom(selectController.current.getBoundingClientRect().bottom);
+            setLeft(selectController.current.getBoundingClientRect().left);
+            setWidth(selectController.current.getBoundingClientRect().width);
+            setHeight(selectController.current.getBoundingClientRect().height);
+            emitCoords(top, bottom, left, width, height);
         }
     };
-    var getSelectControllerSize = function () {
-        if (selectController.current) {
-            left = selectController.current.getBoundingClientRect().left;
-            width = selectController.current.getBoundingClientRect().width;
-            height = selectController.current.getBoundingClientRect().height;
-            console.log("left :" + left, "width :" + width, "height :" + height);
-        }
-    };
-    react_1.useEffect(function () {
-        getSelectControllerSize();
-    });
     react_1.useEffect(function () {
         document.addEventListener("scroll", scrollHandler);
         return function () {
             document.removeEventListener("scroll", scrollHandler);
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [top]);
     var scrollHandler = function (event) {
         getSelectControllerCoords();
         //
         // emitCoords(top, bottom, left, width, height); // Не трогать!!!
         //
-        // console.log(event.target.documentElement.scrollHeight); // Не трогать!!!
-        // console.log(event.target.documentElement.scrollTop); // Не трогать!!!
-        // console.log(window.innerHeight); // Не трогать!!!
-        if (event.target.documentElement.scrollHeight - (event.target.documentElement.scrollTop + window.innerHeight) <
-            100) {
-            console.log("Нижний край < 100");
-        }
+        console.log(event.target.documentElement.scrollHeight); // Не трогать!!!
+        console.log(event.target.documentElement.scrollTop); // Не трогать!!!
+        console.log(window.innerHeight); // Не трогать!!!
+        // if (
+        //   event.target.documentElement.scrollHeight - (event.target.documentElement.scrollTop + window.innerHeight) <
+        //   100
+        // ) {
+        //   console.log("Нижний край < 100");
+        // }
     };
+    // console.log("left :" + left, "width :" + width, "height :" + height);
+    // console.log("top :" + top, "bottom :" + bottom);
     return (react_1["default"].createElement("section", { className: PortfolioStructure_module_scss_1["default"]["portfolie-structure"] },
         react_1["default"].createElement("h1", { className: PortfolioStructure_module_scss_1["default"]["portfolie-structure__heading"] }, "\u0421\u0442\u0440\u0443\u043A\u0442\u0443\u0440\u0430 \u043F\u043E\u0440\u0442\u0444\u0435\u043B\u044F"),
         react_1["default"].createElement("div", { className: PortfolioStructure_module_scss_1["default"]["portfolie-structure__selection"], ref: selectController },

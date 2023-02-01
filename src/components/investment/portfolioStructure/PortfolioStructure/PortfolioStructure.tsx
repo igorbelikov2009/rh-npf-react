@@ -1,4 +1,4 @@
-import React, { FC, useRef, useEffect } from "react";
+import React, { FC, useRef, useEffect, useState, useMemo } from "react";
 import Controller from "../../../ui/select/Controller/Controller";
 import Graph from "../Graph/Graph";
 import Percents, { PercentProps } from "../Percents/Percents";
@@ -20,11 +20,11 @@ const PortfolioStructure: FC<PortfolioStructureProps> = ({
   onClickController,
   emitCoords,
 }) => {
-  let top = 0;
-  let bottom = 0;
-  let left = 0;
-  let width = 0;
-  let height = 0;
+  const [top, setTop] = useState(0);
+  const [bottom, setBottom] = useState(0);
+  const [left, setLeft] = useState(0);
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
 
   const selectController = useRef<HTMLDivElement>(null);
 
@@ -233,25 +233,15 @@ const PortfolioStructure: FC<PortfolioStructureProps> = ({
 
   const getSelectControllerCoords = () => {
     if (selectController.current) {
-      top = selectController.current.getBoundingClientRect().top;
-      bottom = selectController.current.getBoundingClientRect().bottom;
-      console.log("top :" + top, "bottom :" + bottom);
+      setTop(selectController.current.getBoundingClientRect().top);
+      setBottom(selectController.current.getBoundingClientRect().bottom);
+      setLeft(selectController.current.getBoundingClientRect().left);
+      setWidth(selectController.current.getBoundingClientRect().width);
+      setHeight(selectController.current.getBoundingClientRect().height);
+
+      emitCoords(top, bottom, left, width, height);
     }
   };
-
-  const getSelectControllerSize = () => {
-    if (selectController.current) {
-      left = selectController.current.getBoundingClientRect().left;
-      width = selectController.current.getBoundingClientRect().width;
-      height = selectController.current.getBoundingClientRect().height;
-
-      console.log("left :" + left, "width :" + width, "height :" + height);
-    }
-  };
-
-  useEffect(() => {
-    getSelectControllerSize();
-  });
 
   useEffect(() => {
     document.addEventListener("scroll", scrollHandler);
@@ -259,23 +249,26 @@ const PortfolioStructure: FC<PortfolioStructureProps> = ({
       document.removeEventListener("scroll", scrollHandler);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [top]);
 
   const scrollHandler = (event: any) => {
     getSelectControllerCoords();
     //
     // emitCoords(top, bottom, left, width, height); // Не трогать!!!
     //
-    // console.log(event.target.documentElement.scrollHeight); // Не трогать!!!
-    // console.log(event.target.documentElement.scrollTop); // Не трогать!!!
-    // console.log(window.innerHeight); // Не трогать!!!
-    if (
-      event.target.documentElement.scrollHeight - (event.target.documentElement.scrollTop + window.innerHeight) <
-      100
-    ) {
-      console.log("Нижний край < 100");
-    }
+    console.log(event.target.documentElement.scrollHeight); // Не трогать!!!
+    console.log(event.target.documentElement.scrollTop); // Не трогать!!!
+    console.log(window.innerHeight); // Не трогать!!!
+    // if (
+    //   event.target.documentElement.scrollHeight - (event.target.documentElement.scrollTop + window.innerHeight) <
+    //   100
+    // ) {
+    //   console.log("Нижний край < 100");
+    // }
   };
+
+  // console.log("left :" + left, "width :" + width, "height :" + height);
+  // console.log("top :" + top, "bottom :" + bottom);
 
   return (
     <section className={styles["portfolie-structure"]}>

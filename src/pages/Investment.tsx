@@ -8,7 +8,15 @@ import InvestmentArchive from "../components/investment/InvestmentArchive/Invest
 import PortfolioStructure from "../components/investment/portfolioStructure/PortfolioStructure/PortfolioStructure";
 
 const Investment: FC = () => {
+  const [clientHeight, setClientHeight] = useState(0);
   const [firstSelectionValue, setFirstSelectionValue] = useState("30 November 2021 г.");
+
+  // firstSelectController: coords
+  const [firstTop, setFirstTop] = useState(0);
+  const [firstBottom, setFirstBottom] = useState(0);
+  const [firstLeft, setFirstLeft] = useState(0);
+  const [firstWidth, setFirstWidth] = useState(0);
+  const [firstHeight, seFirsttHeight] = useState(0);
   const cards: CardsCardProps[] = [
     {
       icon: "Money",
@@ -45,16 +53,36 @@ const Investment: FC = () => {
     // this.secondSelectionBlock.isVisible = false;
     // this.firstSelectionBlock.top = this.firstSelectController.bottom;
   };
-  const onScrollPortfolioStructure = () => {
-    // (top, bottom, left, width, height)=>
-    // this.getFirstSelectionBlockCoordsTop();
-    // this.firstSelectController.top = top;
-    // this.firstSelectController.bottom = bottom;
-    // this.firstSelectController.left = left;
-    // this.firstSelectController.width = width;
-    // this.firstSelectController.height = height;
-    // this.getClientHeight();
+
+  const getClientHeight = () => {
+    setClientHeight(document.documentElement.clientHeight);
   };
+
+  // getSelectionBlockHeight() {
+  //   const selectionOptionBlock = this.$refs.firstSelectionBlock;
+  //   this.commonSelectionBlocks.height = Math.round(
+  //     selectionOptionBlock.getBoundingClientRect().height
+  //   );
+  // };
+
+  const onScrollPortfolioStructure = (
+    top: React.SetStateAction<number>,
+    bottom: React.SetStateAction<number>,
+    left: React.SetStateAction<number>,
+    width: React.SetStateAction<number>,
+    height: React.SetStateAction<number>
+  ) => {
+    // this.getFirstSelectionBlockCoordsTop();
+
+    setFirstTop(top);
+    setFirstBottom(bottom);
+    setFirstLeft(left);
+    setFirstWidth(width);
+    seFirsttHeight(height);
+    getClientHeight();
+  };
+
+  console.log(firstTop, firstBottom, firstLeft, firstWidth, firstHeight, clientHeight);
   return (
     <>
       <TopBlock
