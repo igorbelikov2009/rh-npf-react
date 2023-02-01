@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useRef, useEffect } from "react";
 import TopBlock from "../components/general/TopBlock";
 import investImage from "../assets/images/invest/InvestTop.jpg";
 import { CardsCardProps } from "../components/general/cards/CardsCard/CardsCard";
@@ -6,17 +6,25 @@ import Cards from "../components/general/cards/Cards/Cards";
 import InvestmentDescription from "../components/investment/InvestmentDescription/InvestmentDescription";
 import InvestmentArchive from "../components/investment/InvestmentArchive/InvestmentArchive";
 import PortfolioStructure from "../components/investment/portfolioStructure/PortfolioStructure/PortfolioStructure";
+import "../styles/dist/Investment.css";
+import OptionsBlock, { IOptionItem } from "../components/ui/select/OptionsBlock/OptionsBlock";
 
 const Investment: FC = () => {
   const [clientHeight, setClientHeight] = useState(0);
   const [firstSelectionValue, setFirstSelectionValue] = useState("30 November 2021 г.");
 
   // firstSelectController: coords
-  const [firstTop, setFirstTop] = useState(0);
-  const [firstBottom, setFirstBottom] = useState(0);
-  const [firstLeft, setFirstLeft] = useState(0);
-  const [firstWidth, setFirstWidth] = useState(0);
-  const [firstHeight, seFirsttHeight] = useState(0);
+  const [firstControllerTop, setFirstControllerTop] = useState(0);
+  const [firstControllerBottom, setFirstControllerBottom] = useState(0);
+  const [firstControllerLeft, setFirstControllerLeft] = useState(0);
+  const [firstControllerWidth, setFirstControllerWidth] = useState(0);
+  const [firstControllerHeight, seFirstControllerHeight] = useState(0);
+  // firstSelectionBlock firstBlock
+  const [firstBlockIdOption, setFirstBlockIdOption] = useState("0");
+  const [firstBlockHeight, setFirstBlockHeight] = useState(0);
+  const [firstBlockTop, setFirstBlockTop] = useState(0);
+  const [firstBlockVisible, setFirstBlockVisible] = useState(false);
+  // cards
   const cards: CardsCardProps[] = [
     {
       icon: "Money",
@@ -41,29 +49,167 @@ const Investment: FC = () => {
     },
   ];
 
-  const firstSelectionBlock = {
-    idOptions: 0,
-    height: 0,
-    top: 0,
-    isVisible: false,
+  const firstSelectOptions: IOptionItem[] = [
+    {
+      date: "2021-11-30T09:00:00.000Z",
+      value: "2021-11-30T09:00:00.000Z",
+      id: "0",
+    },
+    {
+      date: "2021-10-31T09:00:00.000Z",
+      value: "2021-10-31T09:00:00.000Z",
+      id: "1",
+    },
+    {
+      date: "2021-09-30T09:00:00.000Z",
+      value: "2021-09-30T09:00:00.000Z",
+      id: "2",
+    },
+    {
+      date: "2021-08-31T09:00:00.000Z",
+      value: "2021-08-31T09:00:00.000Z",
+      id: "3",
+    },
+    {
+      date: "2021-07-31T09:00:00.000Z",
+      value: "2021-07-31T09:00:00.000Z",
+      id: "4",
+    },
+    {
+      date: "2021-06-30T09:00:00.000Z",
+      value: "2021-06-30T09:00:00.000Z",
+      id: "5",
+    },
+    {
+      date: "2021-05-31T09:00:00.000Z",
+      value: "2021-05-31T09:00:00.000Z",
+      id: "6",
+    },
+    {
+      date: "2021-04-30T09:00:00.000Z",
+      value: "2021-04-30T09:00:00.000Z",
+      id: "7",
+    },
+    {
+      date: "2021-03-31T09:00:00.000Z",
+      value: "2021-03-31T09:00:00.000Z",
+      id: "8",
+    },
+    {
+      date: "2021-02-28T09:00:00.000Z",
+      value: "2021-02-28T09:00:00.000Z",
+      id: "9",
+    },
+    {
+      date: "2021-01-31T09:00:00.000Z",
+      value: "2021-01-31T09:00:00.000Z",
+      id: "10",
+    },
+    {
+      date: "2020-12-31T09:00:00.000Z",
+      value: "2020-12-31T09:00:00.000Z",
+      id: "11",
+    },
+    {
+      date: "2020-11-30T09:00:00.000Z",
+      value: "2020-11-30T09:00:00.000Z",
+      id: "12",
+    },
+    {
+      date: "2020-10-31T09:00:00.000Z",
+      value: "2020-10-31T09:00:00.000Z",
+      id: "13",
+    },
+    {
+      date: "2020-09-30T09:00:00.000Z",
+      value: "2020-09-30T09:00:00.000Z",
+      id: "14",
+    },
+    {
+      date: "2020-08-31T09:00:00.000Z",
+      value: "2020-08-31T09:00:00.000Z",
+      id: "15",
+    },
+    {
+      date: "2020-07-31T09:00:00.000Z",
+      value: "2020-07-31T09:00:00.000Z",
+      id: "16",
+    },
+    {
+      date: "2020-06-30T09:00:00.000Z",
+      value: "2020-06-30T09:00:00.000Z",
+      id: "17",
+    },
+    {
+      date: "2020-05-31T09:00:00.000Z",
+      value: "2020-05-31T09:00:00.000Z",
+      id: "18",
+    },
+    {
+      date: "2020-04-30T09:00:00.000Z",
+      value: "2020-04-30T09:00:00.000Z",
+      id: "19",
+    },
+    {
+      date: "2020-03-31T09:00:00.000Z",
+      value: "2020-03-31T09:00:00.000Z",
+      id: "20",
+    },
+    {
+      date: "2020-02-29T09:00:00.000Z",
+      value: "2020-02-29T09:00:00.000Z",
+      id: "21",
+    },
+    {
+      date: "2020-01-31T09:00:00.000Z",
+      value: "2020-01-31T09:00:00.000Z",
+      id: "22",
+    },
+    {
+      date: "2019-12-31T09:00:00.000Z",
+      value: "2019-12-31T09:00:00.000Z",
+      id: "23",
+    },
+    {
+      date: "2019-11-30T09:00:00.000Z",
+      value: "2019-11-30T09:00:00.000Z",
+      id: "24",
+    },
+  ];
+
+  const refFirstSelectBlock = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.addEventListener("scroll", scrollHandler);
+    return function () {
+      document.removeEventListener("scroll", scrollHandler);
+    };
+  });
+
+  const scrollHandler = (event: any) => {
+    getSelectionBlockHeight();
   };
 
   const onClickFirstSelectController = () => {
-    // this.firstSelectionBlock.isVisible = !this.firstSelectionBlock.isVisible;
+    setFirstBlockVisible((prev) => !prev);
+
     // this.secondSelectionBlock.isVisible = false;
     // this.firstSelectionBlock.top = this.firstSelectController.bottom;
+    // setFirstBlockTop(firstControllerBottom);
   };
+  // console.log(firstControllerBottom, firstBlockTop);
+  // console.log(firstBlockVisible);
 
   const getClientHeight = () => {
-    setClientHeight(document.documentElement.clientHeight);
+    setClientHeight(window.innerHeight);
   };
 
-  // getSelectionBlockHeight() {
-  //   const selectionOptionBlock = this.$refs.firstSelectionBlock;
-  //   this.commonSelectionBlocks.height = Math.round(
-  //     selectionOptionBlock.getBoundingClientRect().height
-  //   );
-  // };
+  const getSelectionBlockHeight = () => {
+    if (refFirstSelectBlock.current) {
+      setFirstBlockHeight(refFirstSelectBlock.current.getBoundingClientRect().height);
+    }
+  };
+  // console.log(firstBlockHeight);
 
   const onScrollPortfolioStructure = (
     top: React.SetStateAction<number>,
@@ -72,17 +218,48 @@ const Investment: FC = () => {
     width: React.SetStateAction<number>,
     height: React.SetStateAction<number>
   ) => {
-    // this.getFirstSelectionBlockCoordsTop();
+    getFirstSelectionBlockCoordsTop();
 
-    setFirstTop(top);
-    setFirstBottom(bottom);
-    setFirstLeft(left);
-    setFirstWidth(width);
-    seFirsttHeight(height);
+    setFirstControllerTop(top);
+    setFirstControllerBottom(bottom);
+    setFirstControllerLeft(left);
+    setFirstControllerWidth(width);
+    seFirstControllerHeight(height);
     getClientHeight();
   };
 
-  console.log(firstTop, firstBottom, firstLeft, firstWidth, firstHeight, clientHeight);
+  const getFirstSelectionBlockCoordsTop = () => {
+    setFirstBlockTop(firstControllerBottom);
+    if (firstControllerBottom <= 0) {
+      setFirstBlockTop(0);
+    } else if (firstControllerBottom >= clientHeight - firstBlockHeight && firstControllerBottom <= clientHeight) {
+      setFirstBlockTop(firstControllerBottom - firstBlockHeight);
+    } else if (firstControllerBottom >= clientHeight) {
+      setFirstBlockTop(clientHeight - firstBlockHeight);
+    }
+  };
+  console.log(firstBlockTop);
+  // console.log(
+  //   // firstControllerTop,
+  //   firstControllerBottom,
+  //   // firstControllerLeft,
+  //   // firstControllerWidth,
+  //   // firstControllerHeight,
+  //   // clientHeight
+  //   firstBlockTop
+  // );
+
+  const onClickFirstSelectionBlock = () => {
+    setFirstBlockVisible(false);
+  };
+  const onChangeFirstSelectionBlock = (
+    selectionValue: React.SetStateAction<string>,
+    idOptions: React.SetStateAction<string>
+  ) => {
+    setFirstSelectionValue(selectionValue);
+    setFirstBlockIdOption(idOptions);
+    // console.log(selectionValue, idOptions);
+  };
   return (
     <>
       <TopBlock
@@ -94,14 +271,34 @@ const Investment: FC = () => {
 
       <Cards cards={cards} />
       <PortfolioStructure
-        ifPressed={firstSelectionBlock.isVisible}
+        ifPressed={firstBlockVisible}
         controllerValue={firstSelectionValue}
-        idOptions={firstSelectionBlock.idOptions}
+        idOptions={firstBlockIdOption}
         onClickController={onClickFirstSelectController}
         emitCoords={onScrollPortfolioStructure}
       />
       <InvestmentArchive />
       <InvestmentDescription />
+
+      <div
+        ref={refFirstSelectBlock}
+        // :style="firstSelectionBlockStyle"
+        className={
+          firstBlockVisible
+            ? "invest-page__selection-options-block invest-page__selection-options-block_show"
+            : "invest-page__selection-options-block invest-page__selection-options-block_hide"
+        }
+      >
+        <OptionsBlock
+          selectionOptions={firstSelectOptions}
+          emitValue={onChangeFirstSelectionBlock}
+          onClickSelectionBlock={onClickFirstSelectionBlock}
+        />
+        {/* :selectionElements="firstSelectionElements"
+        @onClickSelectionBlock="onClickFirstSelectionBlock"
+        @onChangeSelectionBlock="onChangeFirstSelectionBlock"
+      /> */}
+      </div>
     </>
   );
 };

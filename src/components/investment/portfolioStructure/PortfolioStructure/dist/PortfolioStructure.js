@@ -237,9 +237,9 @@ var PortfolioStructure = function (_a) {
         //
         // emitCoords(top, bottom, left, width, height); // Не трогать!!!
         //
-        console.log(event.target.documentElement.scrollHeight); // Не трогать!!!
-        console.log(event.target.documentElement.scrollTop); // Не трогать!!!
-        console.log(window.innerHeight); // Не трогать!!!
+        // console.log(event.target.documentElement.scrollHeight); // Не трогать!!!
+        // console.log(event.target.documentElement.scrollTop); // Не трогать!!!
+        // console.log(window.innerHeight); // Не трогать!!!
         // if (
         //   event.target.documentElement.scrollHeight - (event.target.documentElement.scrollTop + window.innerHeight) <
         //   100
@@ -255,8 +255,6 @@ var PortfolioStructure = function (_a) {
             react_1["default"].createElement(Controller_1["default"], { ifPressed: ifPressed, value: controllerValue, onClickController: onClickController })),
         react_1["default"].createElement("div", { className: PortfolioStructure_module_scss_1["default"]["portfolie-structure__content"] },
             react_1["default"].createElement(Graph_1["default"], null),
-            percentsBlocks.map(function (block, index) { return (react_1["default"].createElement(Percents_1["default"], { key: index, percent01: block.percent01, percent02: block.percent02, percent03: block.percent03, percent04: block.percent04, percent05: block.percent05, percent06: block.percent06, 
-                // isVisible={true}
-                isVisible: idOptions === index })); }))));
+            percentsBlocks.map(function (block, index) { return (react_1["default"].createElement(Percents_1["default"], { key: index, percent01: block.percent01, percent02: block.percent02, percent03: block.percent03, percent04: block.percent04, percent05: block.percent05, percent06: block.percent06, isVisible: Number(idOptions) === index })); }))));
 };
 exports["default"] = PortfolioStructure;

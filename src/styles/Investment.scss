@@ -1,0 +1,38 @@
+.invest-page {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 24px;
+  font-style: normal;
+  color: #5a646e;
+
+  &__selection-options-block {
+    max-width: 382px;
+    border-radius: 6px;
+    position: fixed;
+    // position: absolute;
+    margin: 0 auto;
+
+    @media screen and (min-width: 576px) {
+      max-width: 210px;
+    }
+
+    @media screen and (min-width: 768px) {
+      max-width: 210px;
+      margin: 0;
+    }
+
+    //  invest-page__selection-options-block_hide
+    &_hide {
+      opacity: 0;
+      transition: opacity 0.28s ease;
+    }
+
+    // invest-page__selection-options-block_show
+    &_show {
+      opacity: 1;
+      transition: opacity 0.28s ease;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import React, { FC, useRef, useEffect, useState, useMemo } from "react";
+import React, { FC, useRef, useEffect, useState } from "react";
 import Controller from "../../../ui/select/Controller/Controller";
 import Graph from "../Graph/Graph";
 import Percents, { PercentProps } from "../Percents/Percents";
@@ -8,7 +8,7 @@ interface PortfolioStructureProps {
   // isSelectionBlockVisible:boolean;
   ifPressed: boolean;
   controllerValue: string;
-  idOptions: number;
+  idOptions: string;
   onClickController: () => void;
   emitCoords: (top: number, bottom: number, left: number, width: number, height: number) => void;
 }
@@ -256,9 +256,9 @@ const PortfolioStructure: FC<PortfolioStructureProps> = ({
     //
     // emitCoords(top, bottom, left, width, height); // Не трогать!!!
     //
-    console.log(event.target.documentElement.scrollHeight); // Не трогать!!!
-    console.log(event.target.documentElement.scrollTop); // Не трогать!!!
-    console.log(window.innerHeight); // Не трогать!!!
+    // console.log(event.target.documentElement.scrollHeight); // Не трогать!!!
+    // console.log(event.target.documentElement.scrollTop); // Не трогать!!!
+    // console.log(window.innerHeight); // Не трогать!!!
     // if (
     //   event.target.documentElement.scrollHeight - (event.target.documentElement.scrollTop + window.innerHeight) <
     //   100
@@ -290,8 +290,7 @@ const PortfolioStructure: FC<PortfolioStructureProps> = ({
             percent04={block.percent04}
             percent05={block.percent05}
             percent06={block.percent06}
-            // isVisible={true}
-            isVisible={idOptions === index}
+            isVisible={Number(idOptions) === index}
           />
         ))}
       </div>

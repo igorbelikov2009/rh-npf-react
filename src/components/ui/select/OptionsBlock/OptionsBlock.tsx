@@ -11,14 +11,13 @@ export interface IOptionItem {
 interface OptionsBlockProps {
   selectionOptions: IOptionItem[];
   emitValue: (event: React.SetStateAction<string>, id: string) => void;
+  onClickSelectionBlock: () => void;
 }
 
-const OptionsBlock: FC<OptionsBlockProps> = ({ selectionOptions, emitValue }) => {
+const OptionsBlock: FC<OptionsBlockProps> = ({ selectionOptions, emitValue, onClickSelectionBlock }) => {
   const [selectedValue, setSelectedValue] = useState("2021-11-30T09:00:00.000Z");
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [idOption, setIdOption] = useState("0");
-
-  const onClickSelectionBlock = () => {};
 
   const onChangeOption = (value: React.SetStateAction<string>, id: string) => {
     setSelectedValue(value);
@@ -45,15 +44,3 @@ const OptionsBlock: FC<OptionsBlockProps> = ({ selectionOptions, emitValue }) =>
 };
 
 export default OptionsBlock;
-
-/*
-    //   <GuiSelectionOption
-    //     v-for="(selectionElement, index) in selectionElements"
-    //     :key="index"
-    //     :date="selectionElement.date"
-    //     :value="selectionElement.value"
-    //     :id="selectionElement.id"
-    //     :isActive="selectionElement.value === selectedValue"
-    //     @change="onChangeSelectionBlock"
-    //   />
-*/
