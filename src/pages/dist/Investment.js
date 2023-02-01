@@ -13,16 +13,16 @@ var Investment = function () {
     var _a = react_1.useState(0), clientHeight = _a[0], setClientHeight = _a[1];
     var _b = react_1.useState("30 November 2021 г."), firstSelectionValue = _b[0], setFirstSelectionValue = _b[1];
     // firstSelectController: coords
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     var _c = react_1.useState(0), firstControllerTop = _c[0], setFirstControllerTop = _c[1];
     var _d = react_1.useState(0), firstControllerBottom = _d[0], setFirstControllerBottom = _d[1];
     var _e = react_1.useState(0), firstControllerLeft = _e[0], setFirstControllerLeft = _e[1];
     var _f = react_1.useState(0), firstControllerWidth = _f[0], setFirstControllerWidth = _f[1];
-    var _g = react_1.useState(0), firstControllerHeight = _g[0], seFirstControllerHeight = _g[1];
     // firstSelectionBlock firstBlock
-    var _h = react_1.useState("0"), firstBlockIdOption = _h[0], setFirstBlockIdOption = _h[1];
-    var _j = react_1.useState(0), firstBlockHeight = _j[0], setFirstBlockHeight = _j[1];
-    var _k = react_1.useState(0), firstBlockTop = _k[0], setFirstBlockTop = _k[1];
-    var _l = react_1.useState(false), firstBlockVisible = _l[0], setFirstBlockVisible = _l[1];
+    var _g = react_1.useState("0"), firstBlockIdOption = _g[0], setFirstBlockIdOption = _g[1];
+    var _h = react_1.useState(0), firstBlockHeight = _h[0], setFirstBlockHeight = _h[1];
+    var _j = react_1.useState(0), firstBlockTop = _j[0], setFirstBlockTop = _j[1];
+    var _k = react_1.useState(false), firstBlockVisible = _k[0], setFirstBlockVisible = _k[1];
     // cards
     var cards = [
         {
@@ -183,14 +183,30 @@ var Investment = function () {
     var scrollHandler = function (event) {
         getSelectionBlockHeight();
     };
+    // const getControllerBottom = (bottom: React.SetStateAction<number>) => {
+    //   setFirstControllerBottom(bottom);
+    //   console.log("fig vam");
+    // };
+    // useEffect(() => {
+    //   setFirstBlockTop(firstControllerBottom);
+    // }, [firstControllerBottom]);
+    var getControllerBottom = function () {
+        console.log("fig vam");
+    };
     var onClickFirstSelectController = function () {
         setFirstBlockVisible(function (prev) { return !prev; });
+        console.log("onClickFirstSelectController");
         // this.secondSelectionBlock.isVisible = false;
-        // this.firstSelectionBlock.top = this.firstSelectController.bottom;
         // setFirstBlockTop(firstControllerBottom);
     };
-    // console.log(firstControllerBottom, firstBlockTop);
-    // console.log(firstBlockVisible);
+    console.log(firstBlockVisible);
+    var onClickFirstSelectionBlock = function () {
+        setFirstBlockVisible(false);
+    };
+    var onChangeFirstSelectionBlock = function (selectionValue, idOption) {
+        setFirstSelectionValue(selectionValue);
+        setFirstBlockIdOption(idOption);
+    };
     var getClientHeight = function () {
         setClientHeight(window.innerHeight);
     };
@@ -200,13 +216,12 @@ var Investment = function () {
         }
     };
     // console.log(firstBlockHeight);
-    var onScrollPortfolioStructure = function (top, bottom, left, width, height) {
+    var onScrollPortfolioStructure = function (top, bottom, left, width) {
         getFirstSelectionBlockCoordsTop();
         setFirstControllerTop(top);
         setFirstControllerBottom(bottom);
         setFirstControllerLeft(left);
         setFirstControllerWidth(width);
-        seFirstControllerHeight(height);
         getClientHeight();
     };
     var getFirstSelectionBlockCoordsTop = function () {
@@ -221,35 +236,24 @@ var Investment = function () {
             setFirstBlockTop(clientHeight - firstBlockHeight);
         }
     };
-    console.log(firstBlockTop);
-    // console.log(
-    //   // firstControllerTop,
-    //   firstControllerBottom,
-    //   // firstControllerLeft,
-    //   // firstControllerWidth,
-    //   // firstControllerHeight,
-    //   // clientHeight
-    //   firstBlockTop
-    // );
-    var onClickFirstSelectionBlock = function () {
-        setFirstBlockVisible(false);
-    };
-    var onChangeFirstSelectionBlock = function (selectionValue, idOptions) {
-        setFirstSelectionValue(selectionValue);
-        setFirstBlockIdOption(idOptions);
-        // console.log(selectionValue, idOptions);
-    };
+    console.log(
+    // firstControllerTop,
+    firstControllerBottom, 
+    // firstControllerLeft,
+    // firstControllerWidth,
+    // clientHeight
+    firstBlockTop);
     return (react_1["default"].createElement(react_1["default"].Fragment, null,
         react_1["default"].createElement(TopBlock_1["default"], { heading: "\u0418\u043D\u0432\u0435\u0441\u0442\u0438\u0446\u0438\u043E\u043D\u043D\u0430\u044F", headingSpan: "\u0434\u0435\u044F\u0442\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u044C", subheading: "\u0410\u041E \u041D\u041F\u0424 \u00AB\u0420\u0435\u043D\u0435\u0441\u0441\u0430\u043D\u0441 \u043F\u0435\u043D\u0441\u0438\u0438\u00BB \u043E\u0441\u0443\u0449\u0435\u0441\u0442\u0432\u043B\u044F\u0435\u0442 \u0438\u043D\u0432\u0435\u0441\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435 \u043F\u0435\u043D\u0441\u0438\u043E\u043D\u043D\u044B\u0445 \u0440\u0435\u0437\u0435\u0440\u0432\u043E\u0432 \u0432 \u0438\u043D\u0442\u0435\u0440\u0435\u0441\u0430\u0445 \u0443\u0447\u0430\u0441\u0442\u043D\u0438\u043A\u043E\u0432 \u0424\u043E\u043D\u0434\u0430 \u043D\u0430 \u043F\u0440\u0438\u043D\u0446\u0438\u043F\u0430\u0445 \u0441\u043E\u0445\u0440\u0430\u043D\u043D\u043E\u0441\u0442\u0438 \u0438 \u043D\u0430\u0434\u0435\u0436\u043D\u043E\u0441\u0442\u0438, \u0432 \u0441\u043E\u043E\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0438\u0438 \u0441 \u0434\u0435\u0439\u0441\u0442\u0432\u0443\u044E\u0449\u0438\u043C \u0437\u0430\u043A\u043E\u043D\u043E\u0434\u0430\u0442\u0435\u043B\u044C\u0441\u0442\u0432\u043E\u043C \u0420\u0424 \u0438 \u043A\u043E\u0440\u043F\u043E\u0440\u0430\u0442\u0438\u0432\u043D\u043E\u0439 \u0438\u043D\u0432\u0435\u0441\u0442\u0438\u0446\u0438\u043E\u043D\u043D\u043E\u0439 \u043F\u043E\u043B\u0438\u0442\u0438\u043A\u043E\u0439", image: InvestTop_jpg_1["default"] }),
         react_1["default"].createElement(Cards_1["default"], { cards: cards }),
-        react_1["default"].createElement(PortfolioStructure_1["default"], { ifPressed: firstBlockVisible, controllerValue: firstSelectionValue, idOptions: firstBlockIdOption, onClickController: onClickFirstSelectController, emitCoords: onScrollPortfolioStructure }),
+        react_1["default"].createElement(PortfolioStructure_1["default"], { ifPressed: firstBlockVisible, controllerValue: firstSelectionValue, idOption: firstBlockIdOption, onClickController: onClickFirstSelectController, emitCoords: onScrollPortfolioStructure, emitControllerBottom: getControllerBottom }),
         react_1["default"].createElement(InvestmentArchive_1["default"], null),
         react_1["default"].createElement(InvestmentDescription_1["default"], null),
-        react_1["default"].createElement("div", { ref: refFirstSelectBlock, 
-            // :style="firstSelectionBlockStyle"
-            className: firstBlockVisible
-                ? "invest-page__selection-options-block invest-page__selection-options-block_show"
-                : "invest-page__selection-options-block invest-page__selection-options-block_hide" },
+        react_1["default"].createElement("div", { ref: refFirstSelectBlock, style: {
+                top: firstBlockTop + "px",
+                left: firstControllerLeft + 6 + "px",
+                width: firstControllerWidth - 12 + "px"
+            }, className: firstBlockVisible ? "selection-options-block-hidden" : "selection-options-block-visible" },
             react_1["default"].createElement(OptionsBlock_1["default"], { selectionOptions: firstSelectOptions, emitValue: onChangeFirstSelectionBlock, onClickSelectionBlock: onClickFirstSelectionBlock }))));
 };
 exports["default"] = Investment;

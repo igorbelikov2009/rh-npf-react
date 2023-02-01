@@ -14,11 +14,12 @@ const Investment: FC = () => {
   const [firstSelectionValue, setFirstSelectionValue] = useState("30 November 2021 г.");
 
   // firstSelectController: coords
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [firstControllerTop, setFirstControllerTop] = useState(0);
   const [firstControllerBottom, setFirstControllerBottom] = useState(0);
   const [firstControllerLeft, setFirstControllerLeft] = useState(0);
   const [firstControllerWidth, setFirstControllerWidth] = useState(0);
-  const [firstControllerHeight, seFirstControllerHeight] = useState(0);
+
   // firstSelectionBlock firstBlock
   const [firstBlockIdOption, setFirstBlockIdOption] = useState("0");
   const [firstBlockHeight, setFirstBlockHeight] = useState(0);
@@ -189,16 +190,37 @@ const Investment: FC = () => {
   const scrollHandler = (event: any) => {
     getSelectionBlockHeight();
   };
+  // const getControllerBottom = (bottom: React.SetStateAction<number>) => {
+  //   setFirstControllerBottom(bottom);
+  //   console.log("fig vam");
+  // };
+
+  // useEffect(() => {
+  //   setFirstBlockTop(firstControllerBottom);
+  // }, [firstControllerBottom]);
+
+  const getControllerBottom = () => {
+    console.log("fig vam");
+  };
 
   const onClickFirstSelectController = () => {
     setFirstBlockVisible((prev) => !prev);
-
+    console.log("onClickFirstSelectController");
     // this.secondSelectionBlock.isVisible = false;
-    // this.firstSelectionBlock.top = this.firstSelectController.bottom;
     // setFirstBlockTop(firstControllerBottom);
   };
-  // console.log(firstControllerBottom, firstBlockTop);
-  // console.log(firstBlockVisible);
+  console.log(firstBlockVisible);
+
+  const onClickFirstSelectionBlock = () => {
+    setFirstBlockVisible(false);
+  };
+  const onChangeFirstSelectionBlock = (
+    selectionValue: React.SetStateAction<string>,
+    idOption: React.SetStateAction<string>
+  ) => {
+    setFirstSelectionValue(selectionValue);
+    setFirstBlockIdOption(idOption);
+  };
 
   const getClientHeight = () => {
     setClientHeight(window.innerHeight);
@@ -215,16 +237,13 @@ const Investment: FC = () => {
     top: React.SetStateAction<number>,
     bottom: React.SetStateAction<number>,
     left: React.SetStateAction<number>,
-    width: React.SetStateAction<number>,
-    height: React.SetStateAction<number>
+    width: React.SetStateAction<number>
   ) => {
     getFirstSelectionBlockCoordsTop();
-
     setFirstControllerTop(top);
     setFirstControllerBottom(bottom);
     setFirstControllerLeft(left);
     setFirstControllerWidth(width);
-    seFirstControllerHeight(height);
     getClientHeight();
   };
 
@@ -238,28 +257,16 @@ const Investment: FC = () => {
       setFirstBlockTop(clientHeight - firstBlockHeight);
     }
   };
-  console.log(firstBlockTop);
-  // console.log(
-  //   // firstControllerTop,
-  //   firstControllerBottom,
-  //   // firstControllerLeft,
-  //   // firstControllerWidth,
-  //   // firstControllerHeight,
-  //   // clientHeight
-  //   firstBlockTop
-  // );
 
-  const onClickFirstSelectionBlock = () => {
-    setFirstBlockVisible(false);
-  };
-  const onChangeFirstSelectionBlock = (
-    selectionValue: React.SetStateAction<string>,
-    idOptions: React.SetStateAction<string>
-  ) => {
-    setFirstSelectionValue(selectionValue);
-    setFirstBlockIdOption(idOptions);
-    // console.log(selectionValue, idOptions);
-  };
+  console.log(
+    // firstControllerTop,
+    firstControllerBottom,
+    // firstControllerLeft,
+    // firstControllerWidth,
+    // clientHeight
+    firstBlockTop
+  );
+
   return (
     <>
       <TopBlock
@@ -273,31 +280,28 @@ const Investment: FC = () => {
       <PortfolioStructure
         ifPressed={firstBlockVisible}
         controllerValue={firstSelectionValue}
-        idOptions={firstBlockIdOption}
+        idOption={firstBlockIdOption}
         onClickController={onClickFirstSelectController}
         emitCoords={onScrollPortfolioStructure}
+        emitControllerBottom={getControllerBottom}
       />
       <InvestmentArchive />
       <InvestmentDescription />
 
       <div
         ref={refFirstSelectBlock}
-        // :style="firstSelectionBlockStyle"
-        className={
-          firstBlockVisible
-            ? "invest-page__selection-options-block invest-page__selection-options-block_show"
-            : "invest-page__selection-options-block invest-page__selection-options-block_hide"
-        }
+        style={{
+          top: `${firstBlockTop}px`,
+          left: `${firstControllerLeft + 6}px`,
+          width: `${firstControllerWidth - 12}px`,
+        }}
+        className={firstBlockVisible ? "selection-options-block-hidden" : "selection-options-block-visible"}
       >
         <OptionsBlock
           selectionOptions={firstSelectOptions}
           emitValue={onChangeFirstSelectionBlock}
           onClickSelectionBlock={onClickFirstSelectionBlock}
         />
-        {/* :selectionElements="firstSelectionElements"
-        @onClickSelectionBlock="onClickFirstSelectionBlock"
-        @onChangeSelectionBlock="onChangeFirstSelectionBlock"
-      /> */}
       </div>
     </>
   );

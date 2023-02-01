@@ -6,12 +6,11 @@ var Graph_1 = require("../Graph/Graph");
 var Percents_1 = require("../Percents/Percents");
 var PortfolioStructure_module_scss_1 = require("./PortfolioStructure.module.scss");
 var PortfolioStructure = function (_a) {
-    var ifPressed = _a.ifPressed, controllerValue = _a.controllerValue, idOptions = _a.idOptions, onClickController = _a.onClickController, emitCoords = _a.emitCoords;
+    var ifPressed = _a.ifPressed, controllerValue = _a.controllerValue, idOption = _a.idOption, onClickController = _a.onClickController, emitCoords = _a.emitCoords, emitControllerBottom = _a.emitControllerBottom;
     var _b = react_1.useState(0), top = _b[0], setTop = _b[1];
     var _c = react_1.useState(0), bottom = _c[0], setBottom = _c[1];
     var _d = react_1.useState(0), left = _d[0], setLeft = _d[1];
     var _e = react_1.useState(0), width = _e[0], setWidth = _e[1];
-    var _f = react_1.useState(0), height = _f[0], setHeight = _f[1];
     var selectController = react_1.useRef(null);
     var percentsBlocks = [
         {
@@ -221,11 +220,14 @@ var PortfolioStructure = function (_a) {
             setBottom(selectController.current.getBoundingClientRect().bottom);
             setLeft(selectController.current.getBoundingClientRect().left);
             setWidth(selectController.current.getBoundingClientRect().width);
-            setHeight(selectController.current.getBoundingClientRect().height);
-            emitCoords(top, bottom, left, width, height);
+            emitCoords(top, bottom, left, width);
         }
     };
     react_1.useEffect(function () {
+        if (selectController.current) {
+            setBottom(selectController.current.getBoundingClientRect().bottom);
+            emitControllerBottom(bottom);
+        }
         document.addEventListener("scroll", scrollHandler);
         return function () {
             document.removeEventListener("scroll", scrollHandler);
@@ -235,7 +237,7 @@ var PortfolioStructure = function (_a) {
     var scrollHandler = function (event) {
         getSelectControllerCoords();
         //
-        // emitCoords(top, bottom, left, width, height); // Не трогать!!!
+        // emitCoords(top, bottom, left, width); // Не трогать!!!
         //
         // console.log(event.target.documentElement.scrollHeight); // Не трогать!!!
         // console.log(event.target.documentElement.scrollTop); // Не трогать!!!
@@ -247,7 +249,7 @@ var PortfolioStructure = function (_a) {
         //   console.log("Нижний край < 100");
         // }
     };
-    // console.log("left :" + left, "width :" + width, "height :" + height);
+    // console.log("left :" + left, "width :" + width);
     // console.log("top :" + top, "bottom :" + bottom);
     return (react_1["default"].createElement("section", { className: PortfolioStructure_module_scss_1["default"]["portfolie-structure"] },
         react_1["default"].createElement("h1", { className: PortfolioStructure_module_scss_1["default"]["portfolie-structure__heading"] }, "\u0421\u0442\u0440\u0443\u043A\u0442\u0443\u0440\u0430 \u043F\u043E\u0440\u0442\u0444\u0435\u043B\u044F"),
@@ -255,6 +257,6 @@ var PortfolioStructure = function (_a) {
             react_1["default"].createElement(Controller_1["default"], { ifPressed: ifPressed, value: controllerValue, onClickController: onClickController })),
         react_1["default"].createElement("div", { className: PortfolioStructure_module_scss_1["default"]["portfolie-structure__content"] },
             react_1["default"].createElement(Graph_1["default"], null),
-            percentsBlocks.map(function (block, index) { return (react_1["default"].createElement(Percents_1["default"], { key: index, percent01: block.percent01, percent02: block.percent02, percent03: block.percent03, percent04: block.percent04, percent05: block.percent05, percent06: block.percent06, isVisible: Number(idOptions) === index })); }))));
+            percentsBlocks.map(function (block, index) { return (react_1["default"].createElement(Percents_1["default"], { key: index, percent01: block.percent01, percent02: block.percent02, percent03: block.percent03, percent04: block.percent04, percent05: block.percent05, percent06: block.percent06, isVisible: Number(idOption) === index })); }))));
 };
 exports["default"] = PortfolioStructure;

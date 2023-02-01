@@ -1,38 +1,38 @@
-.invest-page {
-  width: 100%;
-  max-width: 1920px;
+.selection-options-block-hidden {
+  max-width: 382px;
+  border-radius: 6px;
+  position: fixed;
   margin: 0 auto;
-  font-size: 16px;
-  line-height: 24px;
-  font-style: normal;
-  color: #5a646e;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.28s ease;
 
-  &__selection-options-block {
-    max-width: 382px;
-    border-radius: 6px;
-    position: fixed;
-    // position: absolute;
-    margin: 0 auto;
+  @media screen and (min-width: 576px) {
+    max-width: 210px;
+  }
 
-    @media screen and (min-width: 576px) {
-      max-width: 210px;
-    }
+  @media screen and (min-width: 768px) {
+    max-width: 210px;
+    margin: 0;
+  }
+}
 
-    @media screen and (min-width: 768px) {
-      max-width: 210px;
-      margin: 0;
-    }
+.selection-options-block-visible {
+  max-width: 382px;
+  border-radius: 6px;
+  position: fixed;
 
-    //  invest-page__selection-options-block_hide
-    &_hide {
-      opacity: 0;
-      transition: opacity 0.28s ease;
-    }
+  margin: 0 auto;
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.28s ease;
 
-    // invest-page__selection-options-block_show
-    &_show {
-      opacity: 1;
-      transition: opacity 0.28s ease;
-    }
+  @media screen and (min-width: 576px) {
+    max-width: 210px;
+  }
+
+  @media screen and (min-width: 768px) {
+    max-width: 210px;
+    margin: 0;
   }
 }

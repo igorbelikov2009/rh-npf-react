@@ -8,23 +8,24 @@ interface PortfolioStructureProps {
   // isSelectionBlockVisible:boolean;
   ifPressed: boolean;
   controllerValue: string;
-  idOptions: string;
+  idOption: string;
   onClickController: () => void;
-  emitCoords: (top: number, bottom: number, left: number, width: number, height: number) => void;
+  emitCoords: (top: number, bottom: number, left: number, width: number) => void;
+  emitControllerBottom: (bottom: number) => void;
 }
 
 const PortfolioStructure: FC<PortfolioStructureProps> = ({
   ifPressed,
   controllerValue,
-  idOptions,
+  idOption,
   onClickController,
   emitCoords,
+  emitControllerBottom,
 }) => {
   const [top, setTop] = useState(0);
   const [bottom, setBottom] = useState(0);
   const [left, setLeft] = useState(0);
   const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
 
   const selectController = useRef<HTMLDivElement>(null);
 
@@ -237,13 +238,16 @@ const PortfolioStructure: FC<PortfolioStructureProps> = ({
       setBottom(selectController.current.getBoundingClientRect().bottom);
       setLeft(selectController.current.getBoundingClientRect().left);
       setWidth(selectController.current.getBoundingClientRect().width);
-      setHeight(selectController.current.getBoundingClientRect().height);
 
-      emitCoords(top, bottom, left, width, height);
+      emitCoords(top, bottom, left, width);
     }
   };
 
   useEffect(() => {
+    if (selectController.current) {
+      setBottom(selectController.current.getBoundingClientRect().bottom);
+      emitControllerBottom(bottom);
+    }
     document.addEventListener("scroll", scrollHandler);
     return function () {
       document.removeEventListener("scroll", scrollHandler);
@@ -254,7 +258,7 @@ const PortfolioStructure: FC<PortfolioStructureProps> = ({
   const scrollHandler = (event: any) => {
     getSelectControllerCoords();
     //
-    // emitCoords(top, bottom, left, width, height); // Не трогать!!!
+    // emitCoords(top, bottom, left, width); // Не трогать!!!
     //
     // console.log(event.target.documentElement.scrollHeight); // Не трогать!!!
     // console.log(event.target.documentElement.scrollTop); // Не трогать!!!
@@ -267,7 +271,7 @@ const PortfolioStructure: FC<PortfolioStructureProps> = ({
     // }
   };
 
-  // console.log("left :" + left, "width :" + width, "height :" + height);
+  // console.log("left :" + left, "width :" + width);
   // console.log("top :" + top, "bottom :" + bottom);
 
   return (
@@ -290,7 +294,7 @@ const PortfolioStructure: FC<PortfolioStructureProps> = ({
             percent04={block.percent04}
             percent05={block.percent05}
             percent06={block.percent06}
-            isVisible={Number(idOptions) === index}
+            isVisible={Number(idOption) === index}
           />
         ))}
       </div>
