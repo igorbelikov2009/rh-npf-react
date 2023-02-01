@@ -1,0 +1,13 @@
+.table {
+  width: 100%;
+  background-color: #fff;
+  overflow-x: scroll;
+}
+@media screen and (min-width: 960px) {
+  .table {
+    overflow-x: hidden;
+  }
+}
+.table__scrolling {
+  width: 960px;
+}
