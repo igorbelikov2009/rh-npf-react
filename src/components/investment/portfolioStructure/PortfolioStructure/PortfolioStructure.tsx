@@ -5,13 +5,12 @@ import Percents, { PercentProps } from "../Percents/Percents";
 import styles from "./PortfolioStructure.module.scss";
 
 interface PortfolioStructureProps {
-  // isSelectionBlockVisible:boolean;
   ifPressed: boolean;
   controllerValue: string;
   idOption: string;
   onClickController: () => void;
   emitCoords: (top: number, bottom: number, left: number, width: number) => void;
-  emitControllerBottom: (bottom: number) => void;
+  emitControllerBottomLeft: (bottom: number, left: number) => void;
 }
 
 const PortfolioStructure: FC<PortfolioStructureProps> = ({
@@ -20,7 +19,7 @@ const PortfolioStructure: FC<PortfolioStructureProps> = ({
   idOption,
   onClickController,
   emitCoords,
-  emitControllerBottom,
+  emitControllerBottomLeft,
 }) => {
   const [top, setTop] = useState(0);
   const [bottom, setBottom] = useState(0);
@@ -246,7 +245,8 @@ const PortfolioStructure: FC<PortfolioStructureProps> = ({
   useEffect(() => {
     if (selectController.current) {
       setBottom(selectController.current.getBoundingClientRect().bottom);
-      emitControllerBottom(bottom);
+      setLeft(selectController.current.getBoundingClientRect().left);
+      emitControllerBottomLeft(bottom, left);
     }
     document.addEventListener("scroll", scrollHandler);
     return function () {
@@ -257,9 +257,6 @@ const PortfolioStructure: FC<PortfolioStructureProps> = ({
 
   const scrollHandler = (event: any) => {
     getSelectControllerCoords();
-    //
-    // emitCoords(top, bottom, left, width); // Не трогать!!!
-    //
     // console.log(event.target.documentElement.scrollHeight); // Не трогать!!!
     // console.log(event.target.documentElement.scrollTop); // Не трогать!!!
     // console.log(window.innerHeight); // Не трогать!!!
@@ -270,9 +267,6 @@ const PortfolioStructure: FC<PortfolioStructureProps> = ({
     //   console.log("Нижний край < 100");
     // }
   };
-
-  // console.log("left :" + left, "width :" + width);
-  // console.log("top :" + top, "bottom :" + bottom);
 
   return (
     <section className={styles["portfolie-structure"]}>

@@ -5,7 +5,7 @@
   margin: 0 auto;
   visibility: hidden;
   opacity: 0;
-  transition: all 0.28s ease;
+  transition: opacity 0.28s ease;
 }
 @media screen and (min-width: 576px) {
   .selection-options-block-hidden {
@@ -26,7 +26,7 @@
   margin: 0 auto;
   visibility: visible;
   opacity: 1;
-  transition: all 0.28s ease;
+  transition: opacity 0.28s ease;
 }
 @media screen and (min-width: 576px) {
   .selection-options-block-visible {

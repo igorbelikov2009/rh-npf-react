@@ -5,7 +5,9 @@
   margin: 0 auto;
   visibility: hidden;
   opacity: 0;
-  transition: all 0.28s ease;
+  transition: opacity 0.28s ease;
+  // если сделать transition: all 0.28s ease;,
+  // то этот блок будет дёргаться при скроле
 
   @media screen and (min-width: 576px) {
     max-width: 210px;
@@ -25,7 +27,9 @@
   margin: 0 auto;
   visibility: visible;
   opacity: 1;
-  transition: all 0.28s ease;
+  transition: opacity 0.28s ease;
+  // если сделать transition: all 0.28s ease;,
+  // то этот блок будет дёргаться при скроле
 
   @media screen and (min-width: 576px) {
     max-width: 210px;

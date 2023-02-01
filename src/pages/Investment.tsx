@@ -190,26 +190,28 @@ const Investment: FC = () => {
   const scrollHandler = (event: any) => {
     getSelectionBlockHeight();
   };
-  // const getControllerBottom = (bottom: React.SetStateAction<number>) => {
-  //   setFirstControllerBottom(bottom);
-  //   console.log("fig vam");
-  // };
-
-  // useEffect(() => {
-  //   setFirstBlockTop(firstControllerBottom);
-  // }, [firstControllerBottom]);
-
-  const getControllerBottom = () => {
-    console.log("fig vam");
+  const getControllerBottomLeft = (bottom: React.SetStateAction<number>, left: React.SetStateAction<number>) => {
+    setFirstControllerBottom(bottom);
+    setFirstControllerLeft(left);
+    console.log(firstControllerBottom, firstControllerLeft);
   };
+
+  useEffect(() => {
+    setFirstBlockTop(firstControllerBottom);
+    if (firstControllerBottom <= 0) {
+      setFirstBlockTop(0);
+    } else if (firstControllerBottom >= clientHeight - firstBlockHeight && firstControllerBottom <= clientHeight) {
+      setFirstBlockTop(firstControllerBottom - firstBlockHeight);
+    } else if (firstControllerBottom >= clientHeight) {
+      setFirstBlockTop(clientHeight - firstBlockHeight);
+    }
+  }, [clientHeight, firstBlockHeight, firstControllerBottom]);
 
   const onClickFirstSelectController = () => {
     setFirstBlockVisible((prev) => !prev);
-    console.log("onClickFirstSelectController");
+
     // this.secondSelectionBlock.isVisible = false;
-    // setFirstBlockTop(firstControllerBottom);
   };
-  console.log(firstBlockVisible);
 
   const onClickFirstSelectionBlock = () => {
     setFirstBlockVisible(false);
@@ -231,7 +233,6 @@ const Investment: FC = () => {
       setFirstBlockHeight(refFirstSelectBlock.current.getBoundingClientRect().height);
     }
   };
-  // console.log(firstBlockHeight);
 
   const onScrollPortfolioStructure = (
     top: React.SetStateAction<number>,
@@ -239,7 +240,6 @@ const Investment: FC = () => {
     left: React.SetStateAction<number>,
     width: React.SetStateAction<number>
   ) => {
-    getFirstSelectionBlockCoordsTop();
     setFirstControllerTop(top);
     setFirstControllerBottom(bottom);
     setFirstControllerLeft(left);
@@ -247,25 +247,14 @@ const Investment: FC = () => {
     getClientHeight();
   };
 
-  const getFirstSelectionBlockCoordsTop = () => {
-    setFirstBlockTop(firstControllerBottom);
-    if (firstControllerBottom <= 0) {
-      setFirstBlockTop(0);
-    } else if (firstControllerBottom >= clientHeight - firstBlockHeight && firstControllerBottom <= clientHeight) {
-      setFirstBlockTop(firstControllerBottom - firstBlockHeight);
-    } else if (firstControllerBottom >= clientHeight) {
-      setFirstBlockTop(clientHeight - firstBlockHeight);
-    }
-  };
-
-  console.log(
-    // firstControllerTop,
-    firstControllerBottom,
-    // firstControllerLeft,
-    // firstControllerWidth,
-    // clientHeight
-    firstBlockTop
-  );
+  // console.log(
+  //   // firstControllerTop,
+  //   firstControllerBottom,
+  //   // firstControllerLeft,
+  //   // firstControllerWidth,
+  //   // clientHeight
+  //   firstBlockTop
+  // );
 
   return (
     <>
@@ -283,7 +272,7 @@ const Investment: FC = () => {
         idOption={firstBlockIdOption}
         onClickController={onClickFirstSelectController}
         emitCoords={onScrollPortfolioStructure}
-        emitControllerBottom={getControllerBottom}
+        emitControllerBottomLeft={getControllerBottomLeft}
       />
       <InvestmentArchive />
       <InvestmentDescription />
@@ -295,7 +284,7 @@ const Investment: FC = () => {
           left: `${firstControllerLeft + 6}px`,
           width: `${firstControllerWidth - 12}px`,
         }}
-        className={firstBlockVisible ? "selection-options-block-hidden" : "selection-options-block-visible"}
+        className={firstBlockVisible ? "selection-options-block-visible" : "selection-options-block-hidden"}
       >
         <OptionsBlock
           selectionOptions={firstSelectOptions}

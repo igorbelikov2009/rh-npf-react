@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  /* scroll-behavior: smooth; */
 }
 
 :root {
@@ -11,7 +12,7 @@
   color: var(--color-active);
   cursor: default;
 }
-.header {
+/* .header {
   width: 100%;
   position: fixed;
   top: 0;
@@ -22,17 +23,9 @@
   align-items: center;
   background: black;
   color: white;
-}
+} */
 
-.container {
-  max-width: 900px;
-  padding: 2rem 0;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  margin: 0 auto;
-  margin-top: 76px;
-}
-.routes {
+/* .routes {
   text-decoration: none;
   min-width: 200px;
-}
+} */

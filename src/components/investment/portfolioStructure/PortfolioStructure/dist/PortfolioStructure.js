@@ -6,7 +6,7 @@ var Graph_1 = require("../Graph/Graph");
 var Percents_1 = require("../Percents/Percents");
 var PortfolioStructure_module_scss_1 = require("./PortfolioStructure.module.scss");
 var PortfolioStructure = function (_a) {
-    var ifPressed = _a.ifPressed, controllerValue = _a.controllerValue, idOption = _a.idOption, onClickController = _a.onClickController, emitCoords = _a.emitCoords, emitControllerBottom = _a.emitControllerBottom;
+    var ifPressed = _a.ifPressed, controllerValue = _a.controllerValue, idOption = _a.idOption, onClickController = _a.onClickController, emitCoords = _a.emitCoords, emitControllerBottomLeft = _a.emitControllerBottomLeft;
     var _b = react_1.useState(0), top = _b[0], setTop = _b[1];
     var _c = react_1.useState(0), bottom = _c[0], setBottom = _c[1];
     var _d = react_1.useState(0), left = _d[0], setLeft = _d[1];
@@ -226,7 +226,8 @@ var PortfolioStructure = function (_a) {
     react_1.useEffect(function () {
         if (selectController.current) {
             setBottom(selectController.current.getBoundingClientRect().bottom);
-            emitControllerBottom(bottom);
+            setLeft(selectController.current.getBoundingClientRect().left);
+            emitControllerBottomLeft(bottom, left);
         }
         document.addEventListener("scroll", scrollHandler);
         return function () {
@@ -236,9 +237,6 @@ var PortfolioStructure = function (_a) {
     }, [top]);
     var scrollHandler = function (event) {
         getSelectControllerCoords();
-        //
-        // emitCoords(top, bottom, left, width); // Не трогать!!!
-        //
         // console.log(event.target.documentElement.scrollHeight); // Не трогать!!!
         // console.log(event.target.documentElement.scrollTop); // Не трогать!!!
         // console.log(window.innerHeight); // Не трогать!!!
@@ -249,8 +247,6 @@ var PortfolioStructure = function (_a) {
         //   console.log("Нижний край < 100");
         // }
     };
-    // console.log("left :" + left, "width :" + width);
-    // console.log("top :" + top, "bottom :" + bottom);
     return (react_1["default"].createElement("section", { className: PortfolioStructure_module_scss_1["default"]["portfolie-structure"] },
         react_1["default"].createElement("h1", { className: PortfolioStructure_module_scss_1["default"]["portfolie-structure__heading"] }, "\u0421\u0442\u0440\u0443\u043A\u0442\u0443\u0440\u0430 \u043F\u043E\u0440\u0442\u0444\u0435\u043B\u044F"),
         react_1["default"].createElement("div", { className: PortfolioStructure_module_scss_1["default"]["portfolie-structure__selection"], ref: selectController },
