@@ -1,4 +1,4 @@
-.selection-options-block-hidden {
+.options-block-hidden {
   max-width: 382px;
   border-radius: 6px;
   position: fixed;
@@ -8,18 +8,18 @@
   transition: opacity 0.28s ease;
 }
 @media screen and (min-width: 576px) {
-  .selection-options-block-hidden {
+  .options-block-hidden {
     max-width: 210px;
   }
 }
 @media screen and (min-width: 768px) {
-  .selection-options-block-hidden {
+  .options-block-hidden {
     max-width: 210px;
     margin: 0;
   }
 }
 
-.selection-options-block-visible {
+.options-block-visible {
   max-width: 382px;
   border-radius: 6px;
   position: fixed;
@@ -29,12 +29,12 @@
   transition: opacity 0.28s ease;
 }
 @media screen and (min-width: 576px) {
-  .selection-options-block-visible {
+  .options-block-visible {
     max-width: 210px;
   }
 }
 @media screen and (min-width: 768px) {
-  .selection-options-block-visible {
+  .options-block-visible {
     max-width: 210px;
     margin: 0;
   }

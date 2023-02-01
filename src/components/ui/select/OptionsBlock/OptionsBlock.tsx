@@ -9,12 +9,12 @@ export interface IOptionItem {
 }
 
 interface OptionsBlockProps {
-  selectionOptions: IOptionItem[];
+  arrayOptionsBlock: IOptionItem[];
   emitValue: (event: React.SetStateAction<string>, id: string) => void;
-  onClickSelectionBlock: () => void;
+  onClickOptionsBlock: () => void;
 }
 
-const OptionsBlock: FC<OptionsBlockProps> = ({ selectionOptions, emitValue, onClickSelectionBlock }) => {
+const OptionsBlock: FC<OptionsBlockProps> = ({ arrayOptionsBlock, emitValue, onClickOptionsBlock }) => {
   const [selectedValue, setSelectedValue] = useState("2021-11-30T09:00:00.000Z");
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [idOption, setIdOption] = useState("0");
@@ -26,9 +26,9 @@ const OptionsBlock: FC<OptionsBlockProps> = ({ selectionOptions, emitValue, onCl
   };
 
   return (
-    <div className={styles["options-block"]} onClick={onClickSelectionBlock}>
+    <div className={styles["options-block"]} onClick={onClickOptionsBlock}>
       <div className={styles["scrollable-block"]}>
-        {selectionOptions.map((option, index) => (
+        {arrayOptionsBlock.map((option, index) => (
           <Option
             key={index}
             date={option.date}

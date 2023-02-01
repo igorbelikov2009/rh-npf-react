@@ -13,14 +13,14 @@ const Investment: FC = () => {
   const [clientHeight, setClientHeight] = useState(0);
   const [firstSelectionValue, setFirstSelectionValue] = useState("30 November 2021 г.");
 
-  // firstSelectController: coords
+  // firstSelectController
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [firstControllerTop, setFirstControllerTop] = useState(0);
   const [firstControllerBottom, setFirstControllerBottom] = useState(0);
   const [firstControllerLeft, setFirstControllerLeft] = useState(0);
   const [firstControllerWidth, setFirstControllerWidth] = useState(0);
 
-  // firstSelectionBlock firstBlock
+  // firstOptionsBlock firstBlock
   const [firstBlockIdOption, setFirstBlockIdOption] = useState("0");
   const [firstBlockHeight, setFirstBlockHeight] = useState(0);
   const [firstBlockTop, setFirstBlockTop] = useState(0);
@@ -50,7 +50,7 @@ const Investment: FC = () => {
     },
   ];
 
-  const firstSelectOptions: IOptionItem[] = [
+  const firstArrayOptionsBlock: IOptionItem[] = [
     {
       date: "2021-11-30T09:00:00.000Z",
       value: "2021-11-30T09:00:00.000Z",
@@ -187,15 +187,19 @@ const Investment: FC = () => {
     };
   });
 
+  // вызов функции получения высоты блоков опций OptionsBLock при скроллинге
   const scrollHandler = (event: any) => {
-    getSelectionBlockHeight();
+    getOptionsBlockHeight();
   };
+
+  // Получаем значения bottom и left (selectController) из компонента PortfolioStructure.tsx
+  // Они нужны для первичного установления координат при useEffect, до вызова scrollHandler
   const getControllerBottomLeft = (bottom: React.SetStateAction<number>, left: React.SetStateAction<number>) => {
     setFirstControllerBottom(bottom);
     setFirstControllerLeft(left);
-    console.log(firstControllerBottom, firstControllerLeft);
   };
 
+  // useEffect для первых Controller и OptionsBlock
   useEffect(() => {
     setFirstBlockTop(firstControllerBottom);
     if (firstControllerBottom <= 0) {
@@ -207,16 +211,20 @@ const Investment: FC = () => {
     }
   }, [clientHeight, firstBlockHeight, firstControllerBottom]);
 
+  // Клик первого контроллера (first Controller)
   const onClickFirstSelectController = () => {
     setFirstBlockVisible((prev) => !prev);
 
     // this.secondSelectionBlock.isVisible = false;
   };
 
-  const onClickFirstSelectionBlock = () => {
+  // получаем клик из OptionsBlock
+  const onClickFirstOptionsBlock = () => {
     setFirstBlockVisible(false);
   };
-  const onChangeFirstSelectionBlock = (
+
+  // получаем изменения выбранного значения из OptionsBlock
+  const onChangeFirstOptionsBlock = (
     selectionValue: React.SetStateAction<string>,
     idOption: React.SetStateAction<string>
   ) => {
@@ -224,16 +232,19 @@ const Investment: FC = () => {
     setFirstBlockIdOption(idOption);
   };
 
+  // Фунция получения высоты окна браузера.
   const getClientHeight = () => {
     setClientHeight(window.innerHeight);
   };
 
-  const getSelectionBlockHeight = () => {
+  // функция получения высоты блоков опций
+  const getOptionsBlockHeight = () => {
     if (refFirstSelectBlock.current) {
       setFirstBlockHeight(refFirstSelectBlock.current.getBoundingClientRect().height);
     }
   };
 
+  //  Получаем top, bottom, left, width из компонента PortfolioStructure.tsx при скроллинге
   const onScrollPortfolioStructure = (
     top: React.SetStateAction<number>,
     bottom: React.SetStateAction<number>,
@@ -244,17 +255,9 @@ const Investment: FC = () => {
     setFirstControllerBottom(bottom);
     setFirstControllerLeft(left);
     setFirstControllerWidth(width);
+    // Делаем вызов функции
     getClientHeight();
   };
-
-  // console.log(
-  //   // firstControllerTop,
-  //   firstControllerBottom,
-  //   // firstControllerLeft,
-  //   // firstControllerWidth,
-  //   // clientHeight
-  //   firstBlockTop
-  // );
 
   return (
     <>
@@ -284,12 +287,12 @@ const Investment: FC = () => {
           left: `${firstControllerLeft + 6}px`,
           width: `${firstControllerWidth - 12}px`,
         }}
-        className={firstBlockVisible ? "selection-options-block-visible" : "selection-options-block-hidden"}
+        className={firstBlockVisible ? "options-block-visible" : "options-block-hidden"}
       >
         <OptionsBlock
-          selectionOptions={firstSelectOptions}
-          emitValue={onChangeFirstSelectionBlock}
-          onClickSelectionBlock={onClickFirstSelectionBlock}
+          arrayOptionsBlock={firstArrayOptionsBlock}
+          emitValue={onChangeFirstOptionsBlock}
+          onClickOptionsBlock={onClickFirstOptionsBlock}
         />
       </div>
     </>
