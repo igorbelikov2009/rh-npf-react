@@ -1,6 +1,14 @@
 "use strict";
 exports.__esModule = true;
 var react_1 = require("react");
+var Controller_1 = require("../../../ui/select/Controller/Controller");
+var CompositionBlock_1 = require("../CompositionBlock/CompositionBlock");
+var CompositionReserves_module_scss_1 = require("./CompositionReserves.module.scss");
+// interface IBlockExpandingTables {
+//   title: string;
+//   headings: string[];
+//   arrayRows: string[][];
+// }
 var CompositionReserves = function (_a) {
     var ifPressed = _a.ifPressed, controllerValue = _a.controllerValue, idOption = _a.idOption, onClickController = _a.onClickController, emitCoords = _a.emitCoords, emitControllerBottomLeft = _a.emitControllerBottomLeft;
     var _b = react_1.useState(0), top = _b[0], setTop = _b[1];
@@ -8,7 +16,8 @@ var CompositionReserves = function (_a) {
     var _d = react_1.useState(0), left = _d[0], setLeft = _d[1];
     var _e = react_1.useState(0), width = _e[0], setWidth = _e[1];
     var selectController = react_1.useRef(null);
-    var BlockExpandingTables = [
+    //  const blockExpandingTables: IBlockExpandingTables[][]
+    var blockExpandingTables = [
         [
             {
                 title: "Облигации федерального займа 30 ноября 2021 г.",
@@ -40668,6 +40677,11 @@ var CompositionReserves = function (_a) {
         //   console.log("Нижний край < 100");
         // }
     };
-    return react_1["default"].createElement("div", null);
+    var onClickExpanding = function () { };
+    return (react_1["default"].createElement("section", { className: CompositionReserves_module_scss_1["default"]["composition-of-funds"] },
+        react_1["default"].createElement("h1", { className: CompositionReserves_module_scss_1["default"]["composition-of-funds__heading"] }, "\u0421\u043E\u0441\u0442\u0430\u0432 \u0441\u0440\u0435\u0434\u0441\u0442\u0432 \u043F\u0435\u043D\u0441\u0438\u043E\u043D\u043D\u044B\u0445 \u0440\u0435\u0437\u0435\u0440\u0432\u043E\u0432 \u0424\u043E\u043D\u0434\u0430"),
+        react_1["default"].createElement("div", { className: CompositionReserves_module_scss_1["default"]["composition-of-funds__selection"], ref: selectController },
+            react_1["default"].createElement(Controller_1["default"], { ifPressed: ifPressed, value: controllerValue, onClickController: onClickController })),
+        blockExpandingTables.map(function (expandingTables, index) { return (react_1["default"].createElement(CompositionBlock_1["default"], { key: index, onClickExpanding: onClickExpanding, isVisible: index === Number(idOption), expandingTables: expandingTables })); })));
 };
 exports["default"] = CompositionReserves;

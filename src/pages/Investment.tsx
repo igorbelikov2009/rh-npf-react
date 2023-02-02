@@ -8,14 +8,14 @@ import InvestmentArchive from "../components/investment/InvestmentArchive/Invest
 import PortfolioStructure from "../components/investment/portfolioStructure/PortfolioStructure/PortfolioStructure";
 import "../styles/dist/Investment.css";
 import OptionsBlock, { IOptionItem } from "../components/ui/select/OptionsBlock/OptionsBlock";
+import CompositionReserves from "../components/investment/compositionReserves/CompositionReserves/CompositionReserves";
 
 const Investment: FC = () => {
   const [clientHeight, setClientHeight] = useState(0);
-  const [firstSelectionValue, setFirstSelectionValue] = useState("30 November 2021 г.");
 
   // firstSelectController
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [firstControllerTop, setFirstControllerTop] = useState(0);
+  const [firstSelectionValue, setFirstSelectionValue] = useState("30 November 2021 г.");
+  const [, setFirstControllerTop] = useState(0);
   const [firstControllerBottom, setFirstControllerBottom] = useState(0);
   const [firstControllerLeft, setFirstControllerLeft] = useState(0);
   const [firstControllerWidth, setFirstControllerWidth] = useState(0);
@@ -25,6 +25,20 @@ const Investment: FC = () => {
   const [firstBlockHeight, setFirstBlockHeight] = useState(0);
   const [firstBlockTop, setFirstBlockTop] = useState(0);
   const [firstBlockVisible, setFirstBlockVisible] = useState(false);
+
+  // secondSelectController
+  const [secondSelectionValue, setSecondSelectionValue] = useState("30 November 2021 г.");
+  const [, setSecondControllerTop] = useState(0);
+  const [secondControllerBottom, setSecondControllerBottom] = useState(0);
+  const [secondControllerLeft, setSecondControllerLeft] = useState(0);
+  const [secondControllerWidth, setSecondControllerWidth] = useState(0);
+
+  // secondOptionsBlock secondBlock
+  const [secondBlockIdOption, setSecondBlockIdOption] = useState("0");
+  const [secondBlockHeight, setSecondBlockHeight] = useState(0);
+  const [secondBlockTop, setSecondBlockTop] = useState(0);
+  const [secondBlockVisible, setSecondBlockVisible] = useState(false);
+
   // cards
   const cards: CardsCardProps[] = [
     {
@@ -50,7 +64,7 @@ const Investment: FC = () => {
     },
   ];
 
-  const firstArrayOptionsBlock: IOptionItem[] = [
+  const ArrayOptionsBlock: IOptionItem[] = [
     {
       date: "2021-11-30T09:00:00.000Z",
       value: "2021-11-30T09:00:00.000Z",
@@ -179,6 +193,7 @@ const Investment: FC = () => {
   ];
 
   const refFirstSelectBlock = useRef<HTMLDivElement>(null);
+  // const refSecondSelectBlock = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.addEventListener("scroll", scrollHandler);
@@ -194,12 +209,20 @@ const Investment: FC = () => {
 
   // Получаем значения bottom и left (selectController) из компонента PortfolioStructure.tsx
   // Они нужны для первичного установления координат при useEffect, до вызова scrollHandler
-  const getControllerBottomLeft = (bottom: React.SetStateAction<number>, left: React.SetStateAction<number>) => {
+  const getFirstControllerBottomLeft = (bottom: React.SetStateAction<number>, left: React.SetStateAction<number>) => {
     setFirstControllerBottom(bottom);
     setFirstControllerLeft(left);
   };
 
-  // useEffect для первых Controller и OptionsBlock
+  // Получаем значения bottom и left (selectController) из компонента CompositionReserves.tsx
+  // Они нужны для первичного установления координат при useEffect, до вызова scrollHandler
+  const getSecondControllerBottomLeft = (bottom: React.SetStateAction<number>, left: React.SetStateAction<number>) => {
+    setSecondControllerBottom(bottom);
+    setSecondControllerLeft(left);
+  };
+
+  //////////////////////////////////
+  // useEffect для первых first Controller и OptionsBlock
   useEffect(() => {
     setFirstBlockTop(firstControllerBottom);
     if (firstControllerBottom <= 0) {
@@ -211,19 +234,42 @@ const Investment: FC = () => {
     }
   }, [clientHeight, firstBlockHeight, firstControllerBottom]);
 
+  // useEffect для вторых second Controller и OptionsBlock
+  useEffect(() => {
+    setSecondBlockTop(secondControllerBottom);
+    if (secondControllerBottom <= 0) {
+      setSecondBlockTop(0);
+    } else if (secondControllerBottom >= clientHeight - secondBlockHeight && secondControllerBottom <= clientHeight) {
+      setSecondBlockTop(secondControllerBottom - secondBlockHeight);
+    } else if (secondControllerBottom >= clientHeight) {
+      setSecondBlockTop(clientHeight - secondBlockHeight);
+    }
+  }, [clientHeight, secondBlockHeight, secondControllerBottom]);
+
   // Клик первого контроллера (first Controller)
   const onClickFirstSelectController = () => {
-    setFirstBlockVisible((prev) => !prev);
-
-    // this.secondSelectionBlock.isVisible = false;
+    // setFirstBlockVisible((prev) => !prev);
+    setFirstBlockVisible(!firstBlockVisible);
+    setSecondBlockVisible(false);
   };
 
-  // получаем клик из OptionsBlock
+  // Клик второго контроллера (second Controller)
+  const onClickSecondSelectController = () => {
+    setSecondBlockVisible(!secondBlockVisible);
+    setFirstBlockVisible(false);
+  };
+
+  // получаем клик из first OptionsBlock
   const onClickFirstOptionsBlock = () => {
     setFirstBlockVisible(false);
   };
 
-  // получаем изменения выбранного значения из OptionsBlock
+  // получаем клик из Second OptionsBlock
+  const onClickSecondOptionsBlock = () => {
+    setSecondBlockVisible(false);
+  };
+
+  // получаем изменения выбранного значения из first OptionsBlock
   const onChangeFirstOptionsBlock = (
     selectionValue: React.SetStateAction<string>,
     idOption: React.SetStateAction<string>
@@ -232,7 +278,16 @@ const Investment: FC = () => {
     setFirstBlockIdOption(idOption);
   };
 
-  // Фунция получения высоты окна браузера.
+  // получаем изменения выбранного значения из Second OptionsBlock
+  const onChangeSecondOptionsBlock = (
+    selectionValue: React.SetStateAction<string>,
+    idOption: React.SetStateAction<string>
+  ) => {
+    setSecondSelectionValue(selectionValue);
+    setSecondBlockIdOption(idOption);
+  };
+
+  // Функция получения высоты окна браузера.
   const getClientHeight = () => {
     setClientHeight(window.innerHeight);
   };
@@ -241,6 +296,7 @@ const Investment: FC = () => {
   const getOptionsBlockHeight = () => {
     if (refFirstSelectBlock.current) {
       setFirstBlockHeight(refFirstSelectBlock.current.getBoundingClientRect().height);
+      setSecondBlockHeight(refFirstSelectBlock.current.getBoundingClientRect().height);
     }
   };
 
@@ -259,6 +315,20 @@ const Investment: FC = () => {
     getClientHeight();
   };
 
+  //////////////////////////
+  //  Получаем top, bottom, left, width из компонента CompositionReserves.tsx при скроллинге
+  const onScrollCompositionReserves = (
+    top: React.SetStateAction<number>,
+    bottom: React.SetStateAction<number>,
+    left: React.SetStateAction<number>,
+    width: React.SetStateAction<number>
+  ) => {
+    setSecondControllerTop(top);
+    setSecondControllerBottom(bottom);
+    setSecondControllerLeft(left);
+    setSecondControllerWidth(width);
+  };
+
   return (
     <>
       <TopBlock
@@ -275,8 +345,18 @@ const Investment: FC = () => {
         idOption={firstBlockIdOption}
         onClickController={onClickFirstSelectController}
         emitCoords={onScrollPortfolioStructure}
-        emitControllerBottomLeft={getControllerBottomLeft}
+        emitControllerBottomLeft={getFirstControllerBottomLeft}
       />
+
+      <CompositionReserves
+        ifPressed={secondBlockVisible}
+        controllerValue={secondSelectionValue}
+        idOption={secondBlockIdOption}
+        onClickController={onClickSecondSelectController}
+        emitCoords={onScrollCompositionReserves}
+        emitControllerBottomLeft={getSecondControllerBottomLeft}
+      />
+
       <InvestmentArchive />
       <InvestmentDescription />
 
@@ -290,9 +370,24 @@ const Investment: FC = () => {
         className={firstBlockVisible ? "options-block-visible" : "options-block-hidden"}
       >
         <OptionsBlock
-          arrayOptionsBlock={firstArrayOptionsBlock}
+          arrayOptionsBlock={ArrayOptionsBlock}
           emitValue={onChangeFirstOptionsBlock}
           onClickOptionsBlock={onClickFirstOptionsBlock}
+        />
+      </div>
+
+      <div
+        style={{
+          top: `${secondBlockTop}px`,
+          left: `${secondControllerLeft + 6}px`,
+          width: `${secondControllerWidth - 12}px`,
+        }}
+        className={secondBlockVisible ? "options-block-visible" : "options-block-hidden"}
+      >
+        <OptionsBlock
+          arrayOptionsBlock={ArrayOptionsBlock}
+          emitValue={onChangeSecondOptionsBlock}
+          onClickOptionsBlock={onClickSecondOptionsBlock}
         />
       </div>
     </>

@@ -1,4 +1,6 @@
 import React, { FC, useEffect, useRef, useState } from "react";
+import Controller from "../../../ui/select/Controller/Controller";
+import CompositionBlock, { IExpandingTables } from "../CompositionBlock/CompositionBlock";
 import styles from "./CompositionReserves.module.scss";
 
 export interface CompositionReservesProps {
@@ -10,11 +12,11 @@ export interface CompositionReservesProps {
   emitControllerBottomLeft: (bottom: number, left: number) => void;
 }
 
-interface IBlockExpandingTables {
-  title: string;
-  headings: string[];
-  arrayRows: string[][];
-}
+// interface IBlockExpandingTables {
+//   title: string;
+//   headings: string[];
+//   arrayRows: string[][];
+// }
 
 const CompositionReserves: FC<CompositionReservesProps> = ({
   ifPressed,
@@ -31,7 +33,8 @@ const CompositionReserves: FC<CompositionReservesProps> = ({
 
   const selectController = useRef<HTMLDivElement>(null);
 
-  const BlockExpandingTables: IBlockExpandingTables[][] = [
+  //  const blockExpandingTables: IBlockExpandingTables[][]
+  const blockExpandingTables: any = [
     [
       {
         title: "Облигации федерального займа 30 ноября 2021 г.",
@@ -40821,7 +40824,25 @@ const CompositionReserves: FC<CompositionReservesProps> = ({
     // }
   };
 
-  return <div></div>;
+  const onClickExpanding = () => {};
+
+  return (
+    <section className={styles["composition-of-funds"]}>
+      <h1 className={styles["composition-of-funds__heading"]}>Состав средств пенсионных резервов Фонда</h1>
+
+      <div className={styles["composition-of-funds__selection"]} ref={selectController}>
+        <Controller ifPressed={ifPressed} value={controllerValue} onClickController={onClickController} />
+      </div>
+      {blockExpandingTables.map((expandingTables: IExpandingTables[], index: React.Key | null | undefined) => (
+        <CompositionBlock
+          key={index}
+          onClickExpanding={onClickExpanding}
+          isVisible={index === Number(idOption)}
+          expandingTables={expandingTables}
+        />
+      ))}
+    </section>
+  );
 };
 
 export default CompositionReserves;

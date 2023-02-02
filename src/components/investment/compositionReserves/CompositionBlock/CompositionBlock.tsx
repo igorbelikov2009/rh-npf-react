@@ -1,16 +1,37 @@
-import React from "react";
+import React, { FC } from "react";
+import ExpandingTable from "../../../general/expanding/ExpandingTable/ExpandingTable";
+import { CellHeadingProps } from "../../../general/table/CellHeading/CellHeading";
+import { RowProps } from "../../../general/table/Row/Row";
 
-const CompositionBlock = () => {
+export interface IExpandingTables {
+  title: string;
+  headings: CellHeadingProps[];
+  arrayRows: RowProps[];
+}
+
+interface CompositionBlockProps {
+  isVisible: boolean;
+  expandingTables: IExpandingTables[];
+  onClickExpanding: () => void;
+}
+
+const CompositionBlock: FC<CompositionBlockProps> = ({ isVisible, expandingTables, onClickExpanding }) => {
   return (
-    <div v-if="isCompositionOfFundsBlockVisible">
-      {/* <ExpandingTable
-      v-for="(expandingTable, index) in expandingTables"
-      :key="index"
-      :title="expandingTable.title"
-      :tableHeadings="expandingTable.tableHeadings"
-      :tableRows="expandingTable.tableRows"
-    /> */}
-    </div>
+    <>
+      {isVisible && (
+        <div>
+          {expandingTables.map((table, index) => (
+            <ExpandingTable
+              key={index}
+              arrayRows={table.arrayRows}
+              headings={table.headings}
+              title={table.title}
+              onClickExpanding={onClickExpanding}
+            />
+          ))}
+        </div>
+      )}
+    </>
   );
 };
 
