@@ -1,11 +1,11 @@
 import React, { FC } from "react";
-import { HeadCellProps } from "../HeadCell/HeadCell";
+import { CellHeadingProps } from "../CellHeading/CellHeading";
 import Row, { RowProps } from "../Row/Row";
 import RowHeadings from "../RowHeadings/RowHeadings";
 import style from "./Table.module.scss";
 
 export interface TableProps {
-  headings: HeadCellProps[];
+  headings: CellHeadingProps[];
   arrayRows: RowProps[];
 }
 

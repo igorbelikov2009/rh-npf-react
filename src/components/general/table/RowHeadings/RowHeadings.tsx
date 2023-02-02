@@ -1,16 +1,16 @@
 import React, { FC } from "react";
-import HeadCell, { HeadCellProps } from "../HeadCell/HeadCell";
+import CellHeading, { CellHeadingProps } from "../CellHeading/CellHeading";
 import "./RowHeadings.scss";
 
 export interface RowHeadingsProps {
-  headings: HeadCellProps[];
+  headings: CellHeadingProps[];
 }
 
 const RowHeadings: FC<RowHeadingsProps> = ({ headings }) => {
   return (
     <tr>
       {headings.map((head, index) => (
-        <HeadCell key={index} titleHeadCell={head.titleHeadCell} />
+        <CellHeading key={index} titleCellHeading={head.titleCellHeading} />
       ))}
     </tr>
   );
