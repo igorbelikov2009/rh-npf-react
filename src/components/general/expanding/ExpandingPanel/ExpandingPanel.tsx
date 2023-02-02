@@ -5,12 +5,12 @@ import styles from "./ExpandingPanel.module.scss";
 export interface ExpandingPanelProps {
   isContentVisible: boolean;
   title: string;
-  onClickExpandingRow: () => void;
+  onClickExpanding: () => void;
 }
 
-const ExpandingPanel: FC<ExpandingPanelProps> = ({ isContentVisible, title, onClickExpandingRow }) => {
+const ExpandingPanel: FC<ExpandingPanelProps> = ({ isContentVisible, title, onClickExpanding }) => {
   return (
-    <div className={styles["expanding__row"]} onClick={onClickExpandingRow}>
+    <div className={styles["expanding__row"]} onClick={onClickExpanding}>
       <h2 className={styles["expanding__title"]}>{title}</h2>
 
       <button className="expanding__button">

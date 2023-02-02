@@ -4,8 +4,8 @@ var react_1 = require("react");
 var DarkIcon_1 = require("../../DarkIcon/DarkIcon");
 var ExpandingPanel_module_scss_1 = require("./ExpandingPanel.module.scss");
 var ExpandingPanel = function (_a) {
-    var isContentVisible = _a.isContentVisible, title = _a.title, onClickExpandingRow = _a.onClickExpandingRow;
-    return (react_1["default"].createElement("div", { className: ExpandingPanel_module_scss_1["default"]["expanding__row"], onClick: onClickExpandingRow },
+    var isContentVisible = _a.isContentVisible, title = _a.title, onClickExpanding = _a.onClickExpanding;
+    return (react_1["default"].createElement("div", { className: ExpandingPanel_module_scss_1["default"]["expanding__row"], onClick: onClickExpanding },
         react_1["default"].createElement("h2", { className: ExpandingPanel_module_scss_1["default"]["expanding__title"] }, title),
         react_1["default"].createElement("button", { className: "expanding__button" },
             react_1["default"].createElement("div", { className: isContentVisible ? ExpandingPanel_module_scss_1["default"]["expanding__plus-rotate"] : ExpandingPanel_module_scss_1["default"]["expanding__plus"] },
