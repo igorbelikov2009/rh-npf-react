@@ -29,10 +29,8 @@ const ExpandingTable: FC<ExpandingTableProps> = ({ oneExpandingTable }) => {
         onClickExpanding={expanderHandler}
       />
 
-      {/* <transition name="expanding__content">
-      </transition> */}
       {isVisible && (
-        <div className="expanding__content">
+        <div className={isVisible ? "expanding__content-enter-active" : "expanding__content-leave-active"}>
           <Table headings={oneExpandingTable.headings} arrayRows={oneExpandingTable.arrayRows} />
         </div>
       )}

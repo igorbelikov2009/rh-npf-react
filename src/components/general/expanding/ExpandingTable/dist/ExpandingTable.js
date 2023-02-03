@@ -12,7 +12,7 @@ var ExpandingTable = function (_a) {
     };
     return (react_1["default"].createElement("div", { className: "expanding" },
         react_1["default"].createElement(ExpandingPanel_1["default"], { isContentVisible: isVisible, tableName: oneExpandingTable.tableName, onClickExpanding: expanderHandler }),
-        isVisible && (react_1["default"].createElement("div", { className: "expanding__content" },
+        isVisible && (react_1["default"].createElement("div", { className: isVisible ? "expanding__content-enter-active" : "expanding__content-leave-active" },
             react_1["default"].createElement(Table_1["default"], { headings: oneExpandingTable.headings, arrayRows: oneExpandingTable.arrayRows })))));
 };
 exports["default"] = ExpandingTable;
