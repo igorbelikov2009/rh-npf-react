@@ -10,26 +10,22 @@ export interface IExpandingTable {
 }
 
 export interface ExpandingTableProps {
-  // title: string;
-  // headings: HeadProps[];
-  // arrTitleArr: TRProps[];
-  expandingTable: IExpandingTable;
-  onClickExpanding: () => void;
+  oneExpandingTable: IExpandingTable;
+  //  oneExpandingTable - одна расширяющаяся таблица
 }
 
-const ExpandingTable: FC<ExpandingTableProps> = ({ expandingTable, onClickExpanding }) => {
-  const [isVisible, setVisible] = useState(true);
+const ExpandingTable: FC<ExpandingTableProps> = ({ oneExpandingTable }) => {
+  const [isVisible, setVisible] = useState(false);
 
   const expanderHandler = () => {
     setVisible((prev) => !prev);
-    onClickExpanding();
   };
 
   return (
     <div className="expanding">
       <ExpandingPanel
         isContentVisible={isVisible}
-        tableName={expandingTable.tableName}
+        tableName={oneExpandingTable.tableName}
         onClickExpanding={expanderHandler}
       />
 
@@ -37,7 +33,7 @@ const ExpandingTable: FC<ExpandingTableProps> = ({ expandingTable, onClickExpand
       </transition> */}
       {isVisible && (
         <div className="expanding__content">
-          <Table headings={expandingTable.headings} arrayRows={expandingTable.arrayRows} />
+          <Table headings={oneExpandingTable.headings} arrayRows={oneExpandingTable.arrayRows} />
         </div>
       )}
     </div>
