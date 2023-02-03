@@ -3,6 +3,8 @@ import TopBlock from "../components/general/TopBlock";
 import businessImage from "../assets/images/businnes/businnesTop.jpg";
 import "../styles/dist/Business.css";
 import BusinessProgramm from "../components/business/BusinessProgramm/BusinessProgramm";
+import BusinnesImages from "../components/business/BusinnesImages/BusinnesImages";
+import BusinnesStatistic from "../components/business/BusinnesStatistic/BusinnesStatistic";
 
 const Business: FC = () => {
   return (
@@ -14,6 +16,8 @@ const Business: FC = () => {
       />
       <div className="business-page">
         <BusinessProgramm />
+        <BusinnesImages />
+        <BusinnesStatistic />
       </div>
     </>
   );
