@@ -1,24 +1,37 @@
 import React, { FC } from "react";
-import { CellHeadingProps } from "../CellHeading/CellHeading";
-import Row, { RowProps } from "../Row/Row";
-import RowHeadings from "../RowHeadings/RowHeadings";
-import style from "./Table.module.scss";
+import styles from "./Table.module.scss";
 
 export interface TableProps {
-  headings: CellHeadingProps[];
-  arrayRows: RowProps[];
+  headings: string[];
+  arrayRows: string[][];
 }
 
 const Table: FC<TableProps> = ({ headings, arrayRows }) => {
   return (
-    <div className={style.table}>
-      <div className={style.table__scrolling}>
+    <div className={styles["table"]}>
+      <div className={styles["table__scrolling"]}>
         <table>
-          <RowHeadings headings={headings} />
+          <thead>
+            <tr className={styles["tr"]}>
+              {headings.map((heading, index) => (
+                <th key={index} className={styles["th"]}>
+                  {heading}
+                </th>
+              ))}
+            </tr>
+          </thead>
 
-          {arrayRows.map((row, index) => (
-            <Row key={index} cellArray={row.cellArray} />
-          ))}
+          <tbody>
+            {arrayRows.map((row, index) => (
+              <tr key={index} className={styles["tr"]}>
+                {row.map((cell, index) => (
+                  <td key={index} className={styles["td"]}>
+                    {cell}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
     </div>

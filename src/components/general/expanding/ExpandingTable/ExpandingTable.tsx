@@ -1,19 +1,24 @@
 import React, { FC, useState } from "react";
-import { CellHeadingProps } from "../../table/CellHeading/CellHeading";
-import { RowProps } from "../../table/Row/Row";
 import Table from "../../table/Table/Table";
 import ExpandingPanel from "../ExpandingPanel/ExpandingPanel";
 import "./ExpandingTable.scss";
 
+export interface IExpandingTable {
+  tableName: string;
+  headings: string[];
+  arrayRows: string[][];
+}
+
 export interface ExpandingTableProps {
-  title: string;
-  headings: CellHeadingProps[];
-  arrayRows: RowProps[];
+  // title: string;
+  // headings: HeadProps[];
+  // arrTitleArr: TRProps[];
+  expandingTable: IExpandingTable;
   onClickExpanding: () => void;
 }
 
-const ExpandingTable: FC<ExpandingTableProps> = ({ title, headings, arrayRows, onClickExpanding }) => {
-  const [isVisible, setVisible] = useState(false);
+const ExpandingTable: FC<ExpandingTableProps> = ({ expandingTable, onClickExpanding }) => {
+  const [isVisible, setVisible] = useState(true);
 
   const expanderHandler = () => {
     setVisible((prev) => !prev);
@@ -22,15 +27,18 @@ const ExpandingTable: FC<ExpandingTableProps> = ({ title, headings, arrayRows, o
 
   return (
     <div className="expanding">
-      <ExpandingPanel isContentVisible={isVisible} title={title} onClickExpanding={expanderHandler} />
+      <ExpandingPanel
+        isContentVisible={isVisible}
+        tableName={expandingTable.tableName}
+        onClickExpanding={expanderHandler}
+      />
 
       {/* <transition name="expanding__content">
       </transition> */}
-      {isVisible && (
-        <div className="expanding__content">
-          <Table arrayRows={arrayRows} headings={headings} />
-        </div>
-      )}
+      {/* {isVisible && ( )} */}
+      <div className="expanding__content">
+        <Table headings={expandingTable.headings} arrayRows={expandingTable.arrayRows} />
+      </div>
     </div>
   );
 };

@@ -4,14 +4,14 @@ import styles from "./ExpandingPanel.module.scss";
 
 export interface ExpandingPanelProps {
   isContentVisible: boolean;
-  title: string;
+  tableName: string;
   onClickExpanding: () => void;
 }
 
-const ExpandingPanel: FC<ExpandingPanelProps> = ({ isContentVisible, title, onClickExpanding }) => {
+const ExpandingPanel: FC<ExpandingPanelProps> = ({ isContentVisible, tableName, onClickExpanding }) => {
   return (
     <div className={styles["expanding__row"]} onClick={onClickExpanding}>
-      <h2 className={styles["expanding__title"]}>{title}</h2>
+      <h2 className={styles["expanding__title"]}>{tableName}</h2>
 
       <button className="expanding__button">
         <div className={isContentVisible ? styles["expanding__plus-rotate"] : styles["expanding__plus"]}>
