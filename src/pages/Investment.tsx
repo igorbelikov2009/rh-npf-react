@@ -20,7 +20,7 @@ const Investment: FC = () => {
   const [firstControllerLeft, setFirstControllerLeft] = useState(0);
   const [firstControllerWidth, setFirstControllerWidth] = useState(0);
 
-  // firstOptionsBlock firstBlock
+  // firstOptionsBlock
   const [firstBlockIdOption, setFirstBlockIdOption] = useState("0");
   const [firstBlockHeight, setFirstBlockHeight] = useState(0);
   const [firstBlockTop, setFirstBlockTop] = useState(0);
@@ -193,7 +193,6 @@ const Investment: FC = () => {
   ];
 
   const refFirstSelectBlock = useRef<HTMLDivElement>(null);
-  // const refSecondSelectBlock = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.addEventListener("scroll", scrollHandler);
@@ -221,7 +220,6 @@ const Investment: FC = () => {
     setSecondControllerLeft(left);
   };
 
-  //////////////////////////////////
   // useEffect для первых first Controller и OptionsBlock
   useEffect(() => {
     setFirstBlockTop(firstControllerBottom);
@@ -315,7 +313,6 @@ const Investment: FC = () => {
     getClientHeight();
   };
 
-  //////////////////////////
   //  Получаем top, bottom, left, width из компонента CompositionReserves.tsx при скроллинге
   const onScrollCompositionReserves = (
     top: React.SetStateAction<number>,

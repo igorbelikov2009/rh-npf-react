@@ -18,7 +18,7 @@ var Investment = function () {
     var _d = react_1.useState(0), firstControllerBottom = _d[0], setFirstControllerBottom = _d[1];
     var _e = react_1.useState(0), firstControllerLeft = _e[0], setFirstControllerLeft = _e[1];
     var _f = react_1.useState(0), firstControllerWidth = _f[0], setFirstControllerWidth = _f[1];
-    // firstOptionsBlock firstBlock
+    // firstOptionsBlock
     var _g = react_1.useState("0"), firstBlockIdOption = _g[0], setFirstBlockIdOption = _g[1];
     var _h = react_1.useState(0), firstBlockHeight = _h[0], setFirstBlockHeight = _h[1];
     var _j = react_1.useState(0), firstBlockTop = _j[0], setFirstBlockTop = _j[1];
@@ -185,7 +185,6 @@ var Investment = function () {
         },
     ];
     var refFirstSelectBlock = react_1.useRef(null);
-    // const refSecondSelectBlock = useRef<HTMLDivElement>(null);
     react_1.useEffect(function () {
         document.addEventListener("scroll", scrollHandler);
         return function () {
@@ -208,7 +207,6 @@ var Investment = function () {
         setSecondControllerBottom(bottom);
         setSecondControllerLeft(left);
     };
-    //////////////////////////////////
     // useEffect для первых first Controller и OptionsBlock
     react_1.useEffect(function () {
         setFirstBlockTop(firstControllerBottom);
@@ -284,7 +282,6 @@ var Investment = function () {
         // Делаем вызов функции
         getClientHeight();
     };
-    //////////////////////////
     //  Получаем top, bottom, left, width из компонента CompositionReserves.tsx при скроллинге
     var onScrollCompositionReserves = function (top, bottom, left, width) {
         setSecondControllerTop(top);
