@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import Table from "../../table/Table/Table";
+import Table from "../../Table/Table";
 import ExpandingPanel from "../ExpandingPanel/ExpandingPanel";
 import "./ExpandingTable.scss";
 
@@ -35,10 +35,11 @@ const ExpandingTable: FC<ExpandingTableProps> = ({ expandingTable, onClickExpand
 
       {/* <transition name="expanding__content">
       </transition> */}
-      {/* {isVisible && ( )} */}
-      <div className="expanding__content">
-        <Table headings={expandingTable.headings} arrayRows={expandingTable.arrayRows} />
-      </div>
+      {isVisible && (
+        <div className="expanding__content">
+          <Table headings={expandingTable.headings} arrayRows={expandingTable.arrayRows} />
+        </div>
+      )}
     </div>
   );
 };
