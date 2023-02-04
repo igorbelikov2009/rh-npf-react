@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import Table from "../../Table/Table";
 import ExpandingPanel from "../ExpandingPanel/ExpandingPanel";
-import "./ExpandingTable.scss";
+import styles from "./ExpandingTable.module.scss";
 
 export interface IExpandingTable {
   tableName: string;
@@ -22,7 +22,7 @@ const ExpandingTable: FC<ExpandingTableProps> = ({ oneExpandingTable }) => {
   };
 
   return (
-    <div className="expanding">
+    <div className={styles["expanding"]}>
       <ExpandingPanel
         isContentVisible={isVisible}
         panelName={oneExpandingTable.tableName}
@@ -30,7 +30,9 @@ const ExpandingTable: FC<ExpandingTableProps> = ({ oneExpandingTable }) => {
       />
 
       {isVisible && (
-        <div className={isVisible ? "expanding__content-enter-active" : "expanding__content-leave-active"}>
+        <div
+          className={isVisible ? styles["expanding__content-enter-active"] : styles["expanding__content-leave-active"]}
+        >
           <Table headings={oneExpandingTable.headings} arrayRows={oneExpandingTable.arrayRows} />
         </div>
       )}
