@@ -7,16 +7,11 @@ import styles from "./ExpandingAnswer.module.scss";
 export interface IObjectQuestionsAnswers {
   question: string;
   answer: string[];
-}
-
-export interface ExpandingAnswerProps {
-  question: string;
-  answer: string[];
   isParagraph?: boolean;
   isParagraphBefore?: boolean;
 }
 
-const ExpandingAnswer: FC<ExpandingAnswerProps> = ({ question, answer, isParagraph, isParagraphBefore }) => {
+const ExpandingAnswer: FC<IObjectQuestionsAnswers> = ({ question, answer, isParagraph, isParagraphBefore }) => {
   const [isVisible, setVisible] = useState(false);
 
   const expanderHandler = () => {
