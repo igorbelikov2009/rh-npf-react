@@ -1,10 +1,10 @@
 import React from "react";
-import ExpandingAnswer, { ExpandingAnswerProps } from "../../general/expanding/ExpandingAnswer/ExpandingAnswer";
+import ExpandingAnswer, { IObjectQuestionsAnswers } from "../../general/expanding/ExpandingAnswer/ExpandingAnswer";
 import QuestionAnswerTable from "../QuestionAnswerTable/QuestionAnswerTable";
 import styles from "./QuestionsAnswers.module.scss";
 
 const QuestionsAnswers = () => {
-  const arrayQuestionsAnswers: ExpandingAnswerProps[] = [
+  const arrayQuestionsAnswers: IObjectQuestionsAnswers[] = [
     {
       question: "Могу ли я перевести в АО НПФ «Ренессанс пенсии» пенсионные накопления (накопительную пенсию)?",
       answer: [
@@ -45,7 +45,7 @@ const QuestionsAnswers = () => {
       <h1 className={styles["questions-answers__heading"]}>Вопросы и ответы</h1>
 
       {arrayQuestionsAnswers.map((obj, index) => (
-        <ExpandingAnswer key={index} question={obj.question} answer={obj.answer} />
+        <ExpandingAnswer key={index} question={obj.question} answer={obj.answer} isParagraph={true} />
       ))}
 
       <QuestionAnswerTable />

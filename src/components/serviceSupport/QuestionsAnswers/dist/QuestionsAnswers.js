@@ -42,7 +42,7 @@ var QuestionsAnswers = function () {
     ];
     return (react_1["default"].createElement("section", { className: QuestionsAnswers_module_scss_1["default"]["questions-answers"] },
         react_1["default"].createElement("h1", { className: QuestionsAnswers_module_scss_1["default"]["questions-answers__heading"] }, "\u0412\u043E\u043F\u0440\u043E\u0441\u044B \u0438 \u043E\u0442\u0432\u0435\u0442\u044B"),
-        arrayQuestionsAnswers.map(function (obj, index) { return (react_1["default"].createElement(ExpandingAnswer_1["default"], { key: index, question: obj.question, answer: obj.answer })); }),
+        arrayQuestionsAnswers.map(function (obj, index) { return (react_1["default"].createElement(ExpandingAnswer_1["default"], { key: index, question: obj.question, answer: obj.answer, isParagraph: true })); }),
         react_1["default"].createElement(QuestionAnswerTable_1["default"], null)));
 };
 exports["default"] = QuestionsAnswers;

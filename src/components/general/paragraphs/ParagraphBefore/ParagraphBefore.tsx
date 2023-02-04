@@ -1,9 +1,20 @@
 import React, { FC } from "react";
-import { ParagraphProps } from "../Paragraph/Paragraph";
 import styles from "./ParagraphBefore.module.scss";
 
-const ParagraphBefore: FC<ParagraphProps> = ({ text }) => {
-  return <p className={styles["paragraph-before"]}>{text}</p>;
+export interface IParagraphBefore {
+  paragraphs: string[];
+}
+
+const ParagraphBefore: FC<IParagraphBefore> = ({ paragraphs }) => {
+  return (
+    <>
+      {paragraphs.map((paragraph, index) => (
+        <p key={index} className={styles["paragraph-before"]}>
+          {paragraph}
+        </p>
+      ))}
+    </>
+  );
 };
 
 export default ParagraphBefore;
