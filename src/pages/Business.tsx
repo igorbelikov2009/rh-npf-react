@@ -5,6 +5,7 @@ import "../styles/dist/Business.css";
 import BusinessProgramm from "../components/business/BusinessProgramm/BusinessProgramm";
 import BusinnesImages from "../components/business/BusinnesImages/BusinnesImages";
 import BusinnesStatistic from "../components/business/BusinnesStatistic/BusinnesStatistic";
+import TaxPreferences from "../components/business/TaxPreferences/TaxPreferences";
 
 const Business: FC = () => {
   return (
@@ -18,6 +19,7 @@ const Business: FC = () => {
         <BusinessProgramm />
         <BusinnesImages />
         <BusinnesStatistic />
+        <TaxPreferences />
       </div>
     </>
   );

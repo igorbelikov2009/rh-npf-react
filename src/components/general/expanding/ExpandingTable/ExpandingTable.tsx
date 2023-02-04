@@ -25,7 +25,7 @@ const ExpandingTable: FC<ExpandingTableProps> = ({ oneExpandingTable }) => {
     <div className="expanding">
       <ExpandingPanel
         isContentVisible={isVisible}
-        tableName={oneExpandingTable.tableName}
+        panelName={oneExpandingTable.tableName}
         onClickExpanding={expanderHandler}
       />
 

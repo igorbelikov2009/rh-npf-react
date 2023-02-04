@@ -1,0 +1,38 @@
+.paragraph {
+  font-size: 16px;
+  line-height: 24px;
+  font-style: normal;
+  color: #5a646e;
+  margin: 12px 0;
+}
+
+.expanding {
+  width: 100%;
+  border-bottom: 1px solid #e6f0fa;
+  position: relative;
+
+  &__content {
+    width: 100%;
+    padding: 24px 0 48px;
+  }
+}
+
+.expanding__content-enter-active {
+  animation: bounce-in 0.5s;
+}
+
+.expanding__content-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

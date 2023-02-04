@@ -11,7 +11,7 @@ var ExpandingTable = function (_a) {
         setVisible(function (prev) { return !prev; });
     };
     return (react_1["default"].createElement("div", { className: "expanding" },
-        react_1["default"].createElement(ExpandingPanel_1["default"], { isContentVisible: isVisible, tableName: oneExpandingTable.tableName, onClickExpanding: expanderHandler }),
+        react_1["default"].createElement(ExpandingPanel_1["default"], { isContentVisible: isVisible, panelName: oneExpandingTable.tableName, onClickExpanding: expanderHandler }),
         isVisible && (react_1["default"].createElement("div", { className: isVisible ? "expanding__content-enter-active" : "expanding__content-leave-active" },
             react_1["default"].createElement(Table_1["default"], { headings: oneExpandingTable.headings, arrayRows: oneExpandingTable.arrayRows })))));
 };
