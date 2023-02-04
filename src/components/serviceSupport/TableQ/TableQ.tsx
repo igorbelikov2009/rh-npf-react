@@ -8,15 +8,15 @@ export interface TableQProps {
 
 const TableQ: FC<TableQProps> = ({ headings, arrayRows }) => {
   return (
-    <div className={styles["table"]}>
-      <div className={styles["table__scrolling"]}>
+    <div className={styles["table__table-container"]}>
+      <div className={styles["table__table"]}>
         <table>
           <thead>
             <tr className={styles["tr"]}>
               {headings.map((heading, index) => (
-                <th key={index} className={styles["th"]}>
-                  {heading}
-                </th>
+                <td key={index} className={styles["td"]}>
+                  <p className={styles["table__headers"]}> {heading} </p>
+                </td>
               ))}
             </tr>
           </thead>
@@ -26,7 +26,7 @@ const TableQ: FC<TableQProps> = ({ headings, arrayRows }) => {
               <tr key={index} className={styles["tr"]}>
                 {row.map((cell, index) => (
                   <td key={index} className={styles["td"]}>
-                    {cell}
+                    <p className={styles["table__rows"]}>{cell}</p>
                   </td>
                 ))}
               </tr>

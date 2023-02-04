@@ -1,52 +1,77 @@
-.table {
+.table__table-container {
   width: 100%;
-  background-color: #fff;
-  overflow-x: scroll;
+  position: relative;
+  overflow-x: auto;
 }
-@media screen and (min-width: 960px) {
-  .table {
+@media screen and (min-width: 1024px) {
+  .table__table-container {
     overflow-x: hidden;
   }
 }
-.table__scrolling {
-  width: 960px;
+.table__table {
+  color: #001100;
+  border-collapse: collapse;
+  width: 576px;
+  margin: 10px 0;
+  position: relative;
+}
+@media screen and (max-width: 576px) {
+  .table__table::before {
+    position: absolute;
+    display: block;
+    width: 24px;
+    top: 0;
+    bottom: 0;
+    background-image: radial-gradient(farthest-side, rgba(26, 65, 101, 0.5), transparent);
+    content: "";
+    right: auto;
+    left: -12px;
+  }
+  .table__table::after {
+    position: absolute;
+    display: block;
+    width: 24px;
+    top: 0;
+    bottom: 0;
+    background-image: radial-gradient(farthest-side, rgba(49, 103, 155, 0.5), transparent);
+    content: "";
+    right: -12px;
+    left: auto;
+    box-sizing: inherit;
+  }
+}
+.table__headers {
+  font-size: 13px;
+  color: #001100;
+  line-height: 1.5rem;
+  margin: 12px 0;
+  font-weight: 700;
+}
+.table__rows {
+  font-size: 16px;
+  color: #001100;
+  line-height: 1.5rem;
+  margin: 12px 0;
+  font-weight: 500;
 }
 
 .td {
-  vertical-align: baseline;
-  box-sizing: border-box;
-  border-top: 1px solid #e6f0fa;
-  color: #28323c;
-  font-size: 16px;
-  line-height: 24px;
-  padding: 8px 12px;
+  padding: 0 8px;
 }
-.td:first-of-type {
-  padding: 8px 12px 8px 0;
+.td:nth-of-type(1) {
+  width: 43.16%;
+  padding-left: 0;
 }
-.td:last-of-type {
-  padding: 8px 0 8px 12px;
+.td:nth-of-type(2) {
+  width: 27.1%;
 }
-
-.th {
-  text-align: left;
-  vertical-align: baseline;
-  box-sizing: border-box;
-  font-weight: 400;
-  color: #5a646e;
-  font-size: 13px;
-  line-height: 24px;
-  padding: 8px 12px;
-}
-.th:first-of-type {
-  padding: 8px 12px 8px 0;
-}
-.th:last-of-type {
-  padding: 8px 0 8px 12px;
+.td:nth-of-type(3) {
+  width: 29.74%;
+  padding-right: 0;
 }
 
 .tr {
-  font-size: 100%;
+  width: 100%;
+  border-top: 1px solid #e6f0fa;
   vertical-align: baseline;
-  box-sizing: border-box;
 }
