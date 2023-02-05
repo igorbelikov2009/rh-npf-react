@@ -10,7 +10,7 @@ import "../styles/dist/Investment.css";
 import OptionsBlock, { IOptionItem } from "../components/ui/select/OptionsBlock/OptionsBlock";
 import CompositionReserves from "../components/investment/compositionReserves/CompositionReserves/CompositionReserves";
 
-const Investment: FC = () => {
+const InvestmentPage: FC = () => {
   const [clientHeight, setClientHeight] = useState(0);
 
   // firstSelectController
@@ -391,4 +391,4 @@ const Investment: FC = () => {
   );
 };
 
-export default Investment;
+export default InvestmentPage;

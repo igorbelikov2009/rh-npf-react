@@ -2,7 +2,7 @@ import React from "react";
 import TopBlock from "../components/general/TopBlock";
 import taxationImage from "../assets/images/taxation/taxationTop.jpg";
 
-const Taxation = () => {
+const TaxationPage = () => {
   return (
     <>
       <TopBlock
@@ -14,4 +14,4 @@ const Taxation = () => {
   );
 };
 
-export default Taxation;
+export default TaxationPage;

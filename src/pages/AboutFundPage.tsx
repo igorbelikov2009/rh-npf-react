@@ -6,7 +6,7 @@ import AboutUs from "../components/aboutFund/AboutUs";
 import Cards from "../components/general/cards/Cards/Cards";
 import { CardsCardProps } from "../components/general/cards/CardsCard/CardsCard";
 
-const AboutFund: FC = () => {
+const AboutFundPage: FC = () => {
   const cards: CardsCardProps[] = [
     {
       icon: "Calendar",
@@ -54,4 +54,4 @@ const AboutFund: FC = () => {
   );
 };
 
-export default AboutFund;
+export default AboutFundPage;

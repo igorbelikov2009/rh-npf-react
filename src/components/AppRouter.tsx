@@ -1,18 +1,18 @@
 import React, { FC } from "react";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Routes, Route, Navigate } from "react-router-dom";
-import AboutFund from "../pages/AboutFund";
-import Business from "../pages/Business";
-import Contacts from "../pages/Contacts";
-import InfoDisclosure from "../pages/InfoDisclosure";
-import Investment from "../pages/Investment";
+import AboutFund from "../pages/AboutFundPage";
+import Business from "../pages/BusinessPage";
+import Contacts from "../pages/ContactsPage";
+import InfoDisclosure from "../pages/InfoDisclosurePage";
+import Investment from "../pages/InvestmentPage";
 import MainPage from "../pages/MainPage";
-import Management from "../pages/Management";
+import Management from "../pages/ManagementPage";
 import News from "../pages/News";
 import NewsPage from "../pages/NewsPage";
 import Notfoundpage from "../pages/Notfoundpage";
-import ServiceSupport from "../pages/ServiceSupport";
-import Taxation from "../pages/Taxation";
+import ServiceSupport from "../pages/ServiceSupportPage";
+import Taxation from "../pages/TaxationPage";
 import Layout from "./Layout";
 
 const AppRouter: FC = () => {

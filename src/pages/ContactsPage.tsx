@@ -3,7 +3,7 @@ import Address from "../components/contacts/Address/Address";
 import ContactsMap from "../components/contacts/ContactsMap/ContactsMap";
 import "../styles/dist/Contacts.css";
 
-const Contacts: FC = () => {
+const ContactsPage: FC = () => {
   return (
     <div className="contacts">
       <Address />
@@ -12,4 +12,4 @@ const Contacts: FC = () => {
   );
 };
 
-export default Contacts;
+export default ContactsPage;

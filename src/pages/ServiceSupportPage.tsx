@@ -5,7 +5,7 @@ import "../styles/dist/ServiceSupport.css";
 import QuestionsAnswers from "../components/serviceSupport/QuestionsAnswers/QuestionsAnswers";
 import PensionPrograms from "../components/serviceSupport/PensionPrograms/PensionPrograms";
 
-const ServiceSupport: FC = () => {
+const ServiceSupportPage: FC = () => {
   return (
     <>
       <TopBlock heading="Поддержка" image={supportImage} />
@@ -18,4 +18,4 @@ const ServiceSupport: FC = () => {
   );
 };
 
-export default ServiceSupport;
+export default ServiceSupportPage;

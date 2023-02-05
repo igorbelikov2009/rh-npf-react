@@ -7,9 +7,7 @@
   top: 0;
 
   &__with-border {
-    // position: relative;
     border-bottom: 1px solid #e4e4e4;
-    // box-shadow: 0 8px 8px rgb(26 65 101 / 25%);
   }
 
   &__container {
@@ -95,6 +93,7 @@
     @media (min-width: 768px) {
       font-size: 16px;
     }
+
     // top-menu__link_news
     &_news {
       color: #78828c;

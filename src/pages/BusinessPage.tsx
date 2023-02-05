@@ -7,7 +7,7 @@ import BusinnesImages from "../components/business/BusinnesImages/BusinnesImages
 import BusinnesStatistic from "../components/business/BusinnesStatistic/BusinnesStatistic";
 import TaxPreferences from "../components/business/TaxPreferences/TaxPreferences";
 
-const Business: FC = () => {
+const BusinessPage: FC = () => {
   return (
     <>
       <TopBlock
@@ -25,4 +25,4 @@ const Business: FC = () => {
   );
 };
 
-export default Business;
+export default BusinessPage;
