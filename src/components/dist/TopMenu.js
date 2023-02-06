@@ -4,7 +4,7 @@ var react_1 = require("react");
 require("../styles/TopMenu.scss");
 var react_router_dom_1 = require("react-router-dom");
 var Logotypes_1 = require("./general/Logotypes/Logotypes");
-var MenuLink_1 = require("./ui/MenuLink/MenuLink");
+var MenuLink_1 = require("./ui/links/MenuLink/MenuLink");
 var TripleIcon_1 = require("./general/TripleIcon/TripleIcon");
 var TopMenu = function () {
     var navigate = react_router_dom_1.useNavigate();

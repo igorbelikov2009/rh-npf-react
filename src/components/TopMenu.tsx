@@ -3,7 +3,7 @@ import "../styles/TopMenu.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import Logotypes from "./general/Logotypes/Logotypes";
-import MenuLink, { MenuLinkProps } from "./ui/MenuLink/MenuLink";
+import MenuLink, { MenuLinkProps } from "./ui/links/MenuLink/MenuLink";
 import TripleIcon from "./general/TripleIcon/TripleIcon";
 
 const TopMenu: FC = () => {

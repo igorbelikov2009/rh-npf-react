@@ -1,11 +1,15 @@
 import React, { useRef, useState } from "react";
 import DarkIcon from "../../general/DarkIcon/DarkIcon";
+import AsideLink from "../../ui/links/AsideLink/AsideLink";
 import AuditCommittee from "../AuditCommittee/AuditCommittee";
 import BoardOfDirectors from "../BoardOfDirectors/BoardOfDirectors";
 import ChiefAccountant from "../ChiefAccountant/ChiefAccountant";
+import Controller from "../Controller/Controller";
+import GeneralMeetingOfShareholders from "../GeneralMeetingOfShareholders/GeneralMeetingOfShareholders";
 import GoverningBody from "../GoverningBody/GoverningBody";
 import Team from "../Team/Team";
 import "./Management.scss";
+// import { Link, Outlet, Routes, Route } from "react-router-dom";
 
 const Management = () => {
   const block1 = useRef<HTMLDivElement>(null);
@@ -29,6 +33,18 @@ const Management = () => {
   const [h05, setH05] = useState(0);
   const [h06, setH06] = useState(0);
   const [h07, setH07] = useState(0);
+
+  // const anchors: any = document.querySelectorAll('a[href*="#"]');
+  // for (let anchor of anchors) {
+  //   anchor.addEventListener("click", function (event: { preventDefault: () => void }) {
+  //     event.preventDefault();
+  //     const blockID = anchor.getAttribute("href");
+  //     document.querySelector("" + blockID)?.scrollIntoView({
+  //       behavior: "smooth",
+  //       block: "start",
+  //     });
+  //   });
+  // }
 
   return (
     <section className="management">
@@ -55,11 +71,11 @@ const Management = () => {
           </div>
 
           <div className="management__department" id="controller" ref={block6}>
-            "Controller"
+            <Controller />
           </div>
 
           <div className="management__department" id="generalMeetingOfShareholders" ref={block7}>
-            "GeneralMeetingOfShareholders"
+            <GeneralMeetingOfShareholders />
           </div>
         </div>
 
@@ -69,35 +85,27 @@ const Management = () => {
               <DarkIcon icon="Arrow Down" />
             </div>
 
-            {/* <router-link className="management__bar-link" :to="{ path: '/management#governingBody' }"
-            >Правление</router-link
-          > */}
-
-            {/* <router-link className="management__bar-link" :to="{ path: '/management#boardOfDirectors' }"
-            >Совет директоров</router-link
-          > */}
-
-            {/* <router-link className="management__bar-link" :to="{ path: '/management#team' }"
-            >Команда</router-link
-          > */}
-
-            {/* <router-link className="management__bar-link" :to="{ path: '/management#auditCommittee' }"
-            >Ревизионная комиссия</router-link
-          > */}
-
-            {/* <router-link className="management__bar-link" :to="{ path: '/management#chiefAccountant' }"
-            >Главный бухгалтер</router-link
-          > */}
-            {/* 
-          <router-link className="management__bar-link" :to="{ path: '/management#controller' }"
-            >Контролер</router-link
-          > */}
-
-            {/* <router-link
-            className="management__bar-link"
-            :to="{ path: '/management#generalMeetingOfShareholders' }"
-            >Собрание акционеров</router-link
-          > */}
+            <a className="link" href="#governingBody">
+              Правление
+            </a>
+            <a className="link" href="#boardOfDirectors">
+              Совет директоров
+            </a>
+            <a className="link" href="#team">
+              Команда
+            </a>
+            <a className="link" href="#auditCommittee">
+              Ревизионная комиссия
+            </a>
+            <a className="link" href="#chiefAccountant">
+              Главный бухгалтер
+            </a>
+            <a className="link" href="#controller">
+              Контролер
+            </a>
+            <a className="link" href="#generalMeetingOfShareholders">
+              Собрание акционеров
+            </a>
           </aside>
         </div>
       </div>

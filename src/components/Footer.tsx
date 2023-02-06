@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import Logotypes from "./general/Logotypes/Logotypes";
-import FooterLink, { FooterLinkProps } from "./ui/FooterLink/FooterLink";
+import FooterLink, { FooterLinkProps } from "./ui/links/FooterLink/FooterLink";
 import "../styles/Footer.scss";
 import { useNavigate } from "react-router-dom";
 
