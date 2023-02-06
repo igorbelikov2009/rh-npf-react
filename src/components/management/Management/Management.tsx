@@ -1,6 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import DarkIcon from "../../general/DarkIcon/DarkIcon";
-import AsideLink from "../../ui/links/AsideLink/AsideLink";
+import MyLink, { IMyLink } from "../../ui/links/MyLink/MyLink";
 import AuditCommittee from "../AuditCommittee/AuditCommittee";
 import BoardOfDirectors from "../BoardOfDirectors/BoardOfDirectors";
 import ChiefAccountant from "../ChiefAccountant/ChiefAccountant";
@@ -9,7 +9,6 @@ import GeneralMeetingOfShareholders from "../GeneralMeetingOfShareholders/Genera
 import GoverningBody from "../GoverningBody/GoverningBody";
 import Team from "../Team/Team";
 import "./Management.scss";
-// import { Link, Outlet, Routes, Route } from "react-router-dom";
 
 const Management = () => {
   const block1 = useRef<HTMLDivElement>(null);
@@ -19,11 +18,12 @@ const Management = () => {
   const block5 = useRef<HTMLDivElement>(null);
   const block6 = useRef<HTMLDivElement>(null);
   const block7 = useRef<HTMLDivElement>(null);
-  const barContainer = useRef<HTMLDivElement>(null);
+  const refBbarContainer = useRef<HTMLDivElement>(null);
 
   const [barContainerTop, setBarContainerTop] = useState(0);
   const [barNavAbsolute, setBarNavAbsolute] = useState(true);
   const [iconTop, setIconTop] = useState(0);
+  const [isActive, setActive] = useState(false);
 
   const [h00, setH00] = useState(552);
   const [h01, setH01] = useState(0);
@@ -33,18 +33,118 @@ const Management = () => {
   const [h05, setH05] = useState(0);
   const [h06, setH06] = useState(0);
   const [h07, setH07] = useState(0);
+  const [scrollY, setScrollY] = useState(0);
 
-  // const anchors: any = document.querySelectorAll('a[href*="#"]');
-  // for (let anchor of anchors) {
-  //   anchor.addEventListener("click", function (event: { preventDefault: () => void }) {
-  //     event.preventDefault();
-  //     const blockID = anchor.getAttribute("href");
-  //     document.querySelector("" + blockID)?.scrollIntoView({
-  //       behavior: "smooth",
-  //       block: "start",
-  //     });
-  //   });
-  // }
+  const myLinks: IMyLink[] = [
+    { href: "#governingBody", children: "Правление" },
+    { href: "#boardOfDirectors", children: "Совет директоров" },
+    { href: "#team", children: "Команда" },
+    { href: "#auditCommittee", children: "Ревизионная комиссия" },
+    { href: "#chiefAccountant", children: "Главный бухгалтер" },
+    { href: "#controller", children: "Контролер" },
+    { href: "#generalMeetingOfShareholders", children: "Собрание акционеров" },
+  ];
+
+  useEffect(() => {
+    getTopBarContainer();
+    changeStyleBarNav();
+    document.addEventListener("scroll", scrollHandler);
+    return function () {
+      document.removeEventListener("scroll", scrollHandler);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [barContainerTop]);
+
+  const scrollHandler = (event: any) => {
+    getTopBarContainer();
+    getTopAllComponents();
+    setScrollY(window.scrollY);
+    getIconTop();
+  };
+  // console.log(scrollY);
+
+  const getTopBarContainer = () => {
+    if (refBbarContainer.current) {
+      setBarContainerTop(refBbarContainer.current.getBoundingClientRect().top);
+    }
+  };
+  // console.log(barContainerTop);
+
+  const changeStyleBarNav = () => {
+    if (barContainerTop > 0) {
+      setBarNavAbsolute(true);
+    } else {
+      setBarNavAbsolute(false);
+    }
+  };
+  // console.log(barNavAbsolute);
+
+  const getTopAllComponents = () => {
+    if (block1.current) {
+      setH01(block1.current.getBoundingClientRect().height);
+    }
+    // console.log(h01);
+
+    if (block2.current) {
+      setH02(block2.current.getBoundingClientRect().height);
+    }
+    // console.log(h02);
+
+    if (block3.current) {
+      setH03(block3.current.getBoundingClientRect().height);
+    }
+    // console.log(h03);
+
+    if (block4.current) {
+      setH04(block4.current.getBoundingClientRect().height);
+    }
+    // console.log(h04);
+
+    if (block5.current) {
+      setH05(block5.current.getBoundingClientRect().height);
+    }
+    // console.log(h05);
+
+    if (block6.current) {
+      setH06(block6.current.getBoundingClientRect().height);
+    }
+    // console.log(h06);
+
+    if (block7.current) {
+      setH07(block7.current.getBoundingClientRect().height);
+    }
+    // console.log(h07);
+  };
+
+  const getIconTop = () => {
+    if (scrollY >= 552 && scrollY < 552 + h01) {
+      // console.log('01');
+      setIconTop(0);
+    } else if (scrollY >= 552 + h01 && scrollY < 552 + h01 + h02) {
+      // console.log('02');
+      setIconTop(1);
+    } else if (scrollY >= 552 + h01 + h02 && scrollY < 552 + h01 + h02 + h03) {
+      // console.log('03');
+      setIconTop(2);
+    } else if (scrollY >= 552 + h01 + h02 + h03 && scrollY < 552 + h01 + h02 + h03 + h04) {
+      // console.log('04');
+      setIconTop(3);
+    } else if (scrollY >= 552 + h01 + h02 + h03 + h04 && scrollY < 552 + h01 + h02 + h03 + h04 + h05) {
+      // console.log('05');
+      setIconTop(4);
+    } else if (scrollY >= 552 + h01 + h02 + h03 + h04 + h05 && scrollY < 552 + h01 + h02 + h03 + h04 + h05 + h06 - 21) {
+      // console.log('06');
+      // console.log(552 + h01 + h02 + h03 + h04 + h05);
+      // console.log(552 + h01 + h02 + h03 + h04 + h05 + h06 - 19);
+      setIconTop(5);
+    } else if (
+      scrollY >= 552 + h01 + h02 + h03 + h04 + h05 + h06 - 21 &&
+      scrollY < 552 + h01 + h02 + h03 + h04 + h05 + h06 + h07
+    ) {
+      // console.log('07');
+      setIconTop(6);
+    }
+  };
 
   return (
     <section className="management">
@@ -79,33 +179,15 @@ const Management = () => {
           </div>
         </div>
 
-        <div className="management__bar-container" ref={barContainer}>
+        <div className="management__bar-container" ref={refBbarContainer}>
           <aside className={barNavAbsolute ? "management__bar-nav_absolute" : "management__bar-nav_fixed"}>
             <div className="management__bar-icon" style={{ top: `${iconTop * 48}px` }}>
               <DarkIcon icon="Arrow Down" />
             </div>
 
-            <a className="link" href="#governingBody">
-              Правление
-            </a>
-            <a className="link" href="#boardOfDirectors">
-              Совет директоров
-            </a>
-            <a className="link" href="#team">
-              Команда
-            </a>
-            <a className="link" href="#auditCommittee">
-              Ревизионная комиссия
-            </a>
-            <a className="link" href="#chiefAccountant">
-              Главный бухгалтер
-            </a>
-            <a className="link" href="#controller">
-              Контролер
-            </a>
-            <a className="link" href="#generalMeetingOfShareholders">
-              Собрание акционеров
-            </a>
+            {myLinks.map((link, index) => (
+              <MyLink key={index} href={link.href} children={link.children} isActive={false} />
+            ))}
           </aside>
         </div>
       </div>
