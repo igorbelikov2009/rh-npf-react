@@ -52,7 +52,7 @@ const Management = () => {
 
     document.addEventListener("scroll", scrollHandler);
 
-    // этот код срабатывает при размонтировании! Идеально подходит для нашего случая использования!
+    // "Этот код срабатывает при размонтировании!
     return function () {
       document.removeEventListener("scroll", scrollHandler);
     };
@@ -112,6 +112,10 @@ const Management = () => {
     }
   };
 
+  /* Если не нравится эта логика, то можно использовать:
+   Якорное меню с плавной прокруткой в ​​ReactJS , подробное руководство.
+   https://medium.com/the-coders-guide-to-javascript/smooth-scrolling-anchor-menu-in-reactjs-175030d0bce2
+*/
   const getIconTop = () => {
     if (scrollY >= h00 && scrollY < h00 + h01) {
       setIconTop(0);
