@@ -44,6 +44,10 @@
     @media screen and (min-width: 944px) {
       padding-top: 48px;
     }
+
+    &:last-of-type {
+      padding-bottom: 124px;
+    }
   }
 
   &__bar-container {

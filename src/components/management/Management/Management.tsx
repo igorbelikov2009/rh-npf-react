@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import DarkIcon from "../../general/DarkIcon/DarkIcon";
 import MyLink, { IMyLink } from "../../ui/links/MyLink/MyLink";
+import SidebarLink, { ISidebarLink } from "../../ui/links/SidebarLink/SidebarLink";
 import AuditCommittee from "../AuditCommittee/AuditCommittee";
 import BoardOfDirectors from "../BoardOfDirectors/BoardOfDirectors";
 import ChiefAccountant from "../ChiefAccountant/ChiefAccountant";
@@ -35,20 +36,33 @@ const Management = () => {
   const [h07, setH07] = useState(0);
   const [scrollY, setScrollY] = useState(0);
 
-  const myLinks: IMyLink[] = [
-    { href: "#governingBody", children: "Правление" },
-    { href: "#boardOfDirectors", children: "Совет директоров" },
-    { href: "#team", children: "Команда" },
-    { href: "#auditCommittee", children: "Ревизионная комиссия" },
-    { href: "#chiefAccountant", children: "Главный бухгалтер" },
-    { href: "#controller", children: "Контролер" },
-    { href: "#generalMeetingOfShareholders", children: "Собрание акционеров" },
+  // const myLinks: IMyLink[] = [
+  //   { href: "#Правление", children: "Правление" },
+  //   { href: "#Совет директоров", children: "Совет директоров" },
+  //   { href: "#Команда", children: "Команда" },
+  //   { href: "#Ревизионная комиссия", children: "Ревизионная комиссия" },
+  //   { href: "#Главный бухгалтер", children: "Главный бухгалтер" },
+  //   { href: "#Контролер", children: "Контролер" },
+  //   { href: "#Собрание акционеров", children: "Собрание акционеров" },
+  // ];
+
+  const sidebarLinks: ISidebarLink[] = [
+    { itemName: "Правление", isActive: false },
+    { itemName: "Совет директоров", isActive: false },
+    { itemName: "Команда", isActive: false },
+    { itemName: "Ревизионная комиссия", isActive: false },
+    { itemName: "Главный бухгалтер", isActive: false },
+    { itemName: "Контролер", isActive: false },
+    { itemName: "Собрание акционеров", isActive: false },
   ];
 
   useEffect(() => {
     getTopBarContainer();
     changeStyleBarNav();
+
     document.addEventListener("scroll", scrollHandler);
+
+    // этот код срабатывает при размонтировании! Идеально подходит для нашего случая использования!
     return function () {
       document.removeEventListener("scroll", scrollHandler);
     };
@@ -150,31 +164,31 @@ const Management = () => {
     <section className="management">
       <div className="management__container">
         <div className="management__content">
-          <div className="management__department" id="governingBody" ref={block1}>
+          <div className="management__department" id="Правление" ref={block1}>
             <GoverningBody />
           </div>
 
-          <div className="management__department" id="boardOfDirectors" ref={block2}>
+          <div className="management__department" id="Совет директоров" ref={block2}>
             <BoardOfDirectors />
           </div>
 
-          <div className="management__department" id="team" ref={block3}>
+          <div className="management__department" id="Команда" ref={block3}>
             <Team />
           </div>
 
-          <div className="management__department" id="auditCommittee" ref={block4}>
+          <div className="management__department" id="Ревизионная комиссия" ref={block4}>
             <AuditCommittee />
           </div>
 
-          <div className="management__department" id="chiefAccountant" ref={block5}>
+          <div className="management__department" id="Главный бухгалтер" ref={block5}>
             <ChiefAccountant />
           </div>
 
-          <div className="management__department" id="controller" ref={block6}>
+          <div className="management__department" id="Контролер" ref={block6}>
             <Controller />
           </div>
 
-          <div className="management__department" id="generalMeetingOfShareholders" ref={block7}>
+          <div className="management__department" id="Собрание акционеров" ref={block7}>
             <GeneralMeetingOfShareholders />
           </div>
         </div>
@@ -185,8 +199,8 @@ const Management = () => {
               <DarkIcon icon="Arrow Down" />
             </div>
 
-            {myLinks.map((link, index) => (
-              <MyLink key={index} href={link.href} children={link.children} isActive={false} />
+            {sidebarLinks.map((link, index) => (
+              <SidebarLink key={index} itemName={link.itemName} isActive={link.isActive} />
             ))}
           </aside>
         </div>

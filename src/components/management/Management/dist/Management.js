@@ -2,7 +2,7 @@
 exports.__esModule = true;
 var react_1 = require("react");
 var DarkIcon_1 = require("../../general/DarkIcon/DarkIcon");
-var MyLink_1 = require("../../ui/links/MyLink/MyLink");
+var SidebarLink_1 = require("../../ui/links/SidebarLink/SidebarLink");
 var AuditCommittee_1 = require("../AuditCommittee/AuditCommittee");
 var BoardOfDirectors_1 = require("../BoardOfDirectors/BoardOfDirectors");
 var ChiefAccountant_1 = require("../ChiefAccountant/ChiefAccountant");
@@ -33,19 +33,29 @@ var Management = function () {
     var _l = react_1.useState(0), h06 = _l[0], setH06 = _l[1];
     var _m = react_1.useState(0), h07 = _m[0], setH07 = _m[1];
     var _o = react_1.useState(0), scrollY = _o[0], setScrollY = _o[1];
-    var myLinks = [
-        { href: "#governingBody", children: "Правление" },
-        { href: "#boardOfDirectors", children: "Совет директоров" },
-        { href: "#team", children: "Команда" },
-        { href: "#auditCommittee", children: "Ревизионная комиссия" },
-        { href: "#chiefAccountant", children: "Главный бухгалтер" },
-        { href: "#controller", children: "Контролер" },
-        { href: "#generalMeetingOfShareholders", children: "Собрание акционеров" },
+    // const myLinks: IMyLink[] = [
+    //   { href: "#Правление", children: "Правление" },
+    //   { href: "#Совет директоров", children: "Совет директоров" },
+    //   { href: "#Команда", children: "Команда" },
+    //   { href: "#Ревизионная комиссия", children: "Ревизионная комиссия" },
+    //   { href: "#Главный бухгалтер", children: "Главный бухгалтер" },
+    //   { href: "#Контролер", children: "Контролер" },
+    //   { href: "#Собрание акционеров", children: "Собрание акционеров" },
+    // ];
+    var sidebarLinks = [
+        { itemName: "Правление", isActive: false },
+        { itemName: "Совет директоров", isActive: false },
+        { itemName: "Команда", isActive: false },
+        { itemName: "Ревизионная комиссия", isActive: false },
+        { itemName: "Главный бухгалтер", isActive: false },
+        { itemName: "Контролер", isActive: false },
+        { itemName: "Собрание акционеров", isActive: false },
     ];
     react_1.useEffect(function () {
         getTopBarContainer();
         changeStyleBarNav();
         document.addEventListener("scroll", scrollHandler);
+        // этот код срабатывает при размонтировании! Идеально подходит для нашего случая использования!
         return function () {
             document.removeEventListener("scroll", scrollHandler);
         };
@@ -139,24 +149,24 @@ var Management = function () {
     return (react_1["default"].createElement("section", { className: "management" },
         react_1["default"].createElement("div", { className: "management__container" },
             react_1["default"].createElement("div", { className: "management__content" },
-                react_1["default"].createElement("div", { className: "management__department", id: "governingBody", ref: block1 },
+                react_1["default"].createElement("div", { className: "management__department", id: "\u041F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u0435", ref: block1 },
                     react_1["default"].createElement(GoverningBody_1["default"], null)),
-                react_1["default"].createElement("div", { className: "management__department", id: "boardOfDirectors", ref: block2 },
+                react_1["default"].createElement("div", { className: "management__department", id: "\u0421\u043E\u0432\u0435\u0442 \u0434\u0438\u0440\u0435\u043A\u0442\u043E\u0440\u043E\u0432", ref: block2 },
                     react_1["default"].createElement(BoardOfDirectors_1["default"], null)),
-                react_1["default"].createElement("div", { className: "management__department", id: "team", ref: block3 },
+                react_1["default"].createElement("div", { className: "management__department", id: "\u041A\u043E\u043C\u0430\u043D\u0434\u0430", ref: block3 },
                     react_1["default"].createElement(Team_1["default"], null)),
-                react_1["default"].createElement("div", { className: "management__department", id: "auditCommittee", ref: block4 },
+                react_1["default"].createElement("div", { className: "management__department", id: "\u0420\u0435\u0432\u0438\u0437\u0438\u043E\u043D\u043D\u0430\u044F \u043A\u043E\u043C\u0438\u0441\u0441\u0438\u044F", ref: block4 },
                     react_1["default"].createElement(AuditCommittee_1["default"], null)),
-                react_1["default"].createElement("div", { className: "management__department", id: "chiefAccountant", ref: block5 },
+                react_1["default"].createElement("div", { className: "management__department", id: "\u0413\u043B\u0430\u0432\u043D\u044B\u0439 \u0431\u0443\u0445\u0433\u0430\u043B\u0442\u0435\u0440", ref: block5 },
                     react_1["default"].createElement(ChiefAccountant_1["default"], null)),
-                react_1["default"].createElement("div", { className: "management__department", id: "controller", ref: block6 },
+                react_1["default"].createElement("div", { className: "management__department", id: "\u041A\u043E\u043D\u0442\u0440\u043E\u043B\u0435\u0440", ref: block6 },
                     react_1["default"].createElement(Controller_1["default"], null)),
-                react_1["default"].createElement("div", { className: "management__department", id: "generalMeetingOfShareholders", ref: block7 },
+                react_1["default"].createElement("div", { className: "management__department", id: "\u0421\u043E\u0431\u0440\u0430\u043D\u0438\u0435 \u0430\u043A\u0446\u0438\u043E\u043D\u0435\u0440\u043E\u0432", ref: block7 },
                     react_1["default"].createElement(GeneralMeetingOfShareholders_1["default"], null))),
             react_1["default"].createElement("div", { className: "management__bar-container", ref: refBbarContainer },
                 react_1["default"].createElement("aside", { className: barNavAbsolute ? "management__bar-nav_absolute" : "management__bar-nav_fixed" },
                     react_1["default"].createElement("div", { className: "management__bar-icon", style: { top: iconTop * 48 + "px" } },
                         react_1["default"].createElement(DarkIcon_1["default"], { icon: "Arrow Down" })),
-                    myLinks.map(function (link, index) { return (react_1["default"].createElement(MyLink_1["default"], { key: index, href: link.href, children: link.children, isActive: false })); }))))));
+                    sidebarLinks.map(function (link, index) { return (react_1["default"].createElement(SidebarLink_1["default"], { key: index, itemName: link.itemName, isActive: link.isActive })); }))))));
 };
 exports["default"] = Management;
