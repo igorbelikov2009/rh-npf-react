@@ -1,7 +1,6 @@
 .radio-secondary-label {
   cursor: pointer;
-  width: 64px;
-  height: 48px;
+  padding: 12px 24px;
   box-sizing: border-box;
   border-radius: 24px;
   display: flex;
@@ -38,8 +37,7 @@
 
 .radio-secondary-label_active {
   cursor: pointer;
-  width: 64px;
-  height: 48px;
+  padding: 12px 24px;
   box-sizing: border-box;
   border-radius: 24px;
   display: flex;

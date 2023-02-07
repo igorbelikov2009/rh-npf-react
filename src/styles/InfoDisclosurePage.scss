@@ -1,0 +1,18 @@
+.info-opening {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 24px;
+  font-style: normal;
+  color: #5a646e;
+  //
+  height: 100%;
+  overflow: hidden;
+
+  // info-opening__stop-scrolling
+  &__stop-scrolling {
+    height: 100%;
+    overflow: hidden;
+  }
+}
