@@ -16,7 +16,7 @@
   transition-property: color;
 }
 .link:hover {
-  color: #8967b1;
+  color: black;
 }
 @media screen and (min-width: 944px) {
   .link {
@@ -38,7 +38,7 @@
   display: inline;
   margin-right: 24px;
   margin-bottom: 0;
-  color: #8967b1;
+  color: black;
   transition: color 0.22s;
   transition-duration: 0.22s;
   transition-timing-function: ease;
