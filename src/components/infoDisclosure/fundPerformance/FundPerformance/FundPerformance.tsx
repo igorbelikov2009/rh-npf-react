@@ -1,8 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
+import AdaptiveRadio from "../../../ui/radios/AdaptiveRadio/AdaptiveRadio";
+import { IAdaptiveRadioItem } from "../../../ui/radios/AdaptiveRadioItem/AdaptiveRadioItem";
 import IndicatorsYear, { IIndicatorsYear } from "../IndicatorsYear/IndicatorsYear";
 import styles from "./FundPerformance.module.scss";
 
 const FundPerformance = () => {
+  const [radioValue, setRadioValue] = useState("2021");
+  const [idOptions, setIdOptions] = useState("0");
+  const [isRadioListVisible, setRadioListVisible] = useState(false);
+
+  const radioItems: IAdaptiveRadioItem[] = [
+    {
+      title: "2021",
+      value: "2021",
+      id: "0",
+    },
+    {
+      title: "2020",
+      value: "2020",
+      id: "1",
+    },
+    {
+      title: "2019",
+      value: "2019",
+      id: "2",
+    },
+    {
+      title: "2018",
+      value: "2018",
+      id: "3",
+    },
+    {
+      title: "2017",
+      value: "2017",
+      id: "4",
+    },
+  ];
   const fundIndicators: IIndicatorsYear[] = [
     {
       heading: "Показатели деятельности",
@@ -267,6 +300,12 @@ const FundPerformance = () => {
     },
   ];
 
+  const onChangeAdaptiveRadio = (value: string, id: string) => {
+    setRadioValue(value);
+    setIdOptions(id);
+    console.log(value, id);
+  };
+
   return (
     <section className={styles["fund-performance"]}>
       <div className={styles["fund-performance__container"]}>
@@ -287,7 +326,12 @@ const FundPerformance = () => {
           </div>
 
           <div className={styles["fund-performance__adaptive-radio"]}>
-            GuiAdaptiveRadio
+            <AdaptiveRadio
+              radioItems={radioItems}
+              currentValue={radioValue}
+              currentId={idOptions}
+              emitValue={onChangeAdaptiveRadio}
+            />
             {/* <GuiAdaptiveRadio
             :value="radioValue"
             :id="idOptions"
@@ -298,25 +342,16 @@ const FundPerformance = () => {
         </div>
 
         <div className={styles["fund-performance__list"]}>
-          {fundIndicators.map((item) => (
+          {fundIndicators.map((item, index) => (
             <IndicatorsYear
+              key={index}
               heading={item.heading}
               subheading={item.subheading}
               archiveLinks={item.archiveLinks}
               indicatorRows={item.indicatorRows}
-              isVisible={true}
+              isVisible={Number(idOptions) === index}
             />
           ))}
-
-          {/* <FundPerformanceIndicators
-          v-for="(fundIndicator, index) in fundIndicators"
-          :key="index"
-          :heading="fundIndicator.heading"
-          :subheading="fundIndicator.subheading"
-          :indicatorRows="fundIndicator.indicatorRows"
-          :archiveLinks="fundIndicator.archiveLinks"
-          :isVisible="idOptions === index"
-        /> */}
         </div>
       </div>
     </section>
