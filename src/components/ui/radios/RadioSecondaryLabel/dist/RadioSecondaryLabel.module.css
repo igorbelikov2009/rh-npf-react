@@ -8,12 +8,7 @@
   background-color: #b5bdc8;
   transition: background-color 0.5s;
 }
-.radio-secondary-label_active {
-  background-color: #50287d;
-  transition: all 0.5;
-}
 .radio-secondary-label:hover {
-  border: 2px solid #50287d;
   transition: all 0.5;
   opacity: 0.8;
 }
@@ -41,19 +36,9 @@
   transition: background-color 0.5s;
 }
 .radio-secondary-label_active:hover {
-  border: 2px solid #50287d;
   transition: all 0.5;
   opacity: 0.8;
 }
 .radio-secondary-label_active:hover .radio-secondary-label__title {
   opacity: 1;
-}
-.radio-secondary-label_active__field {
-  display: none;
-}
-.radio-secondary-label_active__title {
-  opacity: 0.7;
-  font-size: 16px;
-  color: #ffffff;
-  margin: auto;
 }

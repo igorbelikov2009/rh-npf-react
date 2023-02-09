@@ -10,20 +10,21 @@ var Graph_1 = require("../Graph/Graph");
 var PensionInfo_1 = require("../PensionInfo/PensionInfo");
 var Calc_module_scss_1 = require("./Calc.module.scss");
 var Calculator = function () {
-    var _a = react_1.useState("65"), genderValue = _a[0], setGenderValue = _a[1]; // гендерный возраст выхода на пенсию
-    var _b = react_1.useState("65"), ageMan = _b[0], setAgeMan = _b[1]; // возраст выхода на пенсию мужчины
-    var _c = react_1.useState("60"), ageWoman = _c[0], setAgeWoman = _c[1]; // возраст выхода на пенсию женщины
-    var _d = react_1.useState(30), ageValue = _d[0], setAgeValue = _d[1]; // текущий возраст
-    var _e = react_1.useState(65), ageSliderMax = _e[0], setAgeSliderMax = _e[1]; // устанавливаем атрибуты для ageSlider
-    var _f = react_1.useState(35), investmentTerm = _f[0], setInvestmentTerm = _f[1]; // срок инвестирования => investmentTerm
-    var _g = react_1.useState(1000), downPayment = _g[0], setDownPayment = _g[1]; // первичный взнос => downPayment
-    var _h = react_1.useState(5000), monthlyInstallment = _h[0], setMonthlyInstallment = _h[1]; // ежемесячный взнос => monthlyInstallment
-    var _j = react_1.useState(15), periodPaymentPension = _j[0], setPeriodPaymentPension = _j[1]; // срок выплат пенсии => periodPaymentPension
+    var _a = react_1.useState("65"), currentValue = _a[0], setCurrentValue = _a[1];
+    var _b = react_1.useState("65"), genderValue = _b[0], setGenderValue = _b[1]; // гендерный возраст выхода на пенсию
+    var _c = react_1.useState("65"), ageMan = _c[0], setAgeMan = _c[1]; // возраст выхода на пенсию мужчины
+    var _d = react_1.useState("60"), ageWoman = _d[0], setAgeWoman = _d[1]; // возраст выхода на пенсию женщины
+    var _e = react_1.useState(30), ageValue = _e[0], setAgeValue = _e[1]; // текущий возраст
+    var _f = react_1.useState(65), ageSliderMax = _f[0], setAgeSliderMax = _f[1]; // устанавливаем атрибуты для ageSlider
+    var _g = react_1.useState(35), investmentTerm = _g[0], setInvestmentTerm = _g[1]; // срок инвестирования => investmentTerm
+    var _h = react_1.useState(1000), downPayment = _h[0], setDownPayment = _h[1]; // первичный взнос => downPayment
+    var _j = react_1.useState(5000), monthlyInstallment = _j[0], setMonthlyInstallment = _j[1]; // ежемесячный взнос => monthlyInstallment
+    var _k = react_1.useState(15), periodPaymentPension = _k[0], setPeriodPaymentPension = _k[1]; // срок выплат пенсии => periodPaymentPension
     var yearPersent = 0.05; // годовой процент накопления => annualPercentage
-    var _k = react_1.useState(0), generalAccumValue = _k[0], setGeneralAccumValue = _k[1]; // общие накопления => generalSavings
-    var _l = react_1.useState(0), pensionValue = _l[0], setPensionValue = _l[1]; // размер выплаты пенсии => pension
-    var _m = react_1.useState(false), earlyRretirement = _m[0], setEarlyRretirement = _m[1]; // ускоренный выход на пенсию
-    var _o = react_1.useState(5), earlyRretirementPeriod = _o[0], setEarlyRretirementPeriod = _o[1]; // на сколько лет ускоренный выход на пенсию
+    var _l = react_1.useState(0), generalAccumValue = _l[0], setGeneralAccumValue = _l[1]; // общие накопления => generalSavings
+    var _m = react_1.useState(0), pensionValue = _m[0], setPensionValue = _m[1]; // размер выплаты пенсии => pension
+    var _o = react_1.useState(false), earlyRretirement = _o[0], setEarlyRretirement = _o[1]; // ускоренный выход на пенсию
+    var _p = react_1.useState(5), earlyRretirementPeriod = _p[0], setEarlyRretirementPeriod = _p[1]; // на сколько лет ускоренный выход на пенсию
     var radioItems = [
         { value: ageMan, title: "М", name: "gender" },
         { value: ageWoman, title: "Ж", name: "gender" },
@@ -118,15 +119,6 @@ var Calculator = function () {
         }
     }, [earlyRretirement]);
     react_1.useEffect(function () {
-        // console.log(genderValue); ///
-        // console.log(ageValue);
-        // // console.log(earlyRretirement);
-        // if (earlyRretirement) {
-        //   setEarlyRretirementPeriod(5);
-        // } else {
-        //   setEarlyRretirementPeriod(0);
-        // }
-        // //  console.log(earlyRretirementPeriod);
         setInvestmentTerm(Number(genderValue) - ageValue - earlyRretirementPeriod);
         // console.log("investmentTerm :" + investmentTerm);
         // console.log("downPayment :" + downPayment);
@@ -180,7 +172,7 @@ var Calculator = function () {
                         react_1["default"].createElement("form", { className: Calc_module_scss_1["default"]["slider-block"] },
                             react_1["default"].createElement("div", { className: Calc_module_scss_1["default"]["slider-block__age"] },
                                 react_1["default"].createElement("div", { className: Calc_module_scss_1["default"]["slider-block__switch"] },
-                                    react_1["default"].createElement(RadioSecondary_1["default"], { radioItems: radioItems, emitValue: onChangeGenderRadio })),
+                                    react_1["default"].createElement(RadioSecondary_1["default"], { radioItems: radioItems, emitValue: onChangeGenderRadio, currentValue: currentValue })),
                                 react_1["default"].createElement(Slider_1["default"], { title: ageSlider.title, name: ageSlider.name, min: ageSlider.min, max: ageSlider.max, step: ageSlider.step, value: ageSlider.value, emitValue: ageSliderHandler })),
                             react_1["default"].createElement("div", null,
                                 react_1["default"].createElement(Slider_1["default"], { title: downPaymentSlider.title, name: downPaymentSlider.name, min: downPaymentSlider.min, max: downPaymentSlider.max, step: downPaymentSlider.step, value: downPaymentSlider.value, emitValue: downPaymentSliderHandler }),

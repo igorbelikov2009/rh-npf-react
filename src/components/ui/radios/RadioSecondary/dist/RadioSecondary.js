@@ -4,8 +4,8 @@ var react_1 = require("react");
 var RadioSecondaryLabel_1 = require("../RadioSecondaryLabel/RadioSecondaryLabel");
 var RadioSecondary_module_scss_1 = require("./RadioSecondary.module.scss");
 var RadioSecondary = function (_a) {
-    var radioItems = _a.radioItems, emitValue = _a.emitValue;
-    var _b = react_1.useState("65"), valueRadio = _b[0], setValueRadio = _b[1];
+    var radioItems = _a.radioItems, emitValue = _a.emitValue, currentValue = _a.currentValue;
+    var _b = react_1.useState(currentValue), valueRadio = _b[0], setValueRadio = _b[1];
     var onChangeRadio = function (value) {
         setValueRadio(value);
         if (valueRadio) {

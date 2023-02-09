@@ -10,6 +10,7 @@ import PensionInfo from "../PensionInfo/PensionInfo";
 import styles from "./Calc.module.scss";
 
 const Calculator: FC = () => {
+  const [currentValue, setCurrentValue] = useState("65");
   const [genderValue, setGenderValue] = useState<string>("65"); // гендерный возраст выхода на пенсию
   const [ageMan, setAgeMan] = useState("65"); // возраст выхода на пенсию мужчины
   const [ageWoman, setAgeWoman] = useState("60"); // возраст выхода на пенсию женщины
@@ -122,18 +123,6 @@ const Calculator: FC = () => {
   }, [earlyRretirement]);
 
   useEffect(() => {
-    // console.log(genderValue); ///
-
-    // console.log(ageValue);
-
-    // // console.log(earlyRretirement);
-    // if (earlyRretirement) {
-    //   setEarlyRretirementPeriod(5);
-    // } else {
-    //   setEarlyRretirementPeriod(0);
-    // }
-    // //  console.log(earlyRretirementPeriod);
-
     setInvestmentTerm(Number(genderValue) - ageValue - earlyRretirementPeriod);
 
     // console.log("investmentTerm :" + investmentTerm);
@@ -199,7 +188,11 @@ const Calculator: FC = () => {
               <form className={styles["slider-block"]}>
                 <div className={styles["slider-block__age"]}>
                   <div className={styles["slider-block__switch"]}>
-                    <RadioSecondary radioItems={radioItems} emitValue={onChangeGenderRadio} />
+                    <RadioSecondary
+                      radioItems={radioItems}
+                      emitValue={onChangeGenderRadio}
+                      currentValue={currentValue}
+                    />
                   </div>
                   <Slider
                     title={ageSlider.title}

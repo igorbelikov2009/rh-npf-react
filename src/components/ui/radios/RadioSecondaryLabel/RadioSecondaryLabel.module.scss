@@ -8,13 +8,7 @@
   background-color: #b5bdc8;
   transition: background-color 0.5s;
 
-  &_active {
-    background-color: #50287d;
-    transition: all 0.5;
-  }
-
   &:hover {
-    border: 2px solid #50287d;
     transition: all 0.5;
     opacity: 0.8;
   }
@@ -46,23 +40,11 @@
   transition: background-color 0.5s;
 
   &:hover {
-    border: 2px solid #50287d;
     transition: all 0.5;
     opacity: 0.8;
   }
 
   &:hover .radio-secondary-label__title {
     opacity: 1;
-  }
-
-  &__field {
-    display: none;
-  }
-
-  &__title {
-    opacity: 0.7;
-    font-size: 16px;
-    color: #ffffff;
-    margin: auto;
   }
 }

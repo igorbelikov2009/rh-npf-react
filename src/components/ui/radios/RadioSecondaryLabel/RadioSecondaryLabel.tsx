@@ -10,8 +10,7 @@ export interface RadioLabelProps {
 }
 
 const RadioSecondaryLabel: FC<RadioLabelProps> = ({ value, title, name, isActive, emitValue }) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [valueRadio, setValueRadio] = useState<string>();
+  const [, setValueRadio] = useState<string>();
 
   const radioHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(event.target.value);

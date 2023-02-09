@@ -11,10 +11,11 @@ export interface RadioItemProps {
 export interface RadioProps {
   radioItems: RadioItemProps[];
   emitValue: (event: React.SetStateAction<string>) => void;
+  currentValue: string;
 }
 
-const RadioSecondary: FC<RadioProps> = ({ radioItems, emitValue }) => {
-  const [valueRadio, setValueRadio] = useState<SetStateAction<string>>("65");
+const RadioSecondary: FC<RadioProps> = ({ radioItems, emitValue, currentValue }) => {
+  const [valueRadio, setValueRadio] = useState<SetStateAction<string>>(currentValue);
 
   const onChangeRadio = (value: SetStateAction<string>) => {
     setValueRadio(value);
