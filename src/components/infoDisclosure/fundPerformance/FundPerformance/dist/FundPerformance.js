@@ -244,6 +244,8 @@ var FundPerformance = function () {
             ]
         },
         {
+            heading: "Показатели деятельности",
+            subheading: "2017",
             archiveLinks: [
                 {
                     href: "/pdf/infoOpening/indexArchive/Finacial_data_and_performance_indicators_17-1576673962838.pdf",
