@@ -2,6 +2,7 @@
 exports.__esModule = true;
 var react_1 = require("react");
 var AdaptiveRadio_1 = require("../../../ui/radios/AdaptiveRadio/AdaptiveRadio");
+var RadioList_1 = require("../../../ui/radios/radioList/RadioList/RadioList");
 var IndicatorsYear_1 = require("../IndicatorsYear/IndicatorsYear");
 var FundPerformance_module_scss_1 = require("./FundPerformance.module.scss");
 var FundPerformance = function () {
@@ -294,7 +295,8 @@ var FundPerformance = function () {
         react_1["default"].createElement("div", { className: FundPerformance_module_scss_1["default"]["fund-performance__container"] },
             react_1["default"].createElement("h1", { className: FundPerformance_module_scss_1["default"]["fund-performance__heading"] }, "\u041F\u043E\u043A\u0430\u0437\u0430\u0442\u0435\u043B\u0438 \u0434\u0435\u044F\u0442\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u0438 \u0444\u043E\u043D\u0434\u0430"),
             react_1["default"].createElement("div", { className: FundPerformance_module_scss_1["default"]["fund-performance__flex-container"] },
-                react_1["default"].createElement("div", { className: FundPerformance_module_scss_1["default"]["fund-performance__select"] }, "GuiRadioList"),
+                react_1["default"].createElement("div", { className: FundPerformance_module_scss_1["default"]["fund-performance__select"] },
+                    react_1["default"].createElement(RadioList_1["default"], { currentId: idOptions, currentValue: radioValue, radioItems: radioItems, isRadioListVisible: isRadioListVisible })),
                 react_1["default"].createElement("div", { className: FundPerformance_module_scss_1["default"]["fund-performance__adaptive-radio"] },
                     react_1["default"].createElement(AdaptiveRadio_1["default"], { radioItems: radioItems, currentValue: radioValue, currentId: idOptions, emitValue: onChangeAdaptiveRadio }))),
             react_1["default"].createElement("div", { className: FundPerformance_module_scss_1["default"]["fund-performance__list"] }, fundIndicators.map(function (item, index) { return (react_1["default"].createElement(IndicatorsYear_1["default"], { key: index, heading: item.heading, subheading: item.subheading, archiveLinks: item.archiveLinks, indicatorRows: item.indicatorRows, isVisible: Number(idOptions) === index })); })))));
