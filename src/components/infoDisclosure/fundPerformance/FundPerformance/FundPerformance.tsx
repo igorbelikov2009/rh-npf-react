@@ -316,7 +316,6 @@ const FundPerformance = () => {
   const onClickRadioListBlock = () => {
     setRadioListVisible(false);
   };
-  console.log(currentValue, idOptions);
 
   return (
     <section className={styles["fund-performance"]}>

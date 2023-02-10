@@ -5,7 +5,7 @@ import NotificsContent, { INotificsContent } from "../NotificsContent/NotificsCo
 import styles from "./Notifics.module.scss";
 
 const Notifics: FC = () => {
-  const [currentValue, setCurrentValue] = useState("2021");
+  const [currentValue, setCurrentValue] = useState("0");
 
   const contents: INotificsContent[] = [
     {
@@ -27,16 +27,14 @@ const Notifics: FC = () => {
         "НПФ «БЛАГОСОСТОЯНИЕ ЭМЭНСИ» заключил договор доверительного управления пенсионными резервами № 250518/1 от 25 мая 2018 года с Акционерным обществом «Управляющая компания «СПУТНИК-УПРАВЛЕНИЕ КАПИТАЛОМ» (лицензия № 21-000-1-00054 от 3 декабря 2001 года).",
     },
   ];
-  const radioItems: IRadioCircleItem[] = [
-    { title: "2021", value: "2021" },
-    { title: "2020", value: "2020" },
-    { title: "2018", value: "2018" },
-  ];
+
+  const radioItems: IRadioCircleItem[] = contents
+    .map((item) => new Date(item.date).getFullYear())
+    .map((item, index) => ({ title: String(item), value: String(index) }));
 
   const onChangeRadio = (value: string) => {
     setCurrentValue(value);
   };
-  console.log(currentValue);
 
   return (
     <section className={styles["notifics"]}>
@@ -49,7 +47,7 @@ const Notifics: FC = () => {
 
         <div className={styles["notifics__content"]}>
           {contents.map((content, index) => (
-            <NotificsContent key={index} content={content} isVisible />
+            <NotificsContent key={index} content={content} isVisible={Number(currentValue) === index} />
           ))}
         </div>
       </div>

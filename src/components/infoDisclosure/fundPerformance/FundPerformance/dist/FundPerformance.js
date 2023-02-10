@@ -300,7 +300,6 @@ var FundPerformance = function () {
     var onClickRadioListBlock = function () {
         setRadioListVisible(false);
     };
-    console.log(currentValue, idOptions);
     return (react_1["default"].createElement("section", { className: FundPerformance_module_scss_1["default"]["fund-performance"] },
         react_1["default"].createElement("div", { className: FundPerformance_module_scss_1["default"]["fund-performance__container"] },
             react_1["default"].createElement("h1", { className: FundPerformance_module_scss_1["default"]["fund-performance__heading"] }, "\u041F\u043E\u043A\u0430\u0437\u0430\u0442\u0435\u043B\u0438 \u0434\u0435\u044F\u0442\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u0438 \u0444\u043E\u043D\u0434\u0430"),
