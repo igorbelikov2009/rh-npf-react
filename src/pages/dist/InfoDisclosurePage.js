@@ -11,12 +11,27 @@ var Notifics_1 = require("../components/infoDisclosure/notifics/Notifics/Notific
 var SpecDepository_1 = require("../components/infoDisclosure/specDepository/SpecDepository/SpecDepository");
 var ManagementCompanies_1 = require("../components/infoDisclosure/ManagementCompanies/ManagementCompanies");
 var Other_1 = require("../components/infoDisclosure/Other/Other");
+var HidingArchive_1 = require("../components/infoDisclosure/hidingArchive/HidingArchive/HidingArchive");
 var InfoDisclosurePage = function () {
+    var _a = react_1.useState(true), isHidingArchiveVisible = _a[0], setHidingArchiveVisible = _a[1]; // false
+    var _b = react_1.useState(true), isArchiveShareholdersVisible = _b[0], setArchiveShareholdersVisible = _b[1]; // false
+    var _c = react_1.useState(false), isArchivePensionVisible = _c[0], setArchivePensionVisible = _c[1]; // false
+    var _d = react_1.useState(false), isArchiveReportingVisible = _d[0], setArchiveReportingVisible = _d[1]; // false
+    var _e = react_1.useState(false), isArchiveAssetValueRulesVisible = _e[0], setArchiveAssetValueRulesVisible = _e[1]; // false
+    var onClickHidingArchive = function () {
+        setHidingArchiveVisible(false);
+        setArchiveShareholdersVisible(false);
+        setArchivePensionVisible(false);
+        setArchiveReportingVisible(false);
+        setArchiveAssetValueRulesVisible(false);
+        document.body.style.overflow = "";
+    };
     return (react_1["default"].createElement(react_1["default"].Fragment, null,
         react_1["default"].createElement(TopBlock_1["default"], { heading: "\u0420\u0430\u0441\u043A\u0440\u044B\u0442\u0438\u0435 \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u0438", image: infoTop_jpg_1["default"] }),
         react_1["default"].createElement(GeneralInfo_1["default"], null),
         react_1["default"].createElement(FundPerformance_1["default"], null),
         react_1["default"].createElement(DocumentsOfTitle_1["default"], null),
+        react_1["default"].createElement(HidingArchive_1["default"], { isVisible: isHidingArchiveVisible, isArchiveShareholdersVisible: isArchiveShareholdersVisible, isArchivePensionVisible: isArchivePensionVisible, isArchiveReportingVisible: isArchiveReportingVisible, isArchiveAssetValueRulesVisible: isArchiveAssetValueRulesVisible, onClickHidingArchive: onClickHidingArchive }),
         react_1["default"].createElement(Other_1["default"], null),
         react_1["default"].createElement(ManagementCompanies_1["default"], null),
         react_1["default"].createElement(SpecDepository_1["default"], null),
