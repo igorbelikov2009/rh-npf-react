@@ -304,7 +304,6 @@ const FundPerformance = () => {
   const onChangeAdaptiveRadio = (value: string, id: string) => {
     setRadioValue(value);
     setIdOptions(id);
-    console.log(value, id);
   };
 
   const onClickController = () => {
@@ -338,12 +337,7 @@ const FundPerformance = () => {
           </div>
 
           <div className={styles["fund-performance__adaptive-radio"]}>
-            <AdaptiveRadio
-              radioItems={radioItems}
-              currentValue={radioValue}
-              currentId={idOptions}
-              emitValue={onChangeAdaptiveRadio}
-            />
+            <AdaptiveRadio radioItems={radioItems} currentValue={radioValue} emitValue={onChangeAdaptiveRadio} />
           </div>
         </div>
 

@@ -1,4 +1,4 @@
-import React, { FC, SetStateAction, useState } from "react";
+import React, { FC } from "react";
 import AdaptiveRadioItem, { IAdaptiveRadioItem } from "../AdaptiveRadioItem/AdaptiveRadioItem";
 import styles from "./AdaptiveRadio.module.scss";
 
@@ -6,16 +6,10 @@ interface AdaptiveRadioProps {
   radioItems: IAdaptiveRadioItem[];
   emitValue: (event: any, id: string) => void;
   currentValue: string;
-  currentId: string;
 }
 
-const AdaptiveRadio: FC<AdaptiveRadioProps> = ({ radioItems, currentValue, emitValue, currentId }) => {
-  const [valueRadio, setValueRadio] = useState<SetStateAction<string>>(currentValue);
-  const [, setIdOption] = useState(currentId);
-
+const AdaptiveRadio: FC<AdaptiveRadioProps> = ({ radioItems, currentValue, emitValue }) => {
   const onChangeRadio = (value: React.SetStateAction<string>, id: string) => {
-    setValueRadio(value);
-    setIdOption(id);
     emitValue(value, id);
   };
 
@@ -28,7 +22,7 @@ const AdaptiveRadio: FC<AdaptiveRadioProps> = ({ radioItems, currentValue, emitV
           value={item.value}
           id={item.id}
           name={item.name}
-          isActive={item.value === valueRadio}
+          isActive={item.value === currentValue}
           emitValue={onChangeRadio}
         />
       ))}

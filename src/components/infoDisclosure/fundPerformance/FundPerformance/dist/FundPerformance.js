@@ -289,7 +289,6 @@ var FundPerformance = function () {
     var onChangeAdaptiveRadio = function (value, id) {
         setRadioValue(value);
         setIdOptions(id);
-        console.log(value, id);
     };
     var onClickController = function () {
         setRadioListVisible(function (prev) { return !prev; });
@@ -309,7 +308,7 @@ var FundPerformance = function () {
                 react_1["default"].createElement("div", { className: FundPerformance_module_scss_1["default"]["fund-performance__select"] },
                     react_1["default"].createElement(RadioList_1["default"], { currentId: idOptions, currentValue: radioValue, radioItems: radioItems, isRadioListVisible: isRadioListVisible, onClickController: onClickController, emitOnChangeRadioListBlock: onChangeRadioListBlock, emitOnClickRadioListBlock: onClickRadioListBlock })),
                 react_1["default"].createElement("div", { className: FundPerformance_module_scss_1["default"]["fund-performance__adaptive-radio"] },
-                    react_1["default"].createElement(AdaptiveRadio_1["default"], { radioItems: radioItems, currentValue: radioValue, currentId: idOptions, emitValue: onChangeAdaptiveRadio }))),
+                    react_1["default"].createElement(AdaptiveRadio_1["default"], { radioItems: radioItems, currentValue: radioValue, emitValue: onChangeAdaptiveRadio }))),
             react_1["default"].createElement("div", { className: FundPerformance_module_scss_1["default"]["fund-performance__list"] }, fundIndicators.map(function (item, index) { return (react_1["default"].createElement(IndicatorsYear_1["default"], { key: index, heading: item.heading, subheading: item.subheading, archiveLinks: item.archiveLinks, indicatorRows: item.indicatorRows, isVisible: Number(idOptions) === index })); })))));
 };
 exports["default"] = FundPerformance;

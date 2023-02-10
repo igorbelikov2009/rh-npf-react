@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import styles from "./AdaptiveRadioItem.module.scss";
 
 export interface IAdaptiveRadioItem {
@@ -18,13 +18,8 @@ interface AdaptiveRadioItemProps {
 }
 
 const AdaptiveRadioItem: FC<AdaptiveRadioItemProps> = ({ value, id, title, name, isActive, emitValue }) => {
-  const [, setValueRadio] = useState<string>();
-
-  // React.ChangeEvent<HTMLInputElement>
   const radioHandler = (event: any) => {
-    setValueRadio(event.target.value);
     emitValue(event.target.value, id);
-    // console.log(event.target.value, id);
   };
 
   return (
