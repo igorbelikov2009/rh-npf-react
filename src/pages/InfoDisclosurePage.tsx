@@ -4,6 +4,8 @@ import infoImage from "../assets/images/info/infoTop.jpg";
 import GeneralInfo from "../components/infoDisclosure/GeneralInfo/GeneralInfo";
 import "../styles/dist/InfoDisclosurePage.css";
 import FundPerformance from "../components/infoDisclosure/fundPerformance/FundPerformance/FundPerformance";
+import DocumentsOfTitle from "../components/infoDisclosure/DocumentsOfTitle/DocumentsOfTitle";
+import Notifics from "../components/infoDisclosure/notifics/Notifics/Notifics";
 
 const InfoDisclosurePage: FC = () => {
   return (
@@ -11,6 +13,8 @@ const InfoDisclosurePage: FC = () => {
       <TopBlock heading="Раскрытие информации" image={infoImage} />
       <GeneralInfo />
       <FundPerformance />
+      <DocumentsOfTitle />
+      <Notifics />
     </>
   );
 };
