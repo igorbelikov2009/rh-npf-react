@@ -6,6 +6,7 @@ import "../styles/dist/InfoDisclosurePage.css";
 import FundPerformance from "../components/infoDisclosure/fundPerformance/FundPerformance/FundPerformance";
 import DocumentsOfTitle from "../components/infoDisclosure/DocumentsOfTitle/DocumentsOfTitle";
 import Notifics from "../components/infoDisclosure/notifics/Notifics/Notifics";
+import SpecDepository from "../components/infoDisclosure/specDepository/SpecDepository/SpecDepository";
 
 const InfoDisclosurePage: FC = () => {
   return (
@@ -14,6 +15,7 @@ const InfoDisclosurePage: FC = () => {
       <GeneralInfo />
       <FundPerformance />
       <DocumentsOfTitle />
+      <SpecDepository />
       <Notifics />
     </>
   );
