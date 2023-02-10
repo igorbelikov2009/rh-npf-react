@@ -307,6 +307,18 @@ const FundPerformance = () => {
     console.log(value, id);
   };
 
+  const onClickController = () => {
+    setRadioListVisible((prev) => !prev);
+  };
+  const onChangeRadioListBlock = (value: React.SetStateAction<string>, id: string) => {
+    setRadioValue(value);
+    setIdOptions(id);
+  };
+  const onClickRadioListBlock = () => {
+    setRadioListVisible(false);
+  };
+  console.log(radioValue, idOptions);
+
   return (
     <section className={styles["fund-performance"]}>
       <div className={styles["fund-performance__container"]}>
@@ -319,16 +331,10 @@ const FundPerformance = () => {
               currentValue={radioValue}
               radioItems={radioItems}
               isRadioListVisible={isRadioListVisible}
+              onClickController={onClickController}
+              emitOnChangeRadioListBlock={onChangeRadioListBlock}
+              emitOnClickRadioListBlock={onClickRadioListBlock}
             />
-            {/* <GuiRadioList
-            :value="radioValue"
-            :id="idOptions"
-            :isRadioListVisible="ifRadioListVisible"
-            :radioListElements="radioElements"
-            @onClickRadioListController="onClickRadioListController"
-            @onChangeRadioListBlock="onChangeRadioListBlock"
-            @onClickRadioListBlock="onClickRadioListBlock"
-          /> */}
           </div>
 
           <div className={styles["fund-performance__adaptive-radio"]}>
@@ -338,12 +344,6 @@ const FundPerformance = () => {
               currentId={idOptions}
               emitValue={onChangeAdaptiveRadio}
             />
-            {/* <GuiAdaptiveRadio
-            :value="radioValue"
-            :id="idOptions"
-            :radioElements="radioElements"
-            @onChangeAdaptiveRadio="onChangeAdaptiveRadio"
-          /> */}
           </div>
         </div>
 

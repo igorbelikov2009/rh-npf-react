@@ -1,46 +1,54 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import { IAdaptiveRadioItem } from "../../AdaptiveRadioItem/AdaptiveRadioItem";
 import RadioListController from "../RadioListController/RadioListController";
-import "./RadioList.scss";
+import RadioListOptionBlock from "../RadioListOptionBlock/RadioListOptionBlock";
+import styles from "./RadioList.module.scss";
 
 export interface RadioListProps {
-  // title: string
-  // value: string
-  // id: string
   isRadioListVisible: boolean;
   radioItems: IAdaptiveRadioItem[];
   currentValue: string;
   currentId: string;
+  onClickController: () => void;
+  emitOnChangeRadioListBlock: (value: React.SetStateAction<string>, id: string) => void;
+  emitOnClickRadioListBlock: () => void;
 }
 
-const RadioList: FC<RadioListProps> = ({ isRadioListVisible, radioItems, currentValue, currentId }) => {
-  const [radioValue, setRadioValue] = useState(currentValue);
-  const [id, setId] = useState(currentId);
+const RadioList: FC<RadioListProps> = ({
+  isRadioListVisible,
+  radioItems,
+  currentValue,
+  currentId,
+  onClickController,
+  emitOnChangeRadioListBlock,
+  emitOnClickRadioListBlock,
+}) => {
+  const onClickRadioListController = () => {
+    onClickController();
+  };
 
-  const onClickRadioListController = () => {};
+  const onChangeRadioListBlock = (value: React.SetStateAction<string>, id: string) => {
+    emitOnChangeRadioListBlock(value, id);
+  };
+  const onClickRadioListBlock = () => {
+    emitOnClickRadioListBlock();
+  };
 
   return (
-    <div className="gui-radio-list">
+    <div className={styles["list"]}>
       <RadioListController
-        value={radioValue}
+        value={currentValue}
         isVisible={isRadioListVisible}
         onClickController={onClickRadioListController}
       />
-      {/* <GuiRadioListController
-      :value="radioValue"
-      :ifRadioListVisible="isRadioListVisible"
-      :radioListElements="radioListElements"
-      @onClickRadioListController="onClickRadioListController"
-    /> */}
 
-      <div
-        className={isRadioListVisible ? "gui-radio-list__select-options_show" : "gui-radio-list__select-options_hide"}
-      >
-        {/* <GuiRadioListOptionBlock
-        :radioListElements="radioListElements"
-        @onChangeRadioListBlock="onChangeRadioListBlock"
-        @onClickRadioListBlock="onClickRadioListBlock"
-      /> */}
+      <div className={isRadioListVisible ? styles["select-options_show"] : styles["select-options_hide"]}>
+        <RadioListOptionBlock
+          radioItems={radioItems}
+          currentValue={currentValue}
+          emitValue={onChangeRadioListBlock}
+          onClickOptionsBlock={onClickRadioListBlock}
+        />
       </div>
     </div>
   );
