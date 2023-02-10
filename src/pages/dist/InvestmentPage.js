@@ -13,7 +13,7 @@ var CompositionReserves_1 = require("../components/investment/compositionReserve
 var InvestmentPage = function () {
     var _a = react_1.useState(0), clientHeight = _a[0], setClientHeight = _a[1];
     // firstSelectController
-    var _b = react_1.useState("30 November 2021 г."), firstSelectionValue = _b[0], setFirstSelectionValue = _b[1];
+    var _b = react_1.useState("2021-11-30T09:00:00.000Z"), firstCurrentValue = _b[0], setFirstCurrentValue = _b[1];
     var _c = react_1.useState(0), setFirstControllerTop = _c[1];
     var _d = react_1.useState(0), firstControllerBottom = _d[0], setFirstControllerBottom = _d[1];
     var _e = react_1.useState(0), firstControllerLeft = _e[0], setFirstControllerLeft = _e[1];
@@ -24,7 +24,7 @@ var InvestmentPage = function () {
     var _j = react_1.useState(0), firstBlockTop = _j[0], setFirstBlockTop = _j[1];
     var _k = react_1.useState(false), firstBlockVisible = _k[0], setFirstBlockVisible = _k[1];
     // secondSelectController
-    var _l = react_1.useState("30 November 2021 г."), secondSelectionValue = _l[0], setSecondSelectionValue = _l[1];
+    var _l = react_1.useState("2021-11-30T09:00:00.000Z"), secondCurrentValue = _l[0], setSecondCurrentValue = _l[1];
     var _m = react_1.useState(0), setSecondControllerTop = _m[1];
     var _o = react_1.useState(0), secondControllerBottom = _o[0], setSecondControllerBottom = _o[1];
     var _p = react_1.useState(0), secondControllerLeft = _p[0], setSecondControllerLeft = _p[1];
@@ -253,14 +253,14 @@ var InvestmentPage = function () {
         setSecondBlockVisible(false);
     };
     // получаем изменения выбранного значения из first OptionsBlock
-    var onChangeFirstOptionsBlock = function (selectionValue, idOption) {
-        setFirstSelectionValue(selectionValue);
-        setFirstBlockIdOption(idOption);
+    var onChangeFirstOptionsBlock = function (value, id) {
+        setFirstCurrentValue(value);
+        setFirstBlockIdOption(id);
     };
     // получаем изменения выбранного значения из Second OptionsBlock
-    var onChangeSecondOptionsBlock = function (selectionValue, idOption) {
-        setSecondSelectionValue(selectionValue);
-        setSecondBlockIdOption(idOption);
+    var onChangeSecondOptionsBlock = function (value, id) {
+        setSecondCurrentValue(value);
+        setSecondBlockIdOption(id);
     };
     // Функция получения высоты окна браузера.
     var getClientHeight = function () {
@@ -292,8 +292,8 @@ var InvestmentPage = function () {
     return (react_1["default"].createElement(react_1["default"].Fragment, null,
         react_1["default"].createElement(TopBlock_1["default"], { heading: "\u0418\u043D\u0432\u0435\u0441\u0442\u0438\u0446\u0438\u043E\u043D\u043D\u0430\u044F", headingSpan: "\u0434\u0435\u044F\u0442\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u044C", subheading: "\u0410\u041E \u041D\u041F\u0424 \u00AB\u0420\u0435\u043D\u0435\u0441\u0441\u0430\u043D\u0441 \u043F\u0435\u043D\u0441\u0438\u0438\u00BB \u043E\u0441\u0443\u0449\u0435\u0441\u0442\u0432\u043B\u044F\u0435\u0442 \u0438\u043D\u0432\u0435\u0441\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435 \u043F\u0435\u043D\u0441\u0438\u043E\u043D\u043D\u044B\u0445 \u0440\u0435\u0437\u0435\u0440\u0432\u043E\u0432 \u0432 \u0438\u043D\u0442\u0435\u0440\u0435\u0441\u0430\u0445 \u0443\u0447\u0430\u0441\u0442\u043D\u0438\u043A\u043E\u0432 \u0424\u043E\u043D\u0434\u0430 \u043D\u0430 \u043F\u0440\u0438\u043D\u0446\u0438\u043F\u0430\u0445 \u0441\u043E\u0445\u0440\u0430\u043D\u043D\u043E\u0441\u0442\u0438 \u0438 \u043D\u0430\u0434\u0435\u0436\u043D\u043E\u0441\u0442\u0438, \u0432 \u0441\u043E\u043E\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0438\u0438 \u0441 \u0434\u0435\u0439\u0441\u0442\u0432\u0443\u044E\u0449\u0438\u043C \u0437\u0430\u043A\u043E\u043D\u043E\u0434\u0430\u0442\u0435\u043B\u044C\u0441\u0442\u0432\u043E\u043C \u0420\u0424 \u0438 \u043A\u043E\u0440\u043F\u043E\u0440\u0430\u0442\u0438\u0432\u043D\u043E\u0439 \u0438\u043D\u0432\u0435\u0441\u0442\u0438\u0446\u0438\u043E\u043D\u043D\u043E\u0439 \u043F\u043E\u043B\u0438\u0442\u0438\u043A\u043E\u0439", image: InvestTop_jpg_1["default"] }),
         react_1["default"].createElement(Cards_1["default"], { cards: cards }),
-        react_1["default"].createElement(PortfolioStructure_1["default"], { ifPressed: firstBlockVisible, controllerValue: firstSelectionValue, idOption: firstBlockIdOption, onClickController: onClickFirstSelectController, emitCoords: onScrollPortfolioStructure, emitControllerBottomLeft: getFirstControllerBottomLeft }),
-        react_1["default"].createElement(CompositionReserves_1["default"], { ifPressed: secondBlockVisible, controllerValue: secondSelectionValue, idOption: secondBlockIdOption, onClickController: onClickSecondSelectController, emitCoords: onScrollCompositionReserves, emitControllerBottomLeft: getSecondControllerBottomLeft }),
+        react_1["default"].createElement(PortfolioStructure_1["default"], { ifPressed: firstBlockVisible, controllerValue: firstCurrentValue, idOption: firstBlockIdOption, onClickController: onClickFirstSelectController, emitCoords: onScrollPortfolioStructure, emitControllerBottomLeft: getFirstControllerBottomLeft }),
+        react_1["default"].createElement(CompositionReserves_1["default"], { ifPressed: secondBlockVisible, controllerValue: secondCurrentValue, idOption: secondBlockIdOption, onClickController: onClickSecondSelectController, emitCoords: onScrollCompositionReserves, emitControllerBottomLeft: getSecondControllerBottomLeft }),
         react_1["default"].createElement(InvestmentArchive_1["default"], null),
         react_1["default"].createElement(InvestmentDescription_1["default"], null),
         react_1["default"].createElement("div", { ref: refFirstSelectBlock, style: {
@@ -301,12 +301,12 @@ var InvestmentPage = function () {
                 left: firstControllerLeft + 6 + "px",
                 width: firstControllerWidth - 12 + "px"
             }, className: firstBlockVisible ? "options-block-visible" : "options-block-hidden" },
-            react_1["default"].createElement(OptionsBlock_1["default"], { arrayOptionsBlock: ArrayOptionsBlock, emitValue: onChangeFirstOptionsBlock, onClickOptionsBlock: onClickFirstOptionsBlock })),
+            react_1["default"].createElement(OptionsBlock_1["default"], { arrayOptionsBlock: ArrayOptionsBlock, emitValue: onChangeFirstOptionsBlock, onClickOptionsBlock: onClickFirstOptionsBlock, currentValue: firstCurrentValue })),
         react_1["default"].createElement("div", { style: {
                 top: secondBlockTop + "px",
                 left: secondControllerLeft + 6 + "px",
                 width: secondControllerWidth - 12 + "px"
             }, className: secondBlockVisible ? "options-block-visible" : "options-block-hidden" },
-            react_1["default"].createElement(OptionsBlock_1["default"], { arrayOptionsBlock: ArrayOptionsBlock, emitValue: onChangeSecondOptionsBlock, onClickOptionsBlock: onClickSecondOptionsBlock }))));
+            react_1["default"].createElement(OptionsBlock_1["default"], { arrayOptionsBlock: ArrayOptionsBlock, emitValue: onChangeSecondOptionsBlock, onClickOptionsBlock: onClickSecondOptionsBlock, currentValue: secondCurrentValue }))));
 };
 exports["default"] = InvestmentPage;

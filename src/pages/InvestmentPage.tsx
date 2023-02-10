@@ -14,7 +14,7 @@ const InvestmentPage: FC = () => {
   const [clientHeight, setClientHeight] = useState(0);
 
   // firstSelectController
-  const [firstSelectionValue, setFirstSelectionValue] = useState("30 November 2021 г.");
+  const [firstCurrentValue, setFirstCurrentValue] = useState("2021-11-30T09:00:00.000Z");
   const [, setFirstControllerTop] = useState(0);
   const [firstControllerBottom, setFirstControllerBottom] = useState(0);
   const [firstControllerLeft, setFirstControllerLeft] = useState(0);
@@ -27,7 +27,7 @@ const InvestmentPage: FC = () => {
   const [firstBlockVisible, setFirstBlockVisible] = useState(false);
 
   // secondSelectController
-  const [secondSelectionValue, setSecondSelectionValue] = useState("30 November 2021 г.");
+  const [secondCurrentValue, setSecondCurrentValue] = useState("2021-11-30T09:00:00.000Z");
   const [, setSecondControllerTop] = useState(0);
   const [secondControllerBottom, setSecondControllerBottom] = useState(0);
   const [secondControllerLeft, setSecondControllerLeft] = useState(0);
@@ -268,21 +268,15 @@ const InvestmentPage: FC = () => {
   };
 
   // получаем изменения выбранного значения из first OptionsBlock
-  const onChangeFirstOptionsBlock = (
-    selectionValue: React.SetStateAction<string>,
-    idOption: React.SetStateAction<string>
-  ) => {
-    setFirstSelectionValue(selectionValue);
-    setFirstBlockIdOption(idOption);
+  const onChangeFirstOptionsBlock = (value: React.SetStateAction<string>, id: React.SetStateAction<string>) => {
+    setFirstCurrentValue(value);
+    setFirstBlockIdOption(id);
   };
 
   // получаем изменения выбранного значения из Second OptionsBlock
-  const onChangeSecondOptionsBlock = (
-    selectionValue: React.SetStateAction<string>,
-    idOption: React.SetStateAction<string>
-  ) => {
-    setSecondSelectionValue(selectionValue);
-    setSecondBlockIdOption(idOption);
+  const onChangeSecondOptionsBlock = (value: React.SetStateAction<string>, id: React.SetStateAction<string>) => {
+    setSecondCurrentValue(value);
+    setSecondBlockIdOption(id);
   };
 
   // Функция получения высоты окна браузера.
@@ -338,7 +332,7 @@ const InvestmentPage: FC = () => {
       <Cards cards={cards} />
       <PortfolioStructure
         ifPressed={firstBlockVisible}
-        controllerValue={firstSelectionValue}
+        controllerValue={firstCurrentValue}
         idOption={firstBlockIdOption}
         onClickController={onClickFirstSelectController}
         emitCoords={onScrollPortfolioStructure}
@@ -347,7 +341,7 @@ const InvestmentPage: FC = () => {
 
       <CompositionReserves
         ifPressed={secondBlockVisible}
-        controllerValue={secondSelectionValue}
+        controllerValue={secondCurrentValue}
         idOption={secondBlockIdOption}
         onClickController={onClickSecondSelectController}
         emitCoords={onScrollCompositionReserves}
@@ -370,6 +364,7 @@ const InvestmentPage: FC = () => {
           arrayOptionsBlock={ArrayOptionsBlock}
           emitValue={onChangeFirstOptionsBlock}
           onClickOptionsBlock={onClickFirstOptionsBlock}
+          currentValue={firstCurrentValue}
         />
       </div>
 
@@ -385,6 +380,7 @@ const InvestmentPage: FC = () => {
           arrayOptionsBlock={ArrayOptionsBlock}
           emitValue={onChangeSecondOptionsBlock}
           onClickOptionsBlock={onClickSecondOptionsBlock}
+          currentValue={secondCurrentValue}
         />
       </div>
     </>

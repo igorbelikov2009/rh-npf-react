@@ -8,7 +8,6 @@ interface ControllerOptionProps {
   isRadioListVisible: boolean;
   radioItems: IAdaptiveRadioItem[];
   currentValue: string;
-  currentId: string;
   onClickController: () => void;
   emitOnChangeRadioListBlock: (value: React.SetStateAction<string>, id: string) => void;
   emitOnClickRadioListBlock: () => void;
@@ -18,7 +17,6 @@ const ControllerOption: FC<ControllerOptionProps> = ({
   isRadioListVisible,
   radioItems,
   currentValue,
-  currentId,
   onClickController,
   emitOnChangeRadioListBlock,
   emitOnClickRadioListBlock,

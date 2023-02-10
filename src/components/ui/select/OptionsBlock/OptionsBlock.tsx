@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import Option from "../Option/Option";
 import styles from "./OptionsBlock.module.scss";
 
@@ -12,16 +12,11 @@ interface OptionsBlockProps {
   arrayOptionsBlock: IOptionItem[];
   emitValue: (event: React.SetStateAction<string>, id: string) => void;
   onClickOptionsBlock: () => void;
+  currentValue: string;
 }
 
-const OptionsBlock: FC<OptionsBlockProps> = ({ arrayOptionsBlock, emitValue, onClickOptionsBlock }) => {
-  const [selectedValue, setSelectedValue] = useState("2021-11-30T09:00:00.000Z");
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [idOption, setIdOption] = useState("0");
-
+const OptionsBlock: FC<OptionsBlockProps> = ({ arrayOptionsBlock, emitValue, onClickOptionsBlock, currentValue }) => {
   const onChangeOption = (value: React.SetStateAction<string>, id: string) => {
-    setSelectedValue(value);
-    setIdOption(id);
     emitValue(value, id);
   };
 
@@ -34,7 +29,7 @@ const OptionsBlock: FC<OptionsBlockProps> = ({ arrayOptionsBlock, emitValue, onC
             date={option.date}
             value={option.value}
             id={option.id}
-            isActive={option.value === selectedValue}
+            isActive={option.value === currentValue}
             emitValue={onChangeOption}
           />
         ))}

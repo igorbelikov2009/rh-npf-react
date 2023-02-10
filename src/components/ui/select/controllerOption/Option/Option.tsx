@@ -9,6 +9,7 @@ interface OptionProps {
   emitValue: (event: React.SetStateAction<string>, id: string) => void;
 }
 
+// ControllerOption здесь всё чётко
 const Option: FC<OptionProps> = ({ isActive, date, value, id, emitValue }) => {
   const selectHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     emitValue(event.target.value, id);

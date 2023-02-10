@@ -6,7 +6,7 @@ import IndicatorsYear, { IIndicatorsYear } from "../IndicatorsYear/IndicatorsYea
 import styles from "./FundPerformance.module.scss";
 
 const FundPerformance = () => {
-  const [radioValue, setRadioValue] = useState("2021");
+  const [currentValue, setCurrentValue] = useState("2021");
   const [idOptions, setIdOptions] = useState("0");
   const [isRadioListVisible, setRadioListVisible] = useState(false);
 
@@ -302,7 +302,7 @@ const FundPerformance = () => {
   ];
 
   const onChangeAdaptiveRadio = (value: string, id: string) => {
-    setRadioValue(value);
+    setCurrentValue(value);
     setIdOptions(id);
   };
 
@@ -310,13 +310,13 @@ const FundPerformance = () => {
     setRadioListVisible((prev) => !prev);
   };
   const onChangeRadioListBlock = (value: React.SetStateAction<string>, id: string) => {
-    setRadioValue(value);
+    setCurrentValue(value);
     setIdOptions(id);
   };
   const onClickRadioListBlock = () => {
     setRadioListVisible(false);
   };
-  console.log(radioValue, idOptions);
+  console.log(currentValue, idOptions);
 
   return (
     <section className={styles["fund-performance"]}>
@@ -326,8 +326,7 @@ const FundPerformance = () => {
         <div className={styles["fund-performance__flex-container"]}>
           <div className={styles["fund-performance__select"]}>
             <ControllerOption
-              currentId={idOptions}
-              currentValue={radioValue}
+              currentValue={currentValue}
               radioItems={radioItems}
               isRadioListVisible={isRadioListVisible}
               onClickController={onClickController}
@@ -337,7 +336,7 @@ const FundPerformance = () => {
           </div>
 
           <div className={styles["fund-performance__adaptive-radio"]}>
-            <AdaptiveRadio radioItems={radioItems} currentValue={radioValue} emitValue={onChangeAdaptiveRadio} />
+            <AdaptiveRadio radioItems={radioItems} currentValue={currentValue} emitValue={onChangeAdaptiveRadio} />
           </div>
         </div>
 

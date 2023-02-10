@@ -10,13 +10,13 @@ interface OptionsBlockProps {
   currentValue: string;
 }
 
+// ControllerOption здесь всё чётко
 const OptionBlock: FC<OptionsBlockProps> = ({ radioItems, emitValue, onClickOptionsBlock, currentValue }) => {
   const onChangeOption = (value: React.SetStateAction<string>, id: string) => {
     emitValue(value, id);
-    console.log(value, id);
+    // console.log(value, id);
   };
 
-  // здесь всё чётко
   return (
     <div className={styles["options-block"]} onClick={onClickOptionsBlock}>
       <div className={styles["scrollable-block"]}>

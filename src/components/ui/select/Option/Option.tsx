@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import styles from "./Option.module.scss";
 
 export interface OptionProps {
@@ -10,11 +10,7 @@ export interface OptionProps {
 }
 
 const Option: FC<OptionProps> = ({ isActive, date, value, id, emitValue }) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [valueRadio, setValueRadio] = useState("");
-
   const selectHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValueRadio(event.target.value);
     emitValue(event.target.value, id);
   };
 

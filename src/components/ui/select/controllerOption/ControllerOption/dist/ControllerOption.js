@@ -5,7 +5,7 @@ var Controller_1 = require("../Controller/Controller");
 var OptionBlock_1 = require("../OptionBlock/OptionBlock");
 var ControllerOption_module_scss_1 = require("./ControllerOption.module.scss");
 var ControllerOption = function (_a) {
-    var isRadioListVisible = _a.isRadioListVisible, radioItems = _a.radioItems, currentValue = _a.currentValue, currentId = _a.currentId, onClickController = _a.onClickController, emitOnChangeRadioListBlock = _a.emitOnChangeRadioListBlock, emitOnClickRadioListBlock = _a.emitOnClickRadioListBlock;
+    var isRadioListVisible = _a.isRadioListVisible, radioItems = _a.radioItems, currentValue = _a.currentValue, onClickController = _a.onClickController, emitOnChangeRadioListBlock = _a.emitOnChangeRadioListBlock, emitOnClickRadioListBlock = _a.emitOnClickRadioListBlock;
     var onClickRadioListController = function () {
         onClickController();
     };
