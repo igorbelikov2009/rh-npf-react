@@ -9,12 +9,16 @@ var FundPerformance_1 = require("../components/infoDisclosure/fundPerformance/Fu
 var DocumentsOfTitle_1 = require("../components/infoDisclosure/DocumentsOfTitle/DocumentsOfTitle");
 var Notifics_1 = require("../components/infoDisclosure/notifics/Notifics/Notifics");
 var SpecDepository_1 = require("../components/infoDisclosure/specDepository/SpecDepository/SpecDepository");
+var ManagementCompanies_1 = require("../components/infoDisclosure/ManagementCompanies/ManagementCompanies");
+var Other_1 = require("../components/infoDisclosure/Other/Other");
 var InfoDisclosurePage = function () {
     return (react_1["default"].createElement(react_1["default"].Fragment, null,
         react_1["default"].createElement(TopBlock_1["default"], { heading: "\u0420\u0430\u0441\u043A\u0440\u044B\u0442\u0438\u0435 \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u0438", image: infoTop_jpg_1["default"] }),
         react_1["default"].createElement(GeneralInfo_1["default"], null),
         react_1["default"].createElement(FundPerformance_1["default"], null),
         react_1["default"].createElement(DocumentsOfTitle_1["default"], null),
+        react_1["default"].createElement(Other_1["default"], null),
+        react_1["default"].createElement(ManagementCompanies_1["default"], null),
         react_1["default"].createElement(SpecDepository_1["default"], null),
         react_1["default"].createElement(Notifics_1["default"], null)));
 };

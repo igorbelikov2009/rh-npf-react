@@ -7,6 +7,8 @@ import FundPerformance from "../components/infoDisclosure/fundPerformance/FundPe
 import DocumentsOfTitle from "../components/infoDisclosure/DocumentsOfTitle/DocumentsOfTitle";
 import Notifics from "../components/infoDisclosure/notifics/Notifics/Notifics";
 import SpecDepository from "../components/infoDisclosure/specDepository/SpecDepository/SpecDepository";
+import ManagementCompanies from "../components/infoDisclosure/ManagementCompanies/ManagementCompanies";
+import Other from "../components/infoDisclosure/Other/Other";
 
 const InfoDisclosurePage: FC = () => {
   return (
@@ -15,6 +17,9 @@ const InfoDisclosurePage: FC = () => {
       <GeneralInfo />
       <FundPerformance />
       <DocumentsOfTitle />
+
+      <Other />
+      <ManagementCompanies />
       <SpecDepository />
       <Notifics />
     </>

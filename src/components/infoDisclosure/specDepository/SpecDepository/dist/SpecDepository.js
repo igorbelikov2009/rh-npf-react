@@ -1,12 +1,13 @@
 "use strict";
 exports.__esModule = true;
+/* eslint-disable jsx-a11y/anchor-is-valid */
 var react_1 = require("react");
 var RadioPrimary_1 = require("../../../ui/radios/RadioPrimary/RadioPrimary");
 var SpecDepositoryBlock_1 = require("../SpecDepositoryBlock/SpecDepositoryBlock");
 var SpecDepository_module_scss_1 = require("./SpecDepository.module.scss");
 var SpecDepository = function () {
     var _a = react_1.useState(true), isVisible = _a[0], setVisible = _a[1];
-    var _b = react_1.useState("0"), currentValue = _b[0], setCurrentValue = _b[1];
+    var currentValue = react_1.useState("0")[0];
     var radioItems = [
         {
             name: "information",

@@ -1,12 +1,13 @@
-import React, { SetStateAction, useState } from "react";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { FC, SetStateAction, useState } from "react";
 import RadioPrimary from "../../../ui/radios/RadioPrimary/RadioPrimary";
 import { RadioItemProps } from "../../../ui/radios/RadioSecondary/RadioSecondary";
 import SpecDepositoryBlock, { ISpecDepositoryBlock } from "../SpecDepositoryBlock/SpecDepositoryBlock";
 import styles from "./SpecDepository.module.scss";
 
-const SpecDepository = () => {
+const SpecDepository: FC = () => {
   const [isVisible, setVisible] = useState(true);
-  const [currentValue, setCurrentValue] = useState("0");
+  const [currentValue] = useState("0");
 
   const radioItems: RadioItemProps[] = [
     {
