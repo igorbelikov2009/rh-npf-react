@@ -1,60 +1,40 @@
 import React, { FC } from "react";
-import { IAdaptiveRadioItem } from "../../AdaptiveRadioItem/AdaptiveRadioItem";
-import "./RadioListController.scss";
+import styles from "./RadioListController.module.scss";
 
 interface RadioListControllerProps {
   value: string;
   isVisible: boolean;
-  radioItems: IAdaptiveRadioItem[];
   onClickController: () => void;
 }
 
-const RadioListController: FC<RadioListControllerProps> = ({ value, isVisible, radioItems, onClickController }) => {
+const RadioListController: FC<RadioListControllerProps> = ({ value, isVisible, onClickController }) => {
   return (
-    <div className="radio-list-controller">
-      <div className="radio-list-controller__changing-title">
-        <div className={isVisible ? "radio-list-controller__border_gray" : "radio-list-controller__border_white"}>
+    <div className={styles["controller"]}>
+      <div className={styles["changing-title"]}>
+        <div className={isVisible ? styles["border_gray"] : styles["border_white"]}>
           <div
-            className={
-              isVisible
-                ? "radio-list-controller__container_backgr-gray"
-                : "radio-list-controller__container_backgr-white"
-            }
+            className={isVisible ? styles["container_backgr-gray"] : styles["container_backgr-white"]}
             onClick={onClickController}
           >
-            <div className="radio-list-controller__controller-date">
+            <div className={styles["controller-date"]}>
               <div>
-                <p className="radio-list-controller-date">{value}</p>
+                <p className={styles["controller-date"]}>{value}</p>
               </div>
             </div>
 
-            <div className="radio-list-controller__icon">
+            <div className={styles["icon"]}>
               <img
-                className={
-                  isVisible ? "radio-list-controller__image_rotate-180" : "radio-list-controller__image_rotate-0"
-                }
+                className={isVisible ? styles["image_rotate-180"] : styles["image_rotate-0"]}
                 src="/icons/triple/Arrow Down/Dark.svg"
                 alt="Arrow Down"
               />
             </div>
           </div>
 
-          <div
-            className={
-              isVisible ? "radio-list-controller__white-line_height-2" : "radio-list-controller__white-line_height-1"
-            }
-          >
-            <div
-              className={
-                isVisible ? "radio-list-controller__black-line_width-0" : "radio-list-controller__black-line_width-50"
-              }
-            ></div>
+          <div className={isVisible ? styles["white-line_height-2"] : styles["white-line_height-1"]}>
+            <div className={isVisible ? styles["black-line_width-0"] : styles["black-line_width-50"]}></div>
 
-            <div
-              className={
-                isVisible ? "radio-list-controller__black-line_width-0" : "radio-list-controller__black-line_width-50"
-              }
-            ></div>
+            <div className={isVisible ? styles["black-line_width-0"] : styles["black-line_width-50"]}></div>
           </div>
         </div>
       </div>

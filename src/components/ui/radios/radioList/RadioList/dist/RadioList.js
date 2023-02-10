@@ -9,7 +9,7 @@ var RadioList = function (_a) {
     var _c = react_1.useState(currentId), id = _c[0], setId = _c[1];
     var onClickRadioListController = function () { };
     return (react_1["default"].createElement("div", { className: "gui-radio-list" },
-        react_1["default"].createElement(RadioListController_1["default"], { value: radioValue, isVisible: isRadioListVisible, radioItems: radioItems, onClickController: onClickRadioListController }),
+        react_1["default"].createElement(RadioListController_1["default"], { value: radioValue, isVisible: isRadioListVisible, onClickController: onClickRadioListController }),
         react_1["default"].createElement("div", { className: isRadioListVisible ? "gui-radio-list__select-options_show" : "gui-radio-list__select-options_hide" })));
 };
 exports["default"] = RadioList;

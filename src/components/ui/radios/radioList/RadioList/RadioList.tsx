@@ -24,7 +24,6 @@ const RadioList: FC<RadioListProps> = ({ isRadioListVisible, radioItems, current
       <RadioListController
         value={radioValue}
         isVisible={isRadioListVisible}
-        radioItems={radioItems}
         onClickController={onClickRadioListController}
       />
       {/* <GuiRadioListController
