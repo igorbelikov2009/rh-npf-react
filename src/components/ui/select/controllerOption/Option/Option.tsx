@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import styles from "./RadioListOption.module.scss";
+import styles from "./Option.module.scss";
 
 interface OptionProps {
   isActive: boolean;
@@ -9,7 +9,7 @@ interface OptionProps {
   emitValue: (event: React.SetStateAction<string>, id: string) => void;
 }
 
-const RadioListOption: FC<OptionProps> = ({ isActive, date, value, id, emitValue }) => {
+const Option: FC<OptionProps> = ({ isActive, date, value, id, emitValue }) => {
   const selectHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     emitValue(event.target.value, id);
   };
@@ -22,4 +22,4 @@ const RadioListOption: FC<OptionProps> = ({ isActive, date, value, id, emitValue
   );
 };
 
-export default RadioListOption;
+export default Option;

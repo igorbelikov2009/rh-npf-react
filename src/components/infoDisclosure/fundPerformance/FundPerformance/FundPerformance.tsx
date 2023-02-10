@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AdaptiveRadio from "../../../ui/radios/AdaptiveRadio/AdaptiveRadio";
 import { IAdaptiveRadioItem } from "../../../ui/radios/AdaptiveRadioItem/AdaptiveRadioItem";
-import RadioList from "../../../ui/radios/radioList/RadioList/RadioList";
+import ControllerOption from "../../../ui/select/controllerOption/ControllerOption/ControllerOption";
 import IndicatorsYear, { IIndicatorsYear } from "../IndicatorsYear/IndicatorsYear";
 import styles from "./FundPerformance.module.scss";
 
@@ -325,7 +325,7 @@ const FundPerformance = () => {
 
         <div className={styles["fund-performance__flex-container"]}>
           <div className={styles["fund-performance__select"]}>
-            <RadioList
+            <ControllerOption
               currentId={idOptions}
               currentValue={radioValue}
               radioItems={radioItems}

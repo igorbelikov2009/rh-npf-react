@@ -1,10 +1,10 @@
 import React, { FC } from "react";
-import { IAdaptiveRadioItem } from "../../AdaptiveRadioItem/AdaptiveRadioItem";
-import RadioListController from "../RadioListController/RadioListController";
-import RadioListOptionBlock from "../RadioListOptionBlock/RadioListOptionBlock";
-import styles from "./RadioList.module.scss";
+import { IAdaptiveRadioItem } from "../../../radios/AdaptiveRadioItem/AdaptiveRadioItem";
+import Controller from "../Controller/Controller";
+import OptionBlock from "../OptionBlock/OptionBlock";
+import styles from "./ControllerOption.module.scss";
 
-export interface RadioListProps {
+interface ControllerOptionProps {
   isRadioListVisible: boolean;
   radioItems: IAdaptiveRadioItem[];
   currentValue: string;
@@ -14,7 +14,7 @@ export interface RadioListProps {
   emitOnClickRadioListBlock: () => void;
 }
 
-const RadioList: FC<RadioListProps> = ({
+const ControllerOption: FC<ControllerOptionProps> = ({
   isRadioListVisible,
   radioItems,
   currentValue,
@@ -33,17 +33,12 @@ const RadioList: FC<RadioListProps> = ({
   const onClickRadioListBlock = () => {
     emitOnClickRadioListBlock();
   };
-
   return (
     <div className={styles["list"]}>
-      <RadioListController
-        value={currentValue}
-        isVisible={isRadioListVisible}
-        onClickController={onClickRadioListController}
-      />
+      <Controller value={currentValue} isVisible={isRadioListVisible} onClickController={onClickRadioListController} />
 
       <div className={isRadioListVisible ? styles["select-options_show"] : styles["select-options_hide"]}>
-        <RadioListOptionBlock
+        <OptionBlock
           radioItems={radioItems}
           currentValue={currentValue}
           emitValue={onChangeRadioListBlock}
@@ -54,4 +49,4 @@ const RadioList: FC<RadioListProps> = ({
   );
 };
 
-export default RadioList;
+export default ControllerOption;

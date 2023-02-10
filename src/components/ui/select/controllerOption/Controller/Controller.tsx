@@ -1,13 +1,13 @@
 import React, { FC } from "react";
-import styles from "./RadioListController.module.scss";
+import styles from "./Controller.module.scss";
 
-interface RadioListControllerProps {
+interface ControllerProps {
   value: string;
   isVisible: boolean;
   onClickController: () => void;
 }
 
-const RadioListController: FC<RadioListControllerProps> = ({ value, isVisible, onClickController }) => {
+const Controller: FC<ControllerProps> = ({ value, isVisible, onClickController }) => {
   return (
     <div className={styles["controller"]}>
       <div className={styles["changing-title"]}>
@@ -42,4 +42,4 @@ const RadioListController: FC<RadioListControllerProps> = ({ value, isVisible, o
   );
 };
 
-export default RadioListController;
+export default Controller;
