@@ -10,10 +10,12 @@ import SpecDepository from "../components/infoDisclosure/specDepository/SpecDepo
 import ManagementCompanies from "../components/infoDisclosure/ManagementCompanies/ManagementCompanies";
 import Other from "../components/infoDisclosure/Other/Other";
 import HidingArchive from "../components/infoDisclosure/hidingArchive/HidingArchive/HidingArchive";
+import StructureAndRules from "../components/infoDisclosure/StructureAndRules/StructureAndRules";
+import AssetValueRules from "../components/infoDisclosure/AssetValueRules/AssetValueRules";
 
 const InfoDisclosurePage: FC = () => {
-  const [isHidingArchiveVisible, setHidingArchiveVisible] = useState(true); // false
-  const [isArchiveShareholdersVisible, setArchiveShareholdersVisible] = useState(true); // false
+  const [isHidingArchiveVisible, setHidingArchiveVisible] = useState(false); // false
+  const [isArchiveShareholdersVisible, setArchiveShareholdersVisible] = useState(false); // false
   const [isArchivePensionVisible, setArchivePensionVisible] = useState(false); // false
   const [isArchiveReportingVisible, setArchiveReportingVisible] = useState(false); // false
   const [isArchiveAssetValueRulesVisible, setArchiveAssetValueRulesVisible] = useState(false); // false
@@ -28,12 +30,36 @@ const InfoDisclosurePage: FC = () => {
     document.body.style.overflow = "";
   };
 
+  const onClickArchiveShareholders = () => {
+    setHidingArchiveVisible((prev) => !prev);
+    setArchiveShareholdersVisible((prev) => !prev);
+    document.body.style.overflow = "hidden";
+  };
+
+  const onClickArchivePension = () => {
+    setHidingArchiveVisible((prev) => !prev);
+    setArchivePensionVisible((prev) => !prev);
+    document.body.style.overflow = "hidden";
+  };
+
+  const onClickArchiveAssetValueRules = () => {
+    setHidingArchiveVisible((prev) => !prev);
+    setArchiveAssetValueRulesVisible((prev) => !prev);
+    document.body.style.overflow = "hidden";
+  };
+
   return (
     <>
       <TopBlock heading="Раскрытие информации" image={infoImage} />
       <GeneralInfo />
       <FundPerformance />
       <DocumentsOfTitle />
+      <StructureAndRules
+        onClickArchiveShareholders={onClickArchiveShareholders}
+        onClickArchivePension={onClickArchivePension}
+      />
+
+      <AssetValueRules onClickArchiveAssetValueRules={onClickArchiveAssetValueRules} />
 
       <HidingArchive
         isVisible={isHidingArchiveVisible}
