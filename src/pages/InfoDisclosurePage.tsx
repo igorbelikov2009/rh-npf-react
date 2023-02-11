@@ -12,6 +12,8 @@ import Other from "../components/infoDisclosure/Other/Other";
 import HidingArchive from "../components/infoDisclosure/hidingArchive/HidingArchive/HidingArchive";
 import StructureAndRules from "../components/infoDisclosure/StructureAndRules/StructureAndRules";
 import AssetValueRules from "../components/infoDisclosure/AssetValueRules/AssetValueRules";
+import IncomeChangeRegulation from "../components/infoDisclosure/IncomeChangeRegulation/IncomeChangeRegulation";
+import PortfolioStructure from "../components/infoDisclosure/PortfolioStructure/PortfolioStructure";
 
 const InfoDisclosurePage: FC = () => {
   const [isHidingArchiveVisible, setHidingArchiveVisible] = useState(false); // false
@@ -59,8 +61,9 @@ const InfoDisclosurePage: FC = () => {
         onClickArchivePension={onClickArchivePension}
       />
 
+      <PortfolioStructure />
+      <IncomeChangeRegulation />
       <AssetValueRules onClickArchiveAssetValueRules={onClickArchiveAssetValueRules} />
-
       <HidingArchive
         isVisible={isHidingArchiveVisible}
         isArchiveShareholdersVisible={isArchiveShareholdersVisible}
@@ -69,7 +72,6 @@ const InfoDisclosurePage: FC = () => {
         isArchiveAssetValueRulesVisible={isArchiveAssetValueRulesVisible}
         onClickHidingArchive={onClickHidingArchive}
       />
-
       <Other />
       <ManagementCompanies />
       <SpecDepository />

@@ -330,14 +330,17 @@ const InvestmentPage: FC = () => {
       />
 
       <Cards cards={cards} />
-      <PortfolioStructure
-        ifPressed={firstBlockVisible}
-        controllerValue={firstCurrentValue}
-        idOption={firstBlockIdOption}
-        onClickController={onClickFirstSelectController}
-        emitCoords={onScrollPortfolioStructure}
-        emitControllerBottomLeft={getFirstControllerBottomLeft}
-      />
+
+      <div id="portfolioStructure">
+        <PortfolioStructure
+          ifPressed={firstBlockVisible}
+          controllerValue={firstCurrentValue}
+          idOption={firstBlockIdOption}
+          onClickController={onClickFirstSelectController}
+          emitCoords={onScrollPortfolioStructure}
+          emitControllerBottomLeft={getFirstControllerBottomLeft}
+        />
+      </div>
 
       <CompositionReserves
         ifPressed={secondBlockVisible}

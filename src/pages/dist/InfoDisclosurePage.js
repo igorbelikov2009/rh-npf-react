@@ -14,6 +14,8 @@ var Other_1 = require("../components/infoDisclosure/Other/Other");
 var HidingArchive_1 = require("../components/infoDisclosure/hidingArchive/HidingArchive/HidingArchive");
 var StructureAndRules_1 = require("../components/infoDisclosure/StructureAndRules/StructureAndRules");
 var AssetValueRules_1 = require("../components/infoDisclosure/AssetValueRules/AssetValueRules");
+var IncomeChangeRegulation_1 = require("../components/infoDisclosure/IncomeChangeRegulation/IncomeChangeRegulation");
+var PortfolioStructure_1 = require("../components/infoDisclosure/PortfolioStructure/PortfolioStructure");
 var InfoDisclosurePage = function () {
     var _a = react_1.useState(false), isHidingArchiveVisible = _a[0], setHidingArchiveVisible = _a[1]; // false
     var _b = react_1.useState(false), isArchiveShareholdersVisible = _b[0], setArchiveShareholdersVisible = _b[1]; // false
@@ -49,6 +51,8 @@ var InfoDisclosurePage = function () {
         react_1["default"].createElement(FundPerformance_1["default"], null),
         react_1["default"].createElement(DocumentsOfTitle_1["default"], null),
         react_1["default"].createElement(StructureAndRules_1["default"], { onClickArchiveShareholders: onClickArchiveShareholders, onClickArchivePension: onClickArchivePension }),
+        react_1["default"].createElement(PortfolioStructure_1["default"], null),
+        react_1["default"].createElement(IncomeChangeRegulation_1["default"], null),
         react_1["default"].createElement(AssetValueRules_1["default"], { onClickArchiveAssetValueRules: onClickArchiveAssetValueRules }),
         react_1["default"].createElement(HidingArchive_1["default"], { isVisible: isHidingArchiveVisible, isArchiveShareholdersVisible: isArchiveShareholdersVisible, isArchivePensionVisible: isArchivePensionVisible, isArchiveReportingVisible: isArchiveReportingVisible, isArchiveAssetValueRulesVisible: isArchiveAssetValueRulesVisible, onClickHidingArchive: onClickHidingArchive }),
         react_1["default"].createElement(Other_1["default"], null),
