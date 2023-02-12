@@ -14,6 +14,7 @@ import StructureAndRules from "../components/infoDisclosure/StructureAndRules/St
 import AssetValueRules from "../components/infoDisclosure/AssetValueRules/AssetValueRules";
 import IncomeChangeRegulation from "../components/infoDisclosure/IncomeChangeRegulation/IncomeChangeRegulation";
 import PortfolioStructure from "../components/infoDisclosure/PortfolioStructure/PortfolioStructure";
+import Reporting from "../components/infoDisclosure/reporting/Reporting/Reporting";
 
 const InfoDisclosurePage: FC = () => {
   const [isHidingArchiveVisible, setHidingArchiveVisible] = useState(false); // false
@@ -50,6 +51,12 @@ const InfoDisclosurePage: FC = () => {
     document.body.style.overflow = "hidden";
   };
 
+  const onClickArchiveReporting = () => {
+    setHidingArchiveVisible((prev) => !prev);
+    setArchiveReportingVisible((prev) => !prev);
+    document.body.style.overflow = "hidden";
+  };
+
   return (
     <>
       <TopBlock heading="Раскрытие информации" image={infoImage} />
@@ -60,6 +67,8 @@ const InfoDisclosurePage: FC = () => {
         onClickArchiveShareholders={onClickArchiveShareholders}
         onClickArchivePension={onClickArchivePension}
       />
+
+      <Reporting onClickArchiveReporting={onClickArchiveReporting} />
 
       <PortfolioStructure />
       <IncomeChangeRegulation />

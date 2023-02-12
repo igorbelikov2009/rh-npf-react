@@ -28,7 +28,7 @@ const HidingArchive: FC<HidingArchiveProps> = ({
       <div className={isVisible ? styles["background_blur"] : styles["background"]}></div>
 
       <div className={isVisible ? styles["archives_left-50"] : styles["archives_left-100"]}>
-        <div className="wrapper">
+        <div className={styles["wrapper"]}>
           <div>
             {isArchiveShareholdersVisible && <ArchiveShareholders />}
 
@@ -40,9 +40,9 @@ const HidingArchive: FC<HidingArchiveProps> = ({
           </div>
 
           <div className={isVisible ? styles["top-block_left-50"] : styles["top-block_left-100"]}>
-            <p className="heading">Архив</p>
+            <p className={styles["heading"]}>Архив</p>
 
-            <div className="image" onClick={onClickHidingArchive}>
+            <div className={styles["image"]} onClick={onClickHidingArchive}>
               <DarkIcon icon="Cross" />
             </div>
           </div>

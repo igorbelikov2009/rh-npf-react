@@ -16,6 +16,7 @@ var StructureAndRules_1 = require("../components/infoDisclosure/StructureAndRule
 var AssetValueRules_1 = require("../components/infoDisclosure/AssetValueRules/AssetValueRules");
 var IncomeChangeRegulation_1 = require("../components/infoDisclosure/IncomeChangeRegulation/IncomeChangeRegulation");
 var PortfolioStructure_1 = require("../components/infoDisclosure/PortfolioStructure/PortfolioStructure");
+var Reporting_1 = require("../components/infoDisclosure/reporting/Reporting/Reporting");
 var InfoDisclosurePage = function () {
     var _a = react_1.useState(false), isHidingArchiveVisible = _a[0], setHidingArchiveVisible = _a[1]; // false
     var _b = react_1.useState(false), isArchiveShareholdersVisible = _b[0], setArchiveShareholdersVisible = _b[1]; // false
@@ -45,12 +46,18 @@ var InfoDisclosurePage = function () {
         setArchiveAssetValueRulesVisible(function (prev) { return !prev; });
         document.body.style.overflow = "hidden";
     };
+    var onClickArchiveReporting = function () {
+        setHidingArchiveVisible(function (prev) { return !prev; });
+        setArchiveReportingVisible(function (prev) { return !prev; });
+        document.body.style.overflow = "hidden";
+    };
     return (react_1["default"].createElement(react_1["default"].Fragment, null,
         react_1["default"].createElement(TopBlock_1["default"], { heading: "\u0420\u0430\u0441\u043A\u0440\u044B\u0442\u0438\u0435 \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u0438", image: infoTop_jpg_1["default"] }),
         react_1["default"].createElement(GeneralInfo_1["default"], null),
         react_1["default"].createElement(FundPerformance_1["default"], null),
         react_1["default"].createElement(DocumentsOfTitle_1["default"], null),
         react_1["default"].createElement(StructureAndRules_1["default"], { onClickArchiveShareholders: onClickArchiveShareholders, onClickArchivePension: onClickArchivePension }),
+        react_1["default"].createElement(Reporting_1["default"], { onClickArchiveReporting: onClickArchiveReporting }),
         react_1["default"].createElement(PortfolioStructure_1["default"], null),
         react_1["default"].createElement(IncomeChangeRegulation_1["default"], null),
         react_1["default"].createElement(AssetValueRules_1["default"], { onClickArchiveAssetValueRules: onClickArchiveAssetValueRules }),
