@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import styles from "./RadioPrimaryLabel.module.scss";
 
-export interface RadioPrimaryLabelProps {
+interface RadioPrimaryLabelProps {
   value: string;
   title: string;
   name: string;

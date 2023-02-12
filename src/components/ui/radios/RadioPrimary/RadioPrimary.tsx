@@ -3,7 +3,7 @@ import RadioPrimaryLabel from "../RadioPrimaryLabel/RadioPrimaryLabel";
 import { RadioItemProps } from "../RadioSecondary/RadioSecondary";
 import styles from "./RadioPrimary.module.scss";
 
-export interface RadioPrimaryProps {
+interface RadioPrimaryProps {
   radioItems: RadioItemProps[];
   emitValue: (event: React.SetStateAction<string>) => void;
   currentValue: string;

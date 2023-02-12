@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { FC, SetStateAction, useState } from "react";
 import RadioPrimary from "../../../ui/radios/RadioPrimary/RadioPrimary";
 import { RadioItemProps } from "../../../ui/radios/RadioSecondary/RadioSecondary";
@@ -57,14 +56,12 @@ const SpecDepository: FC = () => {
           <div>
             {isVisible ? (
               <SpecDepositoryBlock
-                v-if="isVisible"
                 subheading={depository1.subheading}
                 title={depository1.title}
                 subtitle={depository1.subtitle}
               />
             ) : (
               <SpecDepositoryBlock
-                v-if="!isVisible"
                 subheading={depository2.subheading}
                 title={depository2.title}
                 subtitle={depository2.subtitle}
@@ -78,10 +75,8 @@ const SpecDepository: FC = () => {
         <div className={styles["spec-depository__container"]}>
           <p className={styles["spec-depository__description"]}>
             Для информационного взаимодействия АО НПФ «Ренессанс пенсии», являясь участником системы электронного
-            документооборота, использует обмен электронными документами в системе электронного документооборота
-            <a className={styles["spec-depository__link"]} href="#">
-              АО ВТБ Специализированный депозитарий.
-            </a>
+            документооборота, использует обмен электронными документами в системе электронного документооборота АО ВТБ
+            Специализированный депозитарий.
           </p>
         </div>
       </section>
