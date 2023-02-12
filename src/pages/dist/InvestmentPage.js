@@ -10,10 +10,11 @@ var PortfolioStructure_1 = require("../components/investment/portfolioStructure/
 require("../styles/dist/Investment.css");
 var OptionsBlock_1 = require("../components/ui/select/OptionsBlock/OptionsBlock");
 var CompositionReserves_1 = require("../components/investment/compositionReserves/CompositionReserves/CompositionReserves");
+var UserDate_1 = require("../api/UserDate/UserDate");
 var InvestmentPage = function () {
     var _a = react_1.useState(0), clientHeight = _a[0], setClientHeight = _a[1];
     // firstSelectController
-    var _b = react_1.useState("2021-11-30T09:00:00.000Z"), firstCurrentValue = _b[0], setFirstCurrentValue = _b[1];
+    var _b = react_1.useState("30 ноября 2021 г."), firstCurrentValue = _b[0], setFirstCurrentValue = _b[1];
     var _c = react_1.useState(0), setFirstControllerTop = _c[1];
     var _d = react_1.useState(0), firstControllerBottom = _d[0], setFirstControllerBottom = _d[1];
     var _e = react_1.useState(0), firstControllerLeft = _e[0], setFirstControllerLeft = _e[1];
@@ -24,7 +25,7 @@ var InvestmentPage = function () {
     var _j = react_1.useState(0), firstBlockTop = _j[0], setFirstBlockTop = _j[1];
     var _k = react_1.useState(false), firstBlockVisible = _k[0], setFirstBlockVisible = _k[1];
     // secondSelectController
-    var _l = react_1.useState("2021-11-30T09:00:00.000Z"), secondCurrentValue = _l[0], setSecondCurrentValue = _l[1];
+    var _l = react_1.useState("30 ноября 2021 г."), secondCurrentValue = _l[0], setSecondCurrentValue = _l[1];
     var _m = react_1.useState(0), setSecondControllerTop = _m[1];
     var _o = react_1.useState(0), secondControllerBottom = _o[0], setSecondControllerBottom = _o[1];
     var _p = react_1.useState(0), secondControllerLeft = _p[0], setSecondControllerLeft = _p[1];
@@ -57,7 +58,7 @@ var InvestmentPage = function () {
             subtitle: "Независимость в выборе партнеров – на основе открытых тендеров"
         },
     ];
-    var ArrayOptionsBlock = [
+    var optionsItems = [
         {
             date: "2021-11-30T09:00:00.000Z",
             value: "2021-11-30T09:00:00.000Z",
@@ -184,6 +185,11 @@ var InvestmentPage = function () {
             id: "24"
         },
     ];
+    var formattedOptionsItems = optionsItems.map(function (item) { return ({
+        date: String(UserDate_1["default"].format(new Date(item.date))),
+        value: String(UserDate_1["default"].format(new Date(item.date))),
+        id: String(item.id)
+    }); });
     var refFirstSelectBlock = react_1.useRef(null);
     react_1.useEffect(function () {
         document.addEventListener("scroll", scrollHandler);
@@ -302,12 +308,12 @@ var InvestmentPage = function () {
                 left: firstControllerLeft + 6 + "px",
                 width: firstControllerWidth - 12 + "px"
             }, className: firstBlockVisible ? "options-block-visible" : "options-block-hidden" },
-            react_1["default"].createElement(OptionsBlock_1["default"], { arrayOptionsBlock: ArrayOptionsBlock, emitValue: onChangeFirstOptionsBlock, onClickOptionsBlock: onClickFirstOptionsBlock, currentValue: firstCurrentValue })),
+            react_1["default"].createElement(OptionsBlock_1["default"], { arrayOptionsBlock: formattedOptionsItems, emitValue: onChangeFirstOptionsBlock, onClickOptionsBlock: onClickFirstOptionsBlock, currentValue: firstCurrentValue })),
         react_1["default"].createElement("div", { style: {
                 top: secondBlockTop + "px",
                 left: secondControllerLeft + 6 + "px",
                 width: secondControllerWidth - 12 + "px"
             }, className: secondBlockVisible ? "options-block-visible" : "options-block-hidden" },
-            react_1["default"].createElement(OptionsBlock_1["default"], { arrayOptionsBlock: ArrayOptionsBlock, emitValue: onChangeSecondOptionsBlock, onClickOptionsBlock: onClickSecondOptionsBlock, currentValue: secondCurrentValue }))));
+            react_1["default"].createElement(OptionsBlock_1["default"], { arrayOptionsBlock: formattedOptionsItems, emitValue: onChangeSecondOptionsBlock, onClickOptionsBlock: onClickSecondOptionsBlock, currentValue: secondCurrentValue }))));
 };
 exports["default"] = InvestmentPage;

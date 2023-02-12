@@ -9,12 +9,13 @@ import PortfolioStructure from "../components/investment/portfolioStructure/Port
 import "../styles/dist/Investment.css";
 import OptionsBlock, { IOptionItem } from "../components/ui/select/OptionsBlock/OptionsBlock";
 import CompositionReserves from "../components/investment/compositionReserves/CompositionReserves/CompositionReserves";
+import UserDate from "../api/UserDate/UserDate";
 
 const InvestmentPage: FC = () => {
   const [clientHeight, setClientHeight] = useState(0);
 
   // firstSelectController
-  const [firstCurrentValue, setFirstCurrentValue] = useState("2021-11-30T09:00:00.000Z");
+  const [firstCurrentValue, setFirstCurrentValue] = useState("30 ноября 2021 г.");
   const [, setFirstControllerTop] = useState(0);
   const [firstControllerBottom, setFirstControllerBottom] = useState(0);
   const [firstControllerLeft, setFirstControllerLeft] = useState(0);
@@ -27,7 +28,7 @@ const InvestmentPage: FC = () => {
   const [firstBlockVisible, setFirstBlockVisible] = useState(false);
 
   // secondSelectController
-  const [secondCurrentValue, setSecondCurrentValue] = useState("2021-11-30T09:00:00.000Z");
+  const [secondCurrentValue, setSecondCurrentValue] = useState("30 ноября 2021 г.");
   const [, setSecondControllerTop] = useState(0);
   const [secondControllerBottom, setSecondControllerBottom] = useState(0);
   const [secondControllerLeft, setSecondControllerLeft] = useState(0);
@@ -64,7 +65,7 @@ const InvestmentPage: FC = () => {
     },
   ];
 
-  const ArrayOptionsBlock: IOptionItem[] = [
+  const optionsItems: IOptionItem[] = [
     {
       date: "2021-11-30T09:00:00.000Z",
       value: "2021-11-30T09:00:00.000Z",
@@ -191,6 +192,12 @@ const InvestmentPage: FC = () => {
       id: "24",
     },
   ];
+
+  const formattedOptionsItems: IOptionItem[] = optionsItems.map((item) => ({
+    date: String(UserDate.format(new Date(item.date))),
+    value: String(UserDate.format(new Date(item.date))),
+    id: String(item.id),
+  }));
 
   const refFirstSelectBlock = useRef<HTMLDivElement>(null);
 
@@ -364,7 +371,7 @@ const InvestmentPage: FC = () => {
         className={firstBlockVisible ? "options-block-visible" : "options-block-hidden"}
       >
         <OptionsBlock
-          arrayOptionsBlock={ArrayOptionsBlock}
+          arrayOptionsBlock={formattedOptionsItems}
           emitValue={onChangeFirstOptionsBlock}
           onClickOptionsBlock={onClickFirstOptionsBlock}
           currentValue={firstCurrentValue}
@@ -380,7 +387,7 @@ const InvestmentPage: FC = () => {
         className={secondBlockVisible ? "options-block-visible" : "options-block-hidden"}
       >
         <OptionsBlock
-          arrayOptionsBlock={ArrayOptionsBlock}
+          arrayOptionsBlock={formattedOptionsItems}
           emitValue={onChangeSecondOptionsBlock}
           onClickOptionsBlock={onClickSecondOptionsBlock}
           currentValue={secondCurrentValue}

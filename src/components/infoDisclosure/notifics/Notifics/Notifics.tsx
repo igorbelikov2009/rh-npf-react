@@ -1,4 +1,5 @@
 import React, { FC, useState } from "react";
+import UserDate from "../../../../api/UserDate/UserDate";
 import RadioCircle from "../../../ui/radioCircle/RadioCircle/RadioCircle";
 import { IRadioCircleItem } from "../../../ui/radioCircle/RadioCircleItem/RadioCircleItem";
 import NotificsContent, { INotificsContent } from "../NotificsContent/NotificsContent";
@@ -28,6 +29,11 @@ const Notifics: FC = () => {
     },
   ];
 
+  const formattedContents: INotificsContent[] = contents.map((item) => ({
+    date: String(UserDate.format(new Date(item.date))),
+    description: String(item.description),
+  }));
+
   const radioItems: IRadioCircleItem[] = contents
     .map((item) => new Date(item.date).getFullYear())
     .map((item, index) => ({ title: String(item), value: String(index) }));
@@ -46,7 +52,7 @@ const Notifics: FC = () => {
         </div>
 
         <div className={styles["notifics__content"]}>
-          {contents.map((content, index) => (
+          {formattedContents.map((content: INotificsContent, index: React.Key | null | undefined) => (
             <NotificsContent key={index} content={content} isVisible={Number(currentValue) === index} />
           ))}
         </div>
