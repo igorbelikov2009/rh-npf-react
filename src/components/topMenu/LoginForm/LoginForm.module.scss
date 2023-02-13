@@ -16,7 +16,7 @@
 
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
-    transition: all 0.28s ease;
+    transition: all 0.5s ease;
 
     @media screen and (min-width: 375px) {
       max-width: 375px;
@@ -48,7 +48,7 @@
 
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.01);
-    transition: all 0.28s ease;
+    transition: all 0.5s ease;
 
     @media screen and (min-width: 375px) {
       max-width: 375px;
@@ -121,17 +121,4 @@
     width: 24px;
     height: 24px;
   }
-}
-// login-form
-
-// transition name="login-form"
-.login-form-enter-active,
-.login-form-leave-active {
-  transition: all 0.5s;
-}
-
-.login-form-enter,
-.login-form-leave-to {
-  opacity: 0;
-  transform: scale(0.01);
 }

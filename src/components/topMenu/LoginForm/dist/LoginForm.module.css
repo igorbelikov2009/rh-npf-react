@@ -14,7 +14,7 @@
   box-shadow: 0px 4px 6px rgba(26, 65, 101, 0.15);
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
-  transition: all 0.28s ease;
+  transition: all 0.5s ease;
 }
 @media screen and (min-width: 375px) {
   .login-form__opacity1 {
@@ -46,7 +46,7 @@
   box-shadow: 0px 4px 6px rgba(26, 65, 101, 0.15);
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.01);
-  transition: all 0.28s ease;
+  transition: all 0.5s ease;
 }
 @media screen and (min-width: 375px) {
   .login-form__opacity0 {
@@ -110,15 +110,4 @@
 .login-form__cross-image {
   width: 24px;
   height: 24px;
-}
-
-.login-form-enter-active,
-.login-form-leave-active {
-  transition: all 0.5s;
-}
-
-.login-form-enter,
-.login-form-leave-to {
-  opacity: 0;
-  transform: scale(0.01);
 }

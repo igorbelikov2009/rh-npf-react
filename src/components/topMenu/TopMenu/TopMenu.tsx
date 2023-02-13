@@ -121,10 +121,6 @@ const TopMenu: FC = () => {
         </div>
       </div>
 
-      {/* // <transition name="call-back">
-    //   <CallBackForm v-if="isCallBackFormVisible" @closeCallBack="closeCallBack" />
-    // </transition> */}
-
       <LoginForm isVisible={isLoginFormVisible} closeLoginForm={closeLoginForm} />
       <MenuMobil isVisible={isMenuMobilVisible} closeMenuMobil={closeMenuMobil} />
     </header>
