@@ -5,7 +5,7 @@ var InputField_1 = require("../InputField/InputField");
 var InputTitle_1 = require("../InputTitle/InputTitle");
 var MyInput_module_scss_1 = require("./MyInput.module.scss");
 var MyInput = function (_a) {
-    var type = _a.type, name = _a.name, minLength = _a.minLength, title = _a.title, validationError = _a.validationError, isRequiredError = _a.isRequiredError, isValidationError = _a.isValidationError, emitValue = _a.emitValue;
+    var type = _a.type, name = _a.name, minLength = _a.minLength, maxLength = _a.maxLength, title = _a.title, validationError = _a.validationError, isRequiredError = _a.isRequiredError, isValidationError = _a.isValidationError, emitValue = _a.emitValue;
     var _b = react_1.useState(true), isDormancy = _b[0], setDormancy = _b[1];
     var _c = react_1.useState(false), isError = _c[0], setError = _c[1];
     var onFocus = function () {
@@ -19,9 +19,9 @@ var MyInput = function (_a) {
         if (minLength) {
             setError(value.length > minLength);
         }
-        console.log("value :" + value);
+        console.log(value);
     };
-    console.log("isDormancy :" + isDormancy, "isError :" + isError);
+    // console.log("isDormancy :" + isDormancy, "isError :" + isError);
     return (react_1["default"].createElement("label", { className: MyInput_module_scss_1["default"]["my-input__label"] },
         react_1["default"].createElement("div", null,
             react_1["default"].createElement(InputTitle_1["default"], { title: title, isDormancy: isDormancy })),

@@ -24,6 +24,7 @@ const MyInput: FC<MyInputProps> = ({
   type,
   name,
   minLength,
+  maxLength,
   title,
   validationError,
   isRequiredError,
@@ -45,10 +46,10 @@ const MyInput: FC<MyInputProps> = ({
     if (minLength) {
       setError(value.length > minLength);
     }
-    console.log("value :" + value);
+    console.log(value);
   };
 
-  console.log("isDormancy :" + isDormancy, "isError :" + isError);
+  // console.log("isDormancy :" + isDormancy, "isError :" + isError);
 
   return (
     <label className={styles["my-input__label"]}>

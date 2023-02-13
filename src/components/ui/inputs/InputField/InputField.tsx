@@ -13,7 +13,7 @@ interface InputFieldProps {
 const InputField: FC<InputFieldProps> = ({ type, name, isError, emitValue, emitFocus, emitBlur }) => {
   const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     emitValue(event.target.value);
-    console.log(event.target.value);
+    // console.log(event.target.value);
   };
 
   return (
