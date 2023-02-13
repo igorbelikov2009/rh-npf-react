@@ -5,12 +5,15 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Logotypes from "../../general/Logotypes/Logotypes";
 import MenuLink, { MenuLinkProps } from "../../ui/links/MenuLink/MenuLink";
 import TripleIcon from "../../general/TripleIcon/TripleIcon";
+import MenuMobil from "../MenuMobil/MenuMobil";
 
 const TopMenu: FC = () => {
   const navigate = useNavigate();
   const [isBackgroundWhite, setIsBackgroundWhite] = useState(false);
   const [isPrivateOfficeHovered, setPrivateOfficeHovered] = useState(false);
   const [isHamburgerHovered, setHamburgerHovered] = useState(false);
+  const [isMenuMobilVisible, setMenuMobilVisible] = useState(false);
+
   const pathname = useLocation().pathname;
   // console.log(pathname);
 
@@ -42,6 +45,15 @@ const TopMenu: FC = () => {
     }
   }, [pathname]);
 
+  const openMenuMobil = () => {
+    setMenuMobilVisible(true);
+    document.body.style.overflow = "hidden";
+  };
+  const closeMenuMobil = () => {
+    setMenuMobilVisible(false);
+    document.body.style.overflow = "";
+  };
+
   return (
     <header className={isBackgroundWhite ? styles["top-menu__with-border"] : styles["top-menu"]}>
       <div className={styles["top-menu__container"]}>
@@ -49,6 +61,7 @@ const TopMenu: FC = () => {
           <div
             onMouseOver={() => setHamburgerHovered(true)}
             onMouseOut={() => setHamburgerHovered(false)}
+            onClick={openMenuMobil}
             className={styles["top-menu__hamburger"]}
           >
             <TripleIcon icon="Hamburger" light={!isBackgroundWhite} hovered={isHamburgerHovered} />
@@ -99,11 +112,9 @@ const TopMenu: FC = () => {
 
     // <transition name="login-form">
     //   <LoginForm v-show="isLoginFormVisible" @closeLoginForm="closeLoginForm" />
-    // </transition>
-
-    // <transition name="menu-mobil">
-    //   <MenuMobil v-if="isMenuMobilVisible" @closeMenuMobil="closeMenuMobil" />
     // </transition> */}
+
+      <MenuMobil isVisible={isMenuMobilVisible} closeMenuMobil={closeMenuMobil} />
     </header>
   );
 };

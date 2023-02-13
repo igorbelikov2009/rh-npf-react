@@ -1,56 +1,51 @@
 import React, { FC, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logotypes from "../../general/Logotypes/Logotypes";
 import { MenuLinkProps } from "../../ui/links/MenuLink/MenuLink";
 import styles from "./MenuMobil.module.scss";
 
 interface MenuMobilProps {
   closeMenuMobil: () => void;
+  isVisible: boolean;
 }
 
-const MenuMobil: FC<MenuMobilProps> = ({ closeMenuMobil }) => {
+const MenuMobil: FC<MenuMobilProps> = ({ closeMenuMobil, isVisible }) => {
   const navigate = useNavigate();
-  const [isBackgroundWhite, setIsBackgroundWhite] = useState(true);
+  const [isBackgroundWhite] = useState(true);
 
   const topLinks: MenuLinkProps[] = [
     { to: "/about", children: "О Фонде" },
     { to: "/managment", children: "Руководство Фондом" },
     { to: "/info", children: "Раскрытие информации" },
     { to: "/investment", children: "Инвестиционная деятельность" },
+    { to: "/business", children: "Для бизнеса" },
   ];
   const bottomLinks: MenuLinkProps[] = [
-    { to: "/business", children: "Для бизнеса" },
     { to: "/#calculator", children: "Калькулятор" },
     { to: "/support#form", children: "Написать нам" },
     { to: "/support#questionsAnswers", children: "Вопросы и ответы" },
   ];
 
   return (
-    <section className="menu-mobil">
+    <section className={isVisible ? styles["menu-mobil__right-20"] : styles["menu-mobil__right-100"]}>
       <div>
-        <div className="menu-mobil__logos" onClick={() => navigate("/", { replace: true })}>
+        <div className={styles["menu-mobil__logos"]} onClick={() => navigate("/", { replace: true })}>
           <Logotypes isBackgroundWhite={isBackgroundWhite} />
         </div>
 
-        {/* <router-link
-        className="menu-mobil__link"
-        v-for="route in firstBlock"
-        :key="route.path"
-        :to="route.path"
-      >
-        {{ route.label }}
-      </router-link> */}
+        {topLinks.map((link, index) => (
+          <Link to={link.to} onClick={closeMenuMobil} className={styles["menu-mobil__link"]} key={index}>
+            {link.children}
+          </Link>
+        ))}
 
         <p className={styles["menu-mobil__title"]}>Клиентам</p>
 
-        {/* <router-link
-        className="menu-mobil__link"
-        v-for="route in secondBlock"
-        :key="route.path"
-        :to="route.path"
-      >
-        {{ route.label }}
-      </router-link> */}
+        {bottomLinks.map((link, index) => (
+          <Link to={link.to} onClick={closeMenuMobil} className={styles["menu-mobil__link"]} key={index}>
+            {link.children}
+          </Link>
+        ))}
 
         <div className={styles["menu-mobil__phone"]}>
           <a className={styles["menu-mobil__phone-link"]} href="tel:+78002004766">
