@@ -1,10 +1,10 @@
 import React, { FC, useEffect, useState } from "react";
-import "../styles/TopMenu.scss";
+import styles from "./TopMenu.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import Logotypes from "./general/Logotypes/Logotypes";
-import MenuLink, { MenuLinkProps } from "./ui/links/MenuLink/MenuLink";
-import TripleIcon from "./general/TripleIcon/TripleIcon";
+import Logotypes from "../../general/Logotypes/Logotypes";
+import MenuLink, { MenuLinkProps } from "../../ui/links/MenuLink/MenuLink";
+import TripleIcon from "../../general/TripleIcon/TripleIcon";
 
 const TopMenu: FC = () => {
   const navigate = useNavigate();
@@ -43,13 +43,13 @@ const TopMenu: FC = () => {
   }, [pathname]);
 
   return (
-    <header className={isBackgroundWhite ? "top-menu top-menu__with-border" : "top-menu "}>
-      <div className="top-menu__container">
-        <div className="top-menu__left-block">
+    <header className={isBackgroundWhite ? styles["top-menu__with-border"] : styles["top-menu"]}>
+      <div className={styles["top-menu__container"]}>
+        <div className={styles["top-menu__left-block"]}>
           <div
             onMouseOver={() => setHamburgerHovered(true)}
             onMouseOut={() => setHamburgerHovered(false)}
-            className="top-menu__hamburger"
+            className={styles["top-menu__hamburger"]}
           >
             <TripleIcon icon="Hamburger" light={!isBackgroundWhite} hovered={isHamburgerHovered} />
           </div>
@@ -58,7 +58,7 @@ const TopMenu: FC = () => {
             <Logotypes isBackgroundWhite={isBackgroundWhite} />
           </div>
 
-          <div className="top-menu__nav">
+          <div className={styles["top-menu__nav"]}>
             {TopMenuLinks.map((link) => (
               <MenuLink key={link.to} to={link.to} isBackgroundWhite={isBackgroundWhite}>
                 {link.children}
@@ -67,11 +67,11 @@ const TopMenu: FC = () => {
           </div>
         </div>
 
-        <div className="top-menu__right-block">
-          <div className="top-menu__contacts">
-            <div className="top-menu__phone">
+        <div className={styles["top-menu__right-block"]}>
+          <div className={styles["top-menu__contacts"]}>
+            <div className={styles["top-menu__phone"]}>
               <a
-                className={isBackgroundWhite ? "top-menu__link  top-menu__link_news" : "top-menu__link"}
+                className={isBackgroundWhite ? styles["top-menu__link_news"] : styles["top-menu__link"]}
                 href="tel:+78002004766"
               >
                 8 800 200-47-66
@@ -82,11 +82,11 @@ const TopMenu: FC = () => {
           <div
             onMouseOver={() => setPrivateOfficeHovered(true)}
             onMouseOut={() => setPrivateOfficeHovered(false)}
-            className="top-menu__private-office"
+            className={styles["top-menu__private-office"]}
           >
             <TripleIcon icon="User" light={!isBackgroundWhite} hovered={isPrivateOfficeHovered} />
 
-            <p className={isBackgroundWhite ? "top-menu__title  top-menu__title_news" : "top-menu__title"}>
+            <p className={isBackgroundWhite ? styles["top-menu__title_news"] : styles["top-menu__title"]}>
               Личный кабинет
             </p>
           </div>

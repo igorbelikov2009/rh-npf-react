@@ -53,7 +53,11 @@ const MainPage: FC = () => {
       />
       <Info />
       <Cards cards={cards} />
-      <Calculator />
+
+      <div id="calculator">
+        <Calculator />
+      </div>
+
       <ImagesCalculator />
       <NewsBlock />
     </>
