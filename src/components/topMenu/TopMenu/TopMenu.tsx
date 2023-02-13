@@ -6,6 +6,7 @@ import Logotypes from "../../general/Logotypes/Logotypes";
 import MenuLink, { MenuLinkProps } from "../../ui/links/MenuLink/MenuLink";
 import TripleIcon from "../../general/TripleIcon/TripleIcon";
 import MenuMobil from "../MenuMobil/MenuMobil";
+import LoginForm from "../LoginForm/LoginForm";
 
 const TopMenu: FC = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const TopMenu: FC = () => {
   const [isPrivateOfficeHovered, setPrivateOfficeHovered] = useState(false);
   const [isHamburgerHovered, setHamburgerHovered] = useState(false);
   const [isMenuMobilVisible, setMenuMobilVisible] = useState(false);
+  const [isLoginFormVisible, setLoginFormVisible] = useState(false);
 
   const pathname = useLocation().pathname;
   // console.log(pathname);
@@ -44,6 +46,16 @@ const TopMenu: FC = () => {
       setIsBackgroundWhite(true);
     }
   }, [pathname]);
+
+  const openLoginForm = () => {
+    setLoginFormVisible((prev) => !prev);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeLoginForm = () => {
+    setLoginFormVisible((prev) => !prev);
+    document.body.style.overflow = "";
+  };
 
   const openMenuMobil = () => {
     setMenuMobilVisible(true);
@@ -99,7 +111,10 @@ const TopMenu: FC = () => {
           >
             <TripleIcon icon="User" light={!isBackgroundWhite} hovered={isPrivateOfficeHovered} />
 
-            <p className={isBackgroundWhite ? styles["top-menu__title_news"] : styles["top-menu__title"]}>
+            <p
+              onClick={openLoginForm}
+              className={isBackgroundWhite ? styles["top-menu__title_news"] : styles["top-menu__title"]}
+            >
               Личный кабинет
             </p>
           </div>
@@ -108,12 +123,9 @@ const TopMenu: FC = () => {
 
       {/* // <transition name="call-back">
     //   <CallBackForm v-if="isCallBackFormVisible" @closeCallBack="closeCallBack" />
-    // </transition>
-
-    // <transition name="login-form">
-    //   <LoginForm v-show="isLoginFormVisible" @closeLoginForm="closeLoginForm" />
     // </transition> */}
 
+      <LoginForm isVisible={isLoginFormVisible} closeLoginForm={closeLoginForm} />
       <MenuMobil isVisible={isMenuMobilVisible} closeMenuMobil={closeMenuMobil} />
     </header>
   );

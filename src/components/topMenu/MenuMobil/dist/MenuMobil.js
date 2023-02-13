@@ -2,6 +2,7 @@
 exports.__esModule = true;
 var react_1 = require("react");
 var react_router_dom_1 = require("react-router-dom");
+var DarkIcon_1 = require("../../general/DarkIcon/DarkIcon");
 var Logotypes_1 = require("../../general/Logotypes/Logotypes");
 var MenuMobil_module_scss_1 = require("./MenuMobil.module.scss");
 var MenuMobil = function (_a) {
@@ -34,6 +35,7 @@ var MenuMobil = function (_a) {
             react_1["default"].createElement("p", { className: MenuMobil_module_scss_1["default"]["menu-mobil__copy-right"] }, "\u00A92009-2019 \u041D\u041F\u0424\u0420\u0435\u043D\u0435\u0441\u0441\u0430\u043D\u0441. \u041F\u0435\u043D\u0441\u0438\u0438"),
             react_1["default"].createElement("p", { className: MenuMobil_module_scss_1["default"]["menu-mobil__copy-right"] }, "\u041B\u0438\u0446\u0435\u043D\u0437\u0438\u044F \u2116 383/2 \u043E\u0442 16 \u0438\u044E\u043D\u044F 2009 \u0433\u043E\u0434\u0430")),
         react_1["default"].createElement("button", { className: MenuMobil_module_scss_1["default"]["menu-mobil__cross-switch"] },
-            react_1["default"].createElement("img", { className: MenuMobil_module_scss_1["default"]["menu-mobil__cross-image"], src: "/icons/triple/Cross/Dark.svg", alt: "cross", onClick: closeMenuMobil }))));
+            react_1["default"].createElement("div", { className: MenuMobil_module_scss_1["default"]["menu-mobil__cross-image"], onClick: closeMenuMobil },
+                react_1["default"].createElement(DarkIcon_1["default"], { icon: "Cross" })))));
 };
 exports["default"] = MenuMobil;

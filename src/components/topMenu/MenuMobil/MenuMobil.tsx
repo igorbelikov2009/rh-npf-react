@@ -1,5 +1,6 @@
 import React, { FC, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import DarkIcon from "../../general/DarkIcon/DarkIcon";
 import Logotypes from "../../general/Logotypes/Logotypes";
 import { MenuLinkProps } from "../../ui/links/MenuLink/MenuLink";
 import styles from "./MenuMobil.module.scss";
@@ -41,6 +42,7 @@ const MenuMobil: FC<MenuMobilProps> = ({ closeMenuMobil, isVisible }) => {
 
         <p className={styles["menu-mobil__title"]}>Клиентам</p>
 
+        {/* сделать через вложенные роуты */}
         {bottomLinks.map((link, index) => (
           <Link to={link.to} onClick={closeMenuMobil} className={styles["menu-mobil__link"]} key={index}>
             {link.children}
@@ -61,12 +63,9 @@ const MenuMobil: FC<MenuMobilProps> = ({ closeMenuMobil, isVisible }) => {
       </div>
 
       <button className={styles["menu-mobil__cross-switch"]}>
-        <img
-          className={styles["menu-mobil__cross-image"]}
-          src="/icons/triple/Cross/Dark.svg"
-          alt="cross"
-          onClick={closeMenuMobil}
-        />
+        <div className={styles["menu-mobil__cross-image"]} onClick={closeMenuMobil}>
+          <DarkIcon icon="Cross" />
+        </div>
       </button>
     </section>
   );

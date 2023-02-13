@@ -7,12 +7,14 @@ var Logotypes_1 = require("../../general/Logotypes/Logotypes");
 var MenuLink_1 = require("../../ui/links/MenuLink/MenuLink");
 var TripleIcon_1 = require("../../general/TripleIcon/TripleIcon");
 var MenuMobil_1 = require("../MenuMobil/MenuMobil");
+var LoginForm_1 = require("../LoginForm/LoginForm");
 var TopMenu = function () {
     var navigate = react_router_dom_1.useNavigate();
     var _a = react_1.useState(false), isBackgroundWhite = _a[0], setIsBackgroundWhite = _a[1];
     var _b = react_1.useState(false), isPrivateOfficeHovered = _b[0], setPrivateOfficeHovered = _b[1];
     var _c = react_1.useState(false), isHamburgerHovered = _c[0], setHamburgerHovered = _c[1];
     var _d = react_1.useState(false), isMenuMobilVisible = _d[0], setMenuMobilVisible = _d[1];
+    var _e = react_1.useState(false), isLoginFormVisible = _e[0], setLoginFormVisible = _e[1];
     var pathname = react_router_dom_1.useLocation().pathname;
     // console.log(pathname);
     var TopMenuLinks = [
@@ -40,6 +42,14 @@ var TopMenu = function () {
             setIsBackgroundWhite(true);
         }
     }, [pathname]);
+    var openLoginForm = function () {
+        setLoginFormVisible(function (prev) { return !prev; });
+        document.body.style.overflow = "hidden";
+    };
+    var closeLoginForm = function () {
+        setLoginFormVisible(function (prev) { return !prev; });
+        document.body.style.overflow = "";
+    };
     var openMenuMobil = function () {
         setMenuMobilVisible(true);
         document.body.style.overflow = "hidden";
@@ -62,7 +72,8 @@ var TopMenu = function () {
                         react_1["default"].createElement("a", { className: isBackgroundWhite ? TopMenu_module_scss_1["default"]["top-menu__link_news"] : TopMenu_module_scss_1["default"]["top-menu__link"], href: "tel:+78002004766" }, "8 800 200-47-66"))),
                 react_1["default"].createElement("div", { onMouseOver: function () { return setPrivateOfficeHovered(true); }, onMouseOut: function () { return setPrivateOfficeHovered(false); }, className: TopMenu_module_scss_1["default"]["top-menu__private-office"] },
                     react_1["default"].createElement(TripleIcon_1["default"], { icon: "User", light: !isBackgroundWhite, hovered: isPrivateOfficeHovered }),
-                    react_1["default"].createElement("p", { className: isBackgroundWhite ? TopMenu_module_scss_1["default"]["top-menu__title_news"] : TopMenu_module_scss_1["default"]["top-menu__title"] }, "\u041B\u0438\u0447\u043D\u044B\u0439 \u043A\u0430\u0431\u0438\u043D\u0435\u0442")))),
+                    react_1["default"].createElement("p", { onClick: openLoginForm, className: isBackgroundWhite ? TopMenu_module_scss_1["default"]["top-menu__title_news"] : TopMenu_module_scss_1["default"]["top-menu__title"] }, "\u041B\u0438\u0447\u043D\u044B\u0439 \u043A\u0430\u0431\u0438\u043D\u0435\u0442")))),
+        react_1["default"].createElement(LoginForm_1["default"], { isVisible: isLoginFormVisible, closeLoginForm: closeLoginForm }),
         react_1["default"].createElement(MenuMobil_1["default"], { isVisible: isMenuMobilVisible, closeMenuMobil: closeMenuMobil })));
 };
 exports["default"] = TopMenu;
