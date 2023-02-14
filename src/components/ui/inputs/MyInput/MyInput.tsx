@@ -1,3 +1,4 @@
+// В проекте не учавствует, оставил для себя
 import React, { FC, useState } from "react";
 import InputField from "../InputField/InputField";
 import InputTitle from "../InputTitle/InputTitle";

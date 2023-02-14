@@ -1,13 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FC, useState } from "react";
-// import PrimaryButton from "../../ui/buttons/PrimaryButton/PrimaryButton";
-
 import styles from "./ReactHookForm.module.scss";
 import { useForm, SubmitHandler } from "react-hook-form";
 import InputTitle from "../../ui/inputs/InputTitle/InputTitle";
+import ButtonSubmit from "../../ui/buttons/ButtonSubmit/ButtonSubmit";
 
 type Inputs = {
-  firstName: string;
+  userName: string;
   phone: string;
   email: string;
   companyName: string;
@@ -16,7 +14,7 @@ type Inputs = {
 };
 
 const ReactHookForm: FC = () => {
-  const [isDormancyFirstName, setDormancyFirstName] = useState(true);
+  const [isDormancyUserName, setDormancyUserName] = useState(true);
   const [isDormancyPhone, setDormancyPhone] = useState(true);
   const [isDormancyEmail, setDormancyEmail] = useState(true);
   const [isDormancyCompanyName, setDormancyCompanyName] = useState(true);
@@ -28,7 +26,7 @@ const ReactHookForm: FC = () => {
     formState: { errors, isValid }, // объект с ошибками и т.д...
     handleSubmit, // некая обертка над нашим кастомным обработчиком отправки формы, она позволяет делать магии, связанные с валидацией.
     reset, // для очистки полей после отправки формы
-    watch,
+    watch, // следит за изменением значения
   } = useForm<Inputs>({ mode: "all" }); // all / onBlur / onChange / onSubmit / onTouched
 
   // наш кастомный обработчик отправки формы
@@ -36,7 +34,7 @@ const ReactHookForm: FC = () => {
     //  data - это набор данных из нашей формы
     console.log(data);
     reset();
-    setDormancyFirstName(true);
+    setDormancyUserName(true);
     setDormancyPhone(true);
     setDormancyEmail(true);
     setDormancyCompanyName(true);
@@ -44,7 +42,7 @@ const ReactHookForm: FC = () => {
     setDormancyPassword(true);
   };
 
-  // console.log(watch("firstName")); // следить за изменением значения
+  // console.log(watch("firstName")); // следит за изменением значения
 
   return (
     <section className={styles["support-form"]}>
@@ -64,19 +62,19 @@ const ReactHookForm: FC = () => {
           <form className={styles["support-form__form"]} onSubmit={handleSubmit(onSubmit)}>
             {/* включить проверку с обязательными или другими стандартными правилами проверки HTML */}
             <label className={styles["my-input__label"]}>
-              <InputTitle title="Ваше имя" isDormancy={isDormancyFirstName} />
+              <InputTitle title="Как вас зовут?" isDormancy={isDormancyUserName} />
 
               <input
-                className={errors?.firstName ? styles["my-input__field_invalid"] : styles["my-input__field"]}
+                className={errors?.userName ? styles["my-input__field_invalid"] : styles["my-input__field"]}
                 type="text"
-                {...register("firstName", {
+                {...register("userName", {
                   required: "Это поле обязательно к заполнению",
                   onChange: (event) => {
-                    setDormancyFirstName(false);
+                    setDormancyUserName(false);
                   },
                   onBlur: () => {
-                    if (watch("firstName").length === 0) {
-                      setDormancyFirstName(true);
+                    if (watch("userName").length === 0) {
+                      setDormancyUserName(true);
                     }
                   },
                   minLength: {
@@ -86,13 +84,13 @@ const ReactHookForm: FC = () => {
                 })}
               />
 
-              {errors?.firstName && (
-                <span className={styles["my-input__error"]}>{errors?.firstName?.message || "Error!"}</span>
+              {errors?.userName && (
+                <span className={styles["my-input__error"]}>{errors?.userName?.message || "Error!"}</span>
               )}
             </label>
 
             <label className={styles["my-input__label"]}>
-              <InputTitle title="Ваша телефон" isDormancy={isDormancyPhone} />
+              <InputTitle title="Телефон" isDormancy={isDormancyPhone} />
 
               <input
                 className={errors?.phone ? styles["my-input__field_invalid"] : styles["my-input__field"]}
@@ -112,8 +110,8 @@ const ReactHookForm: FC = () => {
                     message: "Минимум 11 символов",
                   },
                   maxLength: {
-                    value: 11,
-                    message: "Максимум 11 символов",
+                    value: 16,
+                    message: "Максимум 16 символов",
                   },
                 })}
               />
@@ -206,7 +204,7 @@ const ReactHookForm: FC = () => {
             </label>
 
             <label className={styles["my-input__label"]}>
-              <InputTitle title="Ваше пароль" isDormancy={isDormancyPassword} />
+              <InputTitle title="Ваш пароль" isDormancy={isDormancyPassword} />
 
               <input
                 className={errors?.password ? styles["my-input__field_invalid"] : styles["my-input__field"]}
@@ -233,7 +231,9 @@ const ReactHookForm: FC = () => {
               )}
             </label>
 
-            <input type="submit" disabled={!isValid} />
+            <div className={styles["support-form__button-container"]}>
+              <ButtonSubmit children="Оставить заявку" disabled={!isValid} />
+            </div>
           </form>
         </div>
       </div>

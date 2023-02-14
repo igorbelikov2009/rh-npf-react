@@ -11,15 +11,14 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 exports.__esModule = true;
-/* eslint-disable @typescript-eslint/no-unused-vars */
 var react_1 = require("react");
-// import PrimaryButton from "../../ui/buttons/PrimaryButton/PrimaryButton";
 var ReactHookForm_module_scss_1 = require("./ReactHookForm.module.scss");
 var react_hook_form_1 = require("react-hook-form");
 var InputTitle_1 = require("../../ui/inputs/InputTitle/InputTitle");
+var ButtonSubmit_1 = require("../../ui/buttons/ButtonSubmit/ButtonSubmit");
 var ReactHookForm = function () {
     var _a, _b, _c, _d, _e;
-    var _f = react_1.useState(true), isDormancyFirstName = _f[0], setDormancyFirstName = _f[1];
+    var _f = react_1.useState(true), isDormancyUserName = _f[0], setDormancyUserName = _f[1];
     var _g = react_1.useState(true), isDormancyPhone = _g[0], setDormancyPhone = _g[1];
     var _h = react_1.useState(true), isDormancyEmail = _h[0], setDormancyEmail = _h[1];
     var _j = react_1.useState(true), isDormancyCompanyName = _j[0], setDormancyCompanyName = _j[1];
@@ -35,14 +34,14 @@ var ReactHookForm = function () {
         //  data - это набор данных из нашей формы
         console.log(data);
         reset();
-        setDormancyFirstName(true);
+        setDormancyUserName(true);
         setDormancyPhone(true);
         setDormancyEmail(true);
         setDormancyCompanyName(true);
         setDormancyMessage(true);
         setDormancyPassword(true);
     };
-    // console.log(watch("firstName")); // следить за изменением значения
+    // console.log(watch("firstName")); // следит за изменением значения
     return (react_1["default"].createElement("section", { className: ReactHookForm_module_scss_1["default"]["support-form"] },
         react_1["default"].createElement("div", { className: ReactHookForm_module_scss_1["default"]["support-form__container"] },
             react_1["default"].createElement("div", { className: ReactHookForm_module_scss_1["default"]["support-form__content"] },
@@ -54,15 +53,15 @@ var ReactHookForm = function () {
                     react_1["default"].createElement("p", { className: ReactHookForm_module_scss_1["default"]["support-form__phone-title"] }, "\u0437\u0432\u043E\u043D\u043E\u043A \u0431\u0435\u0441\u043F\u043B\u0430\u0442\u043D\u044B\u0439")),
                 react_1["default"].createElement("form", { className: ReactHookForm_module_scss_1["default"]["support-form__form"], onSubmit: handleSubmit(onSubmit) },
                     react_1["default"].createElement("label", { className: ReactHookForm_module_scss_1["default"]["my-input__label"] },
-                        react_1["default"].createElement(InputTitle_1["default"], { title: "\u0412\u0430\u0448\u0435 \u0438\u043C\u044F", isDormancy: isDormancyFirstName }),
-                        react_1["default"].createElement("input", __assign({ className: (errors === null || errors === void 0 ? void 0 : errors.firstName) ? ReactHookForm_module_scss_1["default"]["my-input__field_invalid"] : ReactHookForm_module_scss_1["default"]["my-input__field"], type: "text" }, register("firstName", {
+                        react_1["default"].createElement(InputTitle_1["default"], { title: "\u041A\u0430\u043A \u0432\u0430\u0441 \u0437\u043E\u0432\u0443\u0442?", isDormancy: isDormancyUserName }),
+                        react_1["default"].createElement("input", __assign({ className: (errors === null || errors === void 0 ? void 0 : errors.userName) ? ReactHookForm_module_scss_1["default"]["my-input__field_invalid"] : ReactHookForm_module_scss_1["default"]["my-input__field"], type: "text" }, register("userName", {
                             required: "Это поле обязательно к заполнению",
                             onChange: function (event) {
-                                setDormancyFirstName(false);
+                                setDormancyUserName(false);
                             },
                             onBlur: function () {
-                                if (watch("firstName").length === 0) {
-                                    setDormancyFirstName(true);
+                                if (watch("userName").length === 0) {
+                                    setDormancyUserName(true);
                                 }
                             },
                             minLength: {
@@ -70,9 +69,9 @@ var ReactHookForm = function () {
                                 message: "Минимум 3 символов"
                             }
                         }))),
-                        (errors === null || errors === void 0 ? void 0 : errors.firstName) && (react_1["default"].createElement("span", { className: ReactHookForm_module_scss_1["default"]["my-input__error"] }, ((_a = errors === null || errors === void 0 ? void 0 : errors.firstName) === null || _a === void 0 ? void 0 : _a.message) || "Error!"))),
+                        (errors === null || errors === void 0 ? void 0 : errors.userName) && (react_1["default"].createElement("span", { className: ReactHookForm_module_scss_1["default"]["my-input__error"] }, ((_a = errors === null || errors === void 0 ? void 0 : errors.userName) === null || _a === void 0 ? void 0 : _a.message) || "Error!"))),
                     react_1["default"].createElement("label", { className: ReactHookForm_module_scss_1["default"]["my-input__label"] },
-                        react_1["default"].createElement(InputTitle_1["default"], { title: "\u0412\u0430\u0448\u0430 \u0442\u0435\u043B\u0435\u0444\u043E\u043D", isDormancy: isDormancyPhone }),
+                        react_1["default"].createElement(InputTitle_1["default"], { title: "\u0422\u0435\u043B\u0435\u0444\u043E\u043D", isDormancy: isDormancyPhone }),
                         react_1["default"].createElement("input", __assign({ className: (errors === null || errors === void 0 ? void 0 : errors.phone) ? ReactHookForm_module_scss_1["default"]["my-input__field_invalid"] : ReactHookForm_module_scss_1["default"]["my-input__field"], type: "tel" }, register("phone", {
                             required: "Это поле обязательно к заполнению",
                             onChange: function (event) {
@@ -88,8 +87,8 @@ var ReactHookForm = function () {
                                 message: "Минимум 11 символов"
                             },
                             maxLength: {
-                                value: 11,
-                                message: "Максимум 11 символов"
+                                value: 16,
+                                message: "Максимум 16 символов"
                             }
                         }))),
                         (errors === null || errors === void 0 ? void 0 : errors.phone) && (react_1["default"].createElement("span", { className: ReactHookForm_module_scss_1["default"]["my-input__error"] },
@@ -156,7 +155,7 @@ var ReactHookForm = function () {
                             ((_d = errors === null || errors === void 0 ? void 0 : errors.message) === null || _d === void 0 ? void 0 : _d.message) || "Error!",
                             " "))),
                     react_1["default"].createElement("label", { className: ReactHookForm_module_scss_1["default"]["my-input__label"] },
-                        react_1["default"].createElement(InputTitle_1["default"], { title: "\u0412\u0430\u0448\u0435 \u043F\u0430\u0440\u043E\u043B\u044C", isDormancy: isDormancyPassword }),
+                        react_1["default"].createElement(InputTitle_1["default"], { title: "\u0412\u0430\u0448 \u043F\u0430\u0440\u043E\u043B\u044C", isDormancy: isDormancyPassword }),
                         react_1["default"].createElement("input", __assign({ className: (errors === null || errors === void 0 ? void 0 : errors.password) ? ReactHookForm_module_scss_1["default"]["my-input__field_invalid"] : ReactHookForm_module_scss_1["default"]["my-input__field"], type: "text" }, register("password", {
                             required: "Это поле обязательно к заполнению",
                             onChange: function (event) {
@@ -175,6 +174,7 @@ var ReactHookForm = function () {
                         (errors === null || errors === void 0 ? void 0 : errors.password) && (react_1["default"].createElement("span", { className: ReactHookForm_module_scss_1["default"]["my-input__error"] },
                             ((_e = errors === null || errors === void 0 ? void 0 : errors.password) === null || _e === void 0 ? void 0 : _e.message) || "Error!",
                             " "))),
-                    react_1["default"].createElement("input", { type: "submit", disabled: !isValid }))))));
+                    react_1["default"].createElement("div", { className: ReactHookForm_module_scss_1["default"]["support-form__button-container"] },
+                        react_1["default"].createElement(ButtonSubmit_1["default"], { children: "\u041E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u044F\u0432\u043A\u0443", disabled: !isValid })))))));
 };
 exports["default"] = ReactHookForm;
