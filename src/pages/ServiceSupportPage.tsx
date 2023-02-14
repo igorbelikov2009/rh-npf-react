@@ -5,6 +5,7 @@ import "../styles/dist/ServiceSupport.css";
 import QuestionsAnswers from "../components/serviceSupport/QuestionsAnswers/QuestionsAnswers";
 import PensionPrograms from "../components/serviceSupport/PensionPrograms/PensionPrograms";
 import SupportForm from "../components/serviceSupport/SupportForm/SupportForm";
+import ReactHookForm from "../components/serviceSupport/ReactHookForm/ReactHookForm";
 
 const ServiceSupportPage: FC = () => {
   return (
@@ -21,6 +22,8 @@ const ServiceSupportPage: FC = () => {
         <div id="form">
           <SupportForm />
         </div>
+
+        <ReactHookForm />
       </div>
     </>
   );

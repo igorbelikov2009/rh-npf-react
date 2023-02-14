@@ -21,15 +21,15 @@ interface MyInputProps {
 }
 
 const MyInput: FC<MyInputProps> = ({
-  type,
-  name,
-  minLength,
-  maxLength,
-  title,
-  validationError,
-  isRequiredError,
-  isValidationError,
-  emitValue,
+  type, // тип поля
+  name, // название поля
+  minLength, // с хуком не надо
+  maxLength, // с хуком не надо
+  title, // название подсказки
+  validationError, // с хуком не надо
+  isRequiredError, // с хуком не надо
+  isValidationError, // с хуком не надо
+  emitValue, // с хуком не надо
 }) => {
   const [isDormancy, setDormancy] = useState(true);
   const [isError, setError] = useState(false);
@@ -53,9 +53,7 @@ const MyInput: FC<MyInputProps> = ({
 
   return (
     <label className={styles["my-input__label"]}>
-      <div>
-        <InputTitle title={title} isDormancy={isDormancy} />
-      </div>
+      <InputTitle title={title} isDormancy={isDormancy} />
 
       <InputField
         type={type}

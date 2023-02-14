@@ -1,0 +1,244 @@
+.support-form {
+  width: 100%;
+  background: #f3f5f7;
+  padding: 48px 24px;
+
+  @media screen and (min-width: 576px) {
+    padding: 72px 28px;
+  }
+
+  &__container {
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  &__content {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+    @media screen and (min-width: 1160px) {
+      flex-wrap: nowrap;
+    }
+  }
+
+  &__customer-service {
+    width: 100%;
+
+    @media screen and (min-width: 1160px) {
+      max-width: 360px;
+    }
+  }
+
+  &__header {
+    font-size: 34px;
+    line-height: 48px;
+    font-weight: 500;
+    color: black;
+    margin-bottom: 24px;
+
+    @media screen and (min-width: 576px) {
+      margin-bottom: 48px;
+    }
+  }
+
+  &__span {
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+    color: inherit;
+    display: inline;
+
+    @media screen and (min-width: 1160px) {
+      display: block;
+    }
+  }
+
+  &__phone-support {
+    font-size: 34px;
+    line-height: 48px;
+    font-weight: 500;
+    color: #00e;
+    display: block;
+    outline: none;
+    text-decoration: none;
+  }
+
+  &__phone-title {
+    font-size: 13px;
+    line-height: 24px;
+    color: #96a0aa;
+    margin-bottom: 48px;
+  }
+
+  &__form {
+    width: 100%;
+    max-width: 460px;
+    @media screen and (min-width: 1160px) {
+      max-width: 460px;
+      margin-left: 40px;
+    }
+  }
+
+  &__button-container {
+    width: 184px;
+  }
+}
+
+.my-input {
+  &__label {
+    width: 100%;
+    padding-bottom: 20px;
+    position: relative;
+  }
+
+  &__error {
+    display: block;
+    position: absolute;
+    top: 67px;
+    top: 56px;
+    left: 0;
+    font-size: 12px;
+    line-height: 12px;
+    color: red;
+  }
+}
+
+.my-input__field {
+  width: 100%;
+  font-size: 16px;
+  line-height: 23px;
+  padding: 24px 0 8px;
+  color: #28323c;
+  border-bottom: 1px solid #b5bdc8;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  &:hover {
+    line-height: 22px;
+    border-bottom: 2px solid #50287d;
+  }
+
+  &:focus {
+    line-height: 22px;
+    border-bottom: 2px solid #50287d;
+  }
+}
+
+.my-input__field_invalid {
+  width: 100%;
+  font-size: 16px;
+  line-height: 23px;
+  padding: 24px 0 8px;
+  color: #28323c;
+  border-bottom: 1px solid red;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  &:hover {
+    line-height: 22px;
+    border-bottom: 2px solid #50287d;
+  }
+
+  &:focus {
+    line-height: 22px;
+    border-bottom: 2px solid #50287d;
+  }
+}
+
+// /////////////////
+// ///
+// input {
+//   display: block;
+//   box-sizing: border-box;
+//   width: 100%;
+//   border-radius: 4px;
+//   border: 1px solid white;
+//   padding: 10px 15px;
+//   margin-bottom: 10px;
+//   font-size: 14px;
+// }
+
+// label {
+//   line-height: 2;
+//   text-align: left;
+//   display: block;
+//   margin-bottom: 13px;
+//   margin-top: 20px;
+//   color: white;
+//   font-size: 14px;
+//   font-weight: 200;
+// }
+
+button[type="submit"],
+input[type="submit"] {
+  background: #ec5990;
+  color: white;
+  text-transform: uppercase;
+  border: none;
+  margin-top: 40px;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 100;
+  letter-spacing: 10px;
+}
+
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+  background: #bf1650;
+}
+
+button[type="submit"]:active,
+input[type="button"]:active,
+input[type="submit"]:active {
+  transition: 0.3s all;
+  transform: translateY(3px);
+  border: 1px solid transparent;
+  opacity: 0.8;
+}
+
+input:disabled {
+  opacity: 0.4;
+}
+
+input[type="button"]:hover {
+  transition: 0.3s all;
+}
+
+button[type="submit"],
+input[type="button"],
+input[type="submit"] {
+  -webkit-appearance: none;
+}
+
+// .App {
+//   max-width: 600px;
+//   margin: 0 auto;
+// }
+
+button[type="button"] {
+  display: block;
+  appearance: none;
+  background: #333;
+  color: white;
+  border: none;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+
+// hr {
+//   margin-top: 30px;
+// }
+
+button {
+  display: block;
+  appearance: none;
+  margin-top: 40px;
+  border: 1px solid #333;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
