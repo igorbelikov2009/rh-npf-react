@@ -6,6 +6,7 @@ import BusinessProgramm from "../components/business/BusinessProgramm/BusinessPr
 import BusinnesImages from "../components/business/BusinnesImages/BusinnesImages";
 import BusinnesStatistic from "../components/business/BusinnesStatistic/BusinnesStatistic";
 import TaxPreferences from "../components/business/TaxPreferences/TaxPreferences";
+import BusinnesForm from "../components/business/BusinnesForm/BusinnesForm";
 
 const BusinessPage: FC = () => {
   return (
@@ -20,6 +21,7 @@ const BusinessPage: FC = () => {
         <BusinnesImages />
         <BusinnesStatistic />
         <TaxPreferences />
+        <BusinnesForm />
       </div>
     </>
   );
