@@ -1,9 +1,9 @@
 import React, { FC, useState } from "react";
-import ButtonSubmit from "../../ui/buttons/ButtonSubmit/ButtonSubmit";
 import InputTitle from "../../ui/inputs/InputTitle/InputTitle";
 import styles from "./LoginForm.module.scss";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Checkbox from "../../ui/Checkbox/Checkbox";
+import InputSubmit from "../../ui/inputs/InputSubmit/InputSubmit";
 
 type Inputs = {
   phone: string;
@@ -97,7 +97,7 @@ const LoginForm: FC<LoginFormProps> = ({ closeLoginForm, isVisible }) => {
         </div>
 
         <div className={styles["login-form__button-container"]}>
-          <ButtonSubmit children="Продолжить" disabled={!isValid || !isAgree} />
+          <InputSubmit children="Продолжить" disabled={!isValid || !isAgree} />
         </div>
       </div>
 

@@ -15,7 +15,7 @@ var react_1 = require("react");
 var SupportForm_module_scss_1 = require("./SupportForm.module.scss");
 var react_hook_form_1 = require("react-hook-form");
 var InputTitle_1 = require("../../ui/inputs/InputTitle/InputTitle");
-var ButtonSubmit_1 = require("../../ui/buttons/ButtonSubmit/ButtonSubmit");
+var InputSubmit_1 = require("../../ui/inputs/InputSubmit/InputSubmit");
 var SupportForm = function () {
     var _a, _b, _c, _d;
     var _e = react_1.useState(true), isDormancyUserName = _e[0], setDormancyUserName = _e[1];
@@ -153,6 +153,6 @@ var SupportForm = function () {
                             ((_d = errors === null || errors === void 0 ? void 0 : errors.message) === null || _d === void 0 ? void 0 : _d.message) || "Error!",
                             " "))),
                     react_1["default"].createElement("div", { className: SupportForm_module_scss_1["default"]["support-form__button-container"] },
-                        react_1["default"].createElement(ButtonSubmit_1["default"], { children: "\u041E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u044F\u0432\u043A\u0443", disabled: !isValid })))))));
+                        react_1["default"].createElement(InputSubmit_1["default"], { children: "\u041E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u0437\u0430\u044F\u0432\u043A\u0443", disabled: !isValid })))))));
 };
 exports["default"] = SupportForm;

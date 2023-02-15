@@ -12,11 +12,11 @@ var __assign = (this && this.__assign) || function () {
 };
 exports.__esModule = true;
 var react_1 = require("react");
-var ButtonSubmit_1 = require("../../ui/buttons/ButtonSubmit/ButtonSubmit");
 var InputTitle_1 = require("../../ui/inputs/InputTitle/InputTitle");
 var LoginForm_module_scss_1 = require("./LoginForm.module.scss");
 var react_hook_form_1 = require("react-hook-form");
 var Checkbox_1 = require("../../ui/Checkbox/Checkbox");
+var InputSubmit_1 = require("../../ui/inputs/InputSubmit/InputSubmit");
 var LoginForm = function (_a) {
     var _b;
     var closeLoginForm = _a.closeLoginForm, isVisible = _a.isVisible;
@@ -76,7 +76,7 @@ var LoginForm = function (_a) {
             react_1["default"].createElement("div", { className: LoginForm_module_scss_1["default"]["login-form__checkbox-container"] },
                 react_1["default"].createElement(Checkbox_1["default"], { checkedValue: isAgree, toogleChecked: toogleChecked, title: titleCheckbox, span: spanCheckbox, subtitle: subtitleCheckbox })),
             react_1["default"].createElement("div", { className: LoginForm_module_scss_1["default"]["login-form__button-container"] },
-                react_1["default"].createElement(ButtonSubmit_1["default"], { children: "\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C", disabled: !isValid || !isAgree }))),
+                react_1["default"].createElement(InputSubmit_1["default"], { children: "\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C", disabled: !isValid || !isAgree }))),
         react_1["default"].createElement("p", { className: LoginForm_module_scss_1["default"]["login-form__title"] },
             "\u0412\u0445\u043E\u0434 \u0434\u043B\u044F \u043A\u043B\u0438\u0435\u043D\u0442\u043E\u0432",
             react_1["default"].createElement("span", { className: LoginForm_module_scss_1["default"]["login-form__span"] }, " \u041D\u041F\u0424 \"\u0420\u0435\u043D\u0435\u0441\u0441\u0430\u043D\u0441 - \u043F\u0435\u043D\u0441\u0438\u0438\"")),

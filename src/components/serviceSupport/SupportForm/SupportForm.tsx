@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 import styles from "./SupportForm.module.scss";
 import { useForm, SubmitHandler } from "react-hook-form";
 import InputTitle from "../../ui/inputs/InputTitle/InputTitle";
-import ButtonSubmit from "../../ui/buttons/ButtonSubmit/ButtonSubmit";
+import InputSubmit from "../../ui/inputs/InputSubmit/InputSubmit";
 
 type Inputs = {
   userName: string;
@@ -202,7 +202,7 @@ const SupportForm: FC = () => {
             </label>
 
             <div className={styles["support-form__button-container"]}>
-              <ButtonSubmit children="Оставить заявку" disabled={!isValid} />
+              <InputSubmit children="Оставить заявку" disabled={!isValid} />
             </div>
           </form>
         </div>

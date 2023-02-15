@@ -1,8 +1,8 @@
 import React, { FC, useState } from "react";
 import styles from "./BusinnesForm.module.scss";
 import { useForm, SubmitHandler } from "react-hook-form";
-import ButtonSubmit from "../../ui/buttons/ButtonSubmit/ButtonSubmit";
 import InputTitle from "../../ui/inputs/InputTitle/InputTitle";
+import InputSubmit from "../../ui/inputs/InputSubmit/InputSubmit";
 
 type Inputs = {
   userName: string;
@@ -173,7 +173,7 @@ const BusinnesForm: FC = () => {
           </div>
 
           <div className={styles["form__button-container"]}>
-            <ButtonSubmit children="Оставить заявку" disabled={!isValid} />
+            <InputSubmit children="Оставить заявку" disabled={!isValid} />
           </div>
         </form>
       </div>
