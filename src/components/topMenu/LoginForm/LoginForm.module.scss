@@ -1,11 +1,8 @@
 .login-form {
   &__opacity1 {
     width: 100%;
-    max-width: 320px;
-    padding-top: 48px;
-    padding-left: 24px;
-    padding-right: 24px;
-    padding-bottom: 36px;
+    height: 576px;
+    padding: 60px 48px;
     box-sizing: border-box;
     margin: auto;
     position: fixed;
@@ -18,26 +15,19 @@
     transform: translate(-50%, -50%) scale(1);
     transition: all 0.5s ease;
 
-    @media screen and (min-width: 375px) {
-      max-width: 375px;
-      padding-left: 48px;
-      padding-right: 48px;
+    @media screen and (min-width: 450px) {
+      padding: 76px;
     }
 
     @media screen and (min-width: 576px) {
-      max-width: 432px;
-      padding-left: 76.5px;
-      padding-right: 76.5px;
+      width: 432px;
     }
   }
 
   &__opacity0 {
     width: 100%;
-    max-width: 320px;
-    padding-top: 48px;
-    padding-left: 24px;
-    padding-right: 24px;
-    padding-bottom: 36px;
+    height: 576px;
+    padding: 60px 48px;
     box-sizing: border-box;
     margin: auto;
     position: fixed;
@@ -54,25 +44,21 @@
     // // выше удалить
     transition: all 0.5s ease;
 
-    @media screen and (min-width: 375px) {
-      max-width: 375px;
-      padding-left: 48px;
-      padding-right: 48px;
+    @media screen and (min-width: 450px) {
+      padding: 76px;
     }
 
     @media screen and (min-width: 576px) {
-      max-width: 432px;
-      padding-left: 76.5px;
-      padding-right: 76.5px;
+      width: 432px;
     }
   }
 
   &__heading {
-    font-size: 34px;
-    line-height: 48px;
-    color: #28323c;
+    font-size: 30px;
+    line-height: 40px;
+    color: black;
     text-align: center;
-    margin-bottom: 24px;
+    margin-bottom: 36px;
   }
 
   &__block-of-forms {
@@ -81,6 +67,12 @@
 
   &__input-container {
     width: 100%;
+  }
+
+  &__checkbox-container {
+    width: 100%;
+    margin-top: 24px;
+    margin-bottom: 72px;
   }
 
   &__button-container {
@@ -108,21 +100,65 @@
     color: #b5bdc8;
     text-align: center;
   }
+}
 
-  &__cross-switch {
-    line-height: 12px;
-    cursor: pointer;
-    position: absolute;
-    top: 8px;
-    right: 6px;
-
-    &:hover {
-      border: 1px solid #50287d;
-    }
+.my-input {
+  &__label {
+    width: 100%;
+    padding-bottom: 20px;
+    position: relative;
   }
 
-  &__cross-image {
-    width: 24px;
-    height: 24px;
+  &__error {
+    display: block;
+    position: absolute;
+    top: 67px;
+    top: 56px;
+    left: 0;
+    font-size: 12px;
+    line-height: 12px;
+    color: red;
+  }
+}
+
+.my-input__field {
+  width: 100%;
+  font-size: 16px;
+  line-height: 23px;
+  padding: 24px 0 8px;
+  color: #28323c;
+  border-bottom: 1px solid #b5bdc8;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  &:hover {
+    line-height: 22px;
+    border-bottom: 2px solid #50287d;
+  }
+
+  &:focus {
+    line-height: 22px;
+    border-bottom: 2px solid #50287d;
+  }
+}
+
+.my-input__field_invalid {
+  width: 100%;
+  font-size: 16px;
+  line-height: 23px;
+  padding: 24px 0 8px;
+  color: #28323c;
+  border-bottom: 1px solid red;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  &:hover {
+    line-height: 22px;
+    border-bottom: 2px solid #50287d;
+  }
+
+  &:focus {
+    line-height: 22px;
+    border-bottom: 2px solid #50287d;
   }
 }

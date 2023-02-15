@@ -4,9 +4,12 @@ import styles from "./Checkbox.module.scss";
 export interface CheckboxProps {
   checkedValue: boolean;
   toogleChecked: () => void;
+  title: string;
+  span?: string;
+  subtitle?: string;
 }
 
-const Checkbox: FC<CheckboxProps> = ({ checkedValue, toogleChecked }) => {
+const Checkbox: FC<CheckboxProps> = ({ checkedValue, toogleChecked, title, span, subtitle }) => {
   const checkboxHandler = () => {
     toogleChecked();
   };
@@ -26,7 +29,11 @@ const Checkbox: FC<CheckboxProps> = ({ checkedValue, toogleChecked }) => {
         className={styles["r-checkbox__input"]}
       />
 
-      <div className={styles["r-checkbox__agree-link"]}>Выход на пенсию в 55/60 лет*</div>
+      <div className={styles["r-checkbox__agree"]}>
+        <span className={styles["r-checkbox__agree-title"]}>{title}</span>
+        <span className={styles["r-checkbox__agree-span"]}>{span} </span>
+        <span className={styles["r-checkbox__agree-title"]}>{subtitle}</span>
+      </div>
     </label>
   );
 };

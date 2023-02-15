@@ -236,7 +236,11 @@ const Calculator: FC = () => {
                 </div>
 
                 <div className={styles["slider-block__checkbox"]}>
-                  <Checkbox checkedValue={earlyRretirement} toogleChecked={toogleChecked} />
+                  <Checkbox
+                    checkedValue={earlyRretirement}
+                    toogleChecked={toogleChecked}
+                    title="Выход на пенсию в 55/60 лет*"
+                  />
                 </div>
 
                 {!earlyRretirement && (

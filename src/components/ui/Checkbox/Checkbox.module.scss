@@ -70,12 +70,23 @@
     display: none;
   }
 
-  &__agree-link {
-    line-height: 24px;
+  &__agree {
     position: absolute;
     top: 0;
     left: 42px;
+  }
+
+  &__agree-title {
+    font-size: 13px;
+    line-height: 16px;
     color: #5a646e;
+  }
+
+  &__agree-span {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 16px;
+    color: #666e76;
   }
 
   &__link {

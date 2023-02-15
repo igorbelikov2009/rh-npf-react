@@ -1,10 +1,7 @@
 .login-form__opacity1 {
   width: 100%;
-  max-width: 320px;
-  padding-top: 48px;
-  padding-left: 24px;
-  padding-right: 24px;
-  padding-bottom: 36px;
+  height: 576px;
+  padding: 60px 48px;
   box-sizing: border-box;
   margin: auto;
   position: fixed;
@@ -16,27 +13,20 @@
   transform: translate(-50%, -50%) scale(1);
   transition: all 0.5s ease;
 }
-@media screen and (min-width: 375px) {
+@media screen and (min-width: 450px) {
   .login-form__opacity1 {
-    max-width: 375px;
-    padding-left: 48px;
-    padding-right: 48px;
+    padding: 76px;
   }
 }
 @media screen and (min-width: 576px) {
   .login-form__opacity1 {
-    max-width: 432px;
-    padding-left: 76.5px;
-    padding-right: 76.5px;
+    width: 432px;
   }
 }
 .login-form__opacity0 {
   width: 100%;
-  max-width: 320px;
-  padding-top: 48px;
-  padding-left: 24px;
-  padding-right: 24px;
-  padding-bottom: 36px;
+  height: 576px;
+  padding: 60px 48px;
   box-sizing: border-box;
   margin: auto;
   position: fixed;
@@ -48,32 +38,33 @@
   transform: translate(-50%, -50%) scale(0.01);
   transition: all 0.5s ease;
 }
-@media screen and (min-width: 375px) {
+@media screen and (min-width: 450px) {
   .login-form__opacity0 {
-    max-width: 375px;
-    padding-left: 48px;
-    padding-right: 48px;
+    padding: 76px;
   }
 }
 @media screen and (min-width: 576px) {
   .login-form__opacity0 {
-    max-width: 432px;
-    padding-left: 76.5px;
-    padding-right: 76.5px;
+    width: 432px;
   }
 }
 .login-form__heading {
-  font-size: 34px;
-  line-height: 48px;
-  color: #28323c;
+  font-size: 30px;
+  line-height: 40px;
+  color: black;
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 36px;
 }
 .login-form__block-of-forms {
   width: 100%;
 }
 .login-form__input-container {
   width: 100%;
+}
+.login-form__checkbox-container {
+  width: 100%;
+  margin-top: 24px;
+  margin-bottom: 72px;
 }
 .login-form__button-container {
   width: 100%;
@@ -97,17 +88,57 @@
   color: #b5bdc8;
   text-align: center;
 }
-.login-form__cross-switch {
-  line-height: 12px;
-  cursor: pointer;
+
+.my-input__label {
+  width: 100%;
+  padding-bottom: 20px;
+  position: relative;
+}
+.my-input__error {
+  display: block;
   position: absolute;
-  top: 8px;
-  right: 6px;
+  top: 67px;
+  top: 56px;
+  left: 0;
+  font-size: 12px;
+  line-height: 12px;
+  color: red;
 }
-.login-form__cross-switch:hover {
-  border: 1px solid #50287d;
+
+.my-input__field {
+  width: 100%;
+  font-size: 16px;
+  line-height: 23px;
+  padding: 24px 0 8px;
+  color: #28323c;
+  border-bottom: 1px solid #b5bdc8;
+  box-sizing: border-box;
+  cursor: pointer;
 }
-.login-form__cross-image {
-  width: 24px;
-  height: 24px;
+.my-input__field:hover {
+  line-height: 22px;
+  border-bottom: 2px solid #50287d;
+}
+.my-input__field:focus {
+  line-height: 22px;
+  border-bottom: 2px solid #50287d;
+}
+
+.my-input__field_invalid {
+  width: 100%;
+  font-size: 16px;
+  line-height: 23px;
+  padding: 24px 0 8px;
+  color: #28323c;
+  border-bottom: 1px solid red;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.my-input__field_invalid:hover {
+  line-height: 22px;
+  border-bottom: 2px solid #50287d;
+}
+.my-input__field_invalid:focus {
+  line-height: 22px;
+  border-bottom: 2px solid #50287d;
 }
