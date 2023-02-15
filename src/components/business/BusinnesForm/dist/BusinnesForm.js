@@ -27,9 +27,13 @@ var BusinnesForm = function () {
     handleSubmit = _h.handleSubmit, // некая обертка над нашим кастомным обработчиком отправки формы, она позволяет делать магии, связанные с валидацией.
     reset = _h.reset, // для очистки полей после отправки формы
     watch = _h.watch; // all / onBlur / onChange / onSubmit / onTouched
+    var formData = {};
     var onSubmit = function (data) {
         //  data - это набор данных из нашей формы
+        formData = data;
         // console.log(data);
+        // console.log(formData);
+        localStorage.setItem("formData-renaissance-pension", JSON.stringify(formData));
         reset();
         setDormancyUserName(true);
         setDormancyPhone(true);
@@ -37,6 +41,13 @@ var BusinnesForm = function () {
         setDormancyCompanyName(true);
     };
     // console.log(watch("firstName")); // следит за изменением значения
+    // Восстановить из localStorage
+    if (localStorage.getItem("formData-renaissance-pension")) {
+        formData = JSON.parse(localStorage.getItem("formData-renaissance-pension") || "");
+        // Для typescript вы можете использовать ||оператор и добавить к нему строку, чтобы она больше
+        // не была нулевой. JSON.parse(localStorage.getItem("formData-renaissance-pension") || "")
+    }
+    // console.log(formData);
     return (react_1["default"].createElement("section", { className: BusinnesForm_module_scss_1["default"]["businnes-form"] },
         react_1["default"].createElement("div", { className: BusinnesForm_module_scss_1["default"]["businnes-form__container"] },
             react_1["default"].createElement("h2", { className: BusinnesForm_module_scss_1["default"]["businnes-form__subheading"] }, "\u0421\u0432\u044F\u0436\u0438\u0442\u0435\u0441\u044C \u0441 \u043D\u0430\u043C\u0438"),

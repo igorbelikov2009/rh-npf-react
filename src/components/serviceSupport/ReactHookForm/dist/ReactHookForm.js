@@ -29,10 +29,14 @@ var ReactHookForm = function () {
     handleSubmit = _m.handleSubmit, // некая обертка над нашим кастомным обработчиком отправки формы, она позволяет делать магии, связанные с валидацией.
     reset = _m.reset, // для очистки полей после отправки формы
     watch = _m.watch; // all / onBlur / onChange / onSubmit / onTouched
+    var formData = {};
     // наш кастомный обработчик отправки формы
     var onSubmit = function (data) {
         //  data - это набор данных из нашей формы
-        console.log(data);
+        formData = data;
+        // console.log(data);
+        // console.log(formData);
+        localStorage.setItem("formData-renaissance-pension", JSON.stringify(formData));
         reset();
         setDormancyUserName(true);
         setDormancyPhone(true);
@@ -42,6 +46,13 @@ var ReactHookForm = function () {
         setDormancyPassword(true);
     };
     // console.log(watch("firstName")); // следит за изменением значения
+    // Восстановить из localStorage
+    if (localStorage.getItem("formData-renaissance-pension")) {
+        formData = JSON.parse(localStorage.getItem("formData-renaissance-pension") || "");
+        // Для typescript вы можете использовать ||оператор и добавить к нему строку, чтобы она больше
+        // не была нулевой. JSON.parse(localStorage.getItem("formData-renaissance-pension") || "")
+    }
+    // console.log(formData);
     return (react_1["default"].createElement("section", { className: ReactHookForm_module_scss_1["default"]["support-form"] },
         react_1["default"].createElement("div", { className: ReactHookForm_module_scss_1["default"]["support-form__container"] },
             react_1["default"].createElement("div", { className: ReactHookForm_module_scss_1["default"]["support-form__content"] },

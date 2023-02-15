@@ -28,10 +28,14 @@ const SupportForm: FC = () => {
     watch, // следит за изменением значения
   } = useForm<Inputs>({ mode: "all" }); // all / onBlur / onChange / onSubmit / onTouched
 
+  let formData = {};
   // наш кастомный обработчик отправки формы
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     //  data - это набор данных из нашей формы
-    console.log(data);
+    formData = data;
+    // console.log(data);
+    // console.log(formData);
+    localStorage.setItem("formData-renaissance-pension", JSON.stringify(formData));
     reset();
     setDormancyUserName(true);
     setDormancyPhone(true);
@@ -39,8 +43,15 @@ const SupportForm: FC = () => {
     setDormancyCompanyName(true);
     setDormancyMessage(true);
   };
-
   // console.log(watch("firstName")); // следит за изменением значения
+
+  // Восстановить из localStorage
+  if (localStorage.getItem("formData-renaissance-pension")) {
+    formData = JSON.parse(localStorage.getItem("formData-renaissance-pension") || "");
+    // Для typescript вы можете использовать ||оператор и добавить к нему строку, чтобы она больше
+    // не была нулевой. JSON.parse(localStorage.getItem("formData-renaissance-pension") || "")
+  }
+  // console.log(formData);
 
   return (
     <section className={styles["support-form"]}>
