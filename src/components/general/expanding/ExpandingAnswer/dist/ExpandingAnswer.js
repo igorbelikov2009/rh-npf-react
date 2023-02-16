@@ -15,7 +15,7 @@ var ExpandingAnswer = function (_a) {
     return (react_1["default"].createElement("div", { className: ExpandingAnswer_module_scss_1["default"]["expanding"] },
         react_1["default"].createElement(ExpandingPanel_1["default"], { isContentVisible: isVisible, panelName: question, onClickExpanding: expanderHandler }),
         react_1["default"].createElement(framer_motion_1.AnimatePresence, null, isVisible && (react_1["default"].createElement(framer_motion_1.motion.div, { initial: { height: 0, opacity: 0 }, animate: { height: "auto", opacity: 1 }, exit: { height: 0, opacity: 0 }, style: { overflow: "hidden" } },
-            react_1["default"].createElement("div", { className: isVisible ? ExpandingAnswer_module_scss_1["default"]["expanding__display-block"] : ExpandingAnswer_module_scss_1["default"]["expanding__display-none"] },
+            react_1["default"].createElement("div", null,
                 isParagraph && (react_1["default"].createElement("div", { className: ExpandingAnswer_module_scss_1["default"]["expanding__content"] },
                     react_1["default"].createElement(Paragraph_1["default"], { paragraphs: answer }))),
                 isParagraphBefore && (react_1["default"].createElement("div", { className: ExpandingAnswer_module_scss_1["default"]["expanding__content"] },

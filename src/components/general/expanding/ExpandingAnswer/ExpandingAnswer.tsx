@@ -31,7 +31,7 @@ const ExpandingAnswer: FC<IObjectQuestionsAnswers> = ({ question, answer, isPara
             exit={{ height: 0, opacity: 0 }}
             style={{ overflow: "hidden" }}
           >
-            <div className={isVisible ? styles["expanding__display-block"] : styles["expanding__display-none"]}>
+            <div>
               {isParagraph && (
                 <div className={styles["expanding__content"]}>
                   <Paragraph paragraphs={answer} />
