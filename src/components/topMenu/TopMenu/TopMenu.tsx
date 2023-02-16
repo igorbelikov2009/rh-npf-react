@@ -1,3 +1,4 @@
+import { motion, AnimatePresence } from "framer-motion"; // анимация
 import React, { FC, useEffect, useState } from "react";
 import styles from "./TopMenu.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -7,6 +8,7 @@ import MenuLink, { MenuLinkProps } from "../../ui/links/MenuLink/MenuLink";
 import TripleIcon from "../../general/TripleIcon/TripleIcon";
 import MenuMobil from "../MenuMobil/MenuMobil";
 import LoginForm from "../LoginForm/LoginForm";
+import CallBack from "../CallBack/CallBack";
 
 const TopMenu: FC = () => {
   const navigate = useNavigate();
@@ -15,6 +17,7 @@ const TopMenu: FC = () => {
   const [isHamburgerHovered, setHamburgerHovered] = useState(false);
   const [isMenuMobilVisible, setMenuMobilVisible] = useState(false);
   const [isLoginFormVisible, setLoginFormVisible] = useState(false);
+  const [isCallBackVisible, setCallBackVisible] = useState(false);
 
   const pathname = useLocation().pathname;
   // console.log(pathname);
@@ -66,6 +69,16 @@ const TopMenu: FC = () => {
     document.body.style.overflow = "";
   };
 
+  const openCallBack = () => {
+    setCallBackVisible(!isCallBackVisible);
+    // document.body.style.overflow = "hidden";
+  };
+
+  const closeCallBack = () => {
+    setCallBackVisible(false);
+    // document.body.style.overflow = "";
+  };
+
   return (
     <header className={isBackgroundWhite ? styles["top-menu__with-border"] : styles["top-menu"]}>
       <div className={styles["top-menu__container"]}>
@@ -101,6 +114,13 @@ const TopMenu: FC = () => {
               >
                 8 800 200-47-66
               </a>
+
+              <button
+                onClick={openCallBack}
+                className={isBackgroundWhite ? styles["top-menu__call-back_news"] : styles["top-menu__call-back"]}
+              >
+                Обратный звонок
+              </button>
             </div>
           </div>
 
@@ -123,6 +143,19 @@ const TopMenu: FC = () => {
 
       <LoginForm isVisible={isLoginFormVisible} closeLoginForm={closeLoginForm} />
       <MenuMobil isVisible={isMenuMobilVisible} closeMenuMobil={closeMenuMobil} />
+
+      <AnimatePresence>
+        {isCallBackVisible && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            style={{ overflow: "hidden" }}
+          >
+            <CallBack isVisible={isCallBackVisible} closeCallBack={closeCallBack} />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };

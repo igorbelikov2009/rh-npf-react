@@ -72,11 +72,34 @@
 .top-menu__phone {
   min-width: 124px;
   margin-right: 32px;
+  position: relative;
 }
 @media (min-width: 1200px) {
   .top-menu__phone {
     margin-right: 64px;
   }
+}
+.top-menu__call-back {
+  cursor: pointer;
+  position: absolute;
+  top: 24px;
+  left: 20px;
+  font-size: 11px;
+  color: #b5bdc8;
+}
+.top-menu__call-back:hover {
+  color: white;
+}
+.top-menu__call-back_news {
+  cursor: pointer;
+  position: absolute;
+  top: 24px;
+  left: 20px;
+  font-size: 11px;
+  color: #78828c;
+}
+.top-menu__call-back_news:hover {
+  color: #000;
 }
 .top-menu__link {
   text-decoration: none;

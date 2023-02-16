@@ -8,7 +8,6 @@ type Inputs = {
   userName: string;
   phone: string;
   email: string;
-  companyName: string;
   message: string;
   password: string;
 };
@@ -17,7 +16,7 @@ const SupportForm: FC = () => {
   const [isDormancyUserName, setDormancyUserName] = useState(true);
   const [isDormancyPhone, setDormancyPhone] = useState(true);
   const [isDormancyEmail, setDormancyEmail] = useState(true);
-  const [isDormancyCompanyName, setDormancyCompanyName] = useState(true);
+  const [isDormancyPassword, setDormancyPassword] = useState(true);
   const [isDormancyMessage, setDormancyMessage] = useState(true);
 
   const {
@@ -40,7 +39,7 @@ const SupportForm: FC = () => {
     setDormancyUserName(true);
     setDormancyPhone(true);
     setDormancyEmail(true);
-    setDormancyCompanyName(true);
+    setDormancyPassword(true);
     setDormancyMessage(true);
   };
   // console.log(watch("firstName")); // следит за изменением значения
@@ -158,29 +157,30 @@ const SupportForm: FC = () => {
             </label>
 
             <label className={styles["my-input__label"]}>
-              <InputTitle title="Название компании" isDormancy={isDormancyCompanyName} />
+              <InputTitle title="Ваш пароль" isDormancy={isDormancyPassword} />
 
               <input
-                className={errors?.companyName ? styles["my-input__field_invalid"] : styles["my-input__field"]}
+                className={errors?.password ? styles["my-input__field_invalid"] : styles["my-input__field"]}
                 type="text"
-                {...register("companyName", {
+                {...register("password", {
                   required: "Это поле обязательно к заполнению",
                   onChange: (event) => {
-                    setDormancyCompanyName(false);
+                    setDormancyPassword(false);
                   },
                   onBlur: () => {
-                    if (watch("companyName").length === 0) {
-                      setDormancyCompanyName(true);
+                    if (watch("password").length === 0) {
+                      setDormancyPassword(true);
                     }
                   },
+
                   minLength: {
                     value: 5,
                     message: "Минимум 5 символов",
                   },
                 })}
               />
-              {errors?.companyName && (
-                <span className={styles["my-input__error"]}>{errors?.companyName.message || "Error!"} </span>
+              {errors?.password && (
+                <span className={styles["my-input__error"]}>{errors?.password?.message || "Error!"} </span>
               )}
             </label>
 

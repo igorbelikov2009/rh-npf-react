@@ -25,14 +25,14 @@ const BusinnesForm: FC = () => {
     watch, // следит за изменением значения
   } = useForm<Inputs>({ mode: "all" }); // all / onBlur / onChange / onSubmit / onTouched
 
-  let formData = {};
+  let companyData = {};
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     //  data - это набор данных из нашей формы
-    formData = data;
+    companyData = data;
     // console.log(data);
-    // console.log(formData);
-    localStorage.setItem("formData-renaissance-pension", JSON.stringify(formData));
+    // console.log(companyData);
+    localStorage.setItem("companyData-renaissance-pension", JSON.stringify(companyData));
     reset();
     setDormancyUserName(true);
     setDormancyPhone(true);
@@ -42,12 +42,12 @@ const BusinnesForm: FC = () => {
   // console.log(watch("firstName")); // следит за изменением значения
 
   // Восстановить из localStorage
-  if (localStorage.getItem("formData-renaissance-pension")) {
-    formData = JSON.parse(localStorage.getItem("formData-renaissance-pension") || "");
+  if (localStorage.getItem("companyData-renaissance-pension")) {
+    companyData = JSON.parse(localStorage.getItem("companyData-renaissance-pension") || "");
     // Для typescript вы можете использовать ||оператор и добавить к нему строку, чтобы она больше
-    // не была нулевой. JSON.parse(localStorage.getItem("formData-renaissance-pension") || "")
+    // не была нулевой. JSON.parse(localStorage.getItem("companyData-renaissance-pension") || "")
   }
-  // console.log(formData);
+  // console.log(companyData);
 
   return (
     <section className={styles["businnes-form"]}>
