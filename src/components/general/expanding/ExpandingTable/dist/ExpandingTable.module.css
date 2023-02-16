@@ -3,10 +3,6 @@
   border-bottom: 1px solid #e6f0fa;
   position: relative;
 }
-.expanding__content {
-  width: 100%;
-  padding: 24px 0 48px;
-}
 
 .expanding__display-block {
   display: block;

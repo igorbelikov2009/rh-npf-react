@@ -1,3 +1,4 @@
+import { motion, AnimatePresence } from "framer-motion"; // анимация
 import React, { FC } from "react";
 import ExpandingTable, { IExpandingTable } from "../../../general/expanding/ExpandingTable/ExpandingTable";
 
@@ -9,13 +10,22 @@ interface CompositionBlockProps {
 const CompositionBlock: FC<CompositionBlockProps> = ({ isVisible, arrayOfExpanderTables }) => {
   return (
     <>
-      {isVisible && (
-        <div>
-          {arrayOfExpanderTables.map((expander, index) => (
-            <ExpandingTable key={index} oneExpandingTable={expander} />
-          ))}
-        </div>
-      )}
+      <AnimatePresence>
+        {isVisible && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            style={{ overflow: "hidden" }}
+          >
+            <div>
+              {arrayOfExpanderTables.map((expander, index) => (
+                <ExpandingTable key={index} oneExpandingTable={expander} />
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

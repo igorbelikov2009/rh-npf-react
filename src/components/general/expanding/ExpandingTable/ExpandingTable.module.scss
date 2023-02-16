@@ -4,22 +4,10 @@
   position: relative;
 }
 
-.expanding__content-enter-active {
-  animation: bounce-in 0.5s;
+.expanding__display-block {
+  display: block;
 }
 
-.expanding__content-leave-active {
-  animation: bounce-in 0.5s reverse;
-}
-
-@keyframes bounce-in {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
+.expanding__display-none {
+  display: none;
 }

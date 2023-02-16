@@ -1,3 +1,4 @@
+import { motion, AnimatePresence } from "framer-motion"; // анимация
 import React, { FC, useState } from "react";
 import Table from "../../Table/Table";
 import ExpandingPanel from "../ExpandingPanel/ExpandingPanel";
@@ -29,13 +30,20 @@ const ExpandingTable: FC<ExpandingTableProps> = ({ oneExpandingTable }) => {
         onClickExpanding={expanderHandler}
       />
 
-      {isVisible && (
-        <div
-          className={isVisible ? styles["expanding__content-enter-active"] : styles["expanding__content-leave-active"]}
-        >
-          <Table headings={oneExpandingTable.headings} arrayRows={oneExpandingTable.arrayRows} />
-        </div>
-      )}
+      <AnimatePresence>
+        {isVisible && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            style={{ overflow: "hidden" }}
+          >
+            <div className={isVisible ? styles["expanding__display-block"] : styles["expanding__display-none"]}>
+              <Table headings={oneExpandingTable.headings} arrayRows={oneExpandingTable.arrayRows} />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

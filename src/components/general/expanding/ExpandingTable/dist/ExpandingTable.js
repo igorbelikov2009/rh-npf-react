@@ -1,5 +1,6 @@
 "use strict";
 exports.__esModule = true;
+var framer_motion_1 = require("framer-motion"); // анимация
 var react_1 = require("react");
 var Table_1 = require("../../Table/Table");
 var ExpandingPanel_1 = require("../ExpandingPanel/ExpandingPanel");
@@ -12,7 +13,8 @@ var ExpandingTable = function (_a) {
     };
     return (react_1["default"].createElement("div", { className: ExpandingTable_module_scss_1["default"]["expanding"] },
         react_1["default"].createElement(ExpandingPanel_1["default"], { isContentVisible: isVisible, panelName: oneExpandingTable.tableName, onClickExpanding: expanderHandler }),
-        isVisible && (react_1["default"].createElement("div", { className: isVisible ? ExpandingTable_module_scss_1["default"]["expanding__content-enter-active"] : ExpandingTable_module_scss_1["default"]["expanding__content-leave-active"] },
-            react_1["default"].createElement(Table_1["default"], { headings: oneExpandingTable.headings, arrayRows: oneExpandingTable.arrayRows })))));
+        react_1["default"].createElement(framer_motion_1.AnimatePresence, null, isVisible && (react_1["default"].createElement(framer_motion_1.motion.div, { initial: { height: 0, opacity: 0 }, animate: { height: "auto", opacity: 1 }, exit: { height: 0, opacity: 0 }, style: { overflow: "hidden" } },
+            react_1["default"].createElement("div", { className: isVisible ? ExpandingTable_module_scss_1["default"]["expanding__display-block"] : ExpandingTable_module_scss_1["default"]["expanding__display-none"] },
+                react_1["default"].createElement(Table_1["default"], { headings: oneExpandingTable.headings, arrayRows: oneExpandingTable.arrayRows })))))));
 };
 exports["default"] = ExpandingTable;

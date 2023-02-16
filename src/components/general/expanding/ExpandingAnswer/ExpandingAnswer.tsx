@@ -1,3 +1,4 @@
+import { motion, AnimatePresence } from "framer-motion"; // анимация
 import React, { FC, useState } from "react";
 import Paragraph from "../../paragraphs/Paragraph/Paragraph";
 import ParagraphBefore from "../../paragraphs/ParagraphBefore/ParagraphBefore";
@@ -22,22 +23,29 @@ const ExpandingAnswer: FC<IObjectQuestionsAnswers> = ({ question, answer, isPara
     <div className={styles["expanding"]}>
       <ExpandingPanel isContentVisible={isVisible} panelName={question} onClickExpanding={expanderHandler} />
 
-      {isVisible && (
-        <div
-          className={isVisible ? styles["expanding__content-enter-active"] : styles["expanding__content-leave-active"]}
-        >
-          {isParagraph && (
-            <div className={styles["expanding__content"]}>
-              <Paragraph paragraphs={answer} />
+      <AnimatePresence>
+        {isVisible && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            style={{ overflow: "hidden" }}
+          >
+            <div className={isVisible ? styles["expanding__display-block"] : styles["expanding__display-none"]}>
+              {isParagraph && (
+                <div className={styles["expanding__content"]}>
+                  <Paragraph paragraphs={answer} />
+                </div>
+              )}
+              {isParagraphBefore && (
+                <div className={styles["expanding__content"]}>
+                  <ParagraphBefore paragraphs={answer} />
+                </div>
+              )}
             </div>
-          )}
-          {isParagraphBefore && (
-            <div className={styles["expanding__content"]}>
-              <ParagraphBefore paragraphs={answer} />
-            </div>
-          )}
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
