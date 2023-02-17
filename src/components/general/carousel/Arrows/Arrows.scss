@@ -4,45 +4,47 @@
   align-items: center;
   margin-bottom: 24px;
 
-  &__left-arrow {
+  &__left-arrow_cursor-pointer {
     position: relative;
     width: 24px;
     height: 26px;
     cursor: pointer;
 
-    &:hover .arrows__left-image:first-of-type {
+    &:hover .arrows__left-image {
       display: block;
-    }
-
-    // arrows__left-arrow_no-cursor
-    // добавляем в ("arrows__left-arrow") !!!
-    &_no-cursor {
-      cursor: default;
-
-      &:hover .arrows__left-image:first-of-type {
-        display: none;
-      }
     }
   }
 
-  &__right-arrow {
+  &__left-arrow_cursor-default {
+    position: relative;
+    width: 24px;
+    height: 26px;
+    cursor: default;
+
+    &:hover .arrows__left-image {
+      display: none;
+    }
+  }
+
+  &__right-arrow_cursor-pointer {
     position: relative;
     width: 24px;
     height: 26px;
     cursor: pointer;
 
-    &:hover .arrows__right-image:first-of-type {
+    &:hover .arrows__right-image {
       display: block;
     }
+  }
 
-    // arrows__right-arrow_no-cursor
-    // добавляем в ("history__right-arrow") !!!
-    &_no-cursor {
-      cursor: default;
+  &__right-arrow_cursor-default {
+    position: relative;
+    width: 24px;
+    height: 26px;
+    cursor: default;
 
-      &:hover .arrows__right-image:first-of-type {
-        display: none;
-      }
+    &:hover .arrows__right-image {
+      display: none;
     }
   }
 
@@ -53,6 +55,29 @@
     top: 0;
     left: 0;
     transform: rotate(180deg);
+    display: none;
+  }
+
+  &__left-image_opacity-1 {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotate(180deg);
+
+    opacity: 1;
+  }
+
+  &__left-image_opacity-04 {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotate(180deg);
+
+    opacity: 0.4;
   }
 
   &__right-image {
@@ -61,15 +86,24 @@
     position: absolute;
     top: 0;
     left: 0;
-  }
-
-  // arrows__opacity-04
-  &__opacity-04 {
-    opacity: 0.4;
-  }
-
-  // arrows__not-visible
-  &__not-visible {
     display: none;
+  }
+
+  &__right-image_opacity-1 {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+  }
+
+  &__right-image_opacity-04 {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.4;
   }
 }

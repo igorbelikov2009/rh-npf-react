@@ -15,12 +15,3 @@ var MainCarousel = function (_a) {
         carouselLinks.map(function (link, index) { return (react_1["default"].createElement(NewsLinkContainer_1["default"], { key: index, isClear: index === qq || jj === index, link: link, emitValueWidth: getLinkContainerWidth })); })));
 };
 exports["default"] = MainCarousel;
-/*
-   v-for="(carouselLink, index) in carouselLinks"
-      :key="index"
-      :isClear="index === qq || jj === index"
-      :newsLinkTitle="carouselLink.title"
-      :newsLinkDate="carouselLink.date"
-      :newsLinkId="carouselLink.id"
-      @getLinkContainerWidth="getLinkContainerWidth"
-*/

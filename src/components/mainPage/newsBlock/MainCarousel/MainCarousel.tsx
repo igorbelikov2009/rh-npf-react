@@ -34,13 +34,3 @@ const MainCarousel: FC<MainCarouselProps> = ({ jj, qq, carouselLinks, emitValueW
 };
 
 export default MainCarousel;
-
-/*
-   v-for="(carouselLink, index) in carouselLinks"
-      :key="index"
-      :isClear="index === qq || jj === index"
-      :newsLinkTitle="carouselLink.title"
-      :newsLinkDate="carouselLink.date"
-      :newsLinkId="carouselLink.id"
-      @getLinkContainerWidth="getLinkContainerWidth" 
-*/

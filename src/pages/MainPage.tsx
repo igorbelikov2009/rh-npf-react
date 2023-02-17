@@ -7,7 +7,7 @@ import ImagesCalculator from "../components/mainPage/ImagesCalculator/ImagesCalc
 import NewsBlock from "../components/mainPage/newsBlock/NewsBlock/NewsBlock";
 import Cards from "../components/general/cards/Cards/Cards";
 import { CardsCardProps } from "../components/general/cards/CardsCard/CardsCard";
-import BottomBlock from "../components/mainPage/BottomBlock/BottomBlock";
+// import BottomBlock from "../components/mainPage/BottomBlock/BottomBlock";
 
 const MainPage: FC = () => {
   const cards: CardsCardProps[] = [
@@ -61,9 +61,8 @@ const MainPage: FC = () => {
 
       <ImagesCalculator />
       <NewsBlock />
-      {/*  */}
 
-      <BottomBlock />
+      {/* <BottomBlock /> */}
     </>
   );
 };

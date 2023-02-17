@@ -4,34 +4,40 @@
   align-items: center;
   margin-bottom: 24px;
 }
-.arrows__left-arrow {
+.arrows__left-arrow_cursor-pointer {
   position: relative;
   width: 24px;
   height: 26px;
   cursor: pointer;
 }
-.arrows__left-arrow:hover .arrows__left-image:first-of-type {
+.arrows__left-arrow_cursor-pointer:hover .arrows__left-image {
   display: block;
 }
-.arrows__left-arrow_no-cursor {
+.arrows__left-arrow_cursor-default {
+  position: relative;
+  width: 24px;
+  height: 26px;
   cursor: default;
 }
-.arrows__left-arrow_no-cursor:hover .arrows__left-image:first-of-type {
+.arrows__left-arrow_cursor-default:hover .arrows__left-image {
   display: none;
 }
-.arrows__right-arrow {
+.arrows__right-arrow_cursor-pointer {
   position: relative;
   width: 24px;
   height: 26px;
   cursor: pointer;
 }
-.arrows__right-arrow:hover .arrows__right-image:first-of-type {
+.arrows__right-arrow_cursor-pointer:hover .arrows__right-image {
   display: block;
 }
-.arrows__right-arrow_no-cursor {
+.arrows__right-arrow_cursor-default {
+  position: relative;
+  width: 24px;
+  height: 26px;
   cursor: default;
 }
-.arrows__right-arrow_no-cursor:hover .arrows__right-image:first-of-type {
+.arrows__right-arrow_cursor-default:hover .arrows__right-image {
   display: none;
 }
 .arrows__left-image {
@@ -41,6 +47,25 @@
   top: 0;
   left: 0;
   transform: rotate(180deg);
+  display: none;
+}
+.arrows__left-image_opacity-1 {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(180deg);
+  opacity: 1;
+}
+.arrows__left-image_opacity-04 {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(180deg);
+  opacity: 0.4;
 }
 .arrows__right-image {
   width: 24px;
@@ -48,10 +73,21 @@
   position: absolute;
   top: 0;
   left: 0;
-}
-.arrows__opacity-04 {
-  opacity: 0.4;
-}
-.arrows__not-visible {
   display: none;
+}
+.arrows__right-image_opacity-1 {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 1;
+}
+.arrows__right-image_opacity-04 {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.4;
 }

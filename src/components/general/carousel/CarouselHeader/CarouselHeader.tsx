@@ -26,7 +26,7 @@ const CarouselHeader: FC<CarouselHeaderProps> = ({
 }) => {
   return (
     <section className={styles["carousel-header"]}>
-      <div className={styles["carousel-header__heading"]}>
+      <div className={styles["carousel-header__headings"]}>
         <h1 v-if="ifHasHeaderTitle" className={styles["carousel-header__title"]}>
           {headerTitle}
         </h1>
