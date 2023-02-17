@@ -5,6 +5,7 @@ import AboutUs from "../components/aboutFund/AboutUs";
 
 import Cards from "../components/general/cards/Cards/Cards";
 import { CardsCardProps } from "../components/general/cards/CardsCard/CardsCard";
+import AboutFundBlock from "../components/aboutFund/AboutFundBlock/AboutFundBlock";
 
 const AboutFundPage: FC = () => {
   const cards: CardsCardProps[] = [
@@ -49,6 +50,7 @@ const AboutFundPage: FC = () => {
       />
 
       <AboutUs />
+      <AboutFundBlock />
       <Cards cards={cards} />
     </>
   );

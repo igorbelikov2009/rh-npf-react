@@ -1,27 +1,24 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useEffect, useRef } from "react";
 import NewsLink, { NewsLinkProps } from "../../../news/NewsLink/NewsLink";
 import styles from "./NewsLinkContainer.module.scss";
 
 interface NewsLinkContainerProps {
   isClear: boolean;
   link: NewsLinkProps;
-  emitValueWidth: (value: React.SetStateAction<number>) => void;
+  emitWidthColumn: (value: React.SetStateAction<number>) => void;
 }
 
-const NewsLinkContainer: FC<NewsLinkContainerProps> = ({ isClear, link, emitValueWidth }) => {
-  const [width, setWidth] = useState(0);
-  const refNewsLinkContainer = useRef<HTMLDivElement>(null);
+const NewsLinkContainer: FC<NewsLinkContainerProps> = ({ isClear, link, emitWidthColumn }) => {
+  const refColumn = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (refNewsLinkContainer.current) {
-      setWidth(refNewsLinkContainer.current.offsetWidth);
-      // console.log(width);
+    if (refColumn.current) {
+      emitWidthColumn(refColumn.current.offsetWidth);
     }
-    emitValueWidth(width);
-  }, [emitValueWidth, width]);
+  }, [emitWidthColumn]);
 
   return (
-    <div ref={refNewsLinkContainer} className={isClear ? styles["container__clear"] : styles["container__blurry"]}>
+    <div ref={refColumn} className={isClear ? styles["container__clear"] : styles["container__blurry"]}>
       <NewsLink date={link.date} title={link.title} id={link.id} />
     </div>
   );

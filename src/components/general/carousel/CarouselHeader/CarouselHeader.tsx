@@ -11,7 +11,6 @@ export interface CarouselHeaderProps {
   isBlurredRight: boolean;
   onClickLeft: () => void;
   onClickRight: () => void;
-  // arrows: ArrowsProps;
 }
 
 const CarouselHeader: FC<CarouselHeaderProps> = ({

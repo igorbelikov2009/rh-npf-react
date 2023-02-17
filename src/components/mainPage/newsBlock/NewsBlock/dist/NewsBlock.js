@@ -102,7 +102,7 @@ var NewsBlock = function () {
         },
     ];
     // ширина контейнера ссылок
-    var getLinkContainerWidth = function (width) {
+    var getWidthColumn = function (width) {
         setWidthLink(width);
     };
     // console.log(widthLink);
@@ -210,6 +210,6 @@ var NewsBlock = function () {
         react_1["default"].createElement(CarouselHeader_1["default"], { headerTitle: "\u041D\u043E\u0432\u043E\u0441\u0442\u0438", isBlurredLeft: isBlurredLeft, isBlurredRight: isBlurredRight, isHoveredLeft: isHoveredLeft, isHoveredRight: isHoveredRight, onClickLeft: onClickLeftArrow, onClickRight: onClickRightArrow }),
         react_1["default"].createElement("div", { className: NewsBlock_module_scss_1["default"]["carousel"] },
             react_1["default"].createElement("div", { className: NewsBlock_module_scss_1["default"]["scrollableElement"], style: { right: right + "px" } },
-                react_1["default"].createElement(MainCarousel_1["default"], { qq: q, jj: j, carouselLinks: news, emitValueWidth: getLinkContainerWidth })))));
+                react_1["default"].createElement(MainCarousel_1["default"], { qq: q, jj: j, carouselLinks: news, emitWidthColumn: getWidthColumn })))));
 };
 exports["default"] = NewsBlock;

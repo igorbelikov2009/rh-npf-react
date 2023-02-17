@@ -108,7 +108,7 @@ const NewsBlock = () => {
   ];
 
   // ширина контейнера ссылок
-  const getLinkContainerWidth = (width: React.SetStateAction<number>) => {
+  const getWidthColumn = (width: React.SetStateAction<number>) => {
     setWidthLink(width);
   };
   // console.log(widthLink);
@@ -236,7 +236,7 @@ const NewsBlock = () => {
 
       <div className={styles["carousel"]}>
         <div className={styles["scrollableElement"]} style={{ right: `${right}px` }}>
-          <MainCarousel qq={q} jj={j} carouselLinks={news} emitValueWidth={getLinkContainerWidth} />
+          <MainCarousel qq={q} jj={j} carouselLinks={news} emitWidthColumn={getWidthColumn} />
         </div>
       </div>
     </div>
