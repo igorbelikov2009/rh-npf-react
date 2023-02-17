@@ -5,9 +5,9 @@ import styles from "./CarouselHeader.module.scss";
 export interface CarouselHeaderProps {
   headerTitle?: string;
   headerSubtitle?: string;
-  isNoCursorLeft: boolean;
+  isHoveredLeft: boolean;
   isBlurredLeft: boolean;
-  isNoCursorRight: boolean;
+  isHoveredRight: boolean;
   isBlurredRight: boolean;
   onClickLeft: () => void;
   onClickRight: () => void;
@@ -19,8 +19,8 @@ const CarouselHeader: FC<CarouselHeaderProps> = ({
   headerSubtitle,
   isBlurredLeft,
   isBlurredRight,
-  isNoCursorLeft,
-  isNoCursorRight,
+  isHoveredLeft,
+  isHoveredRight,
   onClickLeft,
   onClickRight,
 }) => {
@@ -37,8 +37,8 @@ const CarouselHeader: FC<CarouselHeaderProps> = ({
         <Arrows
           isBlurredLeft={isBlurredLeft}
           isBlurredRight={isBlurredRight}
-          isNoCursorLeft={isNoCursorLeft}
-          isNoCursorRight={isNoCursorRight}
+          isHoveredLeft={isHoveredLeft}
+          isHoveredRight={isHoveredRight}
           onClickLeft={onClickLeft}
           onClickRight={onClickRight}
         />

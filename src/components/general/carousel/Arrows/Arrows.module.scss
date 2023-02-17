@@ -4,43 +4,52 @@
   align-items: center;
   margin-bottom: 24px;
 }
-.arrows__left-arrow_cursor-pointer {
+
+.left-arrow__cursor-pointer {
   position: relative;
   width: 24px;
   height: 26px;
   cursor: pointer;
+
+  &:hover .left-image {
+    display: block;
+  }
 }
-.arrows__left-arrow_cursor-pointer:hover .arrows__left-image {
-  display: block;
-}
-.arrows__left-arrow_cursor-default {
+
+.left-arrow__cursor-default {
   position: relative;
   width: 24px;
   height: 26px;
   cursor: default;
+
+  &:hover .left-image {
+    display: none;
+  }
 }
-.arrows__left-arrow_cursor-default:hover .arrows__left-image {
-  display: none;
-}
-.arrows__right-arrow_cursor-pointer {
+
+.right-arrow__cursor-pointer {
   position: relative;
   width: 24px;
   height: 26px;
   cursor: pointer;
+
+  &:hover .right-image {
+    display: block;
+  }
 }
-.arrows__right-arrow_cursor-pointer:hover .arrows__right-image {
-  display: block;
-}
-.arrows__right-arrow_cursor-default {
+
+.right-arrow__cursor-default {
   position: relative;
   width: 24px;
   height: 26px;
   cursor: default;
+
+  &:hover .right-image {
+    display: none;
+  }
 }
-.arrows__right-arrow_cursor-default:hover .arrows__right-image {
-  display: none;
-}
-.arrows__left-image {
+
+.left-image {
   width: 24px;
   height: 24px;
   position: absolute;
@@ -49,25 +58,30 @@
   transform: rotate(180deg);
   display: none;
 }
-.arrows__left-image_opacity-1 {
+
+.left-image_opacity-1 {
   width: 24px;
   height: 24px;
   position: absolute;
   top: 0;
   left: 0;
   transform: rotate(180deg);
+
   opacity: 1;
 }
-.arrows__left-image_opacity-04 {
+
+.left-image_opacity-04 {
   width: 24px;
   height: 24px;
   position: absolute;
   top: 0;
   left: 0;
   transform: rotate(180deg);
+
   opacity: 0.4;
 }
-.arrows__right-image {
+
+.right-image {
   width: 24px;
   height: 24px;
   position: absolute;
@@ -75,7 +89,8 @@
   left: 0;
   display: none;
 }
-.arrows__right-image_opacity-1 {
+
+.right-image_opacity-1 {
   width: 24px;
   height: 24px;
   position: absolute;
@@ -83,7 +98,8 @@
   left: 0;
   opacity: 1;
 }
-.arrows__right-image_opacity-04 {
+
+.right-image_opacity-04 {
   width: 24px;
   height: 24px;
   position: absolute;

@@ -8,9 +8,9 @@ var NewsBlock_module_scss_1 = require("./NewsBlock.module.scss");
 var NewsBlock = function () {
     // для CarouselHeader
     // меняем цвет у стрелок и свойства курсора на "cursor: default;"
-    var _a = react_1.useState(true), isNoCursorLeft = _a[0], setIsNoCursorLeft = _a[1];
+    var _a = react_1.useState(false), isHoveredLeft = _a[0], setIsHoveredLeft = _a[1];
     var _b = react_1.useState(true), isBlurredLeft = _b[0], setIsBlurredLeft = _b[1];
-    var _c = react_1.useState(false), isNoCursorRight = _c[0], setIsNoCursorRight = _c[1];
+    var _c = react_1.useState(true), isHoveredRight = _c[0], setIsHoveredRight = _c[1];
     var _d = react_1.useState(false), isBlurredRight = _d[0], setIsBlurredRight = _d[1];
     // для MainCarousel // вычисляем и скролим scrollableElement
     var screenWidth = document.documentElement.clientWidth; // получаем ширину экрана
@@ -147,7 +147,7 @@ var NewsBlock = function () {
             setJ(q + 1);
         }
     }, [q, screenWidth]);
-    console.log("q: " + q, "j: " + j);
+    // console.log("q: " + q, "j: " + j);
     // scrolling
     // скролим влево
     react_1.useEffect(function () {
@@ -173,25 +173,25 @@ var NewsBlock = function () {
     // console.log("right =" + right);
     // меняем цвет у стрелок и свойства курсора на "cursor: default;"
     var changeColorArrowsOnClickArrowLeft = function () {
-        setIsNoCursorRight(false);
+        setIsHoveredRight(true);
         setIsBlurredRight(false);
         if (q === 1) {
-            setIsNoCursorLeft(true);
+            setIsHoveredLeft(false);
             setIsBlurredLeft(true);
         }
     };
     var changeColorArrowOnClickArrowRight = function () {
-        setIsNoCursorLeft(false);
+        setIsHoveredLeft(true);
         setIsBlurredLeft(false);
         if (screenWidth < 855) {
             if (j === amountChildren - 1) {
-                setIsNoCursorRight(true);
+                setIsHoveredRight(false);
                 setIsBlurredRight(true);
             }
         }
         else if (screenWidth > 855) {
             if (j === amountChildren - 2) {
-                setIsNoCursorRight(true);
+                setIsHoveredRight(false);
                 setIsBlurredRight(true);
             }
         }
@@ -207,7 +207,7 @@ var NewsBlock = function () {
         changeColorArrowOnClickArrowRight();
     };
     return (react_1["default"].createElement("div", null,
-        react_1["default"].createElement(CarouselHeader_1["default"], { headerTitle: "\u041D\u043E\u0432\u043E\u0441\u0442\u0438", isBlurredLeft: isBlurredLeft, isBlurredRight: isBlurredRight, isNoCursorLeft: isNoCursorLeft, isNoCursorRight: isNoCursorRight, onClickLeft: onClickLeftArrow, onClickRight: onClickRightArrow }),
+        react_1["default"].createElement(CarouselHeader_1["default"], { headerTitle: "\u041D\u043E\u0432\u043E\u0441\u0442\u0438", isBlurredLeft: isBlurredLeft, isBlurredRight: isBlurredRight, isHoveredLeft: isHoveredLeft, isHoveredRight: isHoveredRight, onClickLeft: onClickLeftArrow, onClickRight: onClickRightArrow }),
         react_1["default"].createElement("div", { className: NewsBlock_module_scss_1["default"]["carousel"] },
             react_1["default"].createElement("div", { className: NewsBlock_module_scss_1["default"]["scrollableElement"], style: { right: right + "px" } },
                 react_1["default"].createElement(MainCarousel_1["default"], { qq: q, jj: j, carouselLinks: news, emitValueWidth: getLinkContainerWidth })))));

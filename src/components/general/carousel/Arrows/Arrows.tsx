@@ -1,46 +1,46 @@
 import React, { FC } from "react";
-import "./Arrows.scss";
+import styles from "./Arrows.module.scss";
 
 export interface ArrowsProps {
-  isNoCursorLeft: boolean;
+  isHoveredLeft: boolean;
   isBlurredLeft: boolean;
-  isNoCursorRight: boolean;
+  isHoveredRight: boolean;
   isBlurredRight: boolean;
   onClickLeft: () => void;
   onClickRight: () => void;
 }
 
 const Arrows: FC<ArrowsProps> = ({
-  isNoCursorLeft,
+  isHoveredLeft,
   isBlurredLeft,
-  isNoCursorRight,
+  isHoveredRight,
   isBlurredRight,
   onClickLeft,
   onClickRight,
 }) => {
   return (
-    <div className="arrows">
+    <div className={styles["arrows"]}>
       <div
-        className={isNoCursorLeft ? "arrows__left-arrow_cursor-default" : "arrows__left-arrow_cursor-pointer"}
+        className={isHoveredLeft ? styles["left-arrow__cursor-pointer"] : styles["left-arrow__cursor-default"]}
         onClick={onClickLeft}
       >
-        <img className="arrows__left-image" src="/icons/triple/Arrow Right/Colored.svg" alt="arrow" />
+        <img className={styles["left-image"]} src="/icons/triple/Arrow Right/Colored.svg" alt="arrow" />
 
         <img
-          className={isBlurredLeft ? "arrows__left-image_opacity-04" : "arrows__left-image_opacity-1"}
+          className={isBlurredLeft ? styles["left-image_opacity-04"] : styles["left-image_opacity-1"]}
           src="/icons/triple/Arrow Right/Dark.svg"
           alt="arrow"
         />
       </div>
 
       <div
-        className={isNoCursorRight ? "arrows__right-arrow_cursor-default" : "arrows__right-arrow_cursor-pointer"}
+        className={isHoveredRight ? styles["right-arrow__cursor-pointer"] : styles["right-arrow__cursor-default"]}
         onClick={onClickRight}
       >
-        <img className="arrows__right-image" src="/icons/triple/Arrow Right/Colored.svg" alt="arrow" />
+        <img className={styles["right-image"]} src="/icons/triple/Arrow Right/Colored.svg" alt="arrow" />
 
         <img
-          className={isBlurredRight ? "arrows__right-image_opacity-04" : "arrows__right-image_opacity-1"}
+          className={isBlurredRight ? styles["right-image_opacity-04"] : styles["right-image_opacity-1"]}
           src="/icons/triple/Arrow Right/Dark.svg"
           alt="arrow"
         />

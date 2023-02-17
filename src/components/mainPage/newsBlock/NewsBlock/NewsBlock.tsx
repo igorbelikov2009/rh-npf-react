@@ -8,9 +8,9 @@ import styles from "./NewsBlock.module.scss";
 const NewsBlock = () => {
   // для CarouselHeader
   // меняем цвет у стрелок и свойства курсора на "cursor: default;"
-  const [isNoCursorLeft, setIsNoCursorLeft] = useState(true);
+  const [isHoveredLeft, setIsHoveredLeft] = useState(false);
   const [isBlurredLeft, setIsBlurredLeft] = useState(true);
-  const [isNoCursorRight, setIsNoCursorRight] = useState(false);
+  const [isHoveredRight, setIsHoveredRight] = useState(true);
   const [isBlurredRight, setIsBlurredRight] = useState(false);
 
   // для MainCarousel // вычисляем и скролим scrollableElement
@@ -155,7 +155,7 @@ const NewsBlock = () => {
       setJ(q + 1);
     }
   }, [q, screenWidth]);
-  console.log("q: " + q, "j: " + j);
+  // console.log("q: " + q, "j: " + j);
 
   // scrolling
   // скролим влево
@@ -184,27 +184,27 @@ const NewsBlock = () => {
 
   // меняем цвет у стрелок и свойства курсора на "cursor: default;"
   const changeColorArrowsOnClickArrowLeft = () => {
-    setIsNoCursorRight(false);
+    setIsHoveredRight(true);
     setIsBlurredRight(false);
 
     if (q === 1) {
-      setIsNoCursorLeft(true);
+      setIsHoveredLeft(false);
       setIsBlurredLeft(true);
     }
   };
 
   const changeColorArrowOnClickArrowRight = () => {
-    setIsNoCursorLeft(false);
+    setIsHoveredLeft(true);
     setIsBlurredLeft(false);
 
     if (screenWidth < 855) {
       if (j === amountChildren - 1) {
-        setIsNoCursorRight(true);
+        setIsHoveredRight(false);
         setIsBlurredRight(true);
       }
     } else if (screenWidth > 855) {
       if (j === amountChildren - 2) {
-        setIsNoCursorRight(true);
+        setIsHoveredRight(false);
         setIsBlurredRight(true);
       }
     }
@@ -228,8 +228,8 @@ const NewsBlock = () => {
         headerTitle="Новости"
         isBlurredLeft={isBlurredLeft}
         isBlurredRight={isBlurredRight}
-        isNoCursorLeft={isNoCursorLeft}
-        isNoCursorRight={isNoCursorRight}
+        isHoveredLeft={isHoveredLeft}
+        isHoveredRight={isHoveredRight}
         onClickLeft={onClickLeftArrow}
         onClickRight={onClickRightArrow}
       />
