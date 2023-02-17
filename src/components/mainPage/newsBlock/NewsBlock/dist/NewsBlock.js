@@ -17,7 +17,7 @@ var NewsBlock = function () {
     var _e = react_1.useState(0), widthLink = _e[0], setWidthLink = _e[1]; // ширина контейнера ссылок
     var _f = react_1.useState(0), amountChildren = _f[0], setAmountChildren = _f[1]; // количество детей newsContainer
     var _g = react_1.useState(0), overallWidth = _g[0], setOverallWidth = _g[1]; // общая длина newsContainer
-    var _h = react_1.useState(0), scrollWidth = _h[0], setScrollWidth = _h[1]; // вычисляемая длина прокрутки scrollableElement
+    var _h = react_1.useState(0), scrollWidth = _h[0], setScrollWidth = _h[1]; // длина прокрутки scrollableElement
     var _j = react_1.useState(0), right = _j[0], setRight = _j[1]; // значение прокрутки scrollableElement, записываемое в его атрибут style
     //
     var _k = react_1.useState(0), q = _k[0], setQ = _k[1]; // значение счётчика, индекс columns[q], который по центру экрана
@@ -112,8 +112,9 @@ var NewsBlock = function () {
         // высчитываем общую длину карусельной ленты (carousel-tape)
         setOverallWidth(widthLink * amountChildren);
     }, [amountChildren, news.length, widthLink]);
-    console.log("amountChildren :" + amountChildren);
-    console.log("overallWidth:" + overallWidth);
+    // console.log("amountChildren :" + amountChildren);
+    // console.log("overallWidth:" + overallWidth);
+    // =================================
     // Получаем значение q
     var getValueQOnClickArrowLeft = function () {
         if (q !== 0) {
@@ -138,56 +139,72 @@ var NewsBlock = function () {
     // console.log("q: " + q);
     // get value j в зависимости от ширины экрана screenWidth (< 855 или > 855 )
     // во время постройки DOM, определяем данный метод в хук useEffect.
-    // Для работы с кликом - в  onClickLeft() и в  onClickRight()
-    var getValueJ = function () {
+    react_1.useEffect(function () {
         if (screenWidth < 855) {
             setJ(q);
         }
         else {
             setJ(q + 1);
         }
-    };
-    // console.log("q: " + q, "j: " + j);
+    }, [q, screenWidth]);
+    console.log("q: " + q, "j: " + j);
     // scrolling
-    var scrollToTheLeft = function () {
+    // скролим влево
+    react_1.useEffect(function () {
         setScrollWidth(q * widthLink);
-        setRight(scrollWidth);
-        // console.log("scrollToTheLeft. right :" + right);
-    };
-    var scrollToTheRight = function () {
-        // console.log("q =" + q, "widthLink = " + widthLink);
+        setRight(q * widthLink);
+    }, [q, widthLink]);
+    // скролим вправо
+    react_1.useEffect(function () {
         setScrollWidth(q * widthLink);
-        // console.log("scrollWidth :" + scrollWidth);
-        setRight(scrollWidth);
-        // console.log("right =" + right);
+        setRight(q * widthLink);
         if (screenWidth < 855) {
-            // console.log("scrollToTheRight. right :" + right);
             if (scrollWidth >= overallWidth) {
-                // setRight(overallWidth - widthLink);
-                // console.log("scrollToTheRight. right :" + right);
+                setRight(overallWidth - widthLink);
             }
         }
         if (screenWidth > 855) {
-            // console.log("right =" + right);
             if (scrollWidth >= overallWidth - widthLink) {
                 setRight(overallWidth - 2 * widthLink);
-                // console.log("scrollToTheRight. right :" + right);
+            }
+        }
+    }, [overallWidth, q, screenWidth, scrollWidth, widthLink]);
+    // console.log("scrollWidth :" + scrollWidth);
+    // console.log("right =" + right);
+    // меняем цвет у стрелок и свойства курсора на "cursor: default;"
+    var changeColorArrowsOnClickArrowLeft = function () {
+        setIsNoCursorRight(false);
+        setIsBlurredRight(false);
+        if (q === 1) {
+            setIsNoCursorLeft(true);
+            setIsBlurredLeft(true);
+        }
+    };
+    var changeColorArrowOnClickArrowRight = function () {
+        setIsNoCursorLeft(false);
+        setIsBlurredLeft(false);
+        if (screenWidth < 855) {
+            if (j === amountChildren - 1) {
+                setIsNoCursorRight(true);
+                setIsBlurredRight(true);
+            }
+        }
+        else if (screenWidth > 855) {
+            if (j === amountChildren - 2) {
+                setIsNoCursorRight(true);
+                setIsBlurredRight(true);
             }
         }
     };
     // клик по левой стрелке
     var onClickLeftArrow = function () {
-        // getOverallWidth();
         getValueQOnClickArrowLeft();
-        // getValueJ();
-        scrollToTheLeft();
+        changeColorArrowsOnClickArrowLeft();
     };
     // клик по правой стрелке
     var onClickRightArrow = function () {
-        // getOverallWidth();
         getValueQOnClickArrowRight();
-        // getValueJ();
-        scrollToTheRight();
+        changeColorArrowOnClickArrowRight();
     };
     return (react_1["default"].createElement("div", null,
         react_1["default"].createElement(CarouselHeader_1["default"], { headerTitle: "\u041D\u043E\u0432\u043E\u0441\u0442\u0438", isBlurredLeft: isBlurredLeft, isBlurredRight: isBlurredRight, isNoCursorLeft: isNoCursorLeft, isNoCursorRight: isNoCursorRight, onClickLeft: onClickLeftArrow, onClickRight: onClickRightArrow }),

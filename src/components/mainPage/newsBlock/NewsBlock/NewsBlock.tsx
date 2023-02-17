@@ -18,7 +18,7 @@ const NewsBlock = () => {
   const [widthLink, setWidthLink] = useState(0); // ширина контейнера ссылок
   const [amountChildren, setAmountChildren] = useState(0); // количество детей newsContainer
   const [overallWidth, setOverallWidth] = useState(0); // общая длина newsContainer
-  const [scrollWidth, setScrollWidth] = useState(0); // вычисляемая длина прокрутки scrollableElement
+  const [scrollWidth, setScrollWidth] = useState(0); // длина прокрутки scrollableElement
   const [right, setRight] = useState(0); // значение прокрутки scrollableElement, записываемое в его атрибут style
 
   //
@@ -119,8 +119,9 @@ const NewsBlock = () => {
     // высчитываем общую длину карусельной ленты (carousel-tape)
     setOverallWidth(widthLink * amountChildren);
   }, [amountChildren, news.length, widthLink]);
-  console.log("amountChildren :" + amountChildren);
-  console.log("overallWidth:" + overallWidth);
+  // console.log("amountChildren :" + amountChildren);
+  // console.log("overallWidth:" + overallWidth);
+  // =================================
 
   // Получаем значение q
   const getValueQOnClickArrowLeft = () => {
@@ -147,62 +148,78 @@ const NewsBlock = () => {
 
   // get value j в зависимости от ширины экрана screenWidth (< 855 или > 855 )
   // во время постройки DOM, определяем данный метод в хук useEffect.
-  // Для работы с кликом - в  onClickLeft() и в  onClickRight()
-  const getValueJ = () => {
+  useEffect(() => {
     if (screenWidth < 855) {
       setJ(q);
     } else {
       setJ(q + 1);
     }
-  };
-  // console.log("q: " + q, "j: " + j);
+  }, [q, screenWidth]);
+  console.log("q: " + q, "j: " + j);
 
   // scrolling
-  const scrollToTheLeft = () => {
+  // скролим влево
+  useEffect(() => {
     setScrollWidth(q * widthLink);
-    setRight(scrollWidth);
-    // console.log("scrollToTheLeft. right :" + right);
-  };
+    setRight(q * widthLink);
+  }, [q, widthLink]);
 
-  const scrollToTheRight = () => {
-    // console.log("q =" + q, "widthLink = " + widthLink);
-
+  // скролим вправо
+  useEffect(() => {
     setScrollWidth(q * widthLink);
-    // console.log("scrollWidth :" + scrollWidth);
-    setRight(scrollWidth);
-    // console.log("right =" + right);
+    setRight(q * widthLink);
     if (screenWidth < 855) {
-      // console.log("scrollToTheRight. right :" + right);
       if (scrollWidth >= overallWidth) {
-        // setRight(overallWidth - widthLink);
-        // console.log("scrollToTheRight. right :" + right);
+        setRight(overallWidth - widthLink);
       }
     }
-
     if (screenWidth > 855) {
-      // console.log("right =" + right);
-
       if (scrollWidth >= overallWidth - widthLink) {
         setRight(overallWidth - 2 * widthLink);
-        // console.log("scrollToTheRight. right :" + right);
+      }
+    }
+  }, [overallWidth, q, screenWidth, scrollWidth, widthLink]);
+  // console.log("scrollWidth :" + scrollWidth);
+  // console.log("right =" + right);
+
+  // меняем цвет у стрелок и свойства курсора на "cursor: default;"
+  const changeColorArrowsOnClickArrowLeft = () => {
+    setIsNoCursorRight(false);
+    setIsBlurredRight(false);
+
+    if (q === 1) {
+      setIsNoCursorLeft(true);
+      setIsBlurredLeft(true);
+    }
+  };
+
+  const changeColorArrowOnClickArrowRight = () => {
+    setIsNoCursorLeft(false);
+    setIsBlurredLeft(false);
+
+    if (screenWidth < 855) {
+      if (j === amountChildren - 1) {
+        setIsNoCursorRight(true);
+        setIsBlurredRight(true);
+      }
+    } else if (screenWidth > 855) {
+      if (j === amountChildren - 2) {
+        setIsNoCursorRight(true);
+        setIsBlurredRight(true);
       }
     }
   };
 
   // клик по левой стрелке
   const onClickLeftArrow = () => {
-    // getOverallWidth();
     getValueQOnClickArrowLeft();
-    // getValueJ();
-    scrollToTheLeft();
+    changeColorArrowsOnClickArrowLeft();
   };
 
   // клик по правой стрелке
   const onClickRightArrow = () => {
-    // getOverallWidth();
     getValueQOnClickArrowRight();
-    // getValueJ();
-    scrollToTheRight();
+    changeColorArrowOnClickArrowRight();
   };
 
   return (
