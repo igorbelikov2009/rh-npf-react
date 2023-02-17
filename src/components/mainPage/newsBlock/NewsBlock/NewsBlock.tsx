@@ -110,28 +110,17 @@ const NewsBlock = () => {
   // ширина контейнера ссылок
   const getLinkContainerWidth = (width: React.SetStateAction<number>) => {
     setWidthLink(width);
-    // console.log(widthLink);
   };
-
-  // получаем количество детей массива, новостных колонок (NewsLinkContainer)
-  const getAmountChildren = () => {
-    setAmountChildren(news.length);
-  };
+  // console.log(widthLink);
 
   useEffect(() => {
-    getAmountChildren();
-    getValueJ();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [q]);
-  // console.log("amountChildren :" + amountChildren);
-  // console.log("q: " + q, "j: " + j);
-
-  // высчитываем общую длину карусельной ленты (carousel-tape)
-  const getOverallWidth = () => {
+    // получаем количество детей массива, новостных колонок (NewsLinkContainer)
+    setAmountChildren(news.length);
+    // высчитываем общую длину карусельной ленты (carousel-tape)
     setOverallWidth(widthLink * amountChildren);
-  };
-
-  // console.log("overallWidth:" + overallWidth);
+  }, [amountChildren, news.length, widthLink]);
+  console.log("amountChildren :" + amountChildren);
+  console.log("overallWidth:" + overallWidth);
 
   // Получаем значение q
   const getValueQOnClickArrowLeft = () => {
@@ -141,9 +130,7 @@ const NewsBlock = () => {
     if (q < 0) {
       setQ(0);
     }
-    // console.log("q: " + q);
   };
-
   const getValueQOnClickArrowRight = () => {
     if (screenWidth < 855) {
       if (q < amountChildren - 1) {
@@ -155,8 +142,8 @@ const NewsBlock = () => {
         setQ((prev) => prev + 1);
       }
     }
-    // console.log("q: " + q);
   };
+  // console.log("q: " + q);
 
   // get value j в зависимости от ширины экрана screenWidth (< 855 или > 855 )
   // во время постройки DOM, определяем данный метод в хук useEffect.
@@ -168,12 +155,13 @@ const NewsBlock = () => {
       setJ(q + 1);
     }
   };
+  // console.log("q: " + q, "j: " + j);
 
   // scrolling
   const scrollToTheLeft = () => {
     setScrollWidth(q * widthLink);
     setRight(scrollWidth);
-    console.log("scrollToTheLeft. right :" + right);
+    // console.log("scrollToTheLeft. right :" + right);
   };
 
   const scrollToTheRight = () => {
@@ -192,7 +180,7 @@ const NewsBlock = () => {
     }
 
     if (screenWidth > 855) {
-      console.log("right =" + right);
+      // console.log("right =" + right);
 
       if (scrollWidth >= overallWidth - widthLink) {
         setRight(overallWidth - 2 * widthLink);
@@ -203,7 +191,7 @@ const NewsBlock = () => {
 
   // клик по левой стрелке
   const onClickLeftArrow = () => {
-    getOverallWidth();
+    // getOverallWidth();
     getValueQOnClickArrowLeft();
     // getValueJ();
     scrollToTheLeft();
@@ -211,7 +199,7 @@ const NewsBlock = () => {
 
   // клик по правой стрелке
   const onClickRightArrow = () => {
-    getOverallWidth();
+    // getOverallWidth();
     getValueQOnClickArrowRight();
     // getValueJ();
     scrollToTheRight();

@@ -127,14 +127,12 @@ const TopMenu: FC = () => {
           <div
             onMouseOver={() => setPrivateOfficeHovered(true)}
             onMouseOut={() => setPrivateOfficeHovered(false)}
+            onClick={openLoginForm}
             className={styles["top-menu__private-office"]}
           >
             <TripleIcon icon="User" light={!isBackgroundWhite} hovered={isPrivateOfficeHovered} />
 
-            <p
-              onClick={openLoginForm}
-              className={isBackgroundWhite ? styles["top-menu__title_news"] : styles["top-menu__title"]}
-            >
+            <p className={isBackgroundWhite ? styles["top-menu__title_news"] : styles["top-menu__title"]}>
               Личный кабинет
             </p>
           </div>

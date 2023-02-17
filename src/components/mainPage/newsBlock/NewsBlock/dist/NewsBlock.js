@@ -104,24 +104,16 @@ var NewsBlock = function () {
     // ширина контейнера ссылок
     var getLinkContainerWidth = function (width) {
         setWidthLink(width);
-        // console.log(widthLink);
     };
-    // получаем количество детей массива, новостных колонок (NewsLinkContainer)
-    var getAmountChildren = function () {
-        setAmountChildren(news.length);
-    };
+    // console.log(widthLink);
     react_1.useEffect(function () {
-        getAmountChildren();
-        getValueJ();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [q]);
-    // console.log("amountChildren :" + amountChildren);
-    // console.log("q: " + q, "j: " + j);
-    // высчитываем общую длину карусельной ленты (carousel-tape)
-    var getOverallWidth = function () {
+        // получаем количество детей массива, новостных колонок (NewsLinkContainer)
+        setAmountChildren(news.length);
+        // высчитываем общую длину карусельной ленты (carousel-tape)
         setOverallWidth(widthLink * amountChildren);
-    };
-    // console.log("overallWidth:" + overallWidth);
+    }, [amountChildren, news.length, widthLink]);
+    console.log("amountChildren :" + amountChildren);
+    console.log("overallWidth:" + overallWidth);
     // Получаем значение q
     var getValueQOnClickArrowLeft = function () {
         if (q !== 0) {
@@ -130,7 +122,6 @@ var NewsBlock = function () {
         if (q < 0) {
             setQ(0);
         }
-        // console.log("q: " + q);
     };
     var getValueQOnClickArrowRight = function () {
         if (screenWidth < 855) {
@@ -143,8 +134,8 @@ var NewsBlock = function () {
                 setQ(function (prev) { return prev + 1; });
             }
         }
-        // console.log("q: " + q);
     };
+    // console.log("q: " + q);
     // get value j в зависимости от ширины экрана screenWidth (< 855 или > 855 )
     // во время постройки DOM, определяем данный метод в хук useEffect.
     // Для работы с кликом - в  onClickLeft() и в  onClickRight()
@@ -156,11 +147,12 @@ var NewsBlock = function () {
             setJ(q + 1);
         }
     };
+    // console.log("q: " + q, "j: " + j);
     // scrolling
     var scrollToTheLeft = function () {
         setScrollWidth(q * widthLink);
         setRight(scrollWidth);
-        console.log("scrollToTheLeft. right :" + right);
+        // console.log("scrollToTheLeft. right :" + right);
     };
     var scrollToTheRight = function () {
         // console.log("q =" + q, "widthLink = " + widthLink);
@@ -176,7 +168,7 @@ var NewsBlock = function () {
             }
         }
         if (screenWidth > 855) {
-            console.log("right =" + right);
+            // console.log("right =" + right);
             if (scrollWidth >= overallWidth - widthLink) {
                 setRight(overallWidth - 2 * widthLink);
                 // console.log("scrollToTheRight. right :" + right);
@@ -185,14 +177,14 @@ var NewsBlock = function () {
     };
     // клик по левой стрелке
     var onClickLeftArrow = function () {
-        getOverallWidth();
+        // getOverallWidth();
         getValueQOnClickArrowLeft();
         // getValueJ();
         scrollToTheLeft();
     };
     // клик по правой стрелке
     var onClickRightArrow = function () {
-        getOverallWidth();
+        // getOverallWidth();
         getValueQOnClickArrowRight();
         // getValueJ();
         scrollToTheRight();

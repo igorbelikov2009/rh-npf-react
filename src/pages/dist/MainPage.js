@@ -8,6 +8,7 @@ var Calc_1 = require("../components/mainPage/calculator/Calc/Calc");
 var ImagesCalculator_1 = require("../components/mainPage/ImagesCalculator/ImagesCalculator");
 var NewsBlock_1 = require("../components/mainPage/newsBlock/NewsBlock/NewsBlock");
 var Cards_1 = require("../components/general/cards/Cards/Cards");
+var BottomBlock_1 = require("../components/mainPage/BottomBlock/BottomBlock");
 var MainPage = function () {
     var cards = [
         {
@@ -48,6 +49,7 @@ var MainPage = function () {
         react_1["default"].createElement("div", { id: "calculator" },
             react_1["default"].createElement(Calc_1["default"], null)),
         react_1["default"].createElement(ImagesCalculator_1["default"], null),
-        react_1["default"].createElement(NewsBlock_1["default"], null)));
+        react_1["default"].createElement(NewsBlock_1["default"], null),
+        react_1["default"].createElement(BottomBlock_1["default"], null)));
 };
 exports["default"] = MainPage;
