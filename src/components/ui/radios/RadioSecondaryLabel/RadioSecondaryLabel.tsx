@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import styles from "./RadioSecondaryLabel.module.scss";
 
 export interface RadioLabelProps {
@@ -10,11 +10,7 @@ export interface RadioLabelProps {
 }
 
 const RadioSecondaryLabel: FC<RadioLabelProps> = ({ value, title, name, isActive, emitValue }) => {
-  const [, setValueRadio] = useState<string>();
-
   const radioHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // console.log(event.target.value);
-    setValueRadio(event.target.value);
     emitValue(event.target.value);
   };
 

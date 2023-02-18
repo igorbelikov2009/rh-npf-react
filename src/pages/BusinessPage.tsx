@@ -7,6 +7,7 @@ import BusinnesImages from "../components/business/BusinnesImages/BusinnesImages
 import BusinnesStatistic from "../components/business/BusinnesStatistic/BusinnesStatistic";
 import TaxPreferences from "../components/business/TaxPreferences/TaxPreferences";
 import BusinnesForm from "../components/business/BusinnesForm/BusinnesForm";
+import BusinessBlock from "../components/business/carousel/BusinessBlock/BusinessBlock";
 
 const BusinessPage: FC = () => {
   return (
@@ -17,6 +18,7 @@ const BusinessPage: FC = () => {
         image={businessImage}
       />
       <div className="business-page">
+        <BusinessBlock />
         <BusinessProgramm />
         <BusinnesImages />
         <BusinnesStatistic />

@@ -10,7 +10,7 @@ interface RadioCircleItemProps {
   value: string;
   title: string;
   isActive: boolean;
-  emitValue: (event: any) => void;
+  emitValue: (event: string) => void;
 }
 
 const RadioCircleItem: FC<RadioCircleItemProps> = ({ value, title, isActive, emitValue }) => {

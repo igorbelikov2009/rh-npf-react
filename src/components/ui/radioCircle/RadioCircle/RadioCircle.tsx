@@ -2,11 +2,6 @@ import React, { FC } from "react";
 import styles from "./RadioCircle.module.scss";
 import RadioCircleItem, { IRadioCircleItem } from "../RadioCircleItem/RadioCircleItem";
 
-// export interface IRadioCircleItem {
-//     value: string;
-//     title: string;
-//   }
-
 interface RadioCircleProps {
   radioItems: IRadioCircleItem[];
   currentValue: string;
