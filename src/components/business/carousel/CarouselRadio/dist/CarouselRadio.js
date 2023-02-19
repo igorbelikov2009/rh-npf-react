@@ -8,6 +8,6 @@ var CarouselRadio = function (_a) {
         emitValue(event.target.value);
     };
     return (react_1["default"].createElement(react_1["default"].Fragment, null,
-        react_1["default"].createElement("input", { className: CarouselRadio_module_scss_1["default"]["carousel__radio"], type: "radio", value: value, onChange: onChangeCarouselRadio })));
+        react_1["default"].createElement("input", { className: CarouselRadio_module_scss_1["default"]["carousel__radio"], type: "radio", name: "card", value: value, onChange: onChangeCarouselRadio })));
 };
 exports["default"] = CarouselRadio;

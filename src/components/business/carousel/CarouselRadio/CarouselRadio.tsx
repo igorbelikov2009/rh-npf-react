@@ -13,7 +13,13 @@ const CarouselRadio: FC<CarouselRadioProps> = ({ emitValue, value }) => {
 
   return (
     <>
-      <input className={styles["carousel__radio"]} type="radio" value={value} onChange={onChangeCarouselRadio} />
+      <input
+        className={styles["carousel__radio"]}
+        type="radio"
+        name="card"
+        value={value}
+        onChange={onChangeCarouselRadio}
+      />
     </>
   );
 };

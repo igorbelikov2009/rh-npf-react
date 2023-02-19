@@ -26,12 +26,8 @@ const CarouselHeader: FC<CarouselHeaderProps> = ({
   return (
     <section className={styles["carousel-header"]}>
       <div className={styles["carousel-header__headings"]}>
-        <h1 v-if="ifHasHeaderTitle" className={styles["carousel-header__title"]}>
-          {headerTitle}
-        </h1>
-        <p v-if="ifHasHeaderSubtitle" className={styles["carousel-header__subtitle"]}>
-          {headerSubtitle}
-        </p>
+        {headerTitle && <h1 className={styles["carousel-header__title"]}>{headerTitle}</h1>}
+        {headerSubtitle && <p className={styles["carousel-header__subtitle"]}>{headerSubtitle}</p>}
 
         <Arrows
           isBlurredLeft={isBlurredLeft}

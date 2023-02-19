@@ -1,0 +1,27 @@
+.news-item {
+  width: 100%;
+  border: 1px solid purple;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.news-item__heading {
+  display: block;
+  margin-bottom: 24px;
+  font-size: 18px;
+  line-height: 24px;
+  color: black;
+}
+.news-item__id-date {
+  display: block;
+  margin-bottom: 18px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #28323c;
+}
+.news-item__paragraph {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 18px;
+  color: #28323c;
+}

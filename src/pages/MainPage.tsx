@@ -7,6 +7,7 @@ import ImagesCalculator from "../components/mainPage/ImagesCalculator/ImagesCalc
 import NewsBlock from "../components/mainPage/newsBlock/NewsBlock/NewsBlock";
 import Cards from "../components/general/cards/Cards/Cards";
 import { CardsCardProps } from "../components/general/cards/CardsCard/CardsCard";
+import ExampleDate from "../components/mainPage/examples/ExampleDate/ExampleDate";
 // import BottomBlock from "../components/mainPage/BottomBlock/BottomBlock";
 
 const MainPage: FC = () => {
@@ -63,6 +64,7 @@ const MainPage: FC = () => {
       <NewsBlock />
 
       {/* <BottomBlock /> */}
+      <ExampleDate />
     </>
   );
 };

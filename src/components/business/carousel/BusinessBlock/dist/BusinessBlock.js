@@ -110,7 +110,7 @@ var BusinessBlock = function () {
     };
     return (react_1["default"].createElement("section", { className: BusinessBlock_module_scss_1["default"]["carousel"] },
         react_1["default"].createElement("div", { className: BusinessBlock_module_scss_1["default"]["carousel__carouselHeader"] },
-            react_1["default"].createElement(CarouselHeader_1["default"], { headerTitle: "\u0418\u0441\u0442\u043E\u0440\u0438\u044F \u0424\u043E\u043D\u0434\u0430", isBlurredLeft: isBlurredLeft, isBlurredRight: isBlurredRight, isHoveredLeft: isHoveredLeft, isHoveredRight: isHoveredRight, onClickLeft: onClickLeftArrow, onClickRight: onClickRightArrow }),
+            react_1["default"].createElement(CarouselHeader_1["default"], { headerSubtitle: "\u041A\u0430\u043A\u0438\u0435 \u0437\u0430\u0434\u0430\u0447\u0438 \u0440\u0435\u0448\u0430\u0435\u0442 \u0432\u043D\u0435\u0434\u0440\u0435\u043D\u0438\u0435 \u043F\u0435\u043D\u0441\u0438\u043E\u043D\u043D\u043E\u0439 \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u044B", isBlurredLeft: isBlurredLeft, isBlurredRight: isBlurredRight, isHoveredLeft: isHoveredLeft, isHoveredRight: isHoveredRight, onClickLeft: onClickLeftArrow, onClickRight: onClickRightArrow }),
             react_1["default"].createElement("div", { className: BusinessBlock_module_scss_1["default"]["carousel__container"] },
                 react_1["default"].createElement("div", { className: BusinessBlock_module_scss_1["default"]["carousel__scrollableElement"], style: { right: right + "px" } },
                     react_1["default"].createElement(BusinessCarousel_1["default"], { currentValue: carouselValue, emitAmountChildren: getAmountChildren, emitValue: onChangeCarouselRadio })))),

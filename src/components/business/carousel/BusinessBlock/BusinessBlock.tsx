@@ -122,7 +122,7 @@ const BusinessBlock: FC = () => {
     <section className={styles["carousel"]}>
       <div className={styles["carousel__carouselHeader"]}>
         <CarouselHeader
-          headerTitle="История Фонда"
+          headerSubtitle="Какие задачи решает внедрение пенсионной программы"
           isBlurredLeft={isBlurredLeft}
           isBlurredRight={isBlurredRight}
           isHoveredLeft={isHoveredLeft}
