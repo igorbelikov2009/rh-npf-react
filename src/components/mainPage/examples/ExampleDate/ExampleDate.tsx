@@ -1,4 +1,5 @@
-import React, { FC, useMemo } from "react";
+import React, { FC, useMemo, useState } from "react";
+import UserDate from "../../../../api/UserDate/UserDate";
 import NewsItem from "../NewsItem/NewsItem";
 import styles from "./ExampleDate.module.scss";
 
@@ -10,8 +11,9 @@ type INew = {
 };
 
 const ExampleDate: FC = () => {
-  // const [sortedByDateNews, setSortedByDateNews] = useState<INew[]>([]);
+  const [selectedYear] = useState("2021");
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const news: INew[] = [
     {
       id: 37,
@@ -465,19 +467,71 @@ const ExampleDate: FC = () => {
     },
   ];
 
-  const sortedByDateNews = useMemo(() => {
+  // сортируем массив новостей по дате
+  const sortedByDateNews: INew[] = useMemo(() => {
     return [...news].sort((a, b) => (new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : -1));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [news]);
+
+  // в остортированном по дате массиве изменяем id, делаем его равным индексу
+  const sortedAndChangedIdNews = useMemo(() => {
+    return [...sortedByDateNews].map((item, index) => ({
+      id: Number(index),
+      title: String(item.title),
+      date: String(item.date),
+      paragraphs: item.paragraphs,
+    }));
+  }, [sortedByDateNews]);
+  console.log(sortedAndChangedIdNews);
+
+  // полученный массив форматируем по дате
+  const formatedDateNews: INew[] = useMemo(() => {
+    return [...sortedAndChangedIdNews].map((item, index) => ({
+      id: Number(item.id),
+      title: String(item.title),
+      date: String(UserDate.format(new Date(item.date))),
+      paragraphs: item.paragraphs,
+    }));
+  }, [sortedAndChangedIdNews]);
+
+  // получаем radioYears (radioItems)
+  const radioYears = useMemo(() => {
+    return [...sortedAndChangedIdNews]
+      .map((item) => new Date(item.date).getFullYear())
+      .filter((item, index, self) => index === self.indexOf(item))
+      .map((item, index) => ({
+        id: String(index),
+        name: String(item),
+        value: String(item),
+      }));
+  }, [sortedAndChangedIdNews]);
+  console.log(radioYears);
+
+  // новости, отфильтрованные по годам
+  const newsFilteredByYear = useMemo(() => {
+    return [...sortedAndChangedIdNews].filter((item) => {
+      return new Date(item.date).getFullYear() === Number(selectedYear);
+    });
+  }, [sortedAndChangedIdNews, selectedYear]);
+  // console.log(newsFilteredByYear);
+
+  // форматируем по дате новости, отфильтрованные по годам
+  const formatedFilteredByYear: INew[] = useMemo(() => {
+    return [...newsFilteredByYear].map((item, index) => ({
+      id: Number(item.id),
+      title: String(item.title),
+      date: String(UserDate.format(new Date(item.date))),
+      paragraphs: item.paragraphs,
+    }));
+  }, [newsFilteredByYear]);
+  // console.log(formatedFilteredByYear);
 
   return (
     <div className={styles["block"]}>
       <div className={styles["block__head"]}>
         <h1 className={styles["block__heading"]}> Сортировка новостей по дате </h1>
 
-        <h5 className={styles["block__paragraph"]}>{}</h5>
         <div>
-          {sortedByDateNews.map((item) => (
+          {formatedFilteredByYear.map((item) => (
             <NewsItem key={item.id} id={item.id} title={item.title} date={item.date} paragraphs={item.paragraphs} />
           ))}
         </div>
@@ -487,12 +541,14 @@ const ExampleDate: FC = () => {
 };
 
 export default ExampleDate;
+
 /*
-  // получаем отсортированный массив комментов
-  const sortedComments = useMemo(() => {
-    if (selectedSort && comments) {
-      return [...comments].sort((a, b) => (a[selectedSort] > b[selectedSort] ? 1 : -1));
-    }
-    return comments;
-  }, [selectedSort, comments]);
+  const sortedAndFormatedDateNews: INew[] = sortedByDateNews.map((item, index) => ({
+    // id: Number(item.id),
+    id: Number(index),
+    title: String(item.title),
+    date: String(UserDate.format(new Date(item.date))),
+    paragraphs: item.paragraphs,
+  }));
+
 */

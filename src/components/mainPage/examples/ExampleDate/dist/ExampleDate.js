@@ -8,10 +8,12 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
 };
 exports.__esModule = true;
 var react_1 = require("react");
+var UserDate_1 = require("../../../../api/UserDate/UserDate");
 var NewsItem_1 = require("../NewsItem/NewsItem");
 var ExampleDate_module_scss_1 = require("./ExampleDate.module.scss");
 var ExampleDate = function () {
-    // const [sortedByDateNews, setSortedByDateNews] = useState<INew[]>([]);
+    var selectedYear = react_1.useState("2021")[0];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     var news = [
         {
             id: 37,
@@ -451,23 +453,70 @@ var ExampleDate = function () {
             ]
         },
     ];
+    // сортируем массив новостей по дате
     var sortedByDateNews = react_1.useMemo(function () {
         return __spreadArrays(news).sort(function (a, b) { return (new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : -1); });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [news]);
+    // в остортированном по дате массиве изменяем id, делаем его равным индексу
+    var sortedAndChangedIdNews = react_1.useMemo(function () {
+        return __spreadArrays(sortedByDateNews).map(function (item, index) { return ({
+            id: Number(index),
+            title: String(item.title),
+            date: String(item.date),
+            paragraphs: item.paragraphs
+        }); });
+    }, [sortedByDateNews]);
+    console.log(sortedAndChangedIdNews);
+    // полученный массив форматируем по дате
+    var formatedDateNews = react_1.useMemo(function () {
+        return __spreadArrays(sortedAndChangedIdNews).map(function (item, index) { return ({
+            id: Number(item.id),
+            title: String(item.title),
+            date: String(UserDate_1["default"].format(new Date(item.date))),
+            paragraphs: item.paragraphs
+        }); });
+    }, [sortedAndChangedIdNews]);
+    // получаем radioYears (radioItems)
+    var radioYears = react_1.useMemo(function () {
+        return __spreadArrays(sortedAndChangedIdNews).map(function (item) { return new Date(item.date).getFullYear(); })
+            .filter(function (item, index, self) { return index === self.indexOf(item); })
+            .map(function (item, index) { return ({
+            id: String(index),
+            name: String(item),
+            value: String(item)
+        }); });
+    }, [sortedAndChangedIdNews]);
+    console.log(radioYears);
+    // новости, отфильтрованные по годам
+    var newsFilteredByYear = react_1.useMemo(function () {
+        return __spreadArrays(sortedAndChangedIdNews).filter(function (item) {
+            return new Date(item.date).getFullYear() === Number(selectedYear);
+        });
+    }, [sortedAndChangedIdNews, selectedYear]);
+    // console.log(newsFilteredByYear);
+    // форматируем по дате новости, отфильтрованные по годам
+    var formatedFilteredByYear = react_1.useMemo(function () {
+        return __spreadArrays(newsFilteredByYear).map(function (item, index) { return ({
+            id: Number(item.id),
+            title: String(item.title),
+            date: String(UserDate_1["default"].format(new Date(item.date))),
+            paragraphs: item.paragraphs
+        }); });
+    }, [newsFilteredByYear]);
+    // console.log(formatedFilteredByYear);
     return (react_1["default"].createElement("div", { className: ExampleDate_module_scss_1["default"]["block"] },
         react_1["default"].createElement("div", { className: ExampleDate_module_scss_1["default"]["block__head"] },
             react_1["default"].createElement("h1", { className: ExampleDate_module_scss_1["default"]["block__heading"] }, " \u0421\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u043A\u0430 \u043D\u043E\u0432\u043E\u0441\u0442\u0435\u0439 \u043F\u043E \u0434\u0430\u0442\u0435 "),
-            react_1["default"].createElement("h5", { className: ExampleDate_module_scss_1["default"]["block__paragraph"] }),
-            react_1["default"].createElement("div", null, sortedByDateNews.map(function (item) { return (react_1["default"].createElement(NewsItem_1["default"], { key: item.id, id: item.id, title: item.title, date: item.date, paragraphs: item.paragraphs })); })))));
+            react_1["default"].createElement("div", null, formatedFilteredByYear.map(function (item) { return (react_1["default"].createElement(NewsItem_1["default"], { key: item.id, id: item.id, title: item.title, date: item.date, paragraphs: item.paragraphs })); })))));
 };
 exports["default"] = ExampleDate;
 /*
-  // получаем отсортированный массив комментов
-  const sortedComments = useMemo(() => {
-    if (selectedSort && comments) {
-      return [...comments].sort((a, b) => (a[selectedSort] > b[selectedSort] ? 1 : -1));
-    }
-    return comments;
-  }, [selectedSort, comments]);
+  const sortedAndFormatedDateNews: INew[] = sortedByDateNews.map((item, index) => ({
+    // id: Number(item.id),
+    id: Number(index),
+    title: String(item.title),
+    date: String(UserDate.format(new Date(item.date))),
+    paragraphs: item.paragraphs,
+  }));
+
 */

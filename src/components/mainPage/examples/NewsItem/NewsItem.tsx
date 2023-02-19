@@ -16,7 +16,7 @@ const NewsItem: FC<NewsItemProps> = ({ id, title, date, paragraphs }) => {
       <p className={styles["news-item__id-date"]}> {date} </p>
 
       {paragraphs.map((paragraph, index) => (
-        <p key={index} className={styles["news-item__paragraph"]}>
+        <p key={index} className={styles["news-item__paragraph-before"]}>
           {paragraph}
         </p>
       ))}

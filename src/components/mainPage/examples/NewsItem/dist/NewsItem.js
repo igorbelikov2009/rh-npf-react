@@ -17,6 +17,6 @@ var NewsItem = function (_a) {
             " ",
             date,
             " "),
-        paragraphs.map(function (paragraph, index) { return (react_1["default"].createElement("p", { key: index, className: NewsItem_module_scss_1["default"]["news-item__paragraph"] }, paragraph)); })));
+        paragraphs.map(function (paragraph, index) { return (react_1["default"].createElement("p", { key: index, className: NewsItem_module_scss_1["default"]["news-item__paragraph-before"] }, paragraph)); })));
 };
 exports["default"] = NewsItem;

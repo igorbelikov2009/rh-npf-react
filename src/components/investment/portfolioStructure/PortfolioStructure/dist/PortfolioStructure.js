@@ -237,15 +237,6 @@ var PortfolioStructure = function (_a) {
     }, [top]);
     var scrollHandler = function (event) {
         getSelectControllerCoords();
-        // console.log(event.target.documentElement.scrollHeight); // Не трогать!!!
-        // console.log(event.target.documentElement.scrollTop); // Не трогать!!!
-        // console.log(window.innerHeight); // Не трогать!!!
-        // if (
-        //   event.target.documentElement.scrollHeight - (event.target.documentElement.scrollTop + window.innerHeight) <
-        //   100
-        // ) {
-        //   console.log("Нижний край < 100");
-        // }
     };
     return (react_1["default"].createElement("section", { className: PortfolioStructure_module_scss_1["default"]["portfolie-structure"] },
         react_1["default"].createElement("h1", { className: PortfolioStructure_module_scss_1["default"]["portfolie-structure__heading"] }, "\u0421\u0442\u0440\u0443\u043A\u0442\u0443\u0440\u0430 \u043F\u043E\u0440\u0442\u0444\u0435\u043B\u044F"),
