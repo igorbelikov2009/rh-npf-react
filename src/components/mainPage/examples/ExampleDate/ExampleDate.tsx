@@ -533,7 +533,7 @@ const ExampleDate: FC = () => {
         <h1 className={styles["block__heading"]}> Сортировка новостей по дате </h1>
 
         <div>
-          {newsUsedForComputing.map((item) => (
+          {formatedDateNews.map((item) => (
             <NewsItem key={item.id} id={item.id} title={item.title} date={item.date} paragraphs={item.paragraphs} />
           ))}
         </div>

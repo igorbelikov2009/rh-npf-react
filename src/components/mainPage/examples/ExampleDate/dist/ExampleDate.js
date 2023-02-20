@@ -509,7 +509,7 @@ var ExampleDate = function () {
     return (react_1["default"].createElement("div", { className: ExampleDate_module_scss_1["default"]["block"] },
         react_1["default"].createElement("div", { className: ExampleDate_module_scss_1["default"]["block__head"] },
             react_1["default"].createElement("h1", { className: ExampleDate_module_scss_1["default"]["block__heading"] }, " \u0421\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u043A\u0430 \u043D\u043E\u0432\u043E\u0441\u0442\u0435\u0439 \u043F\u043E \u0434\u0430\u0442\u0435 "),
-            react_1["default"].createElement("div", null, newsUsedForComputing.map(function (item) { return (react_1["default"].createElement(NewsItem_1["default"], { key: item.id, id: item.id, title: item.title, date: item.date, paragraphs: item.paragraphs })); })))));
+            react_1["default"].createElement("div", null, formatedDateNews.map(function (item) { return (react_1["default"].createElement(NewsItem_1["default"], { key: item.id, id: item.id, title: item.title, date: item.date, paragraphs: item.paragraphs })); })))));
 };
 exports["default"] = ExampleDate;
 /*
