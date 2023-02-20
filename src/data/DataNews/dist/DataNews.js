@@ -1,6 +1,14 @@
 "use strict";
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
 exports.__esModule = true;
-exports.news = void 0;
+exports.radioYears = exports.formatedDateNews = exports.newsUsedForComputing = exports.newsSortedByDate = exports.news = void 0;
+var UserDate_1 = require("../../api/UserDate/UserDate");
 var news = [
     {
         id: 37,
@@ -441,3 +449,34 @@ var news = [
     },
 ];
 exports.news = news;
+// Получаем отсортированный по дате массив новостей
+var newsSortedByDate = __spreadArrays(news).sort(function (a, b) {
+    return new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : -1;
+});
+exports.newsSortedByDate = newsSortedByDate;
+// В отсортированном по дате массиве изменяем id, делаем его равным индексу.
+// Получаем массив используемый для дальнейших вычислениях.
+var newsUsedForComputing = __spreadArrays(newsSortedByDate).map(function (item, index) { return ({
+    id: Number(index),
+    title: String(item.title),
+    date: String(item.date),
+    paragraphs: item.paragraphs
+}); });
+exports.newsUsedForComputing = newsUsedForComputing;
+// У полученного массива форматируем дату
+var formatedDateNews = __spreadArrays(newsUsedForComputing).map(function (item) { return ({
+    id: Number(item.id),
+    title: String(item.title),
+    date: String(UserDate_1["default"].format(new Date(item.date))),
+    paragraphs: item.paragraphs
+}); });
+exports.formatedDateNews = formatedDateNews;
+// получаем radioYears (radioItems)
+var radioYears = __spreadArrays(newsUsedForComputing).map(function (item) { return new Date(item.date).getFullYear(); })
+    .filter(function (item, index, self) { return index === self.indexOf(item); })
+    .map(function (item, index) { return ({
+    id: String(index),
+    title: String(item),
+    value: String(item)
+}); });
+exports.radioYears = radioYears;

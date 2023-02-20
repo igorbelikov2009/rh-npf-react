@@ -1,11 +1,13 @@
-export type INew = {
+import UserDate from "../../api/UserDate/UserDate";
+
+export type INews = {
   id: number;
   title: string;
   date: string;
   paragraphs: string[];
 };
 
-const news: INew[] = [
+const news: INews[] = [
   {
     id: 37,
     title: "НПФ Сбербанка и НПФ «Ренессанс пенсии» закрыли сделку",
@@ -456,5 +458,42 @@ const news: INew[] = [
     ],
   },
 ];
-
 export { news };
+
+// Получаем отсортированный по дате массив новостей
+const newsSortedByDate: INews[] = [...news].sort((a, b) =>
+  new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : -1
+);
+export { newsSortedByDate };
+
+// В отсортированном по дате массиве изменяем id, делаем его равным индексу.
+// Получаем массив используемый для дальнейших вычислениях.
+const newsUsedForComputing = [...newsSortedByDate].map((item, index) => ({
+  id: Number(index),
+  title: String(item.title),
+  date: String(item.date),
+  paragraphs: item.paragraphs,
+}));
+export { newsUsedForComputing };
+
+// У полученного массива форматируем дату
+const formatedDateNews: INews[] = [...newsUsedForComputing].map((item) => ({
+  id: Number(item.id),
+  title: String(item.title),
+  date: String(UserDate.format(new Date(item.date))),
+  paragraphs: item.paragraphs,
+}));
+// Отсортированный, с изменённым по порядку id, с отформатированной датой
+// массив всех новостей для блока новостей на главной странице
+export { formatedDateNews };
+
+// получаем radioYears (radioItems)
+const radioYears = [...newsUsedForComputing]
+  .map((item) => new Date(item.date).getFullYear())
+  .filter((item, index, self) => index === self.indexOf(item))
+  .map((item, index) => ({
+    id: String(index),
+    title: String(item),
+    value: String(item),
+  }));
+export { radioYears };

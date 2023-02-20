@@ -9,60 +9,25 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
 exports.__esModule = true;
 var react_1 = require("react");
 var ListNews_module_scss_1 = require("./ListNews.module.scss");
-var Data_1 = require("../Data/Data");
 var NewsLink_1 = require("../NewsLink/NewsLink");
 var UserDate_1 = require("../../../api/UserDate/UserDate");
 var ControllerOption_1 = require("../../ui/select/controllerOption/ControllerOption/ControllerOption");
 var AdaptiveRadio_1 = require("../../ui/radios/AdaptiveRadio/AdaptiveRadio");
+var DataNews_1 = require("../../../data/DataNews/DataNews");
 var ListNews = function () {
     //   console.log(news);
     var _a = react_1.useState("2021"), selectedYear = _a[0], setSelectedYear = _a[1];
-    var _b = react_1.useState("0"), id = _b[0], setId = _b[1];
+    var _b = react_1.useState("0"), setId = _b[1];
     var _c = react_1.useState(false), isRadioListVisible = _c[0], setRadioListVisible = _c[1];
-    // Получаем отсортированный по дате массив новостей
-    var newsSortedByDate = react_1.useMemo(function () {
-        return __spreadArrays(Data_1.news).sort(function (a, b) { return (new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : -1); });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-    // В отсортированном по дате массиве изменяем id, делаем его равным индексу.
-    // Получаем массив используемый для дальнейших вычислениях.
-    var newsUsedForComputing = react_1.useMemo(function () {
-        return __spreadArrays(newsSortedByDate).map(function (item, index) { return ({
-            id: Number(index),
-            title: String(item.title),
-            date: String(item.date),
-            paragraphs: item.paragraphs
-        }); });
-    }, [newsSortedByDate]);
-    // console.log(newsUsedForComputing);
-    // Полученный массив форматируем по дате
-    var formatedDateNews = react_1.useMemo(function () {
-        return __spreadArrays(newsUsedForComputing).map(function (item, index) { return ({
-            id: Number(item.id),
-            title: String(item.title),
-            date: String(UserDate_1["default"].format(new Date(item.date))),
-            paragraphs: item.paragraphs
-        }); });
-    }, [newsUsedForComputing]);
-    // получаем radioYears (radioItems)
-    var radioYears = react_1.useMemo(function () {
-        return __spreadArrays(newsUsedForComputing).map(function (item) { return new Date(item.date).getFullYear(); })
-            .filter(function (item, index, self) { return index === self.indexOf(item); })
-            .map(function (item, index) { return ({
-            id: String(index),
-            title: String(item),
-            value: String(item)
-        }); });
-    }, [newsUsedForComputing]);
-    console.log(radioYears);
-    // новости, отфильтрованные по годам
+    // Фильтруем массив всех отсортированных новостей, с упорядоченным id.
+    // Оставляем в массиве только те новости, которые соответствуют выбранному году.
     var newsFilteredByYear = react_1.useMemo(function () {
-        return __spreadArrays(newsUsedForComputing).filter(function (item) {
+        return __spreadArrays(DataNews_1.newsUsedForComputing).filter(function (item) {
             return new Date(item.date).getFullYear() === Number(selectedYear);
         });
-    }, [newsUsedForComputing, selectedYear]);
+    }, [selectedYear]);
     // console.log(newsFilteredByYear);
-    // форматируем по дате новости, отфильтрованные по годам
+    // форматируем дату у новостей, отфильтрованных по годам
     var formatedFilteredByYear = react_1.useMemo(function () {
         return __spreadArrays(newsFilteredByYear).map(function (item, index) { return ({
             id: Number(item.id),
@@ -89,9 +54,9 @@ var ListNews = function () {
     return (react_1["default"].createElement("section", { className: ListNews_module_scss_1["default"]["news__section"] },
         react_1["default"].createElement("div", { className: ListNews_module_scss_1["default"]["news__container-select-radio"] },
             react_1["default"].createElement("div", { className: ListNews_module_scss_1["default"]["news__select"] },
-                react_1["default"].createElement(ControllerOption_1["default"], { currentValue: selectedYear, radioItems: radioYears, isRadioListVisible: isRadioListVisible, onClickController: onClickController, emitOnChangeRadioListBlock: onChangeRadioListBlock, emitOnClickRadioListBlock: onClickRadioListBlock })),
+                react_1["default"].createElement(ControllerOption_1["default"], { currentValue: selectedYear, radioItems: DataNews_1.radioYears, isRadioListVisible: isRadioListVisible, onClickController: onClickController, emitOnChangeRadioListBlock: onChangeRadioListBlock, emitOnClickRadioListBlock: onClickRadioListBlock })),
             react_1["default"].createElement("div", { className: ListNews_module_scss_1["default"]["news__radio"] },
-                react_1["default"].createElement(AdaptiveRadio_1["default"], { currentValue: selectedYear, radioItems: radioYears, emitValue: onChangeAdaptiveRadio }))),
+                react_1["default"].createElement(AdaptiveRadio_1["default"], { currentValue: selectedYear, radioItems: DataNews_1.radioYears, emitValue: onChangeAdaptiveRadio }))),
         react_1["default"].createElement("div", { className: ListNews_module_scss_1["default"]["news__container-news"] },
             react_1["default"].createElement("div", { className: ListNews_module_scss_1["default"]["news__list-news"] }, formatedFilteredByYear.map(function (item) { return (react_1["default"].createElement(NewsLink_1["default"], { key: item.id, date: item.date, title: item.title, id: item.id })); })),
             react_1["default"].createElement("div", { className: ListNews_module_scss_1["default"]["contact"] },
