@@ -1,24 +1,32 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import TripleIcon from "../components/general/TripleIcon/TripleIcon";
-import NewsLink, { NewsLinkProps } from "../components/news/NewsLink/NewsLink";
-import Article, { IArticle } from "../components/newsPage/Article/Article";
+import NewsLink from "../components/news/NewsLink/NewsLink";
+import Article, { ArticleProps } from "../components/newsPage/Article/Article";
+import { formatedDateNews } from "../data/DataNews/DataNews";
 import "../styles/dist/NewsPage.css";
 
 const NewsPage: FC = () => {
-  const [isHovered, setHovered] = useState(false);
-  const link: IArticle = {
-    id: 37, // проба
-    title: "НПФ Сбербанка и НПФ «Ренессанс пенсии» закрыли сделку",
-    date: "2015-11-07T09:00:00.000Z",
-    paragraphs: [
-      "Информируем вас, что в период с 15 по 18 июня 2021 включительно офис Фонда по адресу: 115114, г. Москва, Дербеневская наб., д. 7, стр. 22 работает в обычном режиме для посетителей.",
-      "Мы предоставим поддержку всем клиентам по обычному графику Пн. – Пт.: с 9:00 до 19:00 по московскому времени в режиме дистанционного обслуживания:",
-      "Для звонков из Москвы и других стран +7 495 933-47-66",
-      "Для звонков из других регионов России 8 800 200-47-66",
-    ],
-  };
   const { id } = useParams();
+  const prevID = Number(id) - 1;
+  const nextID = Number(id) + 1;
+  const [isHovered, setHovered] = useState(false);
+
+  // Фильтруем массив всех отсортированных новостей, с упорядоченным id, с отформатированной датой
+  // Оставляем в массиве только те новости, ID которых соответствуют prevID и nextID.
+  const anotherNews = useMemo(() => {
+    return [...formatedDateNews].filter((item) => {
+      return item.id === prevID || item.id === nextID;
+    });
+  }, [nextID, prevID]);
+  // console.log(anotherNews);
+
+  const currentNews: ArticleProps[] = useMemo(() => {
+    return [...formatedDateNews].filter((item) => {
+      return item.id === Number(id);
+    });
+  }, [id]);
+  // console.log(currentNews);
 
   return (
     <div className="news-page">
@@ -47,20 +55,21 @@ const NewsPage: FC = () => {
           <p className="news-page__link-title">К списку новостей</p>
         </router-link> */}
 
-          {link ? <Article link={link} /> : <div> Новости с ID {id} не найдено</div>}
+          {currentNews ? (
+            currentNews.map((news, index) => (
+              <Article key={index} id={news.id} date={news.date} title={news.title} paragraphs={news.paragraphs} />
+            ))
+          ) : (
+            <div> Новости с ID {id} не найдено</div>
+          )}
 
           <div className="news-page__footer">
             <h1 className="news-page__footer-heading">Другие новости</h1>
-            <NewsLink date={link.date} title={link.title} id={Number(id)} />
-            <NewsLink date={link.date} title={link.title} id={Number(id)} />
 
-            {/* <NewsLink
-            v-for="article in anotherNews"
-            :key="article.id"
-            :title="article.title"
-            :date="article.date"
-            :id="article.id"
-          /> */}
+            {anotherNews &&
+              anotherNews.map((item, index) => (
+                <NewsLink key={index} date={item.date} title={item.title} id={Number(item.id)} />
+              ))}
           </div>
         </div>
       </div>
