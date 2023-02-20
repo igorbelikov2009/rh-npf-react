@@ -8,12 +8,11 @@ export type ArticleProps = {
   paragraphs: string[];
 };
 
-const Article: FC<ArticleProps> = ({ title, date, paragraphs }) => {
+const Article: FC<ArticleProps> = ({ id, title, date, paragraphs }) => {
   return (
     <div className={styles["news"]}>
       <div className={styles["news__header"]}>
         <h1 className={styles["news__header-heading"]}> {title} </h1>
-
         <p className={styles["news__header-date"]}> {date} </p>
 
         {paragraphs.map((paragraph, index) => (

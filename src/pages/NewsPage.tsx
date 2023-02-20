@@ -1,5 +1,5 @@
 import React, { FC, useState, useMemo } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import TripleIcon from "../components/general/TripleIcon/TripleIcon";
 import NewsLink from "../components/news/NewsLink/NewsLink";
 import Article, { ArticleProps } from "../components/newsPage/Article/Article";
@@ -32,7 +32,8 @@ const NewsPage: FC = () => {
     <div className="news-page">
       <div className="news-page__head">
         <div className="news-page__container">
-          <div
+          <Link
+            to="/news"
             className="news-page__link-to-news"
             onMouseOver={() => setHovered(true)}
             onMouseOut={() => setHovered(false)}
@@ -41,19 +42,10 @@ const NewsPage: FC = () => {
               <TripleIcon hovered={isHovered} light={false} icon="Arrow Down" />
             </div>
             <p className="news-page__link-title">К списку новостей</p>
-          </div>
-
-          {/* <router-link
-          className="news-page__link-to-news"
-          :to="{ name: 'newsPage' }"
-          @mouseover="isLinkToNewsHovered = true"
-          @mouseout="isLinkToNewsHovered = false"
-        >
-          <div className="news-page__icons">
-            <TripleIcon :hovered="isLinkToNewsHovered" icon="Arrow Down" />
-          </div>
-          <p className="news-page__link-title">К списку новостей</p>
-        </router-link> */}
+          </Link>
+          {/* <Link className="news-page__link-title" to="/news">
+              К списку новостей
+            </Link> */}
 
           {currentNews ? (
             currentNews.map((news, index) => (

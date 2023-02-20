@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { Link } from "react-router-dom";
 import styles from "./NewsLink.module.scss";
 
 export interface NewsLinkProps {
@@ -11,7 +12,9 @@ export interface NewsLinkProps {
 const NewsLink: FC<NewsLinkProps> = ({ title, date, id }) => {
   return (
     <div className={styles["news-link"]}>
-      <p className={styles["news-link__title"]}> {title} </p>
+      <Link to={`/news/${id}`} className={styles["news-link__title"]}>
+        {title}
+      </Link>
 
       <p className={styles["news-link__date"]}>{date}</p>
     </div>

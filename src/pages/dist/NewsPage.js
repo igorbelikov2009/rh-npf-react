@@ -36,7 +36,7 @@ var NewsPage = function () {
     return (react_1["default"].createElement("div", { className: "news-page" },
         react_1["default"].createElement("div", { className: "news-page__head" },
             react_1["default"].createElement("div", { className: "news-page__container" },
-                react_1["default"].createElement("div", { className: "news-page__link-to-news", onMouseOver: function () { return setHovered(true); }, onMouseOut: function () { return setHovered(false); } },
+                react_1["default"].createElement(react_router_dom_1.Link, { to: "/news", className: "news-page__link-to-news", onMouseOver: function () { return setHovered(true); }, onMouseOut: function () { return setHovered(false); } },
                     react_1["default"].createElement("div", { className: "news-page__icons" },
                         react_1["default"].createElement(TripleIcon_1["default"], { hovered: isHovered, light: false, icon: "Arrow Down" })),
                     react_1["default"].createElement("p", { className: "news-page__link-title" }, "\u041A \u0441\u043F\u0438\u0441\u043A\u0443 \u043D\u043E\u0432\u043E\u0441\u0442\u0435\u0439")),
