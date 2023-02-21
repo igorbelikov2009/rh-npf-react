@@ -1,14 +1,8 @@
 import React, { FC } from "react";
+import { INews } from "../../../../data/DataNews/DataNews";
 import styles from "./NewsItem.module.scss";
 
-interface NewsItemProps {
-  id: number;
-  title: string;
-  date: string;
-  paragraphs: string[];
-}
-
-const NewsItem: FC<NewsItemProps> = ({ id, title, date, paragraphs }) => {
+const NewsItem: FC<INews> = ({ id, title, date, paragraphs }) => {
   return (
     <div className={styles["news-item"]}>
       <h3 className={styles["news-item__id-date"]}>id: {id} </h3>

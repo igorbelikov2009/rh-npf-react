@@ -1,7 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import newsReducer from "./redusers/NewsSlice";
+import userReducer from "./redusers/UserSlice";
 
 // Создаём корневой редюсер, состоящий из комбинации всех редюсеров
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+  newsReducer,
+  userReducer,
+});
 
 // Создаём функцию setupStore, с помощью её мы будем конфигурировать
 // наше редакс-хранилище. Без использования toolkit мы использовали

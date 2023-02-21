@@ -3,6 +3,7 @@ import TopBlock from "../components/general/TopBlock";
 import newsImage from "../assets/images/news/newsTop.jpg";
 import ListNews from "../components/news/ListNews/ListNews";
 // import ExampleDate from "../components/mainPage/examples/ExampleDate/ExampleDate"; // не удаляй
+import TestNewsSlice from "../components/news/TestNewsSlice/TestNewsSlice";
 
 const News: FC = () => {
   return (
@@ -11,6 +12,7 @@ const News: FC = () => {
 
       <ListNews />
       {/* <ExampleDate /> */}
+      <TestNewsSlice />
     </>
   );
 };

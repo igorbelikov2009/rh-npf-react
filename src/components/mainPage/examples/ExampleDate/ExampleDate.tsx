@@ -1,20 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FC, useMemo, useState } from "react";
 import UserDate from "../../../../api/UserDate/UserDate";
+import { INews } from "../../../../data/DataNews/DataNews";
 import NewsItem from "../NewsItem/NewsItem";
 import styles from "./ExampleDate.module.scss";
-
-type INew = {
-  id: number;
-  title: string;
-  date: string;
-  paragraphs: string[];
-};
 
 const ExampleDate: FC = () => {
   const [selectedYear] = useState("2021");
 
-  const news: INew[] = [
+  const news: INews[] = [
     {
       id: 37,
       title: "НПФ Сбербанка и НПФ «Ренессанс пенсии» закрыли сделку",
@@ -468,7 +462,7 @@ const ExampleDate: FC = () => {
   ];
 
   // Получаем отсортированный по дате массив новостей
-  const newsSortedByDate: INew[] = useMemo(() => {
+  const newsSortedByDate: INews[] = useMemo(() => {
     return [...news].sort((a, b) => (new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : -1));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -486,7 +480,7 @@ const ExampleDate: FC = () => {
   // console.log(newsUsedForComputing);
 
   // Полученный массив форматируем по дате
-  const formatedDateNews: INew[] = useMemo(() => {
+  const formatedDateNews: INews[] = useMemo(() => {
     return [...newsUsedForComputing].map((item, index) => ({
       id: Number(item.id),
       title: String(item.title),
@@ -517,7 +511,7 @@ const ExampleDate: FC = () => {
   // console.log(newsFilteredByYear);
 
   // форматируем по дате новости, отфильтрованные по годам
-  const formatedFilteredByYear: INew[] = useMemo(() => {
+  const formatedFilteredByYear: INews[] = useMemo(() => {
     return [...newsFilteredByYear].map((item, index) => ({
       id: Number(item.id),
       title: String(item.title),

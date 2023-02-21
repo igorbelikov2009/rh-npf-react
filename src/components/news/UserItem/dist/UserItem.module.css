@@ -1,0 +1,26 @@
+.user-item {
+  width: 100%;
+  border-top: 1px solid #e4e4e4;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.user-item__name {
+  display: block;
+  margin-bottom: 24px;
+  font-size: 18px;
+  line-height: 24px;
+  color: black;
+}
+@media screen and (min-width: 768px) {
+  .user-item__name {
+    font-size: 34px;
+    line-height: 48px;
+  }
+}
+.user-item__id, .user-item__email {
+  display: block;
+  margin-bottom: 18px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #28323c;
+}
