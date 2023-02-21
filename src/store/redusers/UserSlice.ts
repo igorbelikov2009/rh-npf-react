@@ -1,4 +1,4 @@
-// import { PayloadAction } from "./../../../node_modules/@reduxjs/toolkit/src/createAction";
+import { PayloadAction } from "./../../../node_modules/@reduxjs/toolkit/src/createAction";
 import { createSlice } from "@reduxjs/toolkit";
 import { IUser } from "../../models/types";
 
@@ -17,8 +17,22 @@ const initialState: UserState = {
 export const userSlice = createSlice({
   name: "users",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    userFetching(state) {
+      state.isLoading = true;
+    },
+    userFetchingSuccess(state, action: PayloadAction<IUser[]>) {
+      state.users = action.payload;
+      state.isLoading = false;
+      state.error = "";
+    },
+    userFetchingError(state, action: PayloadAction<string>) {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+  },
 });
 
 export default userSlice.reducer;
 // передаём userReducer в store/store.ts в корневой редюсер
+// Slice создаёт для нас экшен-креатеры
