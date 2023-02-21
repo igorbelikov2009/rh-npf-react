@@ -2,8 +2,7 @@ import React, { FC } from "react";
 import TopBlock from "../components/general/TopBlock";
 import newsImage from "../assets/images/news/newsTop.jpg";
 import ListNews from "../components/news/ListNews/ListNews";
-// import ExampleDate from "../components/mainPage/examples/ExampleDate/ExampleDate"; // не удаляй
-import TestNewsSlice from "../components/news/TestNewsSlice/TestNewsSlice";
+import ExampleDate from "../components/mainPage/examples/ExampleDate/ExampleDate"; // не удаляй
 
 const News: FC = () => {
   return (
@@ -11,8 +10,7 @@ const News: FC = () => {
       <TopBlock heading="Новости" image={newsImage} />
 
       <ListNews />
-      {/* <ExampleDate /> */}
-      <TestNewsSlice />
+      <ExampleDate />
     </>
   );
 };

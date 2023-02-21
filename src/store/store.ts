@@ -1,11 +1,9 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import newsReducer from "./redusers/NewsSlice";
-import userReducer from "./redusers/UserSlice";
+import { newsAPI } from "../services/NewsService";
 
 // Создаём корневой редюсер, состоящий из комбинации всех редюсеров
 const rootReducer = combineReducers({
-  newsReducer,
-  userReducer,
+  [newsAPI.reducerPath]: newsAPI.reducer,
 });
 
 // Создаём функцию setupStore, с помощью её мы будем конфигурировать
@@ -14,6 +12,10 @@ const rootReducer = combineReducers({
 export const setupStore = () => {
   return configureStore({
     reducer: rootReducer,
+    // Добавляем к дефолтному мидлвееру, методом concat(), мидлвеер из нашего postAPI.
+    // Затем, методом concat(), добавляем мидлвеер из нашего todoAPI
+    // Затем, методом concat(), добавляем мидлвеер из нашего commentAPI
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(newsAPI.middleware),
   });
 };
 

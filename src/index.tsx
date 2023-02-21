@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 
 // создаём пропс {store} для store={store}
 const store = setupStore();
+
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
   <Provider store={store}>
