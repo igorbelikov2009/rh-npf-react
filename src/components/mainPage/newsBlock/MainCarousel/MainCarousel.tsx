@@ -1,12 +1,12 @@
 import React, { FC } from "react";
-import { NewsLinkProps } from "../../../news/NewsLink/NewsLink";
+import { INewsLink } from "../../../../models/types";
 import NewsLinkContainer from "../NewsLinkContainer/NewsLinkContainer";
 import styles from "./MainCarousel.module.scss";
 
 interface MainCarouselProps {
   qq: number;
   jj: number;
-  carouselLinks: NewsLinkProps[];
+  carouselLinks: INewsLink[];
   emitWidthColumn: (value: React.SetStateAction<number>) => void;
 }
 

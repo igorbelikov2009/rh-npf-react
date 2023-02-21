@@ -54,10 +54,10 @@ const BusinessBlock: FC = () => {
     if (carouselValue < amountChildren - 1) {
       setCarouselValue((prev) => prev + 1);
     } else if (carouselValue === amountChildren - 1) {
-      console.log("Что-то надо сделать");
+      // console.log("Что-то надо сделать");
     }
   };
-  console.log("carouselValue: " + carouselValue);
+  // console.log("carouselValue: " + carouselValue);
 
   useEffect(() => {
     setRight(carouselValue * stepScrolling);

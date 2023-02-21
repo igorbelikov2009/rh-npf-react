@@ -1,10 +1,11 @@
 import React, { FC, useEffect, useRef } from "react";
-import NewsLink, { NewsLinkProps } from "../../../news/NewsLink/NewsLink";
+import { INewsLink } from "../../../../models/types";
+import NewsLink from "../../../news/NewsLink/NewsLink";
 import styles from "./NewsLinkContainer.module.scss";
 
 interface NewsLinkContainerProps {
   isClear: boolean;
-  link: NewsLinkProps;
+  link: INewsLink;
   emitWidthColumn: (value: React.SetStateAction<number>) => void;
 }
 

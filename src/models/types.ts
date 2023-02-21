@@ -1,5 +1,13 @@
-export interface ВасьВась {
-  value: string;
+// тип одной колонки новостей
+export type INews = {
+  id: number;
   title: string;
-  name: string;
-}
+  date: string;
+  paragraphs: string[];
+};
+
+export type INewsLink = {
+  id: number;
+  title: string;
+  date: string;
+};

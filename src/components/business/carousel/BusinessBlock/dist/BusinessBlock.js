@@ -47,10 +47,10 @@ var BusinessBlock = function () {
             setCarouselValue(function (prev) { return prev + 1; });
         }
         else if (carouselValue === amountChildren - 1) {
-            console.log("Что-то надо сделать");
+            // console.log("Что-то надо сделать");
         }
     };
-    console.log("carouselValue: " + carouselValue);
+    // console.log("carouselValue: " + carouselValue);
     react_1.useEffect(function () {
         setRight(carouselValue * stepScrolling);
     }, [carouselValue, stepScrolling]);

@@ -1,14 +1,8 @@
 import React, { FC } from "react";
+import { INews } from "../../../models/types";
 import styles from "./Article.module.scss";
 
-export type ArticleProps = {
-  id: number;
-  title: string;
-  date: string;
-  paragraphs: string[];
-};
-
-const Article: FC<ArticleProps> = ({ id, title, date, paragraphs }) => {
+const Article: FC<INews> = ({ id, title, date, paragraphs }) => {
   return (
     <div className={styles["news"]}>
       <div className={styles["news__header"]}>

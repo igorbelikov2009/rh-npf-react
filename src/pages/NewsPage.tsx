@@ -2,8 +2,9 @@ import React, { FC, useState, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import TripleIcon from "../components/general/TripleIcon/TripleIcon";
 import NewsLink from "../components/news/NewsLink/NewsLink";
-import Article, { ArticleProps } from "../components/newsPage/Article/Article";
+import Article from "../components/newsPage/Article/Article";
 import { formatedDateNews } from "../data/DataNews/DataNews";
+import { INews } from "../models/types";
 import "../styles/dist/NewsPage.css";
 
 const NewsPage: FC = () => {
@@ -21,7 +22,7 @@ const NewsPage: FC = () => {
   }, [nextID, prevID]);
   // console.log(anotherNews);
 
-  const currentNews: ArticleProps[] = useMemo(() => {
+  const currentNews: INews[] = useMemo(() => {
     return [...formatedDateNews].filter((item) => {
       return item.id === Number(id);
     });
