@@ -1,11 +1,5 @@
 import UserDate from "../../api/UserDate/UserDate";
-
-export type INews = {
-  id: number;
-  title: string;
-  date: string;
-  paragraphs: string[];
-};
+import { INews } from "../../models/types";
 
 const news: INews[] = [
   {
@@ -458,7 +452,7 @@ const news: INews[] = [
     ],
   },
 ];
-export { news };
+// export { news };
 
 // Получаем отсортированный по дате массив новостей
 const newsSortedByDate: INews[] = [...news].sort((a, b) =>

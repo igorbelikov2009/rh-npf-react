@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { formatedDateNews, INews } from "../../../../data/DataNews/DataNews";
+import React, { useState, useEffect, useMemo } from "react";
+import UserDate from "../../../../api/UserDate/UserDate";
+import { INews } from "../../../../models/types";
+import { newsAPI } from "../../../../services/NewsService";
 import CarouselHeader from "../../../general/carousel/CarouselHeader/CarouselHeader";
 import MainCarousel from "../MainCarousel/MainCarousel";
 import styles from "./NewsBlock.module.scss";
@@ -24,7 +26,45 @@ const NewsBlock = () => {
   const [q, setQ] = useState(0); // значение счётчика, индекс columns[q], который по центру экрана
   const [j, setJ] = useState(0); // если (screenWidth > 855), то по центру экрана два элемента:
   //  columns[q] и columns[j]
-  const news: INews[] = formatedDateNews;
+
+  // Получаем данные с сервера и обрабатываем их.===============
+  const [news, setNews] = useState<INews[]>([]);
+  const { data: webNews } = newsAPI.useFetchAllNewsQuery(100);
+
+  useEffect(() => {
+    if (webNews) {
+      setNews(webNews);
+    }
+  }, [webNews]);
+
+  const newsSortedByDate: INews[] = useMemo(() => {
+    return [...news].sort((a, b) => (new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : -1));
+  }, [news]);
+  // console.log(newsSortedByDate);
+
+  // В отсортированном по дате массиве изменяем id, делаем его равным индексу.
+  // Получаем массив используемый для дальнейших вычислениях.
+  const newsUsedForComputing = useMemo(() => {
+    return [...newsSortedByDate].map((item, index) => ({
+      id: Number(index),
+      title: String(item.title),
+      date: String(item.date),
+      paragraphs: item.paragraphs,
+    }));
+  }, [newsSortedByDate]);
+  // console.log(newsUsedForComputing);
+
+  // Полученный массив форматируем по дате
+  const formatedDateNews: INews[] = useMemo(() => {
+    return [...newsUsedForComputing].map((item, index) => ({
+      id: Number(item.id),
+      title: String(item.title),
+      date: String(UserDate.format(new Date(item.date))),
+      paragraphs: item.paragraphs,
+    }));
+  }, [newsUsedForComputing]);
+  // console.log(formatedDateNews);
+  // =========================================
 
   const getWidthColumn = (width: React.SetStateAction<number>) => {
     setWidthLink(width);
@@ -154,7 +194,7 @@ const NewsBlock = () => {
 
       <div className={styles["carousel"]}>
         <div className={styles["scrollableElement"]} style={{ right: `${right}px` }}>
-          <MainCarousel qq={q} jj={j} carouselLinks={news} emitWidthColumn={getWidthColumn} />
+          <MainCarousel qq={q} jj={j} carouselLinks={formatedDateNews} emitWidthColumn={getWidthColumn} />
         </div>
       </div>
     </div>

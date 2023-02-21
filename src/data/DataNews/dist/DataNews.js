@@ -7,7 +7,7 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
     return r;
 };
 exports.__esModule = true;
-exports.radioYears = exports.formatedDateNews = exports.newsUsedForComputing = exports.newsSortedByDate = exports.news = void 0;
+exports.radioYears = exports.formatedDateNews = exports.newsUsedForComputing = exports.newsSortedByDate = void 0;
 var UserDate_1 = require("../../api/UserDate/UserDate");
 var news = [
     {
@@ -448,7 +448,7 @@ var news = [
         ]
     },
 ];
-exports.news = news;
+// export { news };
 // Получаем отсортированный по дате массив новостей
 var newsSortedByDate = __spreadArrays(news).sort(function (a, b) {
     return new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : -1;

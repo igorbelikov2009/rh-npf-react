@@ -13,19 +13,51 @@ var NewsLink_1 = require("../NewsLink/NewsLink");
 var UserDate_1 = require("../../../api/UserDate/UserDate");
 var ControllerOption_1 = require("../../ui/select/controllerOption/ControllerOption/ControllerOption");
 var AdaptiveRadio_1 = require("../../ui/radios/AdaptiveRadio/AdaptiveRadio");
-var DataNews_1 = require("../../../data/DataNews/DataNews");
+var NewsService_1 = require("../../../services/NewsService");
 var ListNews = function () {
     //   console.log(news);
     var _a = react_1.useState("2021"), selectedYear = _a[0], setSelectedYear = _a[1];
     var _b = react_1.useState("0"), setId = _b[1];
     var _c = react_1.useState(false), isRadioListVisible = _c[0], setRadioListVisible = _c[1];
-    // Фильтруем массив всех отсортированных новостей, с упорядоченным id.
-    // Оставляем в массиве только те новости, которые соответствуют выбранному году.
+    // ==============================================
+    var _d = react_1.useState([]), news = _d[0], setNews = _d[1];
+    var webNews = NewsService_1.newsAPI.useFetchAllNewsQuery(100).data;
+    react_1.useEffect(function () {
+        if (webNews) {
+            setNews(webNews);
+        }
+    }, [webNews]);
+    // Получаем отсортированный по дате массив новостей
+    var newsSortedByDate = react_1.useMemo(function () {
+        return __spreadArrays(news).sort(function (a, b) { return (new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : -1); });
+    }, [news]);
+    // console.log(newsSortedByDate);
+    // В отсортированном по дате массиве изменяем id, делаем его равным индексу.
+    // Получаем массив используемый для дальнейших вычислениях.
+    var newsUsedForComputing = react_1.useMemo(function () {
+        return __spreadArrays(newsSortedByDate).map(function (item, index) { return ({
+            id: Number(index),
+            title: String(item.title),
+            date: String(item.date),
+            paragraphs: item.paragraphs
+        }); });
+    }, [newsSortedByDate]);
+    // console.log(newsUsedForComputing);
+    // получаем radioYears (radioItems)
+    var radioYears = __spreadArrays(newsUsedForComputing).map(function (item) { return new Date(item.date).getFullYear(); })
+        .filter(function (item, index, self) { return index === self.indexOf(item); })
+        .map(function (item, index) { return ({
+        id: String(index),
+        title: String(item),
+        value: String(item)
+    }); });
+    // console.log(radioYears);
+    // новости, отфильтрованные по годам
     var newsFilteredByYear = react_1.useMemo(function () {
-        return __spreadArrays(DataNews_1.newsUsedForComputing).filter(function (item) {
+        return __spreadArrays(newsUsedForComputing).filter(function (item) {
             return new Date(item.date).getFullYear() === Number(selectedYear);
         });
-    }, [selectedYear]);
+    }, [newsUsedForComputing, selectedYear]);
     // console.log(newsFilteredByYear);
     // форматируем дату у новостей, отфильтрованных по годам
     var formatedFilteredByYear = react_1.useMemo(function () {
@@ -37,6 +69,7 @@ var ListNews = function () {
         }); });
     }, [newsFilteredByYear]);
     // console.log(formatedFilteredByYear);
+    // ==============================================
     var onClickController = function () {
         setRadioListVisible(function (prev) { return !prev; });
     };
@@ -52,11 +85,12 @@ var ListNews = function () {
         setId(id);
     };
     return (react_1["default"].createElement("section", { className: ListNews_module_scss_1["default"]["news__section"] },
+        react_1["default"].createElement("p", { className: ListNews_module_scss_1["default"]["news__prompt"] }, "\u041A\u043E\u043C\u0430\u043D\u0434\u0443\u0435\u043C \u0432 \u0442\u0435\u0440\u043C\u0438\u043D\u0430\u043B\u0435: json-server --watch db.json --port 5000"),
         react_1["default"].createElement("div", { className: ListNews_module_scss_1["default"]["news__container-select-radio"] },
             react_1["default"].createElement("div", { className: ListNews_module_scss_1["default"]["news__select"] },
-                react_1["default"].createElement(ControllerOption_1["default"], { currentValue: selectedYear, radioItems: DataNews_1.radioYears, isRadioListVisible: isRadioListVisible, onClickController: onClickController, emitOnChangeRadioListBlock: onChangeRadioListBlock, emitOnClickRadioListBlock: onClickRadioListBlock })),
+                react_1["default"].createElement(ControllerOption_1["default"], { currentValue: selectedYear, radioItems: radioYears, isRadioListVisible: isRadioListVisible, onClickController: onClickController, emitOnChangeRadioListBlock: onChangeRadioListBlock, emitOnClickRadioListBlock: onClickRadioListBlock })),
             react_1["default"].createElement("div", { className: ListNews_module_scss_1["default"]["news__radio"] },
-                react_1["default"].createElement(AdaptiveRadio_1["default"], { currentValue: selectedYear, radioItems: DataNews_1.radioYears, emitValue: onChangeAdaptiveRadio }))),
+                react_1["default"].createElement(AdaptiveRadio_1["default"], { currentValue: selectedYear, radioItems: radioYears, emitValue: onChangeAdaptiveRadio }))),
         react_1["default"].createElement("div", { className: ListNews_module_scss_1["default"]["news__container-news"] },
             react_1["default"].createElement("div", { className: ListNews_module_scss_1["default"]["news__list-news"] }, formatedFilteredByYear.map(function (item) { return (react_1["default"].createElement(NewsLink_1["default"], { key: item.id, date: item.date, title: item.title, id: item.id })); })),
             react_1["default"].createElement("div", { className: ListNews_module_scss_1["default"]["contact"] },

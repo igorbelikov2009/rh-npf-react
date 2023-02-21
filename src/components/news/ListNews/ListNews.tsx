@@ -1,10 +1,12 @@
-import React, { FC, useState, useMemo } from "react";
+import React, { FC, useState, useMemo, useEffect } from "react";
 import styles from "./ListNews.module.scss";
 import NewsLink from "../NewsLink/NewsLink";
 import UserDate from "../../../api/UserDate/UserDate";
 import ControllerOption from "../../ui/select/controllerOption/ControllerOption/ControllerOption";
 import AdaptiveRadio from "../../ui/radios/AdaptiveRadio/AdaptiveRadio";
-import { INews, newsUsedForComputing, radioYears } from "../../../data/DataNews/DataNews";
+// import { newsUsedForComputing, radioYears } from "../../../data/DataNews/DataNews";
+import { INews } from "../../../models/types";
+import { newsAPI } from "../../../services/NewsService";
 
 const ListNews: FC = () => {
   //   console.log(news);
@@ -12,13 +14,51 @@ const ListNews: FC = () => {
   const [, setId] = useState("0");
   const [isRadioListVisible, setRadioListVisible] = useState(false);
 
-  // Фильтруем массив всех отсортированных новостей, с упорядоченным id.
-  // Оставляем в массиве только те новости, которые соответствуют выбранному году.
+  // ==============================================
+  const [news, setNews] = useState<INews[]>([]);
+  const { data: webNews } = newsAPI.useFetchAllNewsQuery(100);
+
+  useEffect(() => {
+    if (webNews) {
+      setNews(webNews);
+    }
+  }, [webNews]);
+
+  // Получаем отсортированный по дате массив новостей
+  const newsSortedByDate: INews[] = useMemo(() => {
+    return [...news].sort((a, b) => (new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : -1));
+  }, [news]);
+  // console.log(newsSortedByDate);
+
+  // В отсортированном по дате массиве изменяем id, делаем его равным индексу.
+  // Получаем массив используемый для дальнейших вычислениях.
+  const newsUsedForComputing = useMemo(() => {
+    return [...newsSortedByDate].map((item, index) => ({
+      id: Number(index),
+      title: String(item.title),
+      date: String(item.date),
+      paragraphs: item.paragraphs,
+    }));
+  }, [newsSortedByDate]);
+  // console.log(newsUsedForComputing);
+
+  // получаем radioYears (radioItems)
+  const radioYears = [...newsUsedForComputing]
+    .map((item) => new Date(item.date).getFullYear())
+    .filter((item, index, self) => index === self.indexOf(item))
+    .map((item, index) => ({
+      id: String(index),
+      title: String(item),
+      value: String(item),
+    }));
+  // console.log(radioYears);
+
+  // новости, отфильтрованные по годам
   const newsFilteredByYear = useMemo(() => {
     return [...newsUsedForComputing].filter((item) => {
       return new Date(item.date).getFullYear() === Number(selectedYear);
     });
-  }, [selectedYear]);
+  }, [newsUsedForComputing, selectedYear]);
   // console.log(newsFilteredByYear);
 
   // форматируем дату у новостей, отфильтрованных по годам
@@ -31,6 +71,7 @@ const ListNews: FC = () => {
     }));
   }, [newsFilteredByYear]);
   // console.log(formatedFilteredByYear);
+  // ==============================================
 
   const onClickController = () => {
     setRadioListVisible((prev) => !prev);
@@ -49,6 +90,7 @@ const ListNews: FC = () => {
 
   return (
     <section className={styles["news__section"]}>
+      <p className={styles["news__prompt"]}>Командуем в терминале: json-server --watch db.json --port 5000</p>
       <div className={styles["news__container-select-radio"]}>
         <div className={styles["news__select"]}>
           <ControllerOption

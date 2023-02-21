@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { INews } from "../../../../data/DataNews/DataNews";
+import { INews } from "../../../../models/types";
 import styles from "./NewsItem.module.scss";
 
 const NewsItem: FC<INews> = ({ id, title, date, paragraphs }) => {

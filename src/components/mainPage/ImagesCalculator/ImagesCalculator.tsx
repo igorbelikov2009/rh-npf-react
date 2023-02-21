@@ -19,6 +19,9 @@ const ImagesCalculator = () => {
             </p>
           </div>
         </div>
+        <p className={styles["calculator-image__prompt"]}>
+          Командуем в терминале: json-server --watch db.json --port 5000
+        </p>
       </div>
     </section>
   );

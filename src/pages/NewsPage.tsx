@@ -1,10 +1,11 @@
-import React, { FC, useState, useMemo } from "react";
+import React, { FC, useState, useMemo, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import UserDate from "../api/UserDate/UserDate";
 import TripleIcon from "../components/general/TripleIcon/TripleIcon";
 import NewsLink from "../components/news/NewsLink/NewsLink";
 import Article from "../components/newsPage/Article/Article";
-import { formatedDateNews } from "../data/DataNews/DataNews";
 import { INews } from "../models/types";
+import { newsAPI } from "../services/NewsService";
 import "../styles/dist/NewsPage.css";
 
 const NewsPage: FC = () => {
@@ -13,20 +14,58 @@ const NewsPage: FC = () => {
   const nextID = Number(id) + 1;
   const [isHovered, setHovered] = useState(false);
 
+  // Получаем данные с сервера и обрабатываем их.===============
+  const [news, setNews] = useState<INews[]>([]);
+  const { data: webNews } = newsAPI.useFetchAllNewsQuery(100);
+
+  useEffect(() => {
+    if (webNews) {
+      setNews(webNews);
+    }
+  }, [webNews]);
+
+  const newsSortedByDate: INews[] = useMemo(() => {
+    return [...news].sort((a, b) => (new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : -1));
+  }, [news]);
+  // console.log(newsSortedByDate);
+
+  // В отсортированном по дате массиве изменяем id, делаем его равным индексу.
+  // Получаем массив используемый для дальнейших вычислениях.
+  const newsUsedForComputing = useMemo(() => {
+    return [...newsSortedByDate].map((item, index) => ({
+      id: Number(index),
+      title: String(item.title),
+      date: String(item.date),
+      paragraphs: item.paragraphs,
+    }));
+  }, [newsSortedByDate]);
+  // console.log(newsUsedForComputing);
+
+  // Полученный массив форматируем по дате
+  const formatedDateNews: INews[] = useMemo(() => {
+    return [...newsUsedForComputing].map((item, index) => ({
+      id: Number(item.id),
+      title: String(item.title),
+      date: String(UserDate.format(new Date(item.date))),
+      paragraphs: item.paragraphs,
+    }));
+  }, [newsUsedForComputing]);
+  // console.log(formatedDateNews);
+
   // Фильтруем массив всех отсортированных новостей, с упорядоченным id, с отформатированной датой
   // Оставляем в массиве только те новости, ID которых соответствуют prevID и nextID.
   const anotherNews = useMemo(() => {
     return [...formatedDateNews].filter((item) => {
       return item.id === prevID || item.id === nextID;
     });
-  }, [nextID, prevID]);
+  }, [formatedDateNews, nextID, prevID]);
   // console.log(anotherNews);
 
   const currentNews: INews[] = useMemo(() => {
     return [...formatedDateNews].filter((item) => {
       return item.id === Number(id);
     });
-  }, [id]);
+  }, [formatedDateNews, id]);
   // console.log(currentNews);
 
   return (

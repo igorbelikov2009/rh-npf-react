@@ -9,29 +9,63 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
 exports.__esModule = true;
 var react_1 = require("react");
 var react_router_dom_1 = require("react-router-dom");
+var UserDate_1 = require("../api/UserDate/UserDate");
 var TripleIcon_1 = require("../components/general/TripleIcon/TripleIcon");
 var NewsLink_1 = require("../components/news/NewsLink/NewsLink");
 var Article_1 = require("../components/newsPage/Article/Article");
-var DataNews_1 = require("../data/DataNews/DataNews");
+var NewsService_1 = require("../services/NewsService");
 require("../styles/dist/NewsPage.css");
 var NewsPage = function () {
     var id = react_router_dom_1.useParams().id;
     var prevID = Number(id) - 1;
     var nextID = Number(id) + 1;
     var _a = react_1.useState(false), isHovered = _a[0], setHovered = _a[1];
+    // Получаем данные с сервера и обрабатываем их.===============
+    var _b = react_1.useState([]), news = _b[0], setNews = _b[1];
+    var webNews = NewsService_1.newsAPI.useFetchAllNewsQuery(100).data;
+    react_1.useEffect(function () {
+        if (webNews) {
+            setNews(webNews);
+        }
+    }, [webNews]);
+    var newsSortedByDate = react_1.useMemo(function () {
+        return __spreadArrays(news).sort(function (a, b) { return (new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : -1); });
+    }, [news]);
+    // console.log(newsSortedByDate);
+    // В отсортированном по дате массиве изменяем id, делаем его равным индексу.
+    // Получаем массив используемый для дальнейших вычислениях.
+    var newsUsedForComputing = react_1.useMemo(function () {
+        return __spreadArrays(newsSortedByDate).map(function (item, index) { return ({
+            id: Number(index),
+            title: String(item.title),
+            date: String(item.date),
+            paragraphs: item.paragraphs
+        }); });
+    }, [newsSortedByDate]);
+    // console.log(newsUsedForComputing);
+    // Полученный массив форматируем по дате
+    var formatedDateNews = react_1.useMemo(function () {
+        return __spreadArrays(newsUsedForComputing).map(function (item, index) { return ({
+            id: Number(item.id),
+            title: String(item.title),
+            date: String(UserDate_1["default"].format(new Date(item.date))),
+            paragraphs: item.paragraphs
+        }); });
+    }, [newsUsedForComputing]);
+    // console.log(formatedDateNews);
     // Фильтруем массив всех отсортированных новостей, с упорядоченным id, с отформатированной датой
     // Оставляем в массиве только те новости, ID которых соответствуют prevID и nextID.
     var anotherNews = react_1.useMemo(function () {
-        return __spreadArrays(DataNews_1.formatedDateNews).filter(function (item) {
+        return __spreadArrays(formatedDateNews).filter(function (item) {
             return item.id === prevID || item.id === nextID;
         });
-    }, [nextID, prevID]);
+    }, [formatedDateNews, nextID, prevID]);
     // console.log(anotherNews);
     var currentNews = react_1.useMemo(function () {
-        return __spreadArrays(DataNews_1.formatedDateNews).filter(function (item) {
+        return __spreadArrays(formatedDateNews).filter(function (item) {
             return item.id === Number(id);
         });
-    }, [id]);
+    }, [formatedDateNews, id]);
     // console.log(currentNews);
     return (react_1["default"].createElement("div", { className: "news-page" },
         react_1["default"].createElement("div", { className: "news-page__head" },
