@@ -8,13 +8,14 @@ const Footer: FC = () => {
   const navigate = useNavigate();
   const FirstBlock: FooterLinkProps[] = [
     {
-      to: "/support",
-      children: "Написать нам", // to: "/support#form",
+      // to: "/support",
+      to: "/support#form",
+      children: "Написать нам",
     },
     {
-      to: "/support",
+      // to: "/support",
+      to: "/support#questionsAnswers",
       children: "Вопросы и ответы",
-      // to: "/support#questionsAnswers",
     },
     { to: "/about", children: "О Фонде" },
     { to: "/managment", children: "Руководство фонда" },
@@ -35,8 +36,8 @@ const Footer: FC = () => {
     },
     {
       children: "Калькулятор",
-      // to: "/#calculator",
-      to: "/",
+      to: "/#calculator",
+      // to: "/",
     },
   ];
   const ThirdBlock: FooterLinkProps[] = [

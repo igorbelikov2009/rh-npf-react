@@ -43,9 +43,6 @@ const NewsPage: FC = () => {
             </div>
             <p className="news-page__link-title">К списку новостей</p>
           </Link>
-          {/* <Link className="news-page__link-title" to="/news">
-              К списку новостей
-            </Link> */}
 
           {currentNews ? (
             currentNews.map((news, index) => (

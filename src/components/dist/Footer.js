@@ -9,11 +9,13 @@ var Footer = function () {
     var navigate = react_router_dom_1.useNavigate();
     var FirstBlock = [
         {
-            to: "/support",
+            // to: "/support",
+            to: "/support#form",
             children: "Написать нам"
         },
         {
-            to: "/support",
+            // to: "/support",
+            to: "/support#questionsAnswers",
             children: "Вопросы и ответы"
         },
         { to: "/about", children: "О Фонде" },
@@ -34,8 +36,7 @@ var Footer = function () {
         },
         {
             children: "Калькулятор",
-            // to: "/#calculator",
-            to: "/"
+            to: "/#calculator"
         },
     ];
     var ThirdBlock = [

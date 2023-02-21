@@ -13,13 +13,13 @@ const ServiceSupportPage: FC = () => {
       <TopBlock heading="Поддержка" image={supportImage} />
 
       <div className="support-servise-page">
-        <div id="questionsAnswers">
+        <div id={"questionsAnswers"}>
           <QuestionsAnswers />
         </div>
 
         <PensionPrograms />
 
-        <div id="form">
+        <div id={"form"}>
           <SupportForm />
         </div>
 
