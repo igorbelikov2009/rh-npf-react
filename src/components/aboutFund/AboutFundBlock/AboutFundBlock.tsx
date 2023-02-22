@@ -1,6 +1,7 @@
 import React, { FC, useState, useEffect } from "react";
+import { useGetAboutFundColumnsQuery } from "../../../services/aboutFundAPI";
 import CarouselHeader from "../../general/carousel/CarouselHeader/CarouselHeader";
-import FundCarousel, { IColumn } from "../FundCarousel/FundCarousel";
+import FundCarousel from "../FundCarousel/FundCarousel";
 import styles from "./AboutFundBlock.module.scss";
 
 const AboutFundBlock: FC = () => {
@@ -23,40 +24,9 @@ const AboutFundBlock: FC = () => {
   const [q, setQ] = useState(0); // значение счётчика, индекс columns[q], который по центру экрана
   const [j, setJ] = useState(0); // если (screenWidth > 855), то по центру экрана два элемента:
   //  columns[q] и columns[j]
-  const columns: IColumn[] = [
-    {
-      title: "2002",
-      description:
-        "Дата основания Фонда как части финансовой группы ING в России. Уже в 2003 году в Фонд приходят первые крупные клиенты, что дало Фонду существенный толчок к развитию и сделало его привлекательным в глазах будущих партнеров.",
-    },
-    {
-      title: "2003",
-      description: "В Фонд приходят первые крупные клиенты.",
-    },
-    {
-      title: "2008",
-      description: "Клиентами Фонда стали более 70 наших текущих партнеров.",
-    },
-    {
-      title: "2009",
-      description:
-        "В связи с изменением бизнес стратегии компании ING в России, Фонд был выкуплен крупнейшей Британской страховой компанией AVIVA, что только лишь усилило позиции Фонда.",
-    },
-    {
-      title: "2013",
-      description: "Фонд перешел под управление компании WELBI на 100% контролировавшейся НПФ “Благосостояние”.",
-    },
-    {
-      title: "2017",
-      description:
-        "В результате сделки Фонд вошел в объединенную группу компаний под управлением ООО “Группа Ренессанс Страхование”, одного из крупнейших провайдеров добровольного страхования в России.",
-    },
-    {
-      title: "2018",
-      description:
-        "Состоялась реорганизация в акционерное общество с одновременным переименованием Фонда в АО НПФ «Ренессанс пенсии».",
-    },
-  ];
+
+  // Получаем данные с сервера через aboutFundAPI
+  const { data: aboutFundColumns } = useGetAboutFundColumnsQuery(10);
 
   // ширина контейнера ссылок
   const getLinkContainerWidth = (width: React.SetStateAction<number>) => {
@@ -65,11 +35,12 @@ const AboutFundBlock: FC = () => {
   // console.log(widthLink);
 
   useEffect(() => {
-    // получаем количество детей массива, новостных колонок (NewsLinkContainer)
-    setAmountChildren(columns.length);
+    if (aboutFundColumns)
+      // получаем количество детей массива, новостных колонок (NewsLinkContainer)
+      setAmountChildren(aboutFundColumns.length);
     // высчитываем общую длину карусельной ленты (carousel-tape)
     setOverallWidth(widthLink * amountChildren);
-  }, [amountChildren, columns.length, widthLink]);
+  }, [amountChildren, widthLink, aboutFundColumns]);
   // console.log("amountChildren :" + amountChildren);
   // console.log("overallWidth:" + overallWidth);
   // =================================
@@ -187,7 +158,7 @@ const AboutFundBlock: FC = () => {
 
       <div className={styles["carousel"]}>
         <div className={styles["scrollableElement"]} style={{ right: `${right}px` }}>
-          <FundCarousel columns={columns} jj={j} qq={q} emitWidthColumn={getLinkContainerWidth} />
+          <FundCarousel columns={aboutFundColumns} jj={j} qq={q} emitWidthColumn={getLinkContainerWidth} />
         </div>
       </div>
     </div>

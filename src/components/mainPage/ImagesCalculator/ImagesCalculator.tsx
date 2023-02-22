@@ -15,13 +15,10 @@ const ImagesCalculator = () => {
           <div className={styles["calculator-image__attention"]}>
             <img className={styles["calculator-image__icon"]} src="/icons/attention.svg" alt="attention" />
             <p className={styles["calculator-image__description"]}>
-              Калькулятор позволяет произвести ориентировочный расчет будущей пенсии. Не является офертой.
+              Калькулятор позволяет произвести ориентировочный расчет будущей пенсии. Не является офертой.
             </p>
           </div>
         </div>
-        <p className={styles["calculator-image__prompt"]}>
-          Командуем в терминале: json-server --watch db.json --port 5000
-        </p>
       </div>
     </section>
   );

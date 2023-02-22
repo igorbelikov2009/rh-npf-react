@@ -73,7 +73,6 @@ const ListNews: FC = () => {
         </h1>
       )}
 
-      <p className={styles["news__prompt"]}>Командуем в терминале: json-server --watch db.json --port 5000</p>
       <div className={styles["news__container-select-radio"]}>
         <div className={styles["news__select"]}>
           <ControllerOption

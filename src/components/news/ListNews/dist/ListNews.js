@@ -70,7 +70,6 @@ var ListNews = function () {
                 " ",
                 error,
                 " "))),
-        react_1["default"].createElement("p", { className: ListNews_module_scss_1["default"]["news__prompt"] }, "\u041A\u043E\u043C\u0430\u043D\u0434\u0443\u0435\u043C \u0432 \u0442\u0435\u0440\u043C\u0438\u043D\u0430\u043B\u0435: json-server --watch db.json --port 5000"),
         react_1["default"].createElement("div", { className: ListNews_module_scss_1["default"]["news__container-select-radio"] },
             react_1["default"].createElement("div", { className: ListNews_module_scss_1["default"]["news__select"] },
                 react_1["default"].createElement(ControllerOption_1["default"], { currentValue: selectedYear, radioItems: radioYears, isRadioListVisible: isRadioListVisible, onClickController: onClickController, emitOnChangeRadioListBlock: onChangeRadioListBlock, emitOnClickRadioListBlock: onClickRadioListBlock })),

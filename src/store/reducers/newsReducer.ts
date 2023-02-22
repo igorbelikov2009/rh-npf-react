@@ -38,7 +38,9 @@ export const getFormatedNews = createAsyncThunk("news/getFormatedNews", async fu
   } catch (error: any) {
     // и передам ошибку определённым образом в extraReducers, в метод [fetchPostsMich.rejected.type],
     // где её можно будет корректно обработать.
-    return rejectWithValue("Не удалось получить новости! " + error.message);
+    return rejectWithValue(
+      "Не удалось получить новости. Запусти сервер командой в терминале: json-server --watch db.json --port 5000"
+    );
   }
 });
 

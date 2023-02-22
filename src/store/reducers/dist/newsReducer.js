@@ -85,7 +85,7 @@ exports.getFormatedNews = toolkit_1.createAsyncThunk("news/getFormatedNews", fun
                     error_1 = _b.sent();
                     // и передам ошибку определённым образом в extraReducers, в метод [fetchPostsMich.rejected.type],
                     // где её можно будет корректно обработать.
-                    return [2 /*return*/, rejectWithValue("Не удалось получить новости! " + error_1.message)];
+                    return [2 /*return*/, rejectWithValue("Не удалось получить новости. Запусти сервер командой в терминале: json-server --watch db.json --port 5000")];
                 case 4: return [2 /*return*/];
             }
         });

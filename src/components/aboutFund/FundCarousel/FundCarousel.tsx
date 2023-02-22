@@ -1,16 +1,12 @@
 import React, { FC } from "react";
+import { IColumn } from "../../../models/types";
 import FundCarouselColumn from "../FundCarouselColumn/FundCarouselColumn";
 import styles from "./FundCarousel.module.scss";
-
-export interface IColumn {
-  title: string;
-  description: string;
-}
 
 interface FundCarouselProps {
   qq: number;
   jj: number;
-  columns: IColumn[];
+  columns: IColumn[] | undefined;
   emitWidthColumn: (value: number) => void;
 }
 
@@ -21,15 +17,16 @@ const FundCarousel: FC<FundCarouselProps> = ({ jj, qq, columns, emitWidthColumn 
 
   return (
     <div className={styles["fund-carousel"]}>
-      {columns.map((column, index) => (
-        <FundCarouselColumn
-          key={index}
-          description={column.description}
-          title={column.title}
-          isClear={index === qq || jj === index}
-          emitWidthColumn={getWidthColumn}
-        />
-      ))}
+      {columns &&
+        columns.map((column, index) => (
+          <FundCarouselColumn
+            key={index}
+            description={column.description}
+            title={column.title}
+            isClear={index === qq || jj === index}
+            emitWidthColumn={getWidthColumn}
+          />
+        ))}
     </div>
   );
 };

@@ -1,3 +1,8 @@
+export interface IGoods {
+  id: number;
+  name: string;
+}
+
 export interface INews {
   id: number;
   title: string;
@@ -11,7 +16,7 @@ export interface INewsLink {
   date: string;
 }
 
-export interface IGoods {
-  id: number;
-  name: string;
+export interface IColumn {
+  title: string;
+  description: string;
 }

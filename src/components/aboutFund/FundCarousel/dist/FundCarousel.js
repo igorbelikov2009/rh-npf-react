@@ -8,6 +8,7 @@ var FundCarousel = function (_a) {
     var getWidthColumn = function (widthColumn) {
         emitWidthColumn(widthColumn);
     };
-    return (react_1["default"].createElement("div", { className: FundCarousel_module_scss_1["default"]["fund-carousel"] }, columns.map(function (column, index) { return (react_1["default"].createElement(FundCarouselColumn_1["default"], { key: index, description: column.description, title: column.title, isClear: index === qq || jj === index, emitWidthColumn: getWidthColumn })); })));
+    return (react_1["default"].createElement("div", { className: FundCarousel_module_scss_1["default"]["fund-carousel"] }, columns &&
+        columns.map(function (column, index) { return (react_1["default"].createElement(FundCarouselColumn_1["default"], { key: index, description: column.description, title: column.title, isClear: index === qq || jj === index, emitWidthColumn: getWidthColumn })); })));
 };
 exports["default"] = FundCarousel;
