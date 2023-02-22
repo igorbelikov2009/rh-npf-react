@@ -10,3 +10,8 @@ export interface INewsLink {
   title: string;
   date: string;
 }
+
+export interface IGoods {
+  id: number;
+  name: string;
+}

@@ -1,15 +1,8 @@
 "use strict";
-var __spreadArrays = (this && this.__spreadArrays) || function () {
-    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-    for (var r = Array(s), k = 0, i = 0; i < il; i++)
-        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-            r[k] = a[j];
-    return r;
-};
 exports.__esModule = true;
 var react_1 = require("react");
-var UserDate_1 = require("../../../../api/UserDate/UserDate");
-var NewsService_1 = require("../../../../services/NewsService");
+var redux_1 = require("../../../../hooks/redux");
+var newsReducer_1 = require("../../../../store/reducers/newsReducer");
 var CarouselHeader_1 = require("../../../general/carousel/CarouselHeader/CarouselHeader");
 var MainCarousel_1 = require("../MainCarousel/MainCarousel");
 var NewsBlock_module_scss_1 = require("./NewsBlock.module.scss");
@@ -31,40 +24,13 @@ var NewsBlock = function () {
     var _k = react_1.useState(0), q = _k[0], setQ = _k[1]; // значение счётчика, индекс columns[q], который по центру экрана
     var _l = react_1.useState(0), j = _l[0], setJ = _l[1]; // если (screenWidth > 855), то по центру экрана два элемента:
     //  columns[q] и columns[j]
-    // Получаем данные с сервера и обрабатываем их.===============
-    var _m = react_1.useState([]), news = _m[0], setNews = _m[1];
-    var webNews = NewsService_1.newsAPI.useFetchAllNewsQuery(100).data;
+    // Получаем данные с newsReducer.
+    var dispatch = redux_1.useAppDispanch();
+    var _m = redux_1.useAppSelector(function (state) { return state.newsReducer; }), respon = _m.respon, isLoading = _m.isLoading, error = _m.error;
+    var news = respon.formatedDateNews;
     react_1.useEffect(function () {
-        if (webNews) {
-            setNews(webNews);
-        }
-    }, [webNews]);
-    var newsSortedByDate = react_1.useMemo(function () {
-        return __spreadArrays(news).sort(function (a, b) { return (new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : -1); });
-    }, [news]);
-    // console.log(newsSortedByDate);
-    // В отсортированном по дате массиве изменяем id, делаем его равным индексу.
-    // Получаем массив используемый для дальнейших вычислениях.
-    var newsUsedForComputing = react_1.useMemo(function () {
-        return __spreadArrays(newsSortedByDate).map(function (item, index) { return ({
-            id: Number(index),
-            title: String(item.title),
-            date: String(item.date),
-            paragraphs: item.paragraphs
-        }); });
-    }, [newsSortedByDate]);
-    // console.log(newsUsedForComputing);
-    // Полученный массив форматируем по дате
-    var formatedDateNews = react_1.useMemo(function () {
-        return __spreadArrays(newsUsedForComputing).map(function (item, index) { return ({
-            id: Number(item.id),
-            title: String(item.title),
-            date: String(UserDate_1["default"].format(new Date(item.date))),
-            paragraphs: item.paragraphs
-        }); });
-    }, [newsUsedForComputing]);
-    // console.log(formatedDateNews);
-    // =========================================
+        dispatch(newsReducer_1.getFormatedNews());
+    }, [dispatch]);
     var getWidthColumn = function (width) {
         setWidthLink(width);
     };
@@ -169,10 +135,18 @@ var NewsBlock = function () {
         getValueQOnClickArrowRight();
         changeColorArrowOnClickArrowRight();
     };
+    if (isLoading)
+        return react_1["default"].createElement("h1", null, "Loading...");
+    if (error)
+        return (react_1["default"].createElement("h1", null,
+            react_1["default"].createElement(react_1["default"].Fragment, null,
+                " ",
+                error,
+                " ")));
     return (react_1["default"].createElement("div", null,
         react_1["default"].createElement(CarouselHeader_1["default"], { headerTitle: "\u041D\u043E\u0432\u043E\u0441\u0442\u0438", isBlurredLeft: isBlurredLeft, isBlurredRight: isBlurredRight, isHoveredLeft: isHoveredLeft, isHoveredRight: isHoveredRight, onClickLeft: onClickLeftArrow, onClickRight: onClickRightArrow }),
         react_1["default"].createElement("div", { className: NewsBlock_module_scss_1["default"]["carousel"] },
             react_1["default"].createElement("div", { className: NewsBlock_module_scss_1["default"]["scrollableElement"], style: { right: right + "px" } },
-                react_1["default"].createElement(MainCarousel_1["default"], { qq: q, jj: j, carouselLinks: formatedDateNews, emitWidthColumn: getWidthColumn })))));
+                react_1["default"].createElement(MainCarousel_1["default"], { qq: q, jj: j, carouselLinks: news, emitWidthColumn: getWidthColumn })))));
 };
 exports["default"] = NewsBlock;

@@ -9,64 +9,37 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
 exports.__esModule = true;
 var react_1 = require("react");
 var react_router_dom_1 = require("react-router-dom");
-var UserDate_1 = require("../api/UserDate/UserDate");
 var TripleIcon_1 = require("../components/general/TripleIcon/TripleIcon");
 var NewsLink_1 = require("../components/news/NewsLink/NewsLink");
 var Article_1 = require("../components/newsPage/Article/Article");
-var NewsService_1 = require("../services/NewsService");
+var redux_1 = require("../hooks/redux");
+var newsReducer_1 = require("../store/reducers/newsReducer");
 require("../styles/dist/NewsPage.css");
 var NewsPage = function () {
     var id = react_router_dom_1.useParams().id;
     var prevID = Number(id) - 1;
     var nextID = Number(id) + 1;
     var _a = react_1.useState(false), isHovered = _a[0], setHovered = _a[1];
-    // Получаем данные с сервера и обрабатываем их.===============
-    var _b = react_1.useState([]), news = _b[0], setNews = _b[1];
-    var webNews = NewsService_1.newsAPI.useFetchAllNewsQuery(100).data;
+    // Получаем данные с newsReducer и обрабатываем их.
+    var dispatch = redux_1.useAppDispanch();
+    var _b = redux_1.useAppSelector(function (state) { return state.newsReducer; }), respon = _b.respon, isLoading = _b.isLoading, error = _b.error;
+    var news = respon.formatedDateNews;
     react_1.useEffect(function () {
-        if (webNews) {
-            setNews(webNews);
-        }
-    }, [webNews]);
-    var newsSortedByDate = react_1.useMemo(function () {
-        return __spreadArrays(news).sort(function (a, b) { return (new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : -1); });
-    }, [news]);
-    // console.log(newsSortedByDate);
-    // В отсортированном по дате массиве изменяем id, делаем его равным индексу.
-    // Получаем массив используемый для дальнейших вычислениях.
-    var newsUsedForComputing = react_1.useMemo(function () {
-        return __spreadArrays(newsSortedByDate).map(function (item, index) { return ({
-            id: Number(index),
-            title: String(item.title),
-            date: String(item.date),
-            paragraphs: item.paragraphs
-        }); });
-    }, [newsSortedByDate]);
-    // console.log(newsUsedForComputing);
-    // Полученный массив форматируем по дате
-    var formatedDateNews = react_1.useMemo(function () {
-        return __spreadArrays(newsUsedForComputing).map(function (item, index) { return ({
-            id: Number(item.id),
-            title: String(item.title),
-            date: String(UserDate_1["default"].format(new Date(item.date))),
-            paragraphs: item.paragraphs
-        }); });
-    }, [newsUsedForComputing]);
-    // console.log(formatedDateNews);
+        dispatch(newsReducer_1.getFormatedNews());
+    }, [dispatch]);
     // Фильтруем массив всех отсортированных новостей, с упорядоченным id, с отформатированной датой
     // Оставляем в массиве только те новости, ID которых соответствуют prevID и nextID.
     var anotherNews = react_1.useMemo(function () {
-        return __spreadArrays(formatedDateNews).filter(function (item) {
+        return __spreadArrays(news).filter(function (item) {
             return item.id === prevID || item.id === nextID;
         });
-    }, [formatedDateNews, nextID, prevID]);
-    // console.log(anotherNews);
+    }, [news, nextID, prevID]);
+    // Оставляем в массиве только те новости, ID которых соответствуют id.
     var currentNews = react_1.useMemo(function () {
-        return __spreadArrays(formatedDateNews).filter(function (item) {
+        return __spreadArrays(news).filter(function (item) {
             return item.id === Number(id);
         });
-    }, [formatedDateNews, id]);
-    // console.log(currentNews);
+    }, [news, id]);
     return (react_1["default"].createElement("div", { className: "news-page" },
         react_1["default"].createElement("div", { className: "news-page__head" },
             react_1["default"].createElement("div", { className: "news-page__container" },
@@ -74,6 +47,12 @@ var NewsPage = function () {
                     react_1["default"].createElement("div", { className: "news-page__icons" },
                         react_1["default"].createElement(TripleIcon_1["default"], { hovered: isHovered, light: false, icon: "Arrow Down" })),
                     react_1["default"].createElement("p", { className: "news-page__link-title" }, "\u041A \u0441\u043F\u0438\u0441\u043A\u0443 \u043D\u043E\u0432\u043E\u0441\u0442\u0435\u0439")),
+                isLoading && react_1["default"].createElement("h1", null, "Loading..."),
+                error && (react_1["default"].createElement("h1", null,
+                    react_1["default"].createElement(react_1["default"].Fragment, null,
+                        " ",
+                        error,
+                        " "))),
                 currentNews ? (currentNews.map(function (news, index) { return (react_1["default"].createElement(Article_1["default"], { key: index, id: news.id, date: news.date, title: news.title, paragraphs: news.paragraphs })); })) : (react_1["default"].createElement("div", null,
                     " \u041D\u043E\u0432\u043E\u0441\u0442\u0438 \u0441 ID ",
                     id,

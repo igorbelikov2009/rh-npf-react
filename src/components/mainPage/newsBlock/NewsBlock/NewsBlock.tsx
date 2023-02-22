@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useMemo } from "react";
-import UserDate from "../../../../api/UserDate/UserDate";
-import { INews } from "../../../../models/types";
-import { newsAPI } from "../../../../services/NewsService";
+import React, { useState, useEffect } from "react";
+import { useAppDispanch, useAppSelector } from "../../../../hooks/redux";
+import { getFormatedNews } from "../../../../store/reducers/newsReducer";
 import CarouselHeader from "../../../general/carousel/CarouselHeader/CarouselHeader";
 import MainCarousel from "../MainCarousel/MainCarousel";
 import styles from "./NewsBlock.module.scss";
@@ -27,44 +26,14 @@ const NewsBlock = () => {
   const [j, setJ] = useState(0); // если (screenWidth > 855), то по центру экрана два элемента:
   //  columns[q] и columns[j]
 
-  // Получаем данные с сервера и обрабатываем их.===============
-  const [news, setNews] = useState<INews[]>([]);
-  const { data: webNews } = newsAPI.useFetchAllNewsQuery(100);
+  // Получаем данные с newsReducer.
+  const dispatch = useAppDispanch();
+  const { respon, isLoading, error } = useAppSelector((state) => state.newsReducer);
+  const news = respon.formatedDateNews;
 
   useEffect(() => {
-    if (webNews) {
-      setNews(webNews);
-    }
-  }, [webNews]);
-
-  const newsSortedByDate: INews[] = useMemo(() => {
-    return [...news].sort((a, b) => (new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : -1));
-  }, [news]);
-  // console.log(newsSortedByDate);
-
-  // В отсортированном по дате массиве изменяем id, делаем его равным индексу.
-  // Получаем массив используемый для дальнейших вычислениях.
-  const newsUsedForComputing = useMemo(() => {
-    return [...newsSortedByDate].map((item, index) => ({
-      id: Number(index),
-      title: String(item.title),
-      date: String(item.date),
-      paragraphs: item.paragraphs,
-    }));
-  }, [newsSortedByDate]);
-  // console.log(newsUsedForComputing);
-
-  // Полученный массив форматируем по дате
-  const formatedDateNews: INews[] = useMemo(() => {
-    return [...newsUsedForComputing].map((item, index) => ({
-      id: Number(item.id),
-      title: String(item.title),
-      date: String(UserDate.format(new Date(item.date))),
-      paragraphs: item.paragraphs,
-    }));
-  }, [newsUsedForComputing]);
-  // console.log(formatedDateNews);
-  // =========================================
+    dispatch(getFormatedNews());
+  }, [dispatch]);
 
   const getWidthColumn = (width: React.SetStateAction<number>) => {
     setWidthLink(width);
@@ -180,6 +149,14 @@ const NewsBlock = () => {
     changeColorArrowOnClickArrowRight();
   };
 
+  if (isLoading) return <h1>Loading...</h1>;
+  if (error)
+    return (
+      <h1>
+        <> {error} </>
+      </h1>
+    );
+
   return (
     <div>
       <CarouselHeader
@@ -194,7 +171,7 @@ const NewsBlock = () => {
 
       <div className={styles["carousel"]}>
         <div className={styles["scrollableElement"]} style={{ right: `${right}px` }}>
-          <MainCarousel qq={q} jj={j} carouselLinks={formatedDateNews} emitWidthColumn={getWidthColumn} />
+          <MainCarousel qq={q} jj={j} carouselLinks={news} emitWidthColumn={getWidthColumn} />
         </div>
       </div>
     </div>

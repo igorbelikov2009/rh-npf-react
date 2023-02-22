@@ -1,9 +1,13 @@
+import { goodsAPI } from "./../services/GoodsAPI";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { newsAPI } from "../services/NewsService";
+import newsReducer from "./reducers/newsReducer";
 
 // Создаём корневой редюсер, состоящий из комбинации всех редюсеров
 const rootReducer = combineReducers({
+  newsReducer,
   [newsAPI.reducerPath]: newsAPI.reducer,
+  [goodsAPI.reducerPath]: goodsAPI.reducer,
 });
 
 // Создаём функцию setupStore, с помощью её мы будем конфигурировать
@@ -15,7 +19,7 @@ export const setupStore = () => {
     // Добавляем к дефолтному мидлвееру, методом concat(), мидлвеер из нашего postAPI.
     // Затем, методом concat(), добавляем мидлвеер из нашего todoAPI
     // Затем, методом concat(), добавляем мидлвеер из нашего commentAPI
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(newsAPI.middleware),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(newsAPI.middleware).concat(goodsAPI.middleware),
   });
 };
 

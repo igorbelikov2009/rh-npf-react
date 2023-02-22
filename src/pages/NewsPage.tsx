@@ -1,11 +1,11 @@
 import React, { FC, useState, useMemo, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import UserDate from "../api/UserDate/UserDate";
 import TripleIcon from "../components/general/TripleIcon/TripleIcon";
 import NewsLink from "../components/news/NewsLink/NewsLink";
 import Article from "../components/newsPage/Article/Article";
+import { useAppDispanch, useAppSelector } from "../hooks/redux";
 import { INews } from "../models/types";
-import { newsAPI } from "../services/NewsService";
+import { getFormatedNews } from "../store/reducers/newsReducer";
 import "../styles/dist/NewsPage.css";
 
 const NewsPage: FC = () => {
@@ -14,59 +14,28 @@ const NewsPage: FC = () => {
   const nextID = Number(id) + 1;
   const [isHovered, setHovered] = useState(false);
 
-  // Получаем данные с сервера и обрабатываем их.===============
-  const [news, setNews] = useState<INews[]>([]);
-  const { data: webNews } = newsAPI.useFetchAllNewsQuery(100);
-
+  // Получаем данные с newsReducer и обрабатываем их.
+  const dispatch = useAppDispanch();
+  const { respon, isLoading, error } = useAppSelector((state) => state.newsReducer);
+  const news = respon.formatedDateNews;
   useEffect(() => {
-    if (webNews) {
-      setNews(webNews);
-    }
-  }, [webNews]);
-
-  const newsSortedByDate: INews[] = useMemo(() => {
-    return [...news].sort((a, b) => (new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : -1));
-  }, [news]);
-  // console.log(newsSortedByDate);
-
-  // В отсортированном по дате массиве изменяем id, делаем его равным индексу.
-  // Получаем массив используемый для дальнейших вычислениях.
-  const newsUsedForComputing = useMemo(() => {
-    return [...newsSortedByDate].map((item, index) => ({
-      id: Number(index),
-      title: String(item.title),
-      date: String(item.date),
-      paragraphs: item.paragraphs,
-    }));
-  }, [newsSortedByDate]);
-  // console.log(newsUsedForComputing);
-
-  // Полученный массив форматируем по дате
-  const formatedDateNews: INews[] = useMemo(() => {
-    return [...newsUsedForComputing].map((item, index) => ({
-      id: Number(item.id),
-      title: String(item.title),
-      date: String(UserDate.format(new Date(item.date))),
-      paragraphs: item.paragraphs,
-    }));
-  }, [newsUsedForComputing]);
-  // console.log(formatedDateNews);
+    dispatch(getFormatedNews());
+  }, [dispatch]);
 
   // Фильтруем массив всех отсортированных новостей, с упорядоченным id, с отформатированной датой
   // Оставляем в массиве только те новости, ID которых соответствуют prevID и nextID.
   const anotherNews = useMemo(() => {
-    return [...formatedDateNews].filter((item) => {
+    return [...news].filter((item) => {
       return item.id === prevID || item.id === nextID;
     });
-  }, [formatedDateNews, nextID, prevID]);
-  // console.log(anotherNews);
+  }, [news, nextID, prevID]);
 
+  // Оставляем в массиве только те новости, ID которых соответствуют id.
   const currentNews: INews[] = useMemo(() => {
-    return [...formatedDateNews].filter((item) => {
+    return [...news].filter((item) => {
       return item.id === Number(id);
     });
-  }, [formatedDateNews, id]);
-  // console.log(currentNews);
+  }, [news, id]);
 
   return (
     <div className="news-page">
@@ -83,6 +52,13 @@ const NewsPage: FC = () => {
             </div>
             <p className="news-page__link-title">К списку новостей</p>
           </Link>
+
+          {isLoading && <h1>Loading...</h1>}
+          {error && (
+            <h1>
+              <> {error} </>
+            </h1>
+          )}
 
           {currentNews ? (
             currentNews.map((news, index) => (
