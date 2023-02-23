@@ -1,29 +1,25 @@
 import React from "react";
+import { ICard } from "../../../models/types";
 import DarkIcon from "../../general/DarkIcon/DarkIcon";
 import styles from "./BusinnesStatistic.module.scss";
-
-interface ICard {
-  icon: string;
-  title: string;
-}
 
 const BusinnesStatistic = () => {
   const cards: ICard[] = [
     {
       icon: "Invest",
-      title: "Полная прозрачность инвестиционного процесса",
+      subtitle: "Полная прозрачность инвестиционного процесса",
     },
     {
       icon: "Group",
-      title: "Представители крупных международных компаний составляют Попечительский Совет Фонда",
+      subtitle: "Представители крупных международных компаний составляют Попечительский Совет Фонда",
     },
     {
       icon: "Stock",
-      title: "Возможность гибкого формирования корпоративной пенсионной программы",
+      subtitle: "Возможность гибкого формирования корпоративной пенсионной программы",
     },
     {
       icon: "Partner",
-      title: "Команда высококлассных специалистов в области управления пенсионными фондами",
+      subtitle: "Команда высококлассных специалистов в области управления пенсионными фондами",
     },
   ];
 
@@ -44,7 +40,7 @@ const BusinnesStatistic = () => {
               <DarkIcon icon={card.icon} />
             </div>
 
-            <p className={styles["businnes-statistic__title"]}>{card.title}</p>
+            <p className={styles["businnes-statistic__title"]}>{card.subtitle}</p>
           </div>
         ))}
       </div>

@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FC, useEffect, useState } from "react";
+import { RadioItemProps } from "../../../../models/types";
 import PrimaryButton from "../../../ui/buttons/PrimaryButton/PrimaryButton";
 import Checkbox from "../../../ui/Checkbox/Checkbox";
-import RadioSecondary, { RadioItemProps } from "../../../ui/radios/RadioSecondary/RadioSecondary";
+import RadioSecondary from "../../../ui/radios/RadioSecondary/RadioSecondary";
 import Slider, { SliderProps } from "../../../ui/Slider/Slider";
 import Graph from "../Graph/Graph";
 import PensionInfo from "../PensionInfo/PensionInfo";

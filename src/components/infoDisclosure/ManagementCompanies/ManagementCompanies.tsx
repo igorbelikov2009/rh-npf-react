@@ -1,6 +1,6 @@
 import React, { SetStateAction, useState } from "react";
+import { RadioItemProps } from "../../../models/types";
 import RadioPrimary from "../../ui/radios/RadioPrimary/RadioPrimary";
-import { RadioItemProps } from "../../ui/radios/RadioSecondary/RadioSecondary";
 import styles from "./ManagementCompanies.module.scss";
 
 const ManagementCompanies = () => {

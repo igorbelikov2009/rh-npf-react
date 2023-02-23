@@ -1,12 +1,7 @@
 import React, { FC, SetStateAction, useState } from "react";
+import { RadioItemProps } from "../../../../models/types";
 import RadioSecondaryLabel from "../RadioSecondaryLabel/RadioSecondaryLabel";
 import styles from "./RadioSecondary.module.scss";
-
-export interface RadioItemProps {
-  value: string;
-  title: string;
-  name: string;
-}
 
 export interface RadioProps {
   radioItems: RadioItemProps[];

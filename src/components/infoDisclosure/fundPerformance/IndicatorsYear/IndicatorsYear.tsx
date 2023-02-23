@@ -1,14 +1,8 @@
 import React, { FC } from "react";
-import ArchiveLink, { ArchiveLinkProps } from "../../../general/ArchiveLink/ArchiveLink";
-import IndicatorRow, { IIndicatorRow } from "../IndicatorRow/IndicatorRow";
+import { ArchiveLinkProps, IIndicatorRow } from "../../../../models/types";
+import ArchiveLink from "../../../general/ArchiveLink/ArchiveLink";
+import IndicatorRow from "../IndicatorRow/IndicatorRow";
 import styles from "./IndicatorsYear.module.scss";
-
-export interface IIndicatorsYear {
-  heading?: string;
-  subheading?: string;
-  indicatorRows?: IIndicatorRow[];
-  archiveLinks: ArchiveLinkProps[];
-}
 
 interface IndicatorsYearProps {
   isVisible: boolean;

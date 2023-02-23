@@ -7,19 +7,19 @@ var BusinnesStatistic = function () {
     var cards = [
         {
             icon: "Invest",
-            title: "Полная прозрачность инвестиционного процесса"
+            subtitle: "Полная прозрачность инвестиционного процесса"
         },
         {
             icon: "Group",
-            title: "Представители крупных международных компаний составляют Попечительский Совет Фонда"
+            subtitle: "Представители крупных международных компаний составляют Попечительский Совет Фонда"
         },
         {
             icon: "Stock",
-            title: "Возможность гибкого формирования корпоративной пенсионной программы"
+            subtitle: "Возможность гибкого формирования корпоративной пенсионной программы"
         },
         {
             icon: "Partner",
-            title: "Команда высококлассных специалистов в области управления пенсионными фондами"
+            subtitle: "Команда высококлассных специалистов в области управления пенсионными фондами"
         },
     ];
     return (react_1["default"].createElement("section", { className: BusinnesStatistic_module_scss_1["default"]["businnes-statistic"] },
@@ -28,6 +28,6 @@ var BusinnesStatistic = function () {
         react_1["default"].createElement("div", { className: BusinnesStatistic_module_scss_1["default"]["businnes-statistic__container"] }, cards.map(function (card, index) { return (react_1["default"].createElement("div", { key: index, className: BusinnesStatistic_module_scss_1["default"]["businnes-statistic__card"] },
             react_1["default"].createElement("div", { className: BusinnesStatistic_module_scss_1["default"]["businnes-statistic__icon"] },
                 react_1["default"].createElement(DarkIcon_1["default"], { icon: card.icon })),
-            react_1["default"].createElement("p", { className: BusinnesStatistic_module_scss_1["default"]["businnes-statistic__title"] }, card.title))); }))));
+            react_1["default"].createElement("p", { className: BusinnesStatistic_module_scss_1["default"]["businnes-statistic__title"] }, card.subtitle))); }))));
 };
 exports["default"] = BusinnesStatistic;

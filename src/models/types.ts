@@ -48,3 +48,76 @@ export interface IPercent {
   percent05: string;
   percent06: string;
 }
+
+export type ITitle = {
+  title: string;
+};
+
+export interface IBusinessCard {
+  icon: string;
+  header: string;
+  titles: string[];
+}
+
+export interface IObjectQuestionsAnswers {
+  question: string;
+  answer: string[];
+  isParagraph?: boolean;
+  isParagraphBefore?: boolean;
+}
+
+export interface ITableContributions {
+  headings: string[];
+  arrayRows: string[][];
+}
+
+export interface IAdaptiveRadioItem {
+  value: string;
+  id: string;
+  title: string;
+  name?: string;
+}
+
+export interface IIndicatorRow {
+  title: string;
+  index: string;
+}
+
+export interface ArchiveLinkProps {
+  href: string;
+  title: string;
+  subtitle?: string;
+}
+
+export interface IIndicatorsYear {
+  heading?: string;
+  subheading?: string;
+  indicatorRows?: IIndicatorRow[];
+  archiveLinks: ArchiveLinkProps[];
+}
+
+export interface IReport {
+  heading: string;
+  archiveLinks: {
+    href: string;
+    title: string;
+    subtitle: string;
+  }[];
+}
+
+export interface RadioItemProps {
+  value: string;
+  title: string;
+  name: string;
+}
+
+export interface ISpecDepositoryBlock {
+  subheading: string;
+  title: string;
+  subtitle: string;
+}
+
+export interface INotificsContent {
+  date: string;
+  description: string;
+}

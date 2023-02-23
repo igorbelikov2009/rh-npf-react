@@ -1,11 +1,6 @@
 import React, { FC } from "react";
+import { IIndicatorRow } from "../../../../models/types";
 import styles from "./IndicatorRow.module.scss";
-
-export interface IIndicatorRow {
-  title: string;
-  index: string;
-  // subtitle: string;
-}
 
 const IndicatorRow: FC<IIndicatorRow> = ({ title, index }) => {
   return (

@@ -1,12 +1,7 @@
 import React, { FC, useState } from "react";
+import { ArchiveLinkProps } from "../../../models/types";
 import TripleIcon from "../TripleIcon/TripleIcon";
 import styles from "./ArchiveLink.module.scss";
-
-export interface ArchiveLinkProps {
-  href: string;
-  title: string;
-  subtitle?: string;
-}
 
 const ArchiveLink: FC<ArchiveLinkProps> = ({ href, title, subtitle }) => {
   const [isHovered, setHovered] = useState(false);

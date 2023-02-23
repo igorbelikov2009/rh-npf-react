@@ -2,33 +2,17 @@
 exports.__esModule = true;
 var react_1 = require("react");
 var UserDate_1 = require("../../../../api/UserDate/UserDate");
+var InfoDisclosurePageData_1 = require("../../../../data/InfoDisclosurePageData");
 var RadioCircle_1 = require("../../../ui/radioCircle/RadioCircle/RadioCircle");
 var NotificsContent_1 = require("../NotificsContent/NotificsContent");
 var Notifics_module_scss_1 = require("./Notifics.module.scss");
 var Notifics = function () {
     var _a = react_1.useState("0"), currentValue = _a[0], setCurrentValue = _a[1];
-    var contents = [
-        {
-            // date: '12.01.2021',
-            date: "2021-01-12T00:00:00.000",
-            description: "АО НПФ «Ренессанс пенсии» заключил договор доверительного управления пенсионными резервами №311220/1 от 31 декабря 2020 года с Акционерным обществом «Управляющая компания «СПУТНИК-УПРАВЛЕНИЕ КАПИТАЛОМ» (лицензия № 21-000-1-00054 от 3 декабря 2001 года)."
-        },
-        {
-            // date: '21.02.2020',
-            date: "2020-02-21T00:00:00.000",
-            description: "АО НПФ «Ренессанс пенсии» заключил договоры доверительного управления пенсионными резервами №200220/1 от 20 февраля 2020 года и №200220/2 от 20 февраля 2020 года с Акционерным обществом «Управляющая компания «СПУТНИК-УПРАВЛЕНИЕ КАПИТАЛОМ» (лицензия № 21-000-1-00054 от 3 декабря 2001 года)."
-        },
-        {
-            // date: '29.05.2018',
-            date: "2018-05-29T00:00:00.000",
-            description: "НПФ «БЛАГОСОСТОЯНИЕ ЭМЭНСИ» заключил договор доверительного управления пенсионными резервами № 250518/1 от 25 мая 2018 года с Акционерным обществом «Управляющая компания «СПУТНИК-УПРАВЛЕНИЕ КАПИТАЛОМ» (лицензия № 21-000-1-00054 от 3 декабря 2001 года)."
-        },
-    ];
-    var formattedContents = contents.map(function (item) { return ({
+    var formattedContents = InfoDisclosurePageData_1.contentsNotifics.map(function (item) { return ({
         date: String(UserDate_1["default"].format(new Date(item.date))),
         description: String(item.description)
     }); });
-    var radioItems = contents
+    var radioItems = InfoDisclosurePageData_1.contentsNotifics
         .map(function (item) { return new Date(item.date).getFullYear(); })
         .map(function (item, index) { return ({ title: String(item), value: String(index) }); });
     var onChangeRadio = function (value) {

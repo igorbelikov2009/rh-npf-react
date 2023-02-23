@@ -1,28 +1,12 @@
 import { motion, AnimatePresence } from "framer-motion"; // анимация
 import React, { FC, useState } from "react";
+import { companyContributions, participantContributions } from "../../../data/serviceSupportData";
 import ExpandingPanel from "../../general/expanding/ExpandingPanel/ExpandingPanel";
-import TableQ, { TableQProps } from "../TableQ/TableQ";
+import TableQ from "../TableQ/TableQ";
 import styles from "./QuestionAnswerTable.module.scss";
 
 const QuestionAnswerTable: FC = () => {
   const [isVisible, setVisible] = useState(false);
-
-  const tableQustion01: TableQProps = {
-    headings: ["Пенсионные суммы за счет взносов компании", "Выкупная сумма", "Пенсия"],
-
-    arrayRows: [
-      ["Взносы", "НДФЛ", "НДФЛ"],
-      ["Инвестиционный доход", "НДФЛ", "НДФЛ"],
-    ],
-  };
-  const tableQustion02: TableQProps = {
-    headings: ["Пенсионные суммы за счет взносов участника", "Выкупная сумма", "Пенсия"],
-
-    arrayRows: [
-      [" Взносы", " Удерживается сумма НДФЛ, соответствующая социальному налоговому вычету за период участия"],
-      ["Инвестиционный доход", "НДФЛ", "НДФЛ не удерживается *"],
-    ],
-  };
 
   const expanderHandler = () => {
     setVisible((prev) => !prev);
@@ -47,13 +31,13 @@ const QuestionAnswerTable: FC = () => {
             <div className={styles.expanding__content}>
               <p className={styles["paragraph"]}>Порядок налогообложения при выплате пенсий и выкупных сумм:</p>
 
-              <TableQ arrayRows={tableQustion01.arrayRows} headings={tableQustion01.headings} />
+              <TableQ arrayRows={companyContributions.arrayRows} headings={companyContributions.headings} />
 
               <p className={styles["paragraph"]}>
                 <br />
               </p>
 
-              <TableQ arrayRows={tableQustion02.arrayRows} headings={tableQustion02.headings} />
+              <TableQ arrayRows={participantContributions.arrayRows} headings={participantContributions.headings} />
 
               <p className={styles["paragraph"]}>
                 * Независимо от факта получения / неполучения социального налогового вычета

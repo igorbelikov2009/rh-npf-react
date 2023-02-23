@@ -7,6 +7,9 @@ import { investmentCardsApi } from "../services/investmentCardsAPI";
 import { investmentOptionsAPI } from "../services/investmentOptionsAPI";
 import { investmentTablesAPI } from "../services/investmentTablesAPI";
 import { investPercentsAPI } from "../services/investPercentsAPI";
+import { businessCardsAPI } from "../services/businesCardsAPI";
+import { fundIndicatorsAPI } from "../services/fundIndicatorsAPI";
+import { reportingsAPI } from "../services/reportingsAPI";
 
 // Создаём корневой редюсер, состоящий из комбинации всех редюсеров
 const rootReducer = combineReducers({
@@ -18,6 +21,9 @@ const rootReducer = combineReducers({
   [investmentOptionsAPI.reducerPath]: investmentOptionsAPI.reducer,
   [investmentTablesAPI.reducerPath]: investmentTablesAPI.reducer,
   [investPercentsAPI.reducerPath]: investPercentsAPI.reducer,
+  [businessCardsAPI.reducerPath]: businessCardsAPI.reducer,
+  [fundIndicatorsAPI.reducerPath]: fundIndicatorsAPI.reducer,
+  [reportingsAPI.reducerPath]: reportingsAPI.reducer,
 });
 
 // Создаём функцию setupStore, с помощью её мы будем конфигурировать
@@ -37,7 +43,10 @@ export const setupStore = () => {
         .concat(investmentCardsApi.middleware)
         .concat(investmentOptionsAPI.middleware)
         .concat(investmentTablesAPI.middleware)
-        .concat(investPercentsAPI.middleware),
+        .concat(investPercentsAPI.middleware)
+        .concat(businessCardsAPI.middleware)
+        .concat(fundIndicatorsAPI.middleware)
+        .concat(reportingsAPI.middleware),
   });
 };
 

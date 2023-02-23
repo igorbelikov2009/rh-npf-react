@@ -1,15 +1,7 @@
 import React, { FC } from "react";
+import { IReport } from "../../../../models/types";
 import ArchiveLink from "../../../general/ArchiveLink/ArchiveLink";
 import styles from "./Report.module.scss";
-
-export interface IReport {
-  heading: string;
-  archiveLinks: {
-    href: string;
-    title: string;
-    subtitle: string;
-  }[];
-}
 
 const Report: FC<IReport> = ({ heading, archiveLinks }) => {
   return (

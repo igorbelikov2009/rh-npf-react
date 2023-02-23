@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import ArchiveLink, { ArchiveLinkProps } from "../../general/ArchiveLink/ArchiveLink";
+import { ArchiveLinkProps } from "../../../models/types";
+import ArchiveLink from "../../general/ArchiveLink/ArchiveLink";
 import styles from "./Other.module.scss";
 
 const Other: FC = () => {

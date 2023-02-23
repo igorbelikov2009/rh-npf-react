@@ -1,10 +1,6 @@
 import React, { FC } from "react";
+import { INotificsContent } from "../../../../models/types";
 import styles from "./NotificsContent.module.scss";
-
-export interface INotificsContent {
-  date: string;
-  description: string;
-}
 
 interface NotificsContentProps {
   content: INotificsContent;

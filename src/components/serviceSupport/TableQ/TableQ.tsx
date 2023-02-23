@@ -1,12 +1,8 @@
 import React, { FC } from "react";
+import { ITableContributions } from "../../../models/types";
 import styles from "./TableQ.module.scss";
 
-export interface TableQProps {
-  headings: string[];
-  arrayRows: string[][];
-}
-
-const TableQ: FC<TableQProps> = ({ headings, arrayRows }) => {
+const TableQ: FC<ITableContributions> = ({ headings, arrayRows }) => {
   return (
     <div className={styles["table__table-container"]}>
       <div className={styles["table__table"]}>

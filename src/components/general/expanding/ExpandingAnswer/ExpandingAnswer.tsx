@@ -1,16 +1,10 @@
 import { motion, AnimatePresence } from "framer-motion"; // анимация
 import React, { FC, useState } from "react";
+import { IObjectQuestionsAnswers } from "../../../../models/types";
 import Paragraph from "../../paragraphs/Paragraph/Paragraph";
 import ParagraphBefore from "../../paragraphs/ParagraphBefore/ParagraphBefore";
 import ExpandingPanel from "../ExpandingPanel/ExpandingPanel";
 import styles from "./ExpandingAnswer.module.scss";
-
-export interface IObjectQuestionsAnswers {
-  question: string;
-  answer: string[];
-  isParagraph?: boolean;
-  isParagraphBefore?: boolean;
-}
 
 const ExpandingAnswer: FC<IObjectQuestionsAnswers> = ({ question, answer, isParagraph, isParagraphBefore }) => {
   const [isVisible, setVisible] = useState(false);

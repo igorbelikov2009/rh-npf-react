@@ -11,6 +11,9 @@ var investmentCardsAPI_1 = require("../services/investmentCardsAPI");
 var investmentOptionsAPI_1 = require("../services/investmentOptionsAPI");
 var investmentTablesAPI_1 = require("../services/investmentTablesAPI");
 var investPercentsAPI_1 = require("../services/investPercentsAPI");
+var businesCardsAPI_1 = require("../services/businesCardsAPI");
+var fundIndicatorsAPI_1 = require("../services/fundIndicatorsAPI");
+var reportingsAPI_1 = require("../services/reportingsAPI");
 // Создаём корневой редюсер, состоящий из комбинации всех редюсеров
 var rootReducer = toolkit_1.combineReducers((_a = {
         newsReducer: newsReducer_1["default"]
@@ -22,6 +25,9 @@ var rootReducer = toolkit_1.combineReducers((_a = {
     _a[investmentOptionsAPI_1.investmentOptionsAPI.reducerPath] = investmentOptionsAPI_1.investmentOptionsAPI.reducer,
     _a[investmentTablesAPI_1.investmentTablesAPI.reducerPath] = investmentTablesAPI_1.investmentTablesAPI.reducer,
     _a[investPercentsAPI_1.investPercentsAPI.reducerPath] = investPercentsAPI_1.investPercentsAPI.reducer,
+    _a[businesCardsAPI_1.businessCardsAPI.reducerPath] = businesCardsAPI_1.businessCardsAPI.reducer,
+    _a[fundIndicatorsAPI_1.fundIndicatorsAPI.reducerPath] = fundIndicatorsAPI_1.fundIndicatorsAPI.reducer,
+    _a[reportingsAPI_1.reportingsAPI.reducerPath] = reportingsAPI_1.reportingsAPI.reducer,
     _a));
 // Создаём функцию setupStore, с помощью её мы будем конфигурировать
 // наше редакс-хранилище. Без использования toolkit мы использовали
@@ -40,7 +46,10 @@ exports.setupStore = function () {
                 .concat(investmentCardsAPI_1.investmentCardsApi.middleware)
                 .concat(investmentOptionsAPI_1.investmentOptionsAPI.middleware)
                 .concat(investmentTablesAPI_1.investmentTablesAPI.middleware)
-                .concat(investPercentsAPI_1.investPercentsAPI.middleware);
+                .concat(investPercentsAPI_1.investPercentsAPI.middleware)
+                .concat(businesCardsAPI_1.businessCardsAPI.middleware)
+                .concat(fundIndicatorsAPI_1.fundIndicatorsAPI.middleware)
+                .concat(reportingsAPI_1.reportingsAPI.middleware);
         }
     });
 };

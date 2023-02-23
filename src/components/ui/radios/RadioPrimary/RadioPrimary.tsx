@@ -1,6 +1,6 @@
 import React, { FC, SetStateAction, useState } from "react";
+import { RadioItemProps } from "../../../../models/types";
 import RadioPrimaryLabel from "../RadioPrimaryLabel/RadioPrimaryLabel";
-import { RadioItemProps } from "../RadioSecondary/RadioSecondary";
 import styles from "./RadioPrimary.module.scss";
 
 interface RadioPrimaryProps {

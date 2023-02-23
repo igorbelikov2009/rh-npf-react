@@ -1,5 +1,6 @@
 import React from "react";
-import ArchiveLink, { ArchiveLinkProps } from "../../../general/ArchiveLink/ArchiveLink";
+import { ArchiveLinkProps } from "../../../../models/types";
+import ArchiveLink from "../../../general/ArchiveLink/ArchiveLink";
 import style from "./ArchiveShareholders.module.scss";
 
 const ArchiveShareholders = () => {

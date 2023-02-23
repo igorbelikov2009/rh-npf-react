@@ -1,13 +1,6 @@
 import React, { FC } from "react";
 import styles from "./AdaptiveRadioItem.module.scss";
 
-export interface IAdaptiveRadioItem {
-  value: string;
-  id: string;
-  title: string;
-  name?: string;
-}
-
 interface AdaptiveRadioItemProps {
   value: string;
   id: string;

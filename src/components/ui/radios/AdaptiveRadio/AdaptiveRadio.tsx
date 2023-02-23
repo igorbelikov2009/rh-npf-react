@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import AdaptiveRadioItem, { IAdaptiveRadioItem } from "../AdaptiveRadioItem/AdaptiveRadioItem";
+import { IAdaptiveRadioItem } from "../../../../models/types";
+import AdaptiveRadioItem from "../AdaptiveRadioItem/AdaptiveRadioItem";
 import styles from "./AdaptiveRadio.module.scss";
 
 interface AdaptiveRadioProps {

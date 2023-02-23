@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { IAdaptiveRadioItem } from "../../../radios/AdaptiveRadioItem/AdaptiveRadioItem";
+import { IAdaptiveRadioItem } from "../../../../../models/types";
 import Controller from "../Controller/Controller";
 import OptionBlock from "../OptionBlock/OptionBlock";
 import styles from "./ControllerOption.module.scss";

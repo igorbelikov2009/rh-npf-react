@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import { RadioItemProps } from "../../../models/types";
 import RadioPrimary from "../../ui/radios/RadioPrimary/RadioPrimary";
-import { RadioItemProps } from "../../ui/radios/RadioSecondary/RadioSecondary";
 import style from "./GeneralInfo.module.scss";
 
 const GeneralInfo = () => {

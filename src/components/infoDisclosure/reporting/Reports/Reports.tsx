@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import Report, { IReport } from "../Report/Report";
+import { IReport } from "../../../../models/types";
+import Report from "../Report/Report";
 
 interface ReportsProps {
   reports: IReport[];

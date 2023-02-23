@@ -1,12 +1,9 @@
 import React, { FC, useEffect, useState } from "react";
+import { ITitle } from "../../../../models/types";
 import CarouselHeader from "../../../general/carousel/CarouselHeader/CarouselHeader";
 import BusinessCarousel from "../BusinessCarousel/BusinessCarousel";
 import ChangingTitles from "../ChangingTitles/ChangingTitles";
 import styles from "./BusinessBlock.module.scss";
-
-type ITitle = {
-  title: string;
-};
 
 const BusinessBlock: FC = () => {
   // для CarouselHeader

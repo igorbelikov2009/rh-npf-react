@@ -2,10 +2,6 @@ import React, { useState } from "react";
 import TripleIcon from "../../general/TripleIcon/TripleIcon";
 import "./TaxPreferences.scss";
 
-interface TaxPreferencesProps {
-  isVisible: boolean;
-}
-
 const TaxPreferences = () => {
   const [isVisible, setVisible] = useState(true);
 

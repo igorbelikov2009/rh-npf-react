@@ -1,11 +1,6 @@
 import React, { FC } from "react";
+import { ISpecDepositoryBlock } from "../../../../models/types";
 import styles from "./SpecDepositoryBlock.module.scss";
-
-export interface ISpecDepositoryBlock {
-  subheading: string;
-  title: string;
-  subtitle: string;
-}
 
 const SpecDepositoryBlock: FC<ISpecDepositoryBlock> = ({ subheading, title, subtitle }) => {
   return (
