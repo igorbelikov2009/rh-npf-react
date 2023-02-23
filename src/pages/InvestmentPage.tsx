@@ -1,15 +1,17 @@
 import React, { FC, useState, useRef, useEffect } from "react";
 import TopBlock from "../components/general/TopBlock";
 import investImage from "../assets/images/invest/InvestTop.jpg";
-import { CardsCardProps } from "../components/general/cards/CardsCard/CardsCard";
 import Cards from "../components/general/cards/Cards/Cards";
 import InvestmentDescription from "../components/investment/InvestmentDescription/InvestmentDescription";
 import InvestmentArchive from "../components/investment/InvestmentArchive/InvestmentArchive";
 import PortfolioStructure from "../components/investment/portfolioStructure/PortfolioStructure/PortfolioStructure";
 import "../styles/dist/Investment.css";
-import OptionsBlock, { IOptionItem } from "../components/ui/select/OptionsBlock/OptionsBlock";
+import OptionsBlock from "../components/ui/select/OptionsBlock/OptionsBlock";
 import CompositionReserves from "../components/investment/compositionReserves/CompositionReserves/CompositionReserves";
 import UserDate from "../api/UserDate/UserDate";
+import { investmentCardsApi } from "../services/investmentCardsAPI";
+import { IOptionItem } from "../models/types";
+import { investmentOptionsAPI } from "../services/investmentOptionsAPI";
 
 const InvestmentPage: FC = () => {
   const [clientHeight, setClientHeight] = useState(0);
@@ -40,164 +42,18 @@ const InvestmentPage: FC = () => {
   const [secondBlockTop, setSecondBlockTop] = useState(0);
   const [secondBlockVisible, setSecondBlockVisible] = useState(false);
 
-  // cards
-  const cards: CardsCardProps[] = [
-    {
-      icon: "Money",
-      subtitle: "Сохранение и приумножение средств вкладчиков и участников",
-    },
-    {
-      icon: "Separation",
-      subtitle: "Диверсификация активов",
-    },
+  // ПОлучаем данныес сервера
+  const { data: investmentCards, isError } = investmentCardsApi.useGetInvestmentCardsQuery();
+  const { data: investmentOptions } = investmentOptionsAPI.useGetInvestmentOptionsQuery();
 
-    {
-      icon: "Magnifier",
-      subtitle: "Четкий контроль и прозрачность всех операций",
-    },
-    {
-      icon: "Book",
-      subtitle: "Соответствие Российским законодательным требованиям и лучшим мировым практикам",
-    },
-    {
-      icon: "Partner",
-      subtitle: "Независимость в выборе партнеров – на основе открытых тендеров",
-    },
-  ];
-
-  const optionsItems: IOptionItem[] = [
-    {
-      date: "2021-11-30T09:00:00.000Z",
-      value: "2021-11-30T09:00:00.000Z",
-      id: "0",
-    },
-    {
-      date: "2021-10-31T09:00:00.000Z",
-      value: "2021-10-31T09:00:00.000Z",
-      id: "1",
-    },
-    {
-      date: "2021-09-30T09:00:00.000Z",
-      value: "2021-09-30T09:00:00.000Z",
-      id: "2",
-    },
-    {
-      date: "2021-08-31T09:00:00.000Z",
-      value: "2021-08-31T09:00:00.000Z",
-      id: "3",
-    },
-    {
-      date: "2021-07-31T09:00:00.000Z",
-      value: "2021-07-31T09:00:00.000Z",
-      id: "4",
-    },
-    {
-      date: "2021-06-30T09:00:00.000Z",
-      value: "2021-06-30T09:00:00.000Z",
-      id: "5",
-    },
-    {
-      date: "2021-05-31T09:00:00.000Z",
-      value: "2021-05-31T09:00:00.000Z",
-      id: "6",
-    },
-    {
-      date: "2021-04-30T09:00:00.000Z",
-      value: "2021-04-30T09:00:00.000Z",
-      id: "7",
-    },
-    {
-      date: "2021-03-31T09:00:00.000Z",
-      value: "2021-03-31T09:00:00.000Z",
-      id: "8",
-    },
-    {
-      date: "2021-02-28T09:00:00.000Z",
-      value: "2021-02-28T09:00:00.000Z",
-      id: "9",
-    },
-    {
-      date: "2021-01-31T09:00:00.000Z",
-      value: "2021-01-31T09:00:00.000Z",
-      id: "10",
-    },
-    {
-      date: "2020-12-31T09:00:00.000Z",
-      value: "2020-12-31T09:00:00.000Z",
-      id: "11",
-    },
-    {
-      date: "2020-11-30T09:00:00.000Z",
-      value: "2020-11-30T09:00:00.000Z",
-      id: "12",
-    },
-    {
-      date: "2020-10-31T09:00:00.000Z",
-      value: "2020-10-31T09:00:00.000Z",
-      id: "13",
-    },
-    {
-      date: "2020-09-30T09:00:00.000Z",
-      value: "2020-09-30T09:00:00.000Z",
-      id: "14",
-    },
-    {
-      date: "2020-08-31T09:00:00.000Z",
-      value: "2020-08-31T09:00:00.000Z",
-      id: "15",
-    },
-    {
-      date: "2020-07-31T09:00:00.000Z",
-      value: "2020-07-31T09:00:00.000Z",
-      id: "16",
-    },
-    {
-      date: "2020-06-30T09:00:00.000Z",
-      value: "2020-06-30T09:00:00.000Z",
-      id: "17",
-    },
-    {
-      date: "2020-05-31T09:00:00.000Z",
-      value: "2020-05-31T09:00:00.000Z",
-      id: "18",
-    },
-    {
-      date: "2020-04-30T09:00:00.000Z",
-      value: "2020-04-30T09:00:00.000Z",
-      id: "19",
-    },
-    {
-      date: "2020-03-31T09:00:00.000Z",
-      value: "2020-03-31T09:00:00.000Z",
-      id: "20",
-    },
-    {
-      date: "2020-02-29T09:00:00.000Z",
-      value: "2020-02-29T09:00:00.000Z",
-      id: "21",
-    },
-    {
-      date: "2020-01-31T09:00:00.000Z",
-      value: "2020-01-31T09:00:00.000Z",
-      id: "22",
-    },
-    {
-      date: "2019-12-31T09:00:00.000Z",
-      value: "2019-12-31T09:00:00.000Z",
-      id: "23",
-    },
-    {
-      date: "2019-11-30T09:00:00.000Z",
-      value: "2019-11-30T09:00:00.000Z",
-      id: "24",
-    },
-  ];
-
-  const formattedOptionsItems: IOptionItem[] = optionsItems.map((item) => ({
-    date: String(UserDate.format(new Date(item.date))),
-    value: String(UserDate.format(new Date(item.date))),
-    id: String(item.id),
-  }));
+  let formattedOptionsItems: IOptionItem[] = [];
+  if (investmentOptions) {
+    formattedOptionsItems = investmentOptions.map((item) => ({
+      date: String(UserDate.format(new Date(item.date))),
+      value: String(UserDate.format(new Date(item.date))),
+      id: String(item.id),
+    }));
+  }
 
   const refFirstSelectBlock = useRef<HTMLDivElement>(null);
 
@@ -336,7 +192,14 @@ const InvestmentPage: FC = () => {
         image={investImage}
       />
 
-      <Cards cards={cards} />
+      {isError && (
+        <h1>
+          Ошибка! Запусти сервер. Cоздай параллельный терминал и скомандуй в нём: json-server --watch db.json --port
+          5000"
+        </h1>
+      )}
+
+      {investmentCards && <Cards cards={investmentCards} />}
 
       <div id="portfolioStructure">
         <PortfolioStructure

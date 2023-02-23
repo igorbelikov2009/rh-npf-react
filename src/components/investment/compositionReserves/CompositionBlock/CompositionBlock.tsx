@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion"; // анимация
 import React, { FC } from "react";
-import ExpandingTable, { IExpandingTable } from "../../../general/expanding/ExpandingTable/ExpandingTable";
+import { IExpandingTable } from "../../../../models/types";
+import ExpandingTable from "../../../general/expanding/ExpandingTable/ExpandingTable";
 
 interface CompositionBlockProps {
   isVisible: boolean;

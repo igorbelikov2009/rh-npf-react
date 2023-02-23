@@ -2,12 +2,22 @@ import { goodsAPI } from "./../services/GoodsAPI";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import newsReducer from "./reducers/newsReducer";
 import { aboutFundAPI } from "../services/aboutFundAPI";
+import { aboutFundCardsAPI } from "../services/aboutFundCardsAPI";
+import { investmentCardsApi } from "../services/investmentCardsAPI";
+import { investmentOptionsAPI } from "../services/investmentOptionsAPI";
+import { investmentTablesAPI } from "../services/investmentTablesAPI";
+import { investPercentsAPI } from "../services/investPercentsAPI";
 
 // Создаём корневой редюсер, состоящий из комбинации всех редюсеров
 const rootReducer = combineReducers({
   newsReducer,
-  [goodsAPI.reducerPath]: goodsAPI.reducer,
+  [goodsAPI.reducerPath]: goodsAPI.reducer, // потом удалить
   [aboutFundAPI.reducerPath]: aboutFundAPI.reducer,
+  [aboutFundCardsAPI.reducerPath]: aboutFundCardsAPI.reducer,
+  [investmentCardsApi.reducerPath]: investmentCardsApi.reducer,
+  [investmentOptionsAPI.reducerPath]: investmentOptionsAPI.reducer,
+  [investmentTablesAPI.reducerPath]: investmentTablesAPI.reducer,
+  [investPercentsAPI.reducerPath]: investPercentsAPI.reducer,
 });
 
 // Создаём функцию setupStore, с помощью её мы будем конфигурировать
@@ -20,7 +30,14 @@ export const setupStore = () => {
     // Затем, методом concat(), добавляем мидлвеер из нашего todoAPI
     // Затем, методом concat(), добавляем мидлвеер из нашего commentAPI
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(goodsAPI.middleware).concat(aboutFundAPI.middleware),
+      getDefaultMiddleware()
+        .concat(goodsAPI.middleware) // потом удалить
+        .concat(aboutFundAPI.middleware)
+        .concat(aboutFundCardsAPI.middleware)
+        .concat(investmentCardsApi.middleware)
+        .concat(investmentOptionsAPI.middleware)
+        .concat(investmentTablesAPI.middleware)
+        .concat(investPercentsAPI.middleware),
   });
 };
 

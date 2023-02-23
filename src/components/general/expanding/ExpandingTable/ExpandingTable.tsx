@@ -1,14 +1,9 @@
 import { motion, AnimatePresence } from "framer-motion"; // анимация
 import React, { FC, useState } from "react";
+import { IExpandingTable } from "../../../../models/types";
 import Table from "../../Table/Table";
 import ExpandingPanel from "../ExpandingPanel/ExpandingPanel";
 import styles from "./ExpandingTable.module.scss";
-
-export interface IExpandingTable {
-  tableName: string;
-  headings: string[];
-  arrayRows: string[][];
-}
 
 export interface ExpandingTableProps {
   oneExpandingTable: IExpandingTable;

@@ -39,7 +39,7 @@ export const getFormatedNews = createAsyncThunk("news/getFormatedNews", async fu
     // и передам ошибку определённым образом в extraReducers, в метод [fetchPostsMich.rejected.type],
     // где её можно будет корректно обработать.
     return rejectWithValue(
-      "Не удалось получить новости. Запусти сервер командой в терминале: json-server --watch db.json --port 5000"
+      "Не удалось получить новости. Запусти сервер, создай параллельный терминал и скомандуй в нём: json-server --watch db.json --port 5000"
     );
   }
 });

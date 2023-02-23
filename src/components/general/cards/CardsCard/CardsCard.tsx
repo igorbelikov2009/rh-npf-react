@@ -1,15 +1,9 @@
 import React, { FC } from "react";
+import { ICard } from "../../../../models/types";
 import DarkIcon from "../../../general/DarkIcon/DarkIcon";
 import styles from "./CardsCard.module.scss";
 
-export interface CardsCardProps {
-  icon: string;
-  title?: string;
-  span?: string;
-  subtitle: string;
-}
-
-const CardsCard: FC<CardsCardProps> = ({ icon, title, span, subtitle }) => {
+const CardsCard: FC<ICard> = ({ icon, title, span, subtitle }) => {
   return (
     <div className={styles["cards-card"]}>
       <div className={styles["cards-card__icon"]}>

@@ -6,11 +6,11 @@ import Calculator from "../components/mainPage/calculator/Calc/Calc";
 import ImagesCalculator from "../components/mainPage/ImagesCalculator/ImagesCalculator";
 import NewsBlock from "../components/mainPage/newsBlock/NewsBlock/NewsBlock";
 import Cards from "../components/general/cards/Cards/Cards";
-import { CardsCardProps } from "../components/general/cards/CardsCard/CardsCard";
+import { ICard } from "../models/types";
 // import BottomBlock from "../components/mainPage/BottomBlock/BottomBlock";
 
 const MainPage: FC = () => {
-  const cards: CardsCardProps[] = [
+  const cards: ICard[] = [
     {
       icon: "Calendar",
       title: "17 лет",

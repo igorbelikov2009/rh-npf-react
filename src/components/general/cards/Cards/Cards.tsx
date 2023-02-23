@@ -1,9 +1,10 @@
 import React, { FC } from "react";
-import CardsCard, { CardsCardProps } from "../CardsCard/CardsCard";
+import { ICard } from "../../../../models/types";
+import CardsCard from "../CardsCard/CardsCard";
 import styles from "./Cards.module.scss";
 
 interface CardsProps {
-  cards: CardsCardProps[];
+  cards: ICard[];
 }
 
 const Cards: FC<CardsProps> = ({ cards }) => {

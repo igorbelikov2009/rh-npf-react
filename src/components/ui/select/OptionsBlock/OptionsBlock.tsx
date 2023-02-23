@@ -1,12 +1,7 @@
 import React, { FC } from "react";
+import { IOptionItem } from "../../../../models/types";
 import Option from "../Option/Option";
 import styles from "./OptionsBlock.module.scss";
-
-export interface IOptionItem {
-  date: string;
-  value: string;
-  id: string;
-}
 
 interface OptionsBlockProps {
   arrayOptionsBlock: IOptionItem[];

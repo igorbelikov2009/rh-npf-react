@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styles from "./Percents.module.scss";
 
-export interface PercentProps {
+interface PercentProps {
   percent01: string;
   percent02: string;
   percent03: string;
