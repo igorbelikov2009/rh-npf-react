@@ -24,7 +24,7 @@ const NewsData = () => {
         )}
         <h1 className={styles["block__heading"]}> NewsData </h1>
 
-        <p className={styles["block__paragraph"]}>Командуем в терминале: json-server --watch db.json --port 5000</p>
+        {/* <p className={styles["block__paragraph"]}>Командуем в терминале: json-server --watch db.json --port 5000</p> */}
 
         <div>
           {news &&

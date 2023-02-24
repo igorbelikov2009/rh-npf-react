@@ -49,6 +49,10 @@ const Footer: FC = () => {
       children: "Инвестиционная деятельность",
       to: "/investment",
     },
+    {
+      children: "Панель администратора",
+      to: "/adminpanel",
+    },
   ];
 
   return (

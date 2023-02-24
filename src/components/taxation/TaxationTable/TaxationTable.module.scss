@@ -7,21 +7,6 @@
   @media screen and (min-width: 576px) {
     padding: 48px 28px;
   }
-
-  &__paragraph {
-    font-size: 16px;
-    line-height: 24px;
-    margin-bottom: 36px;
-  }
-
-  &__container-select-radio {
-    width: 100%;
-    margin-bottom: 24px;
-
-    @media screen and (min-width: 576px) {
-      margin-bottom: 48px;
-    }
-  }
 }
 
 .paragraph {

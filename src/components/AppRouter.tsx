@@ -2,6 +2,7 @@ import React, { FC } from "react";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Routes, Route, Navigate } from "react-router-dom";
 import AboutFund from "../pages/AboutFundPage";
+import AdminPanel from "../pages/AdminPanel";
 import Business from "../pages/BusinessPage";
 import Contacts from "../pages/ContactsPage";
 import InfoDisclosure from "../pages/InfoDisclosurePage";
@@ -31,6 +32,7 @@ const AppRouter: FC = () => {
         <Route path="notfoundpage" element={<Notfoundpage />} />
         <Route path="support" element={<ServiceSupport />} />
         <Route path="taxation" element={<Taxation />} />
+        <Route path="adminpanel" element={<AdminPanel />} />
       </Route>
     </Routes>
   );

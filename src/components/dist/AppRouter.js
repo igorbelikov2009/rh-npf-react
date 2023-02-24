@@ -4,6 +4,7 @@ var react_1 = require("react");
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 var react_router_dom_1 = require("react-router-dom");
 var AboutFundPage_1 = require("../pages/AboutFundPage");
+var AdminPanel_1 = require("../pages/AdminPanel");
 var BusinessPage_1 = require("../pages/BusinessPage");
 var ContactsPage_1 = require("../pages/ContactsPage");
 var InfoDisclosurePage_1 = require("../pages/InfoDisclosurePage");
@@ -30,6 +31,7 @@ var AppRouter = function () {
             react_1["default"].createElement(react_router_dom_1.Route, { path: "news/:id", element: react_1["default"].createElement(NewsPage_1["default"], null) }),
             react_1["default"].createElement(react_router_dom_1.Route, { path: "notfoundpage", element: react_1["default"].createElement(Notfoundpage_1["default"], null) }),
             react_1["default"].createElement(react_router_dom_1.Route, { path: "support", element: react_1["default"].createElement(ServiceSupportPage_1["default"], null) }),
-            react_1["default"].createElement(react_router_dom_1.Route, { path: "taxation", element: react_1["default"].createElement(TaxationPage_1["default"], null) }))));
+            react_1["default"].createElement(react_router_dom_1.Route, { path: "taxation", element: react_1["default"].createElement(TaxationPage_1["default"], null) }),
+            react_1["default"].createElement(react_router_dom_1.Route, { path: "adminpanel", element: react_1["default"].createElement(AdminPanel_1["default"], null) }))));
 };
 exports["default"] = AppRouter;

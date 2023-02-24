@@ -121,3 +121,16 @@ export interface INotificsContent {
   date: string;
   description: string;
 }
+
+export interface IFormsOfCreation {
+  type: string;
+  value: string;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
+  placeholder: string;
+}
+
+export interface IInfo {
+  id?: number;
+  paragraph: string;
+  number?: number | undefined;
+}

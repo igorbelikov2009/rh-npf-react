@@ -21,7 +21,6 @@ var NewsData = function () {
                     error,
                     " "))),
             react_1["default"].createElement("h1", { className: NewsData_module_scss_1["default"]["block__heading"] }, " NewsData "),
-            react_1["default"].createElement("p", { className: NewsData_module_scss_1["default"]["block__paragraph"] }, "\u041A\u043E\u043C\u0430\u043D\u0434\u0443\u0435\u043C \u0432 \u0442\u0435\u0440\u043C\u0438\u043D\u0430\u043B\u0435: json-server --watch db.json --port 5000"),
             react_1["default"].createElement("div", null, news &&
                 news.map(function (item) { return (react_1["default"].createElement(NewsItem_1["default"], { key: item.id, id: item.id, title: item.title, date: item.date, paragraphs: item.paragraphs })); })))));
 };

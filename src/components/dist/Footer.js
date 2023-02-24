@@ -48,6 +48,10 @@ var Footer = function () {
             children: "Инвестиционная деятельность",
             to: "/investment"
         },
+        {
+            children: "Панель администратора",
+            to: "/adminpanel"
+        },
     ];
     return (react_1["default"].createElement("footer", { className: "footer" },
         react_1["default"].createElement("div", { className: "footer__top-block" },
