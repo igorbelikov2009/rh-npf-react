@@ -130,7 +130,13 @@ export interface IFormsOfCreation {
 }
 
 export interface IInfo {
-  id?: number;
   paragraph: string;
   number?: number | undefined;
+}
+
+export interface IAddNews {
+  id: number;
+  title: string;
+  date: string;
+  paragraphs: IInfo[];
 }

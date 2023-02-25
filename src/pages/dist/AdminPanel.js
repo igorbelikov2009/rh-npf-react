@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __spreadArrays = (this && this.__spreadArrays) || function () {
     for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
     for (var r = Array(s), k = 0, i = 0; i < il; i++)
@@ -45,51 +34,51 @@ var AdminPanel = function () {
     var addInfo = function () {
         // Здесь вызываем функцию setInfo, которая изменяет состояние. В неё передаём массив,
         // в нём разворачиваем старый массив информации и добавляем в него новый элемент:
-        //   { title: "", description: "", number: Date.now() }.
-        // number, своего рода идентификатор, получаем из времени.
-        setInfo(__spreadArrays(info, [{ paragraph: "", number: Date.now() }]));
+        //   description: ""
+        setInfo(__spreadArrays(info, [""]));
         console.log(info);
     };
-    // Параметром передаём номер number, полученный из времени
-    var removeInfo = function (number) {
-        // Здесь вызываем функцию setInfo, которая изменяет состояние. По существующему массиву
-        // с помощью фунции filter пробегаемся и проверяем: совпадает ли номер элемента
-        // с номером, который мы передали параметром.
-        setInfo(info.filter(function (item) { return item.number !== number; }));
-        // console.log(info);
+    var changeInfo = function (value) {
+        setInfo(info.map(function (item) { return (item = value); }));
     };
-    var changeInfo = function (key, value, number) {
-        setInfo(info.map(function (item) {
-            var _a;
-            return (item.number === number ? __assign(__assign({}, item), (_a = {}, _a[key] = value, _a)) : item);
-        }));
+    // const changeInfo = (value: string) => {
+    //   setInfo(info.map((i) => i));
+    // };
+    // создаём новый объект (newsItem), как аргумент:
+    //  для dispatch(addPostMich(newsItem)) на этой странице. Строка 59.
+    //  для addNewsItem в newsReducer. Строка 49, 56
+    var newsItem = {
+        id: 0,
+        title: title,
+        date: date,
+        paragraphs: info
     };
-    // setDate( Date.now())
-    // форма создания нового объекта
-    // const formsOfCreation: IFormsOfCreation[] = [
-    //   {
-    //     type: "text",
-    //     value: title,
-    //     setValue: setTitle,
-    //     placeholder: "Введите название новостей",
-    //   },
-    //   {
-    //     type: "text",
-    //     value: date,
-    //     setValue: setDate,
-    //     placeholder: "Введите дату создания новостей",
-    //   },
-    //   {
-    //     type: "text",
-    //     value: paragraphs,
-    //     setValue: setParagraphs,
-    //     placeholder: "Введите текст новостей",
-    //   },
-    // ];
+    // ==========================================================
+    var item = {
+        paragraphs: [
+            { par: "info", numer: 0 },
+            { par: "inof", numer: 1 },
+            { par: "ifon", numer: 2 },
+            { par: "nfoi", numer: 3 },
+        ]
+    };
+    // ==========================================================
+    var changedItem = item.paragraphs.map(function (item) { return item.par; });
+    console.log(changedItem);
+    // console.log(String(item));
+    var handleAddNewsItem = function () {
+        if (newsItem.title && newsItem.date && newsItem.paragraphs) {
+            dispatch(newsReducer_1.addNewsItem(newsItem));
+            setTitle("");
+            setDate("");
+            setInfo([]);
+            setModal(false);
+        }
+    };
     var onHide = function () {
         setModal(false);
     };
-    var addNews = function () { };
+    // date: Date.now()
     return (react_1["default"].createElement("div", { className: "admin-panel" },
         react_1["default"].createElement("div", { className: "admin-panel__container" },
             isLoading && react_1["default"].createElement("h1", null, "Loading..."),
@@ -105,17 +94,13 @@ var AdminPanel = function () {
                     react_1["default"].createElement(react_bootstrap_1.Form.Control, { value: title, onChange: function (e) { return setTitle(e.target.value); }, className: "admin-panel__container-input-button", placeholder: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043D\u043E\u0432\u043E\u0441\u0442\u0435\u0439" }),
                     react_1["default"].createElement(react_bootstrap_1.Form.Control, { value: date, onChange: function (e) { return setDate(e.target.value); }, className: "admin-panel__container-input-button", placeholder: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0434\u0430\u0442\u0443 \u0441\u043E\u0437\u0434\u0430\u043D\u0438\u044F \u043D\u043E\u0432\u043E\u0441\u0442\u0435\u0439" }),
                     react_1["default"].createElement(react_bootstrap_1.Button, { className: "admin-panel__container-input-button", variant: "primary", onClick: function () { return addInfo(); } }, "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043F\u0430\u0440\u0430\u0433\u0440\u0430\u0444"),
-                    info.map(function (item) { return (react_1["default"].createElement(react_bootstrap_1.Row, null,
-                        react_1["default"].createElement(react_bootstrap_1.Col, { md: 11 },
-                            react_1["default"].createElement(react_bootstrap_1.Form.Control, { className: "admin-panel__container-input-button", key: item.number, placeholder: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0442\u0435\u043A\u0441\u0442 \u043F\u0430\u0440\u0430\u0433\u0440\u0430\u0444\u0430 \u043D\u043E\u0432\u043E\u0441\u0442\u0435\u0439", value: item.paragraph, onChange: function (e) {
-                                    //  const changeInfo = (key, value, number) => ...
-                                    return changeInfo("paragraph", e.target.value, item.number);
-                                } })),
-                        react_1["default"].createElement(react_bootstrap_1.Col, { md: 1 },
-                            react_1["default"].createElement(react_bootstrap_1.Button, { variant: "outline-danger", onClick: function () { return removeInfo(item.number); } }, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C")))); })),
+                    info.map(function (i, index) { return (react_1["default"].createElement(react_bootstrap_1.Form.Control, { key: index, className: "admin-panel__container-input-button", placeholder: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0442\u0435\u043A\u0441\u0442 \u043F\u0430\u0440\u0430\u0433\u0440\u0430\u0444\u0430 \u043D\u043E\u0432\u043E\u0441\u0442\u0435\u0439", value: i, onChange: function (e) {
+                            //  const changeInfo = ( value, ) => ...
+                            return changeInfo(e.target.value);
+                        } })); })),
                 react_1["default"].createElement("div", null,
                     react_1["default"].createElement(react_bootstrap_1.Button, { variant: "outline-danger", onClick: onHide }, "\u0417\u0430\u043A\u0440\u044B\u0442\u044C \u043F\u0430\u043D\u0435\u043B\u044C \u0430\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\u0430"),
-                    react_1["default"].createElement(react_bootstrap_1.Button, { variant: "outline-success", onClick: addNews }, "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u043E\u0432\u043E\u0441\u0442\u0438")))),
+                    react_1["default"].createElement(react_bootstrap_1.Button, { variant: "outline-success", onClick: handleAddNewsItem }, "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u043E\u0432\u043E\u0441\u0442\u0438")))),
             react_1["default"].createElement("h1", { className: "admin-panel__heading" }, " \u0421\u043F\u0438\u0441\u043E\u043A \u0432\u0441\u0435\u0445 \u043D\u043E\u0432\u043E\u0441\u0442\u0435\u0439 "),
             react_1["default"].createElement("div", null, news &&
                 news.map(function (item) { return (react_1["default"].createElement(NewsItem_1["default"], { key: item.id, id: item.id, title: item.title, date: item.date, paragraphs: item.paragraphs })); })))));

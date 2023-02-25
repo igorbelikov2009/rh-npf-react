@@ -1,9 +1,9 @@
 import React, { FC, useEffect, useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import NewsItem from "../components/mainPage/examples/NewsItem/NewsItem";
 import { useAppDispanch, useAppSelector } from "../hooks/redux";
-import { IInfo } from "../models/types";
-import { getFormatedNews } from "../store/reducers/newsReducer";
+import { INews } from "../models/types";
+import { addNewsItem, getFormatedNews } from "../store/reducers/newsReducer";
 import "../styles/dist/AdminPanel.css";
 
 const AdminPanel: FC = () => {
@@ -23,60 +23,65 @@ const AdminPanel: FC = () => {
   // и формы создания нового объекта (newsItem) formsOfCreation
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
-  const [info, setInfo] = useState<IInfo[]>([]);
+  const [info, setInfo] = useState<string[]>([]);
   const [modal, setModal] = useState(true);
 
   // info  =======================================
   const addInfo = () => {
     // Здесь вызываем функцию setInfo, которая изменяет состояние. В неё передаём массив,
     // в нём разворачиваем старый массив информации и добавляем в него новый элемент:
-    //   { title: "", description: "", number: Date.now() }.
-    // number, своего рода идентификатор, получаем из времени.
-    setInfo([...info, { paragraph: "", number: Date.now() }]);
+    //   description: ""
+    setInfo([...info, ""]);
     console.log(info);
   };
 
-  // Параметром передаём номер number, полученный из времени
-  const removeInfo = (number: number | undefined) => {
-    // Здесь вызываем функцию setInfo, которая изменяет состояние. По существующему массиву
-    // с помощью фунции filter пробегаемся и проверяем: совпадает ли номер элемента
-    // с номером, который мы передали параметром.
-    setInfo(info.filter((item) => item.number !== number));
-    // console.log(info);
+  const changeInfo = (value: string) => {
+    setInfo(info.map((item) => (item = value)));
   };
 
-  const changeInfo = (key: string, value: string, number: number | undefined) => {
-    setInfo(info.map((item) => (item.number === number ? { ...item, [key]: value } : item)));
+  // const changeInfo = (value: string) => {
+  //   setInfo(info.map((i) => i));
+  // };
+
+  // создаём новый объект (newsItem), как аргумент:
+  //  для dispatch(addPostMich(newsItem)) на этой странице. Строка 59.
+  //  для addNewsItem в newsReducer. Строка 49, 56
+  const newsItem: INews = {
+    id: 0,
+    title: title,
+    date: date,
+    paragraphs: info,
   };
-  // setDate( Date.now())
-  // форма создания нового объекта
-  // const formsOfCreation: IFormsOfCreation[] = [
-  //   {
-  //     type: "text",
-  //     value: title,
-  //     setValue: setTitle,
-  //     placeholder: "Введите название новостей",
-  //   },
-  //   {
-  //     type: "text",
-  //     value: date,
-  //     setValue: setDate,
-  //     placeholder: "Введите дату создания новостей",
-  //   },
-  //   {
-  //     type: "text",
-  //     value: paragraphs,
-  //     setValue: setParagraphs,
-  //     placeholder: "Введите текст новостей",
-  //   },
-  // ];
+
+  // ==========================================================
+  const item = {
+    paragraphs: [
+      { par: "info", numer: 0 },
+      { par: "inof", numer: 1 },
+      { par: "ifon", numer: 2 },
+      { par: "nfoi", numer: 3 },
+    ],
+  };
+  // ==========================================================
+  const changedItem = item.paragraphs.map((item) => item.par);
+  console.log(changedItem);
+  // console.log(String(item));
+
+  const handleAddNewsItem = () => {
+    if (newsItem.title && newsItem.date && newsItem.paragraphs) {
+      dispatch(addNewsItem(newsItem));
+      setTitle("");
+      setDate("");
+      setInfo([]);
+      setModal(false);
+    }
+  };
 
   const onHide = () => {
     setModal(false);
   };
 
-  const addNews = () => {};
-
+  // date: Date.now()
   return (
     <div className="admin-panel">
       <div className="admin-panel__container">
@@ -114,33 +119,19 @@ const AdminPanel: FC = () => {
                 Добавить параграф
               </Button>
 
-              {info.map((item) => (
-                <Row>
-                  <Col md={11}>
-                    <Form.Control
-                      className="admin-panel__container-input-button"
-                      key={item.number}
-                      placeholder="Введите текст параграфа новостей"
-                      value={item.paragraph}
-                      onChange={
-                        (e) =>
-                          //  const changeInfo = (key, value, number) => ...
-                          changeInfo("paragraph", e.target.value, item.number)
-                        //  номер получаем из элемента текущей итерации
-                      }
-                    />
-                  </Col>
-
-                  <Col md={1}>
-                    <Button
-                      variant={"outline-danger"}
-                      onClick={() => removeInfo(item.number)}
-                      // Запомни это. Без такой конфигурации этот onClick работать не будет
-                    >
-                      Удалить
-                    </Button>
-                  </Col>
-                </Row>
+              {info.map((i, index) => (
+                <Form.Control
+                  key={index}
+                  className="admin-panel__container-input-button"
+                  placeholder="Введите текст параграфа новостей"
+                  value={i}
+                  onChange={
+                    (e) =>
+                      //  const changeInfo = ( value, ) => ...
+                      changeInfo(e.target.value)
+                    //  номер получаем из элемента текущей итерации
+                  }
+                />
               ))}
             </div>
 
@@ -149,7 +140,7 @@ const AdminPanel: FC = () => {
                 Закрыть панель администратора
               </Button>
 
-              <Button variant="outline-success" onClick={addNews}>
+              <Button variant="outline-success" onClick={handleAddNewsItem}>
                 Добавить новости
               </Button>
             </div>

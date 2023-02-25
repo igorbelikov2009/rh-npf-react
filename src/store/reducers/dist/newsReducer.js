@@ -44,7 +44,7 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
 };
 var _a;
 exports.__esModule = true;
-exports.getFormatedNews = void 0;
+exports.addNewsItem = exports.getFormatedNews = void 0;
 var toolkit_1 = require("@reduxjs/toolkit");
 var UserDate_1 = require("../../api/UserDate/UserDate");
 exports.getFormatedNews = toolkit_1.createAsyncThunk("news/getFormatedNews", function (_, _a) {
@@ -85,7 +85,38 @@ exports.getFormatedNews = toolkit_1.createAsyncThunk("news/getFormatedNews", fun
                     error_1 = _b.sent();
                     // и передам ошибку определённым образом в extraReducers, в метод [fetchPostsMich.rejected.type],
                     // где её можно будет корректно обработать.
-                    return [2 /*return*/, rejectWithValue("Не удалось получить новости. Запусти сервер, создай параллельный терминал и скомандуй в нём: json-server --watch db.json --port 5000")];
+                    return [2 /*return*/, rejectWithValue("Запусти сервер. Создай параллельный терминал и скомандуй в нём: json-server --watch db.json --port 5000")];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+});
+exports.addNewsItem = toolkit_1.createAsyncThunk("news/addNewsItem", function (newsItem, _a) {
+    var rejectWithValue = _a.rejectWithValue, dispatch = _a.dispatch;
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data, error_2;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("http://localhost:5000/news", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(newsItem)
+                        })];
+                case 1:
+                    response = _b.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    data = _b.sent();
+                    console.log(data);
+                    dispatch(addNews(data));
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_2 = _b.sent();
+                    return [2 /*return*/, rejectWithValue("Не могу добавить новости, ошибка на сервере!")];
                 case 4: return [2 /*return*/];
             }
         });
@@ -97,12 +128,17 @@ var initialState = {
         formatedDateNews: []
     },
     isLoading: false,
-    error: ""
+    error: "",
+    news: []
 };
 var newsSlice = toolkit_1.createSlice({
     name: "news",
     initialState: initialState,
-    reducers: {},
+    reducers: {
+        addNews: function (state, action) {
+            state.news.push(action.payload);
+        }
+    },
     extraReducers: (_a = {},
         _a[exports.getFormatedNews.pending.type] = function (state) {
             state.isLoading = true;
@@ -118,5 +154,6 @@ var newsSlice = toolkit_1.createSlice({
         },
         _a)
 });
+var addNews = newsSlice.actions.addNews;
 exports["default"] = newsSlice.reducer;
 // регистрируем в store.ts

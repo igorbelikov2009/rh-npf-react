@@ -39,10 +39,31 @@ export const getFormatedNews = createAsyncThunk("news/getFormatedNews", async fu
     // и передам ошибку определённым образом в extraReducers, в метод [fetchPostsMich.rejected.type],
     // где её можно будет корректно обработать.
     return rejectWithValue(
-      "Не удалось получить новости. Запусти сервер, создай параллельный терминал и скомандуй в нём: json-server --watch db.json --port 5000"
+      "Запусти сервер. Создай параллельный терминал и скомандуй в нём: json-server --watch db.json --port 5000"
     );
   }
 });
+
+export const addNewsItem = createAsyncThunk(
+  "news/addNewsItem",
+  async function (newsItem: INews, { rejectWithValue, dispatch }) {
+    try {
+      const response = await fetch("http://localhost:5000/news", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newsItem),
+      });
+
+      const data = await response.json();
+      console.log(data);
+      dispatch(addNews(data));
+    } catch (error: any) {
+      return rejectWithValue("Не могу добавить новости, ошибка на сервере!");
+    }
+  }
+);
 
 interface IRespon {
   newsUsedForComputing: INews[];
@@ -53,6 +74,7 @@ interface NewsState {
   respon: IRespon;
   isLoading: boolean;
   error: string;
+  news: INews[];
 }
 
 const initialState: NewsState = {
@@ -62,12 +84,17 @@ const initialState: NewsState = {
   },
   isLoading: false,
   error: "",
+  news: [],
 };
 
 const newsSlice = createSlice({
   name: "news",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    addNews(state, action) {
+      state.news.push(action.payload);
+    },
+  },
   extraReducers: {
     [getFormatedNews.pending.type]: (state) => {
       state.isLoading = true;
@@ -83,6 +110,8 @@ const newsSlice = createSlice({
     },
   },
 });
+
+const { addNews } = newsSlice.actions;
 
 export default newsSlice.reducer;
 // регистрируем в store.ts
