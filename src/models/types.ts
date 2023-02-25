@@ -134,9 +134,9 @@ export interface IInfo {
   number?: number | undefined;
 }
 
-export interface IAddNews {
+export interface IPreliminaryNews {
   id: number;
   title: string;
-  date: string;
-  paragraphs: IInfo[];
+  preliminaryDate: string;
+  arrayInfo: IInfo[];
 }

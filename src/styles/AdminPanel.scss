@@ -77,19 +77,9 @@
   &__paragraph {
     display: block;
     width: 100%;
-    max-width: 680px;
-    margin-bottom: 24px;
+    margin-bottom: 6px;
     font-size: 16px;
     line-height: 24px;
-    color: #28323c;
-
-    @media screen and (min-width: 768px) {
-      font-size: 18px;
-      line-height: 24px;
-    }
-
-    @media screen and (min-width: 1024px) {
-      max-width: 860px;
-    }
+    color: #727476;
   }
 }

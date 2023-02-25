@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 import NewsItem from "../components/mainPage/examples/NewsItem/NewsItem";
 import { useAppDispanch, useAppSelector } from "../hooks/redux";
-import { INews } from "../models/types";
+import { IInfo, INews } from "../models/types";
 import { addNewsItem, getFormatedNews } from "../store/reducers/newsReducer";
 import "../styles/dist/AdminPanel.css";
 
@@ -20,56 +20,51 @@ const AdminPanel: FC = () => {
   //   console.log(news);
 
   // title, date, paragraphs для создания нового объекта (newsItem)
-  // и формы создания нового объекта (newsItem) formsOfCreation
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
-  const [info, setInfo] = useState<string[]>([]);
-  const [modal, setModal] = useState(true);
+  const [paragraphs, setParagraphs] = useState<string[]>([]);
+  const [info, setInfo] = useState<IInfo[]>([]);
+  const [modal, setModal] = useState(false);
 
-  // info  =======================================
   const addInfo = () => {
     // Здесь вызываем функцию setInfo, которая изменяет состояние. В неё передаём массив,
     // в нём разворачиваем старый массив информации и добавляем в него новый элемент:
-    //   description: ""
-    setInfo([...info, ""]);
-    console.log(info);
+    // { description: "", number: Date.now() }
+    // number (идентификатор) получаем из времени.
+    // Без идентификатора функция changeInfo срабатывает одинаково на всех полях info.
+    setInfo([...info, { paragraph: "", number: Date.now() }]);
+    // console.log(info);
   };
 
-  const changeInfo = (value: string) => {
-    setInfo(info.map((item) => (item = value)));
+  // Параметром передаём номер number, полученный из времени
+  const removeInfo = (number: number | undefined) => {
+    // Здесь вызываем функцию setInfo, которая изменяет состояние. По существующему массиву
+    // с помощью фунции filter пробегаемся и проверяем: совпадает ли номер элемента
+    // с номером, который мы передали параметром.
+    setInfo(info.filter((i) => i.number !== number));
+    // console.log(info);
   };
 
-  // const changeInfo = (value: string) => {
-  //   setInfo(info.map((i) => i));
-  // };
+  const changeInfo = (key: string, value: string, number: number | undefined) => {
+    setInfo(info.map((i) => (i.number === number ? { ...i, [key]: value } : i)));
+    setParagraphs(info.map((item) => item.paragraph));
+  };
 
   // создаём новый объект (newsItem), как аргумент:
-  //  для dispatch(addPostMich(newsItem)) на этой странице. Строка 59.
-  //  для addNewsItem в newsReducer. Строка 49, 56
+  // для dispatch(addPostMich(newsItem)) на этой странице. Строка 65.
+  // для addNewsItem в newsReducer. Строка 49, 56
   const newsItem: INews = {
     id: 0,
     title: title,
     date: date,
-    paragraphs: info,
+    paragraphs: paragraphs,
   };
-
-  // ==========================================================
-  const item = {
-    paragraphs: [
-      { par: "info", numer: 0 },
-      { par: "inof", numer: 1 },
-      { par: "ifon", numer: 2 },
-      { par: "nfoi", numer: 3 },
-    ],
-  };
-  // ==========================================================
-  const changedItem = item.paragraphs.map((item) => item.par);
-  console.log(changedItem);
-  // console.log(String(item));
 
   const handleAddNewsItem = () => {
     if (newsItem.title && newsItem.date && newsItem.paragraphs) {
       dispatch(addNewsItem(newsItem));
+      console.log(newsItem);
+
       setTitle("");
       setDate("");
       setInfo([]);
@@ -77,11 +72,6 @@ const AdminPanel: FC = () => {
     }
   };
 
-  const onHide = () => {
-    setModal(false);
-  };
-
-  // date: Date.now()
   return (
     <div className="admin-panel">
       <div className="admin-panel__container">
@@ -92,12 +82,14 @@ const AdminPanel: FC = () => {
           </h1>
         )}
 
+        <div className="admin-panel__container-input-button">
+          <Button variant={modal ? "outline-danger" : "primary"} onClick={() => setModal((prev) => !prev)}>
+            {modal ? "Закрыть панель администратора" : "Открыть панель администратора"}
+          </Button>
+        </div>
+
         {modal && (
           <div>
-            <h1 className="admin-panel__subheading"> Панель администратора </h1>
-
-            <h1 className="admin-panel__heading"> Добавить новости </h1>
-
             <div>
               <Form.Control
                 value={title}
@@ -106,42 +98,59 @@ const AdminPanel: FC = () => {
                 placeholder="Введите название новостей"
               />
 
+              <h4 className="admin-panel__paragraph">Введите дату создания новостей</h4>
+
               <Form.Control
+                type="date"
+                id="start"
+                name="trip-start"
+                min="2015-01-01"
+                max="2022-12-31"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 className="admin-panel__container-input-button"
-                placeholder="Введите дату создания новостей"
               />
 
-              {/* <h4 className="admin-panel__subheading">Текст новостей</h4> */}
-
-              <Button className="admin-panel__container-input-button" variant="primary" onClick={() => addInfo()}>
+              <Button
+                className="admin-panel__container-input-button"
+                variant="outline-success"
+                onClick={() => addInfo()}
+              >
                 Добавить параграф
               </Button>
 
               {info.map((i, index) => (
-                <Form.Control
-                  key={index}
-                  className="admin-panel__container-input-button"
-                  placeholder="Введите текст параграфа новостей"
-                  value={i}
-                  onChange={
-                    (e) =>
-                      //  const changeInfo = ( value, ) => ...
-                      changeInfo(e.target.value)
-                    //  номер получаем из элемента текущей итерации
-                  }
-                />
+                <Row key={index}>
+                  <Col md={11}>
+                    <Form.Control
+                      className="admin-panel__container-input-button"
+                      placeholder="Введите текст параграфа новостей"
+                      value={i.paragraph}
+                      onChange={
+                        (e) =>
+                          //  const changeInfo = (key, value, number) => ...
+                          changeInfo("paragraph", e.target.value, i.number)
+                        //  номер получаем из элемента текущей итерации
+                      }
+                    />
+                  </Col>
+
+                  <Col md={1}>
+                    <Button
+                      variant={"outline-danger"}
+                      onClick={() => removeInfo(i.number)}
+                      // Запомни это. Без такой конфигурации этот onClick работать не будет
+                    >
+                      Удалить
+                    </Button>
+                  </Col>
+                </Row>
               ))}
             </div>
 
             <div>
-              <Button variant="outline-danger" onClick={onHide}>
-                Закрыть панель администратора
-              </Button>
-
               <Button variant="outline-success" onClick={handleAddNewsItem}>
-                Добавить новости
+                Добавить новости в список новостей
               </Button>
             </div>
           </div>
