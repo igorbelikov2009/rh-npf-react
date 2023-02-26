@@ -1,8 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FC, useEffect, useState } from "react";
 import { RadioItemProps } from "../../../../models/types";
-import PrimaryButton from "../../../ui/buttons/PrimaryButton/PrimaryButton";
 import Checkbox from "../../../ui/Checkbox/Checkbox";
 import RadioSecondary from "../../../ui/radios/RadioSecondary/RadioSecondary";
 import Slider, { SliderProps } from "../../../ui/Slider/Slider";
@@ -11,8 +8,7 @@ import PensionInfo from "../PensionInfo/PensionInfo";
 import styles from "./Calc.module.scss";
 
 const Calculator: FC = () => {
-  const [currentValue, setCurrentValue] = useState("65");
-  const [genderValue, setGenderValue] = useState<string>("65"); // гендерный возраст выхода на пенсию
+  const [genderValue, setGenderValue] = useState<string>("60"); // гендерный возраст выхода на пенсию
   const [ageMan, setAgeMan] = useState("65"); // возраст выхода на пенсию мужчины
   const [ageWoman, setAgeWoman] = useState("60"); // возраст выхода на пенсию женщины
   const [ageValue, setAgeValue] = useState(30); // текущий возраст
@@ -26,7 +22,7 @@ const Calculator: FC = () => {
   const [pensionValue, setPensionValue] = useState(0); // размер выплаты пенсии => pension
 
   const [earlyRretirement, setEarlyRretirement] = useState(false); // ускоренный выход на пенсию
-  const [earlyRretirementPeriod, setEarlyRretirementPeriod] = useState(5); // на сколько лет ускоренный выход на пенсию
+  // const [earlyRretirementPeriod, setEarlyRretirementPeriod] = useState(5); // на сколько лет ускоренный выход на пенсию
 
   const radioItems: RadioItemProps[] = [
     { value: ageMan, title: "М", name: "gender" },
@@ -78,23 +74,34 @@ const Calculator: FC = () => {
     },
   };
 
-  const onChangeGenderRadio = (valueRadio: React.SetStateAction<string>) => {
-    setGenderValue(valueRadio);
-    // console.log(earlyRretirement); //
+  useEffect(() => {
     if (earlyRretirement) {
-      if (valueRadio === "60") {
-        setAgeSliderMax(55);
-      } else {
-        setAgeSliderMax(60);
-      }
+      setGenderValue("60");
+      setAgeMan("60");
+      setAgeWoman("55");
+      setAgeSliderMax(60);
     } else {
-      if (valueRadio === "65") {
-        setAgeSliderMax(65);
-      } else {
-        setAgeSliderMax(60);
-      }
+      setGenderValue("60");
+      setAgeMan("65");
+      setAgeWoman("60");
+      setAgeSliderMax(60);
     }
+  }, [earlyRretirement]);
+
+  const onChangeGenderRadio = (emitGenderRadio: React.SetStateAction<string>) => {
+    setGenderValue(emitGenderRadio);
+    setAgeSliderMax(Number(emitGenderRadio));
   };
+  // console.log("ageSliderMax :" + ageSliderMax);
+
+  const toogleChecked = () => {
+    setEarlyRretirement((prev) => !prev);
+  };
+
+  // console.log("ageMan :" + ageMan);
+  // console.log("ageWoman :" + ageWoman);
+  // console.log("genderValue :" + genderValue);
+  // console.log(earlyRretirement);
 
   const ageSliderHandler = (ageSliderValue: React.SetStateAction<number>) => {
     setAgeValue(ageSliderValue);
@@ -109,22 +116,8 @@ const Calculator: FC = () => {
     setPeriodPaymentPension(periodPaymentPension);
   };
 
-  const toogleChecked = () => {
-    setEarlyRretirement((prev) => !prev);
-  };
-
   useEffect(() => {
-    if (earlyRretirement) {
-      setAgeMan("60");
-      setAgeWoman("55");
-    } else {
-      setAgeMan("65");
-      setAgeWoman("60");
-    }
-  }, [earlyRretirement]);
-
-  useEffect(() => {
-    setInvestmentTerm(Number(genderValue) - ageValue - earlyRretirementPeriod);
+    setInvestmentTerm(Number(genderValue) - ageValue);
 
     // console.log("investmentTerm :" + investmentTerm);
     // console.log("downPayment :" + downPayment);
@@ -167,16 +160,7 @@ const Calculator: FC = () => {
     setPensionValue(Math.round(generalAccumValue / periodPaymentPension / 12));
     // console.log("pensionValue:", pensionValue);
     // console.log("finish");
-  }, [
-    genderValue,
-    earlyRretirement,
-    earlyRretirementPeriod,
-    ageValue,
-    investmentTerm,
-    downPayment,
-    monthlyInstallment,
-    periodPaymentPension,
-  ]);
+  }, [genderValue, earlyRretirement, ageValue, investmentTerm, downPayment, monthlyInstallment, periodPaymentPension]);
 
   return (
     <section id="calculator" className={styles["calculator"]}>
@@ -192,7 +176,7 @@ const Calculator: FC = () => {
                     <RadioSecondary
                       radioItems={radioItems}
                       emitValue={onChangeGenderRadio}
-                      currentValue={currentValue}
+                      currentValue={genderValue}
                     />
                   </div>
                   <Slider
