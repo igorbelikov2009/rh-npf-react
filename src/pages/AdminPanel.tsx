@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
-import NewsItem from "../components/mainPage/examples/NewsItem/NewsItem";
+import NewsItem from "../components/adminPanel/NewsItem/NewsItem";
 import { useAppDispanch, useAppSelector } from "../hooks/redux";
 import { IInfo, INews } from "../models/types";
 import { addNewsItem, getFormatedNews } from "../store/reducers/newsReducer";
@@ -77,7 +77,7 @@ const AdminPanel: FC = () => {
       <div className="admin-panel__container">
         {isLoading && <h1>Loading...</h1>}
         {error && (
-          <h1>
+          <h1 className="admin-panel__paragraph">
             <> {error} </>
           </h1>
         )}

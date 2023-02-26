@@ -1,8 +1,8 @@
 .news-item {
   width: 100%;
+  max-width: 860px;
   border-top: 1px solid #e4e4e4;
   padding: 24px;
-  margin-bottom: 24px;
 }
 .news-item__heading {
   display: block;
@@ -53,4 +53,8 @@
   left: -24px;
   top: 8px;
   visibility: hidden;
+}
+.news-item__container-button {
+  display: flex;
+  justify-content: space-between;
 }

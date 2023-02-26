@@ -1,3 +1,4 @@
+//  Не задействовал, удалять жалко
 import React, { FC } from "react";
 import styles from "./MyModal.module.scss";
 

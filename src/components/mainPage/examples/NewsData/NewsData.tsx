@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useAppDispanch, useAppSelector } from "../../../../hooks/redux";
 import { getFormatedNews } from "../../../../store/reducers/newsReducer";
-import NewsItem from "../NewsItem/NewsItem";
+import NewsItem from "../../../adminPanel/NewsItem/NewsItem";
 import styles from "./NewsData.module.scss";
 
 const NewsData = () => {

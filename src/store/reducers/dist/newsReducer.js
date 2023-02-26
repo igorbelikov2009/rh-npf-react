@@ -44,13 +44,13 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
 };
 var _a;
 exports.__esModule = true;
-exports.addNewsItem = exports.getFormatedNews = void 0;
+exports.deleteNewsItem = exports.addNewsItem = exports.getFormatedNews = void 0;
 var toolkit_1 = require("@reduxjs/toolkit");
 var UserDate_1 = require("../../api/UserDate/UserDate");
 exports.getFormatedNews = toolkit_1.createAsyncThunk("news/getFormatedNews", function (_, _a) {
     var rejectWithValue = _a.rejectWithValue;
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, newsSortedByDate, newsUsedForComputing, formatedDateNews, respon, error_1;
+        var response, data, newsSortedByDate, formatedDateNews, respon, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -64,26 +64,20 @@ exports.getFormatedNews = toolkit_1.createAsyncThunk("news/getFormatedNews", fun
                     newsSortedByDate = __spreadArrays(data).sort(function (a, b) {
                         return new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : -1;
                     });
-                    newsUsedForComputing = __spreadArrays(newsSortedByDate).map(function (item, index) { return ({
-                        id: Number(index),
-                        title: String(item.title),
-                        date: String(item.date),
-                        paragraphs: item.paragraphs
-                    }); });
-                    formatedDateNews = __spreadArrays(newsUsedForComputing).map(function (item) { return ({
+                    formatedDateNews = __spreadArrays(newsSortedByDate).map(function (item) { return ({
                         id: Number(item.id),
                         title: String(item.title),
                         date: String(UserDate_1["default"].format(new Date(item.date))),
                         paragraphs: item.paragraphs
                     }); });
                     respon = {
-                        newsUsedForComputing: newsUsedForComputing,
+                        newsSortedByDate: newsSortedByDate,
                         formatedDateNews: formatedDateNews
                     };
                     return [2 /*return*/, respon];
                 case 3:
                     error_1 = _b.sent();
-                    // и передам ошибку определённым образом в extraReducers, в метод [fetchPostsMich.rejected.type],
+                    // и передам ошибку определённым образом в extraReducers, в метод [getFormatedNews.rejected.type],
                     // где её можно будет корректно обработать.
                     return [2 /*return*/, rejectWithValue("Запусти сервер. Создай параллельный терминал и скомандуй в нём: json-server --watch db.json --port 5000")];
                 case 4: return [2 /*return*/];
@@ -122,9 +116,37 @@ exports.addNewsItem = toolkit_1.createAsyncThunk("news/addNewsItem", function (n
         });
     });
 });
+exports.deleteNewsItem = toolkit_1.createAsyncThunk("news/deleteNewsItem", function (id, _a) {
+    var rejectWithValue = _a.rejectWithValue, dispatch = _a.dispatch;
+    return __awaiter(this, void 0, void 0, function () {
+        var response, error_3;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, fetch("http://localhost:5000/news/" + id, {
+                            method: "DELETE"
+                        })];
+                case 1:
+                    response = _b.sent();
+                    console.log(response);
+                    // На сервере нужный объект мы уже
+                    // удалили, нам нужно удалить его локально, вызвать removeNews() из newsSlice.
+                    // Для того, чтобы его вызвать, у нас уже есть диспетчер.
+                    // Мы его получили через объект вторым параметром.
+                    dispatch(removeNews({ id: id }));
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _b.sent();
+                    return [2 /*return*/, rejectWithValue("Не могу удалить новость, ошибка на сервере!")];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+});
 var initialState = {
     respon: {
-        newsUsedForComputing: [],
+        newsSortedByDate: [],
         formatedDateNews: []
     },
     isLoading: false,
@@ -137,6 +159,9 @@ var newsSlice = toolkit_1.createSlice({
     reducers: {
         addNews: function (state, action) {
             state.news.push(action.payload);
+        },
+        removeNews: function (state, action) {
+            state.news = state.news.filter(function (item) { return item.id !== action.payload.id; });
         }
     },
     extraReducers: (_a = {},
@@ -152,8 +177,17 @@ var newsSlice = toolkit_1.createSlice({
             state.isLoading = false;
             state.error = action.payload;
         },
+        // deleteNewsItem // У меня работает без экстраредюсера
+        _a[exports.deleteNewsItem.pending.type] = function (state) {
+            state.isLoading = true;
+            state.error = ""; // Обнуляем, на всякий случай. Вдруг, прежде, была ошибка.
+        },
+        _a[exports.deleteNewsItem.rejected.type] = function (state, action) {
+            state.isLoading = false;
+            state.error = action.payload;
+        },
         _a)
 });
-var addNews = newsSlice.actions.addNews;
+var _b = newsSlice.actions, addNews = _b.addNews, removeNews = _b.removeNews;
 exports["default"] = newsSlice.reducer;
 // регистрируем в store.ts

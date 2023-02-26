@@ -1,10 +1,8 @@
 .news-item {
   width: 100%;
-  // border: 1px solid purple;
+  max-width: 860px;
   border-top: 1px solid #e4e4e4;
-
   padding: 24px;
-  margin-bottom: 24px;
 
   &__heading {
     display: block;
@@ -59,5 +57,10 @@
 
       visibility: hidden;
     }
+  }
+
+  &__container-button {
+    display: flex;
+    justify-content: space-between;
   }
 }

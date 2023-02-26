@@ -20,7 +20,7 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
 exports.__esModule = true;
 var react_1 = require("react");
 var react_bootstrap_1 = require("react-bootstrap");
-var NewsItem_1 = require("../components/mainPage/examples/NewsItem/NewsItem");
+var NewsItem_1 = require("../components/adminPanel/NewsItem/NewsItem");
 var redux_1 = require("../hooks/redux");
 var newsReducer_1 = require("../store/reducers/newsReducer");
 require("../styles/dist/AdminPanel.css");
@@ -87,7 +87,7 @@ var AdminPanel = function () {
     return (react_1["default"].createElement("div", { className: "admin-panel" },
         react_1["default"].createElement("div", { className: "admin-panel__container" },
             isLoading && react_1["default"].createElement("h1", null, "Loading..."),
-            error && (react_1["default"].createElement("h1", null,
+            error && (react_1["default"].createElement("h1", { className: "admin-panel__paragraph" },
                 react_1["default"].createElement(react_1["default"].Fragment, null,
                     " ",
                     error,

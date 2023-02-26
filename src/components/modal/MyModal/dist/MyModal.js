@@ -1,5 +1,6 @@
 "use strict";
 exports.__esModule = true;
+//  Не задействовал, удалять жалко
 var react_1 = require("react");
 var MyModal_module_scss_1 = require("./MyModal.module.scss");
 var MyModal = function (_a) {
