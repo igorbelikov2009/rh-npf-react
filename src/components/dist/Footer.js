@@ -5,16 +5,16 @@ var Logotypes_1 = require("./general/Logotypes/Logotypes");
 var FooterLink_1 = require("./ui/links/FooterLink/FooterLink");
 require("../styles/Footer.scss");
 var react_router_dom_1 = require("react-router-dom");
+var context_1 = require("../context");
 var Footer = function () {
+    var isAuth = react_1.useContext(context_1.AuthContext).isAuth;
     var navigate = react_router_dom_1.useNavigate();
     var FirstBlock = [
         {
-            // to: "/support",
             to: "/support#form",
             children: "Написать нам"
         },
         {
-            // to: "/support",
             to: "/support#questionsAnswers",
             children: "Вопросы и ответы"
         },
@@ -39,20 +39,35 @@ var Footer = function () {
             to: "/#calculator"
         },
     ];
-    var ThirdBlock = [
-        {
-            children: "Раскрытие информации",
-            to: "/info"
-        },
-        {
-            children: "Инвестиционная деятельность",
-            to: "/investment"
-        },
-        {
-            children: "Панель администратора",
-            to: "/adminpanel"
-        },
-    ];
+    var ThirdBlock = [];
+    if (isAuth) {
+        ThirdBlock = [
+            {
+                children: "Раскрытие информации",
+                to: "/info"
+            },
+            {
+                children: "Инвестиционная деятельность",
+                to: "/investment"
+            },
+            {
+                children: "Панель администратора",
+                to: "/adminpanel"
+            },
+        ];
+    }
+    else {
+        ThirdBlock = [
+            {
+                children: "Раскрытие информации",
+                to: "/info"
+            },
+            {
+                children: "Инвестиционная деятельность",
+                to: "/investment"
+            },
+        ];
+    }
     return (react_1["default"].createElement("footer", { className: "footer" },
         react_1["default"].createElement("div", { className: "footer__top-block" },
             react_1["default"].createElement("div", { onClick: function () { return navigate("/", { replace: true }); }, className: "footer__logotype" },

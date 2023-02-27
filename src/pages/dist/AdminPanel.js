@@ -54,13 +54,17 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
     return r;
 };
 exports.__esModule = true;
+var framer_motion_1 = require("framer-motion"); // анимация
 var react_1 = require("react");
 var react_bootstrap_1 = require("react-bootstrap");
 var UserDate_1 = require("../api/UserDate/UserDate");
 var NewsItem_1 = require("../components/adminPanel/NewsItem/NewsItem");
+var MyModal_1 = require("../components/modal/MyModal/MyModal");
+var context_1 = require("../context");
 var newsAPI_1 = require("../services/newsAPI");
 require("../styles/dist/AdminPanel.css");
 var AdminPanel = function () {
+    var setBackgroundWhite = react_1.useContext(context_1.AuthContext).setBackgroundWhite;
     // ======================================================= получение данных
     //// Получаем данные с сервера через микро-service newsAPI
     var _a = newsAPI_1.useGetNewsQuery(), data = _a.data, isLoading = _a.isLoading, error = _a.error;
@@ -140,6 +144,19 @@ var AdminPanel = function () {
             }
         });
     }); };
+    var handleModal = function () {
+        setModal(function (prev) { return !prev; });
+    };
+    react_1.useEffect(function () {
+        if (modal) {
+            document.body.style.overflow = "hidden";
+            setBackgroundWhite(false);
+        }
+        else {
+            document.body.style.overflow = "";
+            setBackgroundWhite(true);
+        }
+    }, [modal, setBackgroundWhite]);
     // // Для удаления достаём сгенерированный в newsAPI хук useDeleteNewsMutation
     var _h = newsAPI_1.useDeleteNewsMutation(), deleteNews = _h[0], isLoadingDelete = _h[1].isLoading;
     var handleDeleteNews = function (id) { return __awaiter(void 0, void 0, void 0, function () {
@@ -163,25 +180,26 @@ var AdminPanel = function () {
                     error,
                     " "))),
             react_1["default"].createElement("div", { className: "admin-panel__container-input-button" },
-                react_1["default"].createElement(react_bootstrap_1.Button, { variant: modal ? "outline-danger" : "primary", onClick: function () { return setModal(function (prev) { return !prev; }); } }, modal ? "Закрыть панель администратора" : "Открыть панель администратора")),
-            modal && (react_1["default"].createElement("div", null,
-                react_1["default"].createElement("div", null,
-                    react_1["default"].createElement(react_bootstrap_1.Form.Control, { value: title, onChange: function (e) { return setTitle(e.target.value); }, className: "admin-panel__container-input-button", placeholder: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043D\u043E\u0432\u043E\u0441\u0442\u0435\u0439" }),
-                    react_1["default"].createElement("h4", { className: "admin-panel__paragraph" }, "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0434\u0430\u0442\u0443 \u0441\u043E\u0437\u0434\u0430\u043D\u0438\u044F \u043D\u043E\u0432\u043E\u0441\u0442\u0435\u0439"),
-                    react_1["default"].createElement(react_bootstrap_1.Form.Control, { type: "date", id: "start", name: "trip-start", min: "2015-01-01", max: "2022-12-31", value: date, onChange: function (e) { return setDate(e.target.value); }, className: "admin-panel__container-input-button" }),
-                    react_1["default"].createElement(react_bootstrap_1.Button, { className: "admin-panel__container-input-button", variant: "outline-success", onClick: function () { return addInfo(); } }, "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043F\u0430\u0440\u0430\u0433\u0440\u0430\u0444"),
-                    info.map(function (i, index) { return (react_1["default"].createElement(react_bootstrap_1.Row, { key: index },
-                        react_1["default"].createElement(react_bootstrap_1.Col, { md: 11 },
-                            react_1["default"].createElement(react_bootstrap_1.Form.Control, { className: "admin-panel__container-input-button", placeholder: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0442\u0435\u043A\u0441\u0442 \u043F\u0430\u0440\u0430\u0433\u0440\u0430\u0444\u0430 \u043D\u043E\u0432\u043E\u0441\u0442\u0435\u0439", value: i.paragraph, onChange: function (e) {
-                                    //  const changeInfo = (key, value, number) => ...
-                                    return changeInfo("paragraph", e.target.value, i.number);
-                                } })),
-                        react_1["default"].createElement(react_bootstrap_1.Col, { md: 1 },
-                            react_1["default"].createElement(react_bootstrap_1.Button, { variant: "outline-danger", onClick: function () { return removeInfo(i.number); } }, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C")))); })),
-                react_1["default"].createElement("div", null,
-                    react_1["default"].createElement(react_bootstrap_1.Button, { variant: "outline-success", onClick: handleAddNewsItem }, "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u043E\u0432\u043E\u0441\u0442\u0438 \u0432 \u0441\u043F\u0438\u0441\u043E\u043A \u043D\u043E\u0432\u043E\u0441\u0442\u0435\u0439")))),
+                react_1["default"].createElement(react_bootstrap_1.Button, { variant: modal ? "outline-danger" : "primary", onClick: handleModal }, modal ? "Закрыть панель администратора" : "Открыть панель администратора")),
             react_1["default"].createElement("h1", { className: "admin-panel__heading" }, " \u0421\u043F\u0438\u0441\u043E\u043A \u0432\u0441\u0435\u0445 \u043D\u043E\u0432\u043E\u0441\u0442\u0435\u0439 "),
             react_1["default"].createElement("div", null, formatedDateNews &&
-                formatedDateNews.map(function (item) { return (react_1["default"].createElement(NewsItem_1["default"], { key: item.id, id: item.id, title: item.title, date: item.date, paragraphs: item.paragraphs, handleRemove: function () { return handleDeleteNews(item.id); } })); })))));
+                formatedDateNews.map(function (item) { return (react_1["default"].createElement(NewsItem_1["default"], { key: item.id, id: item.id, title: item.title, date: item.date, paragraphs: item.paragraphs, handleRemove: function () { return handleDeleteNews(item.id); } })); })),
+            react_1["default"].createElement(framer_motion_1.AnimatePresence, null, modal && (react_1["default"].createElement(framer_motion_1.motion.div, { initial: { height: 0, opacity: 0 }, animate: { height: "auto", opacity: 1 }, exit: { height: 0, opacity: 0 }, style: { overflow: "hidden" } },
+                react_1["default"].createElement(MyModal_1["default"], { visible: modal, setVisible: setModal },
+                    react_1["default"].createElement("div", null,
+                        react_1["default"].createElement(react_bootstrap_1.Form.Control, { value: title, onChange: function (e) { return setTitle(e.target.value); }, className: "admin-panel__container-input-button", placeholder: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043D\u043E\u0432\u043E\u0441\u0442\u0435\u0439" }),
+                        react_1["default"].createElement("h4", { className: "admin-panel__paragraph" }, "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0434\u0430\u0442\u0443 \u0441\u043E\u0437\u0434\u0430\u043D\u0438\u044F \u043D\u043E\u0432\u043E\u0441\u0442\u0435\u0439"),
+                        react_1["default"].createElement(react_bootstrap_1.Form.Control, { type: "date", id: "start", name: "trip-start", min: "2015-01-01", max: "2022-12-31", value: date, onChange: function (e) { return setDate(e.target.value); }, className: "admin-panel__container-input-button" }),
+                        react_1["default"].createElement(react_bootstrap_1.Button, { className: "admin-panel__container-input-button", variant: "outline-success", onClick: function () { return addInfo(); } }, "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043F\u0430\u0440\u0430\u0433\u0440\u0430\u0444"),
+                        info.map(function (i, index) { return (react_1["default"].createElement(react_bootstrap_1.Row, { key: index },
+                            react_1["default"].createElement(react_bootstrap_1.Col, { md: 11 },
+                                react_1["default"].createElement(react_bootstrap_1.Form.Control, { className: "admin-panel__container-input-button", placeholder: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0442\u0435\u043A\u0441\u0442 \u043F\u0430\u0440\u0430\u0433\u0440\u0430\u0444\u0430 \u043D\u043E\u0432\u043E\u0441\u0442\u0435\u0439", value: i.paragraph, onChange: function (e) {
+                                        //  const changeInfo = (key, value, number) => ...
+                                        return changeInfo("paragraph", e.target.value, i.number);
+                                    } })),
+                            react_1["default"].createElement(react_bootstrap_1.Col, { md: 1 },
+                                react_1["default"].createElement(react_bootstrap_1.Button, { variant: "outline-danger", onClick: function () { return removeInfo(i.number); } }, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C")))); })),
+                    react_1["default"].createElement("div", null,
+                        react_1["default"].createElement(react_bootstrap_1.Button, { variant: "outline-success", onClick: handleAddNewsItem }, "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u043E\u0432\u043E\u0441\u0442\u0438 \u0432 \u0441\u043F\u0438\u0441\u043E\u043A \u043D\u043E\u0432\u043E\u0441\u0442\u0435\u0439")))))))));
 };
 exports["default"] = AdminPanel;

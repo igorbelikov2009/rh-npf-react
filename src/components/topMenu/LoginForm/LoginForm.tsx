@@ -1,9 +1,10 @@
-import React, { FC, useState } from "react";
+import React, { FC, useContext, useState } from "react";
 import InputTitle from "../../ui/inputs/InputTitle/InputTitle";
 import styles from "./LoginForm.module.scss";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Checkbox from "../../ui/Checkbox/Checkbox";
 import InputSubmit from "../../ui/inputs/InputSubmit/InputSubmit";
+import { AuthContext } from "../../../context";
 
 type Inputs = {
   phone: string;
@@ -15,6 +16,8 @@ interface LoginFormProps {
 }
 
 const LoginForm: FC<LoginFormProps> = ({ closeLoginForm, isVisible }) => {
+  const { isAuth, setAuth } = useContext(AuthContext);
+
   const [isDormancyPhone, setDormancyPhone] = useState(true);
   const [isAgree, setAgree] = useState(false);
   const titleCheckbox = "Я прочитал(-а)";
@@ -46,7 +49,7 @@ const LoginForm: FC<LoginFormProps> = ({ closeLoginForm, isVisible }) => {
   };
 
   return (
-    //   Здесь через onSubmit мы передаём данные полей в обёртку handleSubmit()
+    // Здесь через onSubmit мы передаём данные полей в обёртку handleSubmit()
     <form
       className={isVisible ? styles["login-form__opacity1"] : styles["login-form__opacity0"]}
       onSubmit={handleSubmit(onSubmit)}

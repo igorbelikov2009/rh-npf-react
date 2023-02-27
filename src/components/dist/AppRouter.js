@@ -29,7 +29,7 @@ var AppRouter = function () {
             react_1["default"].createElement(react_router_dom_1.Route, { path: "managment", element: react_1["default"].createElement(ManagementPage_1["default"], null) }),
             react_1["default"].createElement(react_router_dom_1.Route, { path: "news", element: react_1["default"].createElement(News_1["default"], null) }),
             react_1["default"].createElement(react_router_dom_1.Route, { path: "news/:id", element: react_1["default"].createElement(NewsPage_1["default"], null) }),
-            react_1["default"].createElement(react_router_dom_1.Route, { path: "notfoundpage", element: react_1["default"].createElement(Notfoundpage_1["default"], null) }),
+            react_1["default"].createElement(react_router_dom_1.Route, { path: "*", element: react_1["default"].createElement(Notfoundpage_1["default"], null) }),
             react_1["default"].createElement(react_router_dom_1.Route, { path: "support", element: react_1["default"].createElement(ServiceSupportPage_1["default"], null) }),
             react_1["default"].createElement(react_router_dom_1.Route, { path: "taxation", element: react_1["default"].createElement(TaxationPage_1["default"], null) }),
             react_1["default"].createElement(react_router_dom_1.Route, { path: "adminpanel", element: react_1["default"].createElement(AdminPanel_1["default"], null) }))));

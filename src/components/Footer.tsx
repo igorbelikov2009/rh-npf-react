@@ -1,19 +1,20 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import Logotypes from "./general/Logotypes/Logotypes";
 import FooterLink, { FooterLinkProps } from "./ui/links/FooterLink/FooterLink";
 import "../styles/Footer.scss";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context";
 
 const Footer: FC = () => {
+  const { isAuth } = useContext(AuthContext);
+
   const navigate = useNavigate();
   const FirstBlock: FooterLinkProps[] = [
     {
-      // to: "/support",
       to: "/support#form",
       children: "Написать нам",
     },
     {
-      // to: "/support",
       to: "/support#questionsAnswers",
       children: "Вопросы и ответы",
     },
@@ -37,23 +38,38 @@ const Footer: FC = () => {
     {
       children: "Калькулятор",
       to: "/#calculator",
-      // to: "/",
     },
   ];
-  const ThirdBlock: FooterLinkProps[] = [
-    {
-      children: "Раскрытие информации",
-      to: "/info",
-    },
-    {
-      children: "Инвестиционная деятельность",
-      to: "/investment",
-    },
-    {
-      children: "Панель администратора",
-      to: "/adminpanel",
-    },
-  ];
+
+  let ThirdBlock: FooterLinkProps[] = [];
+
+  if (isAuth) {
+    ThirdBlock = [
+      {
+        children: "Раскрытие информации",
+        to: "/info",
+      },
+      {
+        children: "Инвестиционная деятельность",
+        to: "/investment",
+      },
+      {
+        children: "Панель администратора",
+        to: "/adminpanel",
+      },
+    ];
+  } else {
+    ThirdBlock = [
+      {
+        children: "Раскрытие информации",
+        to: "/info",
+      },
+      {
+        children: "Инвестиционная деятельность",
+        to: "/investment",
+      },
+    ];
+  }
 
   return (
     <footer className="footer">

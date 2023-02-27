@@ -17,7 +17,14 @@
     }
   }
 
-  &__id,
+  &__id {
+    display: block;
+    margin-bottom: 18px;
+    font-size: 14px;
+    line-height: 18px;
+    color: #28323c;
+  }
+
   &__date {
     display: block;
     margin-bottom: 18px;
@@ -41,6 +48,6 @@
   &__container-button {
     margin-top: 24px;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
   }
 }

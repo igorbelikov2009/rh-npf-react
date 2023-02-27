@@ -16,16 +16,20 @@ var InputSubmit_1 = require("../../ui/inputs/InputSubmit/InputSubmit");
 var CallBack_module_scss_1 = require("./CallBack.module.scss");
 var react_hook_form_1 = require("react-hook-form");
 var InputTitle_1 = require("../../ui/inputs/InputTitle/InputTitle");
+var context_1 = require("../../../context");
+var PrimaryButton_1 = require("../../ui/buttons/PrimaryButton/PrimaryButton");
 var CallBack = function (_a) {
     var _b, _c;
-    var closeCallBack = _a.closeCallBack, isVisible = _a.isVisible;
-    var _d = react_1.useState(true), isDormancyUserName = _d[0], setDormancyUserName = _d[1];
-    var _e = react_1.useState(true), isDormancyPhone = _e[0], setDormancyPhone = _e[1];
-    var _f = react_hook_form_1.useForm({ mode: "all" }), register = _f.register, // позволяет регистрировать различные поля для форм
-    _g = _f.formState, errors = _g.errors, isValid = _g.isValid, // объект с ошибками и т.д...
-    handleSubmit = _f.handleSubmit, // некая обертка над нашим кастомным обработчиком отправки формы, она позволяет делать магии, связанные с валидацией.
-    reset = _f.reset, // для очистки полей после отправки формы
-    watch = _f.watch;
+    var closeCallBack = _a.closeCallBack;
+    var _d = react_1.useContext(context_1.AuthContext), isAuth = _d.isAuth, setAuth = _d.setAuth;
+    // console.log(isAuth);
+    var _e = react_1.useState(true), isDormancyUserName = _e[0], setDormancyUserName = _e[1];
+    var _f = react_1.useState(true), isDormancyPhone = _f[0], setDormancyPhone = _f[1];
+    var _g = react_hook_form_1.useForm({ mode: "all" }), register = _g.register, // позволяет регистрировать различные поля для форм
+    _h = _g.formState, errors = _h.errors, isValid = _h.isValid, // объект с ошибками и т.д...
+    handleSubmit = _g.handleSubmit, // некая обертка над нашим кастомным обработчиком отправки формы, она позволяет делать магии, связанные с валидацией.
+    reset = _g.reset, // для очистки полей после отправки формы
+    watch = _g.watch;
     var userData = {};
     // наш кастомный обработчик отправки формы
     var onSubmit = function (data) {
@@ -34,6 +38,8 @@ var CallBack = function (_a) {
         // console.log(data);
         // console.log(userData);
         localStorage.setItem("userData-renaissance-pension", JSON.stringify(userData));
+        setAuth(true);
+        localStorage.setItem("auth-renaissance", "true");
         reset();
         setDormancyUserName(true);
         setDormancyPhone(true);
@@ -47,10 +53,16 @@ var CallBack = function (_a) {
         // не была нулевой. JSON.parse(localStorage.getItem("userData-renaissance-pension") || "")
     }
     // console.log(userData);
+    var handleSignOut = function (e) {
+        e.stopPropagation();
+        setAuth(false);
+        localStorage.setItem("auth-renaissance", "false");
+        closeCallBack();
+    };
     return (react_1["default"].createElement("form", { className: CallBack_module_scss_1["default"]["call-back"], onSubmit: handleSubmit(onSubmit) },
         react_1["default"].createElement("div", { className: CallBack_module_scss_1["default"]["call-back__input-container"] },
             react_1["default"].createElement("label", { className: CallBack_module_scss_1["default"]["my-input__label"] },
-                react_1["default"].createElement(InputTitle_1["default"], { title: "\u041A\u0430\u043A \u0432\u0430\u0441 \u0437\u043E\u0432\u0443\u0442?", isDormancy: isDormancyUserName }),
+                react_1["default"].createElement(InputTitle_1["default"], { title: "\u0412\u044B \u0430\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440? \u0412\u0430\u0448\u0435 \u0438\u043C\u044F.", isDormancy: isDormancyUserName }),
                 react_1["default"].createElement("input", __assign({ className: (errors === null || errors === void 0 ? void 0 : errors.userName) ? CallBack_module_scss_1["default"]["my-input__field_invalid"] : CallBack_module_scss_1["default"]["my-input__field"], type: "text" }, register("userName", {
                     required: "Это поле обязательно к заполнению",
                     onChange: function (event) {
@@ -98,6 +110,8 @@ var CallBack = function (_a) {
                         ((_c = errors === null || errors === void 0 ? void 0 : errors.phone) === null || _c === void 0 ? void 0 : _c.message) || "Error!",
                         " "))))),
         react_1["default"].createElement("div", { className: CallBack_module_scss_1["default"]["call-back__button-container"] },
-            react_1["default"].createElement(InputSubmit_1["default"], { children: "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C", disabled: !isValid }))));
+            react_1["default"].createElement(InputSubmit_1["default"], { children: "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C", disabled: !isValid })),
+        react_1["default"].createElement("div", { className: CallBack_module_scss_1["default"]["call-back__button-container"], onClick: handleSignOut },
+            react_1["default"].createElement(PrimaryButton_1["default"], { children: "\u0412\u044B\u0439\u0442\u0438", disabled: !isAuth }))));
 };
 exports["default"] = CallBack;

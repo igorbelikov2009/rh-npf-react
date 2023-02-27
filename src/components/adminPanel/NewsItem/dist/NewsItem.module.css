@@ -17,7 +17,14 @@
     line-height: 48px;
   }
 }
-.news-item__id, .news-item__date {
+.news-item__id {
+  display: block;
+  margin-bottom: 18px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #28323c;
+}
+.news-item__date {
   display: block;
   margin-bottom: 18px;
   font-size: 14px;
@@ -38,5 +45,5 @@
 .news-item__container-button {
   margin-top: 24px;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }

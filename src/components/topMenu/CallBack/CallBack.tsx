@@ -1,8 +1,10 @@
-import React, { FC, useState } from "react";
+import React, { FC, useContext, useState } from "react";
 import InputSubmit from "../../ui/inputs/InputSubmit/InputSubmit";
 import styles from "./CallBack.module.scss";
 import { useForm, SubmitHandler } from "react-hook-form";
 import InputTitle from "../../ui/inputs/InputTitle/InputTitle";
+import { AuthContext } from "../../../context";
+import PrimaryButton from "../../ui/buttons/PrimaryButton/PrimaryButton";
 
 type Inputs = {
   userName: string;
@@ -11,10 +13,12 @@ type Inputs = {
 
 interface CallBackProps {
   closeCallBack: () => void;
-  isVisible: boolean;
 }
 
-const CallBack: FC<CallBackProps> = ({ closeCallBack, isVisible }) => {
+const CallBack: FC<CallBackProps> = ({ closeCallBack }) => {
+  const { isAuth, setAuth } = useContext(AuthContext);
+  // console.log(isAuth);
+
   const [isDormancyUserName, setDormancyUserName] = useState(true);
   const [isDormancyPhone, setDormancyPhone] = useState(true);
 
@@ -34,6 +38,8 @@ const CallBack: FC<CallBackProps> = ({ closeCallBack, isVisible }) => {
     // console.log(data);
     // console.log(userData);
     localStorage.setItem("userData-renaissance-pension", JSON.stringify(userData));
+    setAuth(true);
+    localStorage.setItem("auth-renaissance", "true");
     reset();
     setDormancyUserName(true);
     setDormancyPhone(true);
@@ -49,11 +55,18 @@ const CallBack: FC<CallBackProps> = ({ closeCallBack, isVisible }) => {
   }
   // console.log(userData);
 
+  const handleSignOut = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    setAuth(false);
+    localStorage.setItem("auth-renaissance", "false");
+    closeCallBack();
+  };
+
   return (
     <form className={styles["call-back"]} onSubmit={handleSubmit(onSubmit)}>
       <div className={styles["call-back__input-container"]}>
         <label className={styles["my-input__label"]}>
-          <InputTitle title="Как вас зовут?" isDormancy={isDormancyUserName} />
+          <InputTitle title="Вы администратор? Ваше имя." isDormancy={isDormancyUserName} />
 
           <input
             className={errors?.userName ? styles["my-input__field_invalid"] : styles["my-input__field"]}
@@ -120,6 +133,10 @@ const CallBack: FC<CallBackProps> = ({ closeCallBack, isVisible }) => {
 
       <div className={styles["call-back__button-container"]}>
         <InputSubmit children="Отправить" disabled={!isValid} />
+      </div>
+
+      <div className={styles["call-back__button-container"]} onClick={handleSignOut}>
+        <PrimaryButton children="Выйти" disabled={!isAuth} />
       </div>
     </form>
   );

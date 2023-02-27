@@ -29,7 +29,7 @@ const AppRouter: FC = () => {
         <Route path="managment" element={<Management />} />
         <Route path="news" element={<News />} />
         <Route path="news/:id" element={<NewsPage />} />
-        <Route path="notfoundpage" element={<Notfoundpage />} />
+        <Route path="*" element={<Notfoundpage />} />
         <Route path="support" element={<ServiceSupport />} />
         <Route path="taxation" element={<Taxation />} />
         <Route path="adminpanel" element={<AdminPanel />} />

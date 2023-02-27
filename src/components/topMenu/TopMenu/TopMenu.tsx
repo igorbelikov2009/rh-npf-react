@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion"; // анимация
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState, useContext } from "react";
 import styles from "./TopMenu.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -9,10 +9,12 @@ import TripleIcon from "../../general/TripleIcon/TripleIcon";
 import MenuMobil from "../MenuMobil/MenuMobil";
 import LoginForm from "../LoginForm/LoginForm";
 import CallBack from "../CallBack/CallBack";
+import { AuthContext } from "../../../context";
 
 const TopMenu: FC = () => {
+  const { isBackgroundWhite, setBackgroundWhite } = useContext(AuthContext);
+
   const navigate = useNavigate();
-  const [isBackgroundWhite, setIsBackgroundWhite] = useState(false);
   const [isPrivateOfficeHovered, setPrivateOfficeHovered] = useState(false);
   const [isHamburgerHovered, setHamburgerHovered] = useState(false);
   const [isMenuMobilVisible, setMenuMobilVisible] = useState(false);
@@ -44,11 +46,11 @@ const TopMenu: FC = () => {
       pathname === "/support" ||
       pathname === "/taxation"
     ) {
-      setIsBackgroundWhite(false);
+      setBackgroundWhite(false);
     } else {
-      setIsBackgroundWhite(true);
+      setBackgroundWhite(true);
     }
-  }, [pathname]);
+  }, [pathname, setBackgroundWhite]);
 
   const openLoginForm = () => {
     setLoginFormVisible((prev) => !prev);
@@ -119,7 +121,7 @@ const TopMenu: FC = () => {
                 onClick={openCallBack}
                 className={isBackgroundWhite ? styles["top-menu__call-back_news"] : styles["top-menu__call-back"]}
               >
-                Обратный звонок
+                администратор
               </button>
             </div>
           </div>
@@ -150,7 +152,7 @@ const TopMenu: FC = () => {
             exit={{ height: 0, opacity: 0 }}
             style={{ overflow: "hidden" }}
           >
-            <CallBack isVisible={isCallBackVisible} closeCallBack={closeCallBack} />
+            <CallBack closeCallBack={closeCallBack} />
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,12 +1,17 @@
-import React, { FC, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion"; // анимация
+import React, { FC, useState, useEffect, useContext } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import UserDate from "../api/UserDate/UserDate";
 import NewsItem from "../components/adminPanel/NewsItem/NewsItem";
+import MyModal from "../components/modal/MyModal/MyModal";
+import { AuthContext } from "../context";
 import { IInfo, INews } from "../models/types";
 import { useAddNewsMutation, useDeleteNewsMutation, useGetNewsQuery } from "../services/newsAPI";
 import "../styles/dist/AdminPanel.css";
 
 const AdminPanel: FC = () => {
+  const { setBackgroundWhite } = useContext(AuthContext);
+
   // ======================================================= получение данных
   //// Получаем данные с сервера через микро-service newsAPI
   const { data, isLoading, error } = useGetNewsQuery();
@@ -84,6 +89,19 @@ const AdminPanel: FC = () => {
       setModal(false);
     }
   };
+  const handleModal = () => {
+    setModal((prev) => !prev);
+  };
+
+  useEffect(() => {
+    if (modal) {
+      document.body.style.overflow = "hidden";
+      setBackgroundWhite(false);
+    } else {
+      document.body.style.overflow = "";
+      setBackgroundWhite(true);
+    }
+  }, [modal, setBackgroundWhite]);
 
   // // Для удаления достаём сгенерированный в newsAPI хук useDeleteNewsMutation
   const [deleteNews, { isLoading: isLoadingDelete }] = useDeleteNewsMutation();
@@ -105,78 +123,10 @@ const AdminPanel: FC = () => {
         )}
 
         <div className="admin-panel__container-input-button">
-          <Button variant={modal ? "outline-danger" : "primary"} onClick={() => setModal((prev) => !prev)}>
+          <Button variant={modal ? "outline-danger" : "primary"} onClick={handleModal}>
             {modal ? "Закрыть панель администратора" : "Открыть панель администратора"}
           </Button>
         </div>
-
-        {modal && (
-          <div>
-            <div>
-              <Form.Control
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="admin-panel__container-input-button"
-                placeholder="Введите название новостей"
-              />
-
-              <h4 className="admin-panel__paragraph">Введите дату создания новостей</h4>
-
-              <Form.Control
-                type="date"
-                id="start"
-                name="trip-start"
-                min="2015-01-01"
-                max="2022-12-31"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                className="admin-panel__container-input-button"
-              />
-
-              <Button
-                className="admin-panel__container-input-button"
-                variant="outline-success"
-                onClick={() => addInfo()}
-              >
-                Добавить параграф
-              </Button>
-
-              {info.map((i, index) => (
-                <Row key={index}>
-                  <Col md={11}>
-                    <Form.Control
-                      className="admin-panel__container-input-button"
-                      placeholder="Введите текст параграфа новостей"
-                      value={i.paragraph}
-                      onChange={
-                        (e) =>
-                          //  const changeInfo = (key, value, number) => ...
-                          changeInfo("paragraph", e.target.value, i.number)
-                        //  номер получаем из элемента текущей итерации
-                      }
-                    />
-                  </Col>
-
-                  <Col md={1}>
-                    <Button
-                      variant={"outline-danger"}
-                      onClick={() => removeInfo(i.number)}
-                      // Запомни это. Без такой конфигурации этот onClick работать не будет
-                    >
-                      Удалить
-                    </Button>
-                  </Col>
-                </Row>
-              ))}
-            </div>
-
-            <div>
-              <Button variant="outline-success" onClick={handleAddNewsItem}>
-                Добавить новости в список новостей
-              </Button>
-            </div>
-          </div>
-        )}
 
         <h1 className="admin-panel__heading"> Список всех новостей </h1>
 
@@ -193,6 +143,83 @@ const AdminPanel: FC = () => {
               />
             ))}
         </div>
+
+        <AnimatePresence>
+          {modal && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              style={{ overflow: "hidden" }}
+            >
+              <MyModal visible={modal} setVisible={setModal}>
+                <div>
+                  <Form.Control
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    className="admin-panel__container-input-button"
+                    placeholder="Введите название новостей"
+                  />
+
+                  <h4 className="admin-panel__paragraph">Введите дату создания новостей</h4>
+
+                  <Form.Control
+                    type="date"
+                    id="start"
+                    name="trip-start"
+                    min="2015-01-01"
+                    max="2022-12-31"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                    className="admin-panel__container-input-button"
+                  />
+
+                  <Button
+                    className="admin-panel__container-input-button"
+                    variant="outline-success"
+                    onClick={() => addInfo()}
+                  >
+                    Добавить параграф
+                  </Button>
+
+                  {info.map((i, index) => (
+                    <Row key={index}>
+                      <Col md={11}>
+                        <Form.Control
+                          className="admin-panel__container-input-button"
+                          placeholder="Введите текст параграфа новостей"
+                          value={i.paragraph}
+                          onChange={
+                            (e) =>
+                              //  const changeInfo = (key, value, number) => ...
+                              changeInfo("paragraph", e.target.value, i.number)
+                            //  номер получаем из элемента текущей итерации
+                          }
+                        />
+                      </Col>
+
+                      <Col md={1}>
+                        <Button
+                          variant={"outline-danger"}
+                          onClick={() => removeInfo(i.number)}
+                          // Запомни это. Без такой конфигурации этот onClick работать не будет
+                        >
+                          Удалить
+                        </Button>
+                      </Col>
+                    </Row>
+                  ))}
+                </div>
+
+                <div>
+                  <Button variant="outline-success" onClick={handleAddNewsItem}>
+                    Добавить новости в список новостей
+                  </Button>
+                </div>
+              </MyModal>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );
