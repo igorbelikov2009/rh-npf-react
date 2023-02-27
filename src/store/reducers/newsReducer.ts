@@ -12,17 +12,17 @@ export const getFormatedNews = createAsyncThunk("news/getFormatedNews", async fu
       new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : -1
     );
 
-    //  Если newsSortedByDate упорядочить по дате, то удаление будет происходить некорректно
-    //
-    //     const newsUsedForComputing: INews[] = [...newsSortedByDate].map((item, index) => ({
-    //       id: Number(index),
-    //       title: String(item.title),
-    //       date: String(item.date),
-    //       paragraphs: item.paragraphs,
-    //     }));
+    // Приводим в порядок id. Удаление в AdminPanel будет происходить некорректно,
+    // поэтому мы там используем newsAPI
+    const newsUsedForComputing: INews[] = [...newsSortedByDate].map((item, index) => ({
+      id: Number(index),
+      title: String(item.title),
+      date: String(item.date),
+      paragraphs: item.paragraphs,
+    }));
 
     // Полученный массив форматируем по дате
-    const formatedDateNews: INews[] = [...newsSortedByDate].map((item) => ({
+    const formatedDateNews: INews[] = [...newsUsedForComputing].map((item) => ({
       id: Number(item.id),
       title: String(item.title),
       date: String(UserDate.format(new Date(item.date))),
@@ -30,17 +30,14 @@ export const getFormatedNews = createAsyncThunk("news/getFormatedNews", async fu
     }));
 
     const respon = {
-      newsSortedByDate,
+      newsUsedForComputing,
       formatedDateNews,
     };
     return respon;
-    // const:
   } catch (error: any) {
     // и передам ошибку определённым образом в extraReducers, в метод [getFormatedNews.rejected.type],
     // где её можно будет корректно обработать.
-    return rejectWithValue(
-      "Запусти сервер. Создай параллельный терминал и скомандуй в нём: json-server --watch db.json --port 5000"
-    );
+    return rejectWithValue("Запусти сервер командой в параллельном терминале: json-server --watch db.json --port 5000");
   }
 });
 
@@ -89,7 +86,7 @@ export const deleteNewsItem = createAsyncThunk(
 );
 
 interface IRespon {
-  newsSortedByDate: INews[];
+  newsUsedForComputing: INews[];
   formatedDateNews: INews[];
 }
 
@@ -102,7 +99,7 @@ interface NewsState {
 
 const initialState: NewsState = {
   respon: {
-    newsSortedByDate: [],
+    newsUsedForComputing: [],
     formatedDateNews: [],
   },
   isLoading: false,

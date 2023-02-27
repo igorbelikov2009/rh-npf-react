@@ -142,7 +142,16 @@ var Calculator = function () {
         setPensionValue(Math.round(generalAccumValue / periodPaymentPension / 12));
         // console.log("pensionValue:", pensionValue);
         // console.log("finish");
-    }, [genderValue, earlyRretirement, ageValue, investmentTerm, downPayment, monthlyInstallment, periodPaymentPension]);
+    }, [
+        genderValue,
+        earlyRretirement,
+        ageValue,
+        investmentTerm,
+        downPayment,
+        monthlyInstallment,
+        periodPaymentPension,
+        generalAccumValue,
+    ]);
     return (react_1["default"].createElement("section", { id: "calculator", className: Calc_module_scss_1["default"]["calculator"] },
         react_1["default"].createElement("div", { className: Calc_module_scss_1["default"]["calculator__container"] },
             react_1["default"].createElement("h2", { className: Calc_module_scss_1["default"]["calculator__heading"] }, "\u041A\u0430\u043B\u044C\u043A\u0443\u043B\u044F\u0442\u043E\u0440"),

@@ -160,7 +160,16 @@ const Calculator: FC = () => {
     setPensionValue(Math.round(generalAccumValue / periodPaymentPension / 12));
     // console.log("pensionValue:", pensionValue);
     // console.log("finish");
-  }, [genderValue, earlyRretirement, ageValue, investmentTerm, downPayment, monthlyInstallment, periodPaymentPension]);
+  }, [
+    genderValue,
+    earlyRretirement,
+    ageValue,
+    investmentTerm,
+    downPayment,
+    monthlyInstallment,
+    periodPaymentPension,
+    generalAccumValue,
+  ]);
 
   return (
     <section id="calculator" className={styles["calculator"]}>

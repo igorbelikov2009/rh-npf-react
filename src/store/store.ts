@@ -10,6 +10,7 @@ import { investPercentsAPI } from "../services/investPercentsAPI";
 import { businessCardsAPI } from "../services/businesCardsAPI";
 import { fundIndicatorsAPI } from "../services/fundIndicatorsAPI";
 import { reportingsAPI } from "../services/reportingsAPI";
+import { newsAPI } from "../services/newsAPI";
 
 // Создаём корневой редюсер, состоящий из комбинации всех редюсеров
 const rootReducer = combineReducers({
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   [businessCardsAPI.reducerPath]: businessCardsAPI.reducer,
   [fundIndicatorsAPI.reducerPath]: fundIndicatorsAPI.reducer,
   [reportingsAPI.reducerPath]: reportingsAPI.reducer,
+  [newsAPI.reducerPath]: newsAPI.reducer,
 });
 
 // Создаём функцию setupStore, с помощью её мы будем конфигурировать
@@ -46,7 +48,8 @@ export const setupStore = () => {
         .concat(investPercentsAPI.middleware)
         .concat(businessCardsAPI.middleware)
         .concat(fundIndicatorsAPI.middleware)
-        .concat(reportingsAPI.middleware),
+        .concat(reportingsAPI.middleware)
+        .concat(newsAPI.middleware),
   });
 };
 

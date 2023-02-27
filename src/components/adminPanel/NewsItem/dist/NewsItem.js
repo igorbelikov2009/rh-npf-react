@@ -2,20 +2,13 @@
 exports.__esModule = true;
 var react_1 = require("react");
 var react_bootstrap_1 = require("react-bootstrap");
-var redux_1 = require("../../../hooks/redux");
-var newsReducer_1 = require("../../../store/reducers/newsReducer");
 var NewsItem_module_scss_1 = require("./NewsItem.module.scss");
 var NewsItem = function (_a) {
-    var id = _a.id, title = _a.title, date = _a.date, paragraphs = _a.paragraphs;
     // const history = unstable_HistoryRouter();
-    var dispatch = redux_1.useAppDispanch();
+    var id = _a.id, title = _a.title, date = _a.date, paragraphs = _a.paragraphs, handleRemove = _a.handleRemove;
     var handleHistory = function (e) {
         e.stopPropagation();
         // history.push(`/news/${id}`);
-    };
-    var handleRemove = function (e) {
-        e.stopPropagation();
-        dispatch(newsReducer_1.deleteNewsItem(id));
     };
     return (react_1["default"].createElement("div", { className: NewsItem_module_scss_1["default"]["news-item"] },
         react_1["default"].createElement("h3", { className: NewsItem_module_scss_1["default"]["news-item__id-date"] },

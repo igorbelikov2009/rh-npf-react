@@ -54,13 +54,6 @@ const GoodsData = () => {
             </li>
           ))}
         </ul>
-
-        {/* <div>
-        {formatedDateNews &&
-          formatedDateNews.map((item) => (
-            <GoodsItem key={item.id} id={item.id} title={item.title} date={item.date} paragraphs={item.paragraphs} />
-          ))}
-      </div> */}
       </div>
     </div>
   );

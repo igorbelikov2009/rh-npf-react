@@ -1,23 +1,37 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
+import UserDate from "../api/UserDate/UserDate";
 import NewsItem from "../components/adminPanel/NewsItem/NewsItem";
-import { useAppDispanch, useAppSelector } from "../hooks/redux";
 import { IInfo, INews } from "../models/types";
-import { addNewsItem, getFormatedNews } from "../store/reducers/newsReducer";
+import { useAddNewsMutation, useDeleteNewsMutation, useGetNewsQuery } from "../services/newsAPI";
 import "../styles/dist/AdminPanel.css";
 
 const AdminPanel: FC = () => {
-  // const history = useHistory();
-  // const location = history.location.pathname;
+  // ======================================================= получение данных
+  //// Получаем данные с сервера через микро-service newsAPI
+  const { data, isLoading, error } = useGetNewsQuery();
+  let news: INews[] = [];
+  if (data) {
+    news = data;
+  }
 
-  // Получаем данные с сервера через newsReducer
-  const dispatch = useAppDispanch();
-  const { respon, isLoading, error } = useAppSelector((state) => state.newsReducer);
-  const news = respon.formatedDateNews;
-  useEffect(() => {
-    dispatch(getFormatedNews());
-  }, [dispatch]);
-  //   console.log(news);
+  // Полученный массив новостей сортируем по дате
+  const newsSortedByDate: INews[] = [...news].sort((a, b) =>
+    new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : -1
+  );
+
+  // Далее, в массиве новостей мы форматируем дату
+  const formatedDateNews: INews[] = [...newsSortedByDate].map((item) => ({
+    id: Number(item.id),
+    title: String(item.title),
+    date: String(UserDate.format(new Date(item.date))),
+    paragraphs: item.paragraphs,
+  }));
+
+  // ======================================================= создание, добавление
+  // Для создания нового объекта (newsItem) достаём сгенерированный в newsAPI хук
+  //                   useAddNewsMutation
+  const [addNews, { isLoading: isLoadingAdding }] = useAddNewsMutation();
 
   // title, date, paragraphs для создания нового объекта (newsItem)
   const [title, setTitle] = useState("");
@@ -50,9 +64,9 @@ const AdminPanel: FC = () => {
     setParagraphs(info.map((item) => item.paragraph));
   };
 
-  // создаём новый объект (newsItem), как аргумент:
-  // для dispatch(addPostMich(newsItem)) на этой странице. Строка 65.
-  // для addNewsItem в newsReducer. Строка 49, 56
+  // Создаём новый объект (newsItem), как аргумент:
+  // Для addNews на этой странице, строка 77.
+  // Как body для addNews в newsAPI, строка 19, 22.
   const newsItem: INews = {
     id: 0,
     title: title,
@@ -60,11 +74,10 @@ const AdminPanel: FC = () => {
     paragraphs: paragraphs,
   };
 
-  const handleAddNewsItem = () => {
+  const handleAddNewsItem = async () => {
     if (newsItem.title && newsItem.date && newsItem.paragraphs) {
-      dispatch(addNewsItem(newsItem));
-      console.log(newsItem);
-
+      await addNews(newsItem).unwrap();
+      // console.log(newsItem);
       setTitle("");
       setDate("");
       setInfo([]);
@@ -72,10 +85,19 @@ const AdminPanel: FC = () => {
     }
   };
 
+  // // Для удаления достаём сгенерированный в newsAPI хук useDeleteNewsMutation
+  const [deleteNews, { isLoading: isLoadingDelete }] = useDeleteNewsMutation();
+  const handleDeleteNews = async (id: number) => {
+    await deleteNews(id).unwrap();
+  };
+
   return (
     <div className="admin-panel">
       <div className="admin-panel__container">
         {isLoading && <h1>Loading...</h1>}
+        {isLoadingAdding && <h1>Loading...</h1>}
+        {isLoadingDelete && <h1>Loading...</h1>}
+
         {error && (
           <h1 className="admin-panel__paragraph">
             <> {error} </>
@@ -159,9 +181,16 @@ const AdminPanel: FC = () => {
         <h1 className="admin-panel__heading"> Список всех новостей </h1>
 
         <div>
-          {news &&
-            news.map((item) => (
-              <NewsItem key={item.id} id={item.id} title={item.title} date={item.date} paragraphs={item.paragraphs} />
+          {formatedDateNews &&
+            formatedDateNews.map((item) => (
+              <NewsItem
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                date={item.date}
+                paragraphs={item.paragraphs}
+                handleRemove={() => handleDeleteNews(item.id)}
+              />
             ))}
         </div>
       </div>

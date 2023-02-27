@@ -22,7 +22,7 @@ var ListNews = function () {
     // Получаем данные с сервера через newsReducer
     var dispatch = redux_1.useAppDispanch();
     var _d = redux_1.useAppSelector(function (state) { return state.newsReducer; }), respon = _d.respon, isLoading = _d.isLoading, error = _d.error;
-    var news = respon.newsSortedByDate;
+    var news = respon.newsUsedForComputing;
     react_1.useEffect(function () {
         dispatch(newsReducer_1.getFormatedNews());
     }, [dispatch]);

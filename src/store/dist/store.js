@@ -14,6 +14,7 @@ var investPercentsAPI_1 = require("../services/investPercentsAPI");
 var businesCardsAPI_1 = require("../services/businesCardsAPI");
 var fundIndicatorsAPI_1 = require("../services/fundIndicatorsAPI");
 var reportingsAPI_1 = require("../services/reportingsAPI");
+var newsAPI_1 = require("../services/newsAPI");
 // Создаём корневой редюсер, состоящий из комбинации всех редюсеров
 var rootReducer = toolkit_1.combineReducers((_a = {
         newsReducer: newsReducer_1["default"]
@@ -28,6 +29,7 @@ var rootReducer = toolkit_1.combineReducers((_a = {
     _a[businesCardsAPI_1.businessCardsAPI.reducerPath] = businesCardsAPI_1.businessCardsAPI.reducer,
     _a[fundIndicatorsAPI_1.fundIndicatorsAPI.reducerPath] = fundIndicatorsAPI_1.fundIndicatorsAPI.reducer,
     _a[reportingsAPI_1.reportingsAPI.reducerPath] = reportingsAPI_1.reportingsAPI.reducer,
+    _a[newsAPI_1.newsAPI.reducerPath] = newsAPI_1.newsAPI.reducer,
     _a));
 // Создаём функцию setupStore, с помощью её мы будем конфигурировать
 // наше редакс-хранилище. Без использования toolkit мы использовали
@@ -49,7 +51,8 @@ exports.setupStore = function () {
                 .concat(investPercentsAPI_1.investPercentsAPI.middleware)
                 .concat(businesCardsAPI_1.businessCardsAPI.middleware)
                 .concat(fundIndicatorsAPI_1.fundIndicatorsAPI.middleware)
-                .concat(reportingsAPI_1.reportingsAPI.middleware);
+                .concat(reportingsAPI_1.reportingsAPI.middleware)
+                .concat(newsAPI_1.newsAPI.middleware);
         }
     });
 };

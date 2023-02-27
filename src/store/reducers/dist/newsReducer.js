@@ -50,7 +50,7 @@ var UserDate_1 = require("../../api/UserDate/UserDate");
 exports.getFormatedNews = toolkit_1.createAsyncThunk("news/getFormatedNews", function (_, _a) {
     var rejectWithValue = _a.rejectWithValue;
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, newsSortedByDate, formatedDateNews, respon, error_1;
+        var response, data, newsSortedByDate, newsUsedForComputing, formatedDateNews, respon, error_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -64,14 +64,20 @@ exports.getFormatedNews = toolkit_1.createAsyncThunk("news/getFormatedNews", fun
                     newsSortedByDate = __spreadArrays(data).sort(function (a, b) {
                         return new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : -1;
                     });
-                    formatedDateNews = __spreadArrays(newsSortedByDate).map(function (item) { return ({
+                    newsUsedForComputing = __spreadArrays(newsSortedByDate).map(function (item, index) { return ({
+                        id: Number(index),
+                        title: String(item.title),
+                        date: String(item.date),
+                        paragraphs: item.paragraphs
+                    }); });
+                    formatedDateNews = __spreadArrays(newsUsedForComputing).map(function (item) { return ({
                         id: Number(item.id),
                         title: String(item.title),
                         date: String(UserDate_1["default"].format(new Date(item.date))),
                         paragraphs: item.paragraphs
                     }); });
                     respon = {
-                        newsSortedByDate: newsSortedByDate,
+                        newsUsedForComputing: newsUsedForComputing,
                         formatedDateNews: formatedDateNews
                     };
                     return [2 /*return*/, respon];
@@ -79,7 +85,7 @@ exports.getFormatedNews = toolkit_1.createAsyncThunk("news/getFormatedNews", fun
                     error_1 = _b.sent();
                     // и передам ошибку определённым образом в extraReducers, в метод [getFormatedNews.rejected.type],
                     // где её можно будет корректно обработать.
-                    return [2 /*return*/, rejectWithValue("Запусти сервер. Создай параллельный терминал и скомандуй в нём: json-server --watch db.json --port 5000")];
+                    return [2 /*return*/, rejectWithValue("Запусти сервер командой в параллельном терминале: json-server --watch db.json --port 5000")];
                 case 4: return [2 /*return*/];
             }
         });
@@ -146,7 +152,7 @@ exports.deleteNewsItem = toolkit_1.createAsyncThunk("news/deleteNewsItem", funct
 });
 var initialState = {
     respon: {
-        newsSortedByDate: [],
+        newsUsedForComputing: [],
         formatedDateNews: []
     },
     isLoading: false,

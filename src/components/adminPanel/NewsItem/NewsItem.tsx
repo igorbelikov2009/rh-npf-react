@@ -1,21 +1,21 @@
 import React, { FC } from "react";
 import { Button } from "react-bootstrap";
-import { useAppDispanch } from "../../../hooks/redux";
-import { INews } from "../../../models/types";
-import { deleteNewsItem } from "../../../store/reducers/newsReducer";
 import styles from "./NewsItem.module.scss";
 
-const NewsItem: FC<INews> = ({ id, title, date, paragraphs }) => {
+interface NewsItemProps {
+  id: number;
+  title: string;
+  date: string;
+  paragraphs: string[];
+  handleRemove: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+const NewsItem: FC<NewsItemProps> = ({ id, title, date, paragraphs, handleRemove }) => {
   // const history = unstable_HistoryRouter();
-  const dispatch = useAppDispanch();
 
   const handleHistory = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     // history.push(`/news/${id}`);
-  };
-  const handleRemove = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    dispatch(deleteNewsItem(id));
   };
 
   return (

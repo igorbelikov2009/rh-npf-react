@@ -16,7 +16,7 @@ const ListNews: FC = () => {
   // Получаем данные с сервера через newsReducer
   const dispatch = useAppDispanch();
   const { respon, isLoading, error } = useAppSelector((state) => state.newsReducer);
-  const news = respon.newsSortedByDate;
+  const news = respon.newsUsedForComputing;
 
   useEffect(() => {
     dispatch(getFormatedNews());
