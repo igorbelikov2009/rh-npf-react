@@ -20,7 +20,7 @@ var NewsPage = function () {
     var prevID = Number(id) - 1;
     var nextID = Number(id) + 1;
     var _a = react_1.useState(false), isHovered = _a[0], setHovered = _a[1];
-    // Получаем данные с newsReducer и обрабатываем их.
+    // Получаем данные с newsReducer
     var dispatch = redux_1.useAppDispanch();
     var _b = redux_1.useAppSelector(function (state) { return state.newsReducer; }), respon = _b.respon, isLoading = _b.isLoading, error = _b.error;
     var news = respon.formatedDateNews;

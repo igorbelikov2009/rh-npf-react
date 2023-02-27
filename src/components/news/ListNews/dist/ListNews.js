@@ -42,7 +42,7 @@ var ListNews = function () {
     }, [news, selectedYear]);
     // форматируем дату у новостей, отфильтрованных по годам
     var formatedFilteredByYear = react_1.useMemo(function () {
-        return __spreadArrays(newsFilteredByYear).map(function (item, index) { return ({
+        return __spreadArrays(newsFilteredByYear).map(function (item) { return ({
             id: Number(item.id),
             title: String(item.title),
             date: String(UserDate_1["default"].format(new Date(item.date))),

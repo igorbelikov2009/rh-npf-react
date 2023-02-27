@@ -11,30 +11,19 @@ interface NewsItemProps {
 }
 
 const NewsItem: FC<NewsItemProps> = ({ id, title, date, paragraphs, handleRemove }) => {
-  // const history = unstable_HistoryRouter();
-
-  const handleHistory = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    // history.push(`/news/${id}`);
-  };
-
   return (
     <div className={styles["news-item"]}>
-      <h3 className={styles["news-item__id-date"]}>id: {id} </h3>
-      <p className={styles["news-item__heading"]}> {title} </p>
-      <p className={styles["news-item__id-date"]}> {date} </p>
+      <h3 className={styles["news-item__id"]}>id: {id} </h3>
+      <p className={styles["news-item__title"]}> {title} </p>
+      <p className={styles["news-item__date"]}> {date} </p>
 
       {paragraphs.map((paragraph, index) => (
-        <p key={index} className={styles["news-item__paragraph-before"]}>
+        <p key={index} className={styles["news-item__paragraph"]}>
           {paragraph}
         </p>
       ))}
 
       <div className={styles["news-item__container-button"]}>
-        <Button variant="outline-success" className="mt-2" onClick={handleHistory}>
-          Открыть
-        </Button>
-
         <Button variant={"outline-danger"} onClick={handleRemove}>
           Удалить
         </Button>

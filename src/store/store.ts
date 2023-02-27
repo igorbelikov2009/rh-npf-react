@@ -1,4 +1,3 @@
-import { goodsAPI } from "./../services/GoodsAPI";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import newsReducer from "./reducers/newsReducer";
 import { aboutFundAPI } from "../services/aboutFundAPI";
@@ -15,7 +14,7 @@ import { newsAPI } from "../services/newsAPI";
 // Создаём корневой редюсер, состоящий из комбинации всех редюсеров
 const rootReducer = combineReducers({
   newsReducer,
-  [goodsAPI.reducerPath]: goodsAPI.reducer, // потом удалить
+
   [aboutFundAPI.reducerPath]: aboutFundAPI.reducer,
   [aboutFundCardsAPI.reducerPath]: aboutFundCardsAPI.reducer,
   [investmentCardsApi.reducerPath]: investmentCardsApi.reducer,
@@ -39,7 +38,6 @@ export const setupStore = () => {
     // Затем, методом concat(), добавляем мидлвеер из нашего commentAPI
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware()
-        .concat(goodsAPI.middleware) // потом удалить
         .concat(aboutFundAPI.middleware)
         .concat(aboutFundCardsAPI.middleware)
         .concat(investmentCardsApi.middleware)

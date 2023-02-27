@@ -41,7 +41,7 @@ const ListNews: FC = () => {
 
   // форматируем дату у новостей, отфильтрованных по годам
   const formatedFilteredByYear: INews[] = useMemo(() => {
-    return [...newsFilteredByYear].map((item, index) => ({
+    return [...newsFilteredByYear].map((item) => ({
       id: Number(item.id),
       title: String(item.title),
       date: String(UserDate.format(new Date(item.date))),

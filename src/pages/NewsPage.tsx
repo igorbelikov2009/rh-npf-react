@@ -14,7 +14,7 @@ const NewsPage: FC = () => {
   const nextID = Number(id) + 1;
   const [isHovered, setHovered] = useState(false);
 
-  // Получаем данные с newsReducer и обрабатываем их.
+  // Получаем данные с newsReducer
   const dispatch = useAppDispanch();
   const { respon, isLoading, error } = useAppSelector((state) => state.newsReducer);
   const news = respon.formatedDateNews;

@@ -2,7 +2,6 @@
 var _a;
 exports.__esModule = true;
 exports.setupStore = void 0;
-var GoodsAPI_1 = require("./../services/GoodsAPI");
 var toolkit_1 = require("@reduxjs/toolkit");
 var newsReducer_1 = require("./reducers/newsReducer");
 var aboutFundAPI_1 = require("../services/aboutFundAPI");
@@ -19,7 +18,6 @@ var newsAPI_1 = require("../services/newsAPI");
 var rootReducer = toolkit_1.combineReducers((_a = {
         newsReducer: newsReducer_1["default"]
     },
-    _a[GoodsAPI_1.goodsAPI.reducerPath] = GoodsAPI_1.goodsAPI.reducer,
     _a[aboutFundAPI_1.aboutFundAPI.reducerPath] = aboutFundAPI_1.aboutFundAPI.reducer,
     _a[aboutFundCardsAPI_1.aboutFundCardsAPI.reducerPath] = aboutFundCardsAPI_1.aboutFundCardsAPI.reducer,
     _a[investmentCardsAPI_1.investmentCardsApi.reducerPath] = investmentCardsAPI_1.investmentCardsApi.reducer,
@@ -42,7 +40,6 @@ exports.setupStore = function () {
         // Затем, методом concat(), добавляем мидлвеер из нашего commentAPI
         middleware: function (getDefaultMiddleware) {
             return getDefaultMiddleware()
-                .concat(GoodsAPI_1.goodsAPI.middleware) // потом удалить
                 .concat(aboutFundAPI_1.aboutFundAPI.middleware)
                 .concat(aboutFundCardsAPI_1.aboutFundCardsAPI.middleware)
                 .concat(investmentCardsAPI_1.investmentCardsApi.middleware)

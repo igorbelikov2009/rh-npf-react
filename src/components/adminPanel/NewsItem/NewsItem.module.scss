@@ -4,7 +4,7 @@
   border-top: 1px solid #e4e4e4;
   padding: 24px;
 
-  &__heading {
+  &__title {
     display: block;
     margin-bottom: 24px;
     font-size: 18px;
@@ -17,7 +17,8 @@
     }
   }
 
-  &__id-date {
+  &__id,
+  &__date {
     display: block;
     margin-bottom: 18px;
     font-size: 14px;
@@ -26,14 +27,6 @@
   }
 
   &__paragraph {
-    display: block;
-    margin-bottom: 12px;
-    font-size: 13px;
-    line-height: 18px;
-    color: #28323c;
-  }
-
-  &__paragraph-before {
     margin: 12px 0;
     color: #5a646e;
     font-size: 16px;
@@ -43,24 +36,11 @@
     box-sizing: border-box;
     position: relative;
     margin-left: 32px;
-
-    &::before {
-      position: absolute;
-      content: "";
-      display: block;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background-color: #50287d;
-      left: -24px;
-      top: 8px;
-
-      visibility: hidden;
-    }
   }
 
   &__container-button {
+    margin-top: 24px;
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
   }
 }
