@@ -1,6 +1,6 @@
 import React, { FC, useContext, useState } from "react";
 import InputSubmit from "../../ui/inputs/InputSubmit/InputSubmit";
-import styles from "./CallBack.module.scss";
+import styles from "./AdminLogin.module.scss";
 import { useForm, SubmitHandler } from "react-hook-form";
 import InputTitle from "../../ui/inputs/InputTitle/InputTitle";
 import { AuthContext } from "../../../context";
@@ -11,11 +11,11 @@ type Inputs = {
   phone: string;
 };
 
-interface CallBackProps {
+interface AdminLoginProps {
   closeCallBack: () => void;
 }
 
-const CallBack: FC<CallBackProps> = ({ closeCallBack }) => {
+const AdminLogin: FC<AdminLoginProps> = ({ closeCallBack }) => {
   const { isAuth, setAuth } = useContext(AuthContext);
   // console.log(isAuth);
 
@@ -63,10 +63,11 @@ const CallBack: FC<CallBackProps> = ({ closeCallBack }) => {
   };
 
   return (
-    <form className={styles["call-back"]} onSubmit={handleSubmit(onSubmit)}>
-      <div className={styles["call-back__input-container"]}>
+    <form className={styles["admin-login"]} onSubmit={handleSubmit(onSubmit)}>
+      <p className={styles["admin-login__admin"]}>Вы администратор?</p>
+      <div className={styles["admin-login__input-container"]}>
         <label className={styles["my-input__label"]}>
-          <InputTitle title="Вы администратор? Ваше имя." isDormancy={isDormancyUserName} />
+          <InputTitle title="Ваше имя" isDormancy={isDormancyUserName} />
 
           <input
             className={errors?.userName ? styles["my-input__field_invalid"] : styles["my-input__field"]}
@@ -96,7 +97,7 @@ const CallBack: FC<CallBackProps> = ({ closeCallBack }) => {
         </label>
       </div>
 
-      <div className={styles["call-back__input-container"]}>
+      <div className={styles["admin-login__input-container"]}>
         <label className={styles["my-input__label"]}>
           <InputTitle title="Телефон" isDormancy={isDormancyPhone} />
 
@@ -131,15 +132,15 @@ const CallBack: FC<CallBackProps> = ({ closeCallBack }) => {
         </label>
       </div>
 
-      <div className={styles["call-back__button-container"]}>
+      <div className={styles["admin-login__button-container"]}>
         <InputSubmit children="Отправить" disabled={!isValid} />
       </div>
 
-      <div className={styles["call-back__button-container"]} onClick={handleSignOut}>
+      <div className={styles["admin-login__button-container"]} onClick={handleSignOut}>
         <PrimaryButton children="Выйти" disabled={!isAuth} />
       </div>
     </form>
   );
 };
 
-export default CallBack;
+export default AdminLogin;

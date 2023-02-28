@@ -7,7 +7,8 @@ exports.AuthContext = react_1.createContext({
     setBackgroundWhite: function () { },
     isAuth: false,
     setAuth: function () { },
-    isLoading: true
+    isAdminLoginVisible: false,
+    setAdminLoginVisible: function () { }
 });
 /*
 У нас есть useEffect в App.tsx, который автоматически записывает setAuth(true)
@@ -16,9 +17,5 @@ exports.AuthContext = react_1.createContext({
     if (localStorage.getItem("auth-renaissance")) {
       setAuth(true);
     }
-    // здесь isLoading, асинхронно, с задержкой по времени, меняет своё
-    // значение. Эта задержка с (true) на (false) не позволяет в AppRouter
-    // сделать редирект на MAIN_ROUTE
-    setLoading(false);
   }, []);
 */

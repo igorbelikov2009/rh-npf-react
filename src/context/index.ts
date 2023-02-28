@@ -5,7 +5,8 @@ interface IAuthContext {
   setBackgroundWhite: React.Dispatch<React.SetStateAction<boolean>>;
   isAuth: boolean;
   setAuth: React.Dispatch<React.SetStateAction<boolean>>;
-  isLoading: boolean;
+  isAdminLoginVisible: boolean;
+  setAdminLoginVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const AuthContext = createContext<IAuthContext>({
@@ -13,7 +14,8 @@ export const AuthContext = createContext<IAuthContext>({
   setBackgroundWhite: () => {},
   isAuth: false,
   setAuth: () => {},
-  isLoading: true,
+  isAdminLoginVisible: false,
+  setAdminLoginVisible: () => {},
 });
 
 /*
@@ -23,9 +25,5 @@ export const AuthContext = createContext<IAuthContext>({
     if (localStorage.getItem("auth-renaissance")) {
       setAuth(true);
     }
-    // здесь isLoading, асинхронно, с задержкой по времени, меняет своё
-    // значение. Эта задержка с (true) на (false) не позволяет в AppRouter
-    // сделать редирект на MAIN_ROUTE
-    setLoading(false);
   }, []);
 */

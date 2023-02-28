@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context";
 
 const Footer: FC = () => {
-  const { isAuth } = useContext(AuthContext);
+  const { isAuth, setAdminLoginVisible } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const FirstBlock: FooterLinkProps[] = [
@@ -41,35 +41,24 @@ const Footer: FC = () => {
     },
   ];
 
-  let ThirdBlock: FooterLinkProps[] = [];
+  let ThirdBlock: FooterLinkProps[] = [
+    {
+      children: "Раскрытие информации",
+      to: "/info",
+    },
+    {
+      children: "Инвестиционная деятельность",
+      to: "/investment",
+    },
+  ];
 
-  if (isAuth) {
-    ThirdBlock = [
-      {
-        children: "Раскрытие информации",
-        to: "/info",
-      },
-      {
-        children: "Инвестиционная деятельность",
-        to: "/investment",
-      },
-      {
-        children: "Панель администратора",
-        to: "/adminpanel",
-      },
-    ];
-  } else {
-    ThirdBlock = [
-      {
-        children: "Раскрытие информации",
-        to: "/info",
-      },
-      {
-        children: "Инвестиционная деятельность",
-        to: "/investment",
-      },
-    ];
-  }
+  const handleAdminLink = () => {
+    if (isAuth) {
+      return;
+    } else {
+      setAdminLoginVisible(true);
+    }
+  };
 
   return (
     <footer className="footer">
@@ -115,6 +104,14 @@ const Footer: FC = () => {
                 {link.children}
               </FooterLink>
             ))}
+
+            <div className="footer__admin-link" onClick={handleAdminLink}>
+              {isAuth ? (
+                <FooterLink children="Панель администратора" to="/adminpanel" />
+              ) : (
+                <p className="footer__admin-paragraph">Панель администратора</p>
+              )}
+            </div>
           </div>
 
           <div className="footer__column">

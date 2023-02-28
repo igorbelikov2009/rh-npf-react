@@ -13,12 +13,12 @@ var __assign = (this && this.__assign) || function () {
 exports.__esModule = true;
 var react_1 = require("react");
 var InputSubmit_1 = require("../../ui/inputs/InputSubmit/InputSubmit");
-var CallBack_module_scss_1 = require("./CallBack.module.scss");
+var AdminLogin_module_scss_1 = require("./AdminLogin.module.scss");
 var react_hook_form_1 = require("react-hook-form");
 var InputTitle_1 = require("../../ui/inputs/InputTitle/InputTitle");
 var context_1 = require("../../../context");
 var PrimaryButton_1 = require("../../ui/buttons/PrimaryButton/PrimaryButton");
-var CallBack = function (_a) {
+var AdminLogin = function (_a) {
     var _b, _c;
     var closeCallBack = _a.closeCallBack;
     var _d = react_1.useContext(context_1.AuthContext), isAuth = _d.isAuth, setAuth = _d.setAuth;
@@ -59,11 +59,12 @@ var CallBack = function (_a) {
         localStorage.setItem("auth-renaissance", "false");
         closeCallBack();
     };
-    return (react_1["default"].createElement("form", { className: CallBack_module_scss_1["default"]["call-back"], onSubmit: handleSubmit(onSubmit) },
-        react_1["default"].createElement("div", { className: CallBack_module_scss_1["default"]["call-back__input-container"] },
-            react_1["default"].createElement("label", { className: CallBack_module_scss_1["default"]["my-input__label"] },
-                react_1["default"].createElement(InputTitle_1["default"], { title: "\u0412\u044B \u0430\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440? \u0412\u0430\u0448\u0435 \u0438\u043C\u044F.", isDormancy: isDormancyUserName }),
-                react_1["default"].createElement("input", __assign({ className: (errors === null || errors === void 0 ? void 0 : errors.userName) ? CallBack_module_scss_1["default"]["my-input__field_invalid"] : CallBack_module_scss_1["default"]["my-input__field"], type: "text" }, register("userName", {
+    return (react_1["default"].createElement("form", { className: AdminLogin_module_scss_1["default"]["admin-login"], onSubmit: handleSubmit(onSubmit) },
+        react_1["default"].createElement("p", { className: AdminLogin_module_scss_1["default"]["admin-login__admin"] }, "\u0412\u044B \u0430\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440?"),
+        react_1["default"].createElement("div", { className: AdminLogin_module_scss_1["default"]["admin-login__input-container"] },
+            react_1["default"].createElement("label", { className: AdminLogin_module_scss_1["default"]["my-input__label"] },
+                react_1["default"].createElement(InputTitle_1["default"], { title: "\u0412\u0430\u0448\u0435 \u0438\u043C\u044F", isDormancy: isDormancyUserName }),
+                react_1["default"].createElement("input", __assign({ className: (errors === null || errors === void 0 ? void 0 : errors.userName) ? AdminLogin_module_scss_1["default"]["my-input__field_invalid"] : AdminLogin_module_scss_1["default"]["my-input__field"], type: "text" }, register("userName", {
                     required: "Это поле обязательно к заполнению",
                     onChange: function (event) {
                         setDormancyUserName(false);
@@ -78,14 +79,14 @@ var CallBack = function (_a) {
                         message: "Минимум 3 символов"
                     }
                 }))),
-                (errors === null || errors === void 0 ? void 0 : errors.userName) && (react_1["default"].createElement("span", { className: CallBack_module_scss_1["default"]["my-input__error"] },
+                (errors === null || errors === void 0 ? void 0 : errors.userName) && (react_1["default"].createElement("span", { className: AdminLogin_module_scss_1["default"]["my-input__error"] },
                     react_1["default"].createElement(react_1["default"].Fragment, null,
                         " ",
                         ((_b = errors === null || errors === void 0 ? void 0 : errors.userName) === null || _b === void 0 ? void 0 : _b.message) || "Error!"))))),
-        react_1["default"].createElement("div", { className: CallBack_module_scss_1["default"]["call-back__input-container"] },
-            react_1["default"].createElement("label", { className: CallBack_module_scss_1["default"]["my-input__label"] },
+        react_1["default"].createElement("div", { className: AdminLogin_module_scss_1["default"]["admin-login__input-container"] },
+            react_1["default"].createElement("label", { className: AdminLogin_module_scss_1["default"]["my-input__label"] },
                 react_1["default"].createElement(InputTitle_1["default"], { title: "\u0422\u0435\u043B\u0435\u0444\u043E\u043D", isDormancy: isDormancyPhone }),
-                react_1["default"].createElement("input", __assign({ className: (errors === null || errors === void 0 ? void 0 : errors.phone) ? CallBack_module_scss_1["default"]["my-input__field_invalid"] : CallBack_module_scss_1["default"]["my-input__field"], type: "tel" }, register("phone", {
+                react_1["default"].createElement("input", __assign({ className: (errors === null || errors === void 0 ? void 0 : errors.phone) ? AdminLogin_module_scss_1["default"]["my-input__field_invalid"] : AdminLogin_module_scss_1["default"]["my-input__field"], type: "tel" }, register("phone", {
                     required: "Это поле обязательно к заполнению",
                     onChange: function (event) {
                         setDormancyPhone(false);
@@ -104,14 +105,14 @@ var CallBack = function (_a) {
                         message: "Максимум 16 символов"
                     }
                 }))),
-                (errors === null || errors === void 0 ? void 0 : errors.phone) && (react_1["default"].createElement("span", { className: CallBack_module_scss_1["default"]["my-input__error"] },
+                (errors === null || errors === void 0 ? void 0 : errors.phone) && (react_1["default"].createElement("span", { className: AdminLogin_module_scss_1["default"]["my-input__error"] },
                     react_1["default"].createElement(react_1["default"].Fragment, null,
                         " ",
                         ((_c = errors === null || errors === void 0 ? void 0 : errors.phone) === null || _c === void 0 ? void 0 : _c.message) || "Error!",
                         " "))))),
-        react_1["default"].createElement("div", { className: CallBack_module_scss_1["default"]["call-back__button-container"] },
+        react_1["default"].createElement("div", { className: AdminLogin_module_scss_1["default"]["admin-login__button-container"] },
             react_1["default"].createElement(InputSubmit_1["default"], { children: "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C", disabled: !isValid })),
-        react_1["default"].createElement("div", { className: CallBack_module_scss_1["default"]["call-back__button-container"], onClick: handleSignOut },
+        react_1["default"].createElement("div", { className: AdminLogin_module_scss_1["default"]["admin-login__button-container"], onClick: handleSignOut },
             react_1["default"].createElement(PrimaryButton_1["default"], { children: "\u0412\u044B\u0439\u0442\u0438", disabled: !isAuth }))));
 };
-exports["default"] = CallBack;
+exports["default"] = AdminLogin;

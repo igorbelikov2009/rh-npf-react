@@ -135,6 +135,28 @@
     }
   }
 
+  &__admin-link {
+    margin-top: 16px;
+  }
+
+  &__admin-paragraph {
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 24px;
+    margin-bottom: 0;
+    color: #78828c;
+
+    &:hover {
+      color: #28323c;
+    }
+
+    @media screen and (min-width: 768px) {
+      margin-bottom: 16px;
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+
   &__copyright-link {
     max-width: 360px;
     text-decoration: none;

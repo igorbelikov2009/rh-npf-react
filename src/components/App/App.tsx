@@ -5,24 +5,27 @@ import { AuthContext } from "../../context/index";
 
 const App: FC = () => {
   const [isAuth, setAuth] = useState<boolean>(false);
-  const [isLoading, setLoading] = useState(true);
   const [isBackgroundWhite, setBackgroundWhite] = useState(false);
-  // isLoading в данном месте нужен для того, чтобы нас не редиректило
-  // на главную страницу при обновлении любой другой.
+  const [isAdminLoginVisible, setAdminLoginVisible] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("auth-renaissance")) {
       setAuth(true);
     }
-    // здесь isLoading, асинхронно, с задержкой по времени, меняет своё
-    // значение. Эта задержка с (true) на (false) не позволяет в AppRouter
-    // сделать редирект на MAIN_ROUTE
-    setLoading(false);
   }, []);
 
   return (
     <div className={styles.App}>
-      <AuthContext.Provider value={{ isAuth, setAuth, isBackgroundWhite, setBackgroundWhite, isLoading }}>
+      <AuthContext.Provider
+        value={{
+          isAuth,
+          setAuth,
+          isBackgroundWhite,
+          setBackgroundWhite,
+          isAdminLoginVisible,
+          setAdminLoginVisible,
+        }}
+      >
         <AppRouter />
       </AuthContext.Provider>
     </div>

@@ -9,16 +9,15 @@ var MenuLink_1 = require("../../ui/links/MenuLink/MenuLink");
 var TripleIcon_1 = require("../../general/TripleIcon/TripleIcon");
 var MenuMobil_1 = require("../MenuMobil/MenuMobil");
 var LoginForm_1 = require("../LoginForm/LoginForm");
-var CallBack_1 = require("../CallBack/CallBack");
 var context_1 = require("../../../context");
+var AdminLogin_1 = require("../AdminLogin/AdminLogin");
 var TopMenu = function () {
-    var _a = react_1.useContext(context_1.AuthContext), isBackgroundWhite = _a.isBackgroundWhite, setBackgroundWhite = _a.setBackgroundWhite;
+    var _a = react_1.useContext(context_1.AuthContext), isBackgroundWhite = _a.isBackgroundWhite, setBackgroundWhite = _a.setBackgroundWhite, isAdminLoginVisible = _a.isAdminLoginVisible, setAdminLoginVisible = _a.setAdminLoginVisible;
     var navigate = react_router_dom_1.useNavigate();
     var _b = react_1.useState(false), isPrivateOfficeHovered = _b[0], setPrivateOfficeHovered = _b[1];
     var _c = react_1.useState(false), isHamburgerHovered = _c[0], setHamburgerHovered = _c[1];
     var _d = react_1.useState(false), isMenuMobilVisible = _d[0], setMenuMobilVisible = _d[1];
     var _e = react_1.useState(false), isLoginFormVisible = _e[0], setLoginFormVisible = _e[1];
-    var _f = react_1.useState(false), isCallBackVisible = _f[0], setCallBackVisible = _f[1];
     var pathname = react_router_dom_1.useLocation().pathname;
     // console.log(pathname);
     var TopMenuLinks = [
@@ -63,11 +62,11 @@ var TopMenu = function () {
         document.body.style.overflow = "";
     };
     var openCallBack = function () {
-        setCallBackVisible(!isCallBackVisible);
+        setAdminLoginVisible(!isAdminLoginVisible);
         // document.body.style.overflow = "hidden";
     };
     var closeCallBack = function () {
-        setCallBackVisible(false);
+        setAdminLoginVisible(false);
         // document.body.style.overflow = "";
     };
     return (react_1["default"].createElement("header", { className: isBackgroundWhite ? TopMenu_module_scss_1["default"]["top-menu__with-border"] : TopMenu_module_scss_1["default"]["top-menu"] },
@@ -88,7 +87,7 @@ var TopMenu = function () {
                     react_1["default"].createElement("p", { className: isBackgroundWhite ? TopMenu_module_scss_1["default"]["top-menu__title_news"] : TopMenu_module_scss_1["default"]["top-menu__title"] }, "\u041B\u0438\u0447\u043D\u044B\u0439 \u043A\u0430\u0431\u0438\u043D\u0435\u0442")))),
         react_1["default"].createElement(LoginForm_1["default"], { isVisible: isLoginFormVisible, closeLoginForm: closeLoginForm }),
         react_1["default"].createElement(MenuMobil_1["default"], { isVisible: isMenuMobilVisible, closeMenuMobil: closeMenuMobil }),
-        react_1["default"].createElement(framer_motion_1.AnimatePresence, null, isCallBackVisible && (react_1["default"].createElement(framer_motion_1.motion.div, { initial: { height: 0, opacity: 0 }, animate: { height: "auto", opacity: 1 }, exit: { height: 0, opacity: 0 }, style: { overflow: "hidden" } },
-            react_1["default"].createElement(CallBack_1["default"], { closeCallBack: closeCallBack }))))));
+        react_1["default"].createElement(framer_motion_1.AnimatePresence, null, isAdminLoginVisible && (react_1["default"].createElement(framer_motion_1.motion.div, { initial: { height: 0, opacity: 0 }, animate: { height: "auto", opacity: 1 }, exit: { height: 0, opacity: 0 }, style: { overflow: "hidden" } },
+            react_1["default"].createElement(AdminLogin_1["default"], { closeCallBack: closeCallBack }))))));
 };
 exports["default"] = TopMenu;

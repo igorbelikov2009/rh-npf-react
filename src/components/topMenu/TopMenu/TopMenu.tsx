@@ -2,24 +2,22 @@ import { motion, AnimatePresence } from "framer-motion"; // анимация
 import React, { FC, useEffect, useState, useContext } from "react";
 import styles from "./TopMenu.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
-
 import Logotypes from "../../general/Logotypes/Logotypes";
 import MenuLink, { MenuLinkProps } from "../../ui/links/MenuLink/MenuLink";
 import TripleIcon from "../../general/TripleIcon/TripleIcon";
 import MenuMobil from "../MenuMobil/MenuMobil";
 import LoginForm from "../LoginForm/LoginForm";
-import CallBack from "../CallBack/CallBack";
 import { AuthContext } from "../../../context";
+import AdminLogin from "../AdminLogin/AdminLogin";
 
 const TopMenu: FC = () => {
-  const { isBackgroundWhite, setBackgroundWhite } = useContext(AuthContext);
+  const { isBackgroundWhite, setBackgroundWhite, isAdminLoginVisible, setAdminLoginVisible } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const [isPrivateOfficeHovered, setPrivateOfficeHovered] = useState(false);
   const [isHamburgerHovered, setHamburgerHovered] = useState(false);
   const [isMenuMobilVisible, setMenuMobilVisible] = useState(false);
   const [isLoginFormVisible, setLoginFormVisible] = useState(false);
-  const [isCallBackVisible, setCallBackVisible] = useState(false);
 
   const pathname = useLocation().pathname;
   // console.log(pathname);
@@ -72,12 +70,12 @@ const TopMenu: FC = () => {
   };
 
   const openCallBack = () => {
-    setCallBackVisible(!isCallBackVisible);
+    setAdminLoginVisible(!isAdminLoginVisible);
     // document.body.style.overflow = "hidden";
   };
 
   const closeCallBack = () => {
-    setCallBackVisible(false);
+    setAdminLoginVisible(false);
     // document.body.style.overflow = "";
   };
 
@@ -145,14 +143,14 @@ const TopMenu: FC = () => {
       <MenuMobil isVisible={isMenuMobilVisible} closeMenuMobil={closeMenuMobil} />
 
       <AnimatePresence>
-        {isCallBackVisible && (
+        {isAdminLoginVisible && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             style={{ overflow: "hidden" }}
           >
-            <CallBack closeCallBack={closeCallBack} />
+            <AdminLogin closeCallBack={closeCallBack} />
           </motion.div>
         )}
       </AnimatePresence>

@@ -17,21 +17,19 @@ var LoginForm_module_scss_1 = require("./LoginForm.module.scss");
 var react_hook_form_1 = require("react-hook-form");
 var Checkbox_1 = require("../../ui/Checkbox/Checkbox");
 var InputSubmit_1 = require("../../ui/inputs/InputSubmit/InputSubmit");
-var context_1 = require("../../../context");
 var LoginForm = function (_a) {
     var _b;
     var closeLoginForm = _a.closeLoginForm, isVisible = _a.isVisible;
-    var _c = react_1.useContext(context_1.AuthContext), isAuth = _c.isAuth, setAuth = _c.setAuth;
-    var _d = react_1.useState(true), isDormancyPhone = _d[0], setDormancyPhone = _d[1];
-    var _e = react_1.useState(false), isAgree = _e[0], setAgree = _e[1];
+    var _c = react_1.useState(true), isDormancyPhone = _c[0], setDormancyPhone = _c[1];
+    var _d = react_1.useState(false), isAgree = _d[0], setAgree = _d[1];
     var titleCheckbox = "Я прочитал(-а)";
     var spanCheckbox = " условия соглашения ";
     var subtitleCheckbox = "и, нажимая кнопку «Продолжить», принимаю их";
-    var _f = react_hook_form_1.useForm({ mode: "all" }), register = _f.register, // позволяет регистрировать различные поля для форм
-    _g = _f.formState, errors = _g.errors, isValid = _g.isValid, // объект с ошибками и т.д...
-    handleSubmit = _f.handleSubmit, // некая обертка над нашим кастомным обработчиком отправки формы, она позволяет делать магии, связанные с валидацией.
-    reset = _f.reset, // для очистки полей после отправки формы
-    watch = _f.watch; // all / onBlur / onChange / onSubmit / onTouched
+    var _e = react_hook_form_1.useForm({ mode: "all" }), register = _e.register, // позволяет регистрировать различные поля для форм
+    _f = _e.formState, errors = _f.errors, isValid = _f.isValid, // объект с ошибками и т.д...
+    handleSubmit = _e.handleSubmit, // некая обертка над нашим кастомным обработчиком отправки формы, она позволяет делать магии, связанные с валидацией.
+    reset = _e.reset, // для очистки полей после отправки формы
+    watch = _e.watch; // all / onBlur / onChange / onSubmit / onTouched
     // наш кастомный обработчик отправки формы
     var onSubmit = function (data) {
         //  data - это набор данных из нашей формы
