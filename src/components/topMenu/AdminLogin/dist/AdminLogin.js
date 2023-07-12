@@ -20,7 +20,7 @@ var context_1 = require("../../../context");
 var PrimaryButton_1 = require("../../ui/buttons/PrimaryButton/PrimaryButton");
 var AdminLogin = function (_a) {
     var _b, _c;
-    var closeCallBack = _a.closeCallBack;
+    var closeAdminLogin = _a.closeAdminLogin;
     var _d = react_1.useContext(context_1.AuthContext), isAuth = _d.isAuth, setAuth = _d.setAuth;
     // console.log(isAuth);
     var _e = react_1.useState(true), isDormancyUserName = _e[0], setDormancyUserName = _e[1];
@@ -43,7 +43,7 @@ var AdminLogin = function (_a) {
         reset();
         setDormancyUserName(true);
         setDormancyPhone(true);
-        closeCallBack();
+        closeAdminLogin();
     };
     // console.log(watch("firstName")); // следит за изменением значения
     // Восстановить из localStorage
@@ -57,7 +57,7 @@ var AdminLogin = function (_a) {
         e.stopPropagation();
         setAuth(false);
         localStorage.setItem("auth-renaissance", "false");
-        closeCallBack();
+        closeAdminLogin();
     };
     return (react_1["default"].createElement("form", { className: AdminLogin_module_scss_1["default"]["admin-login"], onSubmit: handleSubmit(onSubmit) },
         react_1["default"].createElement("p", { className: AdminLogin_module_scss_1["default"]["admin-login__admin"] }, "\u0412\u044B \u0430\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440?"),

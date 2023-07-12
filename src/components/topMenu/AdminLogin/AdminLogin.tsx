@@ -12,10 +12,10 @@ type Inputs = {
 };
 
 interface AdminLoginProps {
-  closeCallBack: () => void;
+  closeAdminLogin: () => void;
 }
 
-const AdminLogin: FC<AdminLoginProps> = ({ closeCallBack }) => {
+const AdminLogin: FC<AdminLoginProps> = ({ closeAdminLogin }) => {
   const { isAuth, setAuth } = useContext(AuthContext);
   // console.log(isAuth);
 
@@ -43,7 +43,7 @@ const AdminLogin: FC<AdminLoginProps> = ({ closeCallBack }) => {
     reset();
     setDormancyUserName(true);
     setDormancyPhone(true);
-    closeCallBack();
+    closeAdminLogin();
   };
   // console.log(watch("firstName")); // следит за изменением значения
 
@@ -59,7 +59,7 @@ const AdminLogin: FC<AdminLoginProps> = ({ closeCallBack }) => {
     e.stopPropagation();
     setAuth(false);
     localStorage.setItem("auth-renaissance", "false");
-    closeCallBack();
+    closeAdminLogin();
   };
 
   return (

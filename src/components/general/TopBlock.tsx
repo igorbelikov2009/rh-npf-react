@@ -15,10 +15,13 @@ const TopBlock: FC<TopBlockProps> = ({ heading, headingSpan, subheading, subhead
       <div className="top-block__container">
         <h1 className="top-block__heading">
           {heading}
+
           <span className="top-block__heading_span"> {headingSpan} </span>
         </h1>
+
         <h2 className="top-block__subheading">
           {subheading}
+
           <span className="top-block__subheading_span">{subheadingSpan}</span>
         </h2>
       </div>

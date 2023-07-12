@@ -1,4 +1,5 @@
 import React from "react";
+// questionsAboutPension достаём из данных
 import { questionsAboutPension } from "../../../data/serviceSupportData";
 import ExpandingAnswer from "../../general/expanding/ExpandingAnswer/ExpandingAnswer";
 import QuestionAnswerTable from "../QuestionAnswerTable/QuestionAnswerTable";

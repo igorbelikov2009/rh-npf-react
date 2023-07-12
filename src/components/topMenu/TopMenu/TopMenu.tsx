@@ -13,12 +13,12 @@ import AdminLogin from "../AdminLogin/AdminLogin";
 const TopMenu: FC = () => {
   const { isBackgroundWhite, setBackgroundWhite, isAdminLoginVisible, setAdminLoginVisible } = useContext(AuthContext);
 
-  const navigate = useNavigate();
   const [isPrivateOfficeHovered, setPrivateOfficeHovered] = useState(false);
   const [isHamburgerHovered, setHamburgerHovered] = useState(false);
   const [isMenuMobilVisible, setMenuMobilVisible] = useState(false);
   const [isLoginFormVisible, setLoginFormVisible] = useState(false);
 
+  const navigate = useNavigate();
   const pathname = useLocation().pathname;
   // console.log(pathname);
 
@@ -52,12 +52,20 @@ const TopMenu: FC = () => {
 
   const openLoginForm = () => {
     setLoginFormVisible((prev) => !prev);
-    document.body.style.overflow = "hidden";
+    if (isLoginFormVisible) {
+      document.body.style.overflow = "";
+    } else {
+      document.body.style.overflow = "hidden";
+    }
   };
 
   const closeLoginForm = () => {
     setLoginFormVisible((prev) => !prev);
-    document.body.style.overflow = "";
+    if (isLoginFormVisible) {
+      document.body.style.overflow = "";
+    } else {
+      document.body.style.overflow = "hidden";
+    }
   };
 
   const openMenuMobil = () => {
@@ -69,12 +77,12 @@ const TopMenu: FC = () => {
     document.body.style.overflow = "";
   };
 
-  const openCallBack = () => {
+  const openAdminLogin = () => {
     setAdminLoginVisible(!isAdminLoginVisible);
     // document.body.style.overflow = "hidden";
   };
 
-  const closeCallBack = () => {
+  const closeAdminLogin = () => {
     setAdminLoginVisible(false);
     // document.body.style.overflow = "";
   };
@@ -116,7 +124,7 @@ const TopMenu: FC = () => {
               </a>
 
               <button
-                onClick={openCallBack}
+                onClick={openAdminLogin}
                 className={isBackgroundWhite ? styles["top-menu__call-back_news"] : styles["top-menu__call-back"]}
               >
                 администратор
@@ -150,7 +158,7 @@ const TopMenu: FC = () => {
             exit={{ height: 0, opacity: 0 }}
             style={{ overflow: "hidden" }}
           >
-            <AdminLogin closeCallBack={closeCallBack} />
+            <AdminLogin closeAdminLogin={closeAdminLogin} />
           </motion.div>
         )}
       </AnimatePresence>

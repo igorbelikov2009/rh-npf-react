@@ -62,6 +62,7 @@ const Calculator: FC = () => {
       throw new Error("Function not implemented.");
     },
   };
+
   const periodPaymentPensionSlider: SliderProps = {
     title: "Срок выплаты пенсии, лет",
     name: "periodPaymentPension",

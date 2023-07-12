@@ -1,6 +1,7 @@
 "use strict";
 exports.__esModule = true;
 var react_1 = require("react");
+// questionsAboutPension достаём из данных
 var serviceSupportData_1 = require("../../../data/serviceSupportData");
 var ExpandingAnswer_1 = require("../../general/expanding/ExpandingAnswer/ExpandingAnswer");
 var QuestionAnswerTable_1 = require("../QuestionAnswerTable/QuestionAnswerTable");

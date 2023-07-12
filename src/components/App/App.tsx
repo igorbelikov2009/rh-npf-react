@@ -33,3 +33,13 @@ const App: FC = () => {
 };
 
 export default App;
+
+/*
+У нас есть useEffect в App.tsx, который автоматически записывает setAuth(true)
+при условии, если хотя бы раз логинился в CallBack.tsx 
+  useEffect(() => {
+    if (localStorage.getItem("auth-renaissance")) {
+      setAuth(true);
+    }
+  }, []);
+*/
