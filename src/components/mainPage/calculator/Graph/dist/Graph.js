@@ -2,10 +2,10 @@
 exports.__esModule = true;
 var react_1 = require("react");
 var Graph_module_scss_1 = require("./Graph.module.scss");
-var listItems = Array(19)
-    .fill(null)
-    .map(function () { return react_1["default"].createElement("div", { className: Graph_module_scss_1["default"]["graph__vertical-line"] }); });
 var Graph = function () {
+    var listItems = Array(19)
+        .fill(null)
+        .map(function () { return react_1["default"].createElement("div", { className: Graph_module_scss_1["default"]["graph__vertical-line"] }); });
     return (react_1["default"].createElement("div", { className: Graph_module_scss_1["default"]["graph"] },
         react_1["default"].createElement("div", { className: Graph_module_scss_1["default"]["graph__diagram"] }, listItems),
         react_1["default"].createElement("div", { className: Graph_module_scss_1["default"]["graph__years"] },

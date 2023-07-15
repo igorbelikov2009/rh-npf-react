@@ -8,7 +8,6 @@ var Calc_1 = require("../components/mainPage/calculator/Calc/Calc");
 var ImagesCalculator_1 = require("../components/mainPage/ImagesCalculator/ImagesCalculator");
 var NewsBlock_1 = require("../components/mainPage/newsBlock/NewsBlock/NewsBlock");
 var Cards_1 = require("../components/general/cards/Cards/Cards");
-// import BottomBlock from "../components/mainPage/BottomBlock/BottomBlock";
 var MainPage = function () {
     var cards = [
         {

@@ -12,8 +12,10 @@ const CardsCard: FC<ICard> = ({ icon, title, span, subtitle }) => {
 
       <div>
         <p className={styles["cards-card__title"]}>
-          {title} <span className={styles["cards-card__span"]}> {span} </span>
+          {title}
+          <span className={styles["cards-card__span"]}> {span} </span>
         </p>
+
         <p className={styles["cards-card__subtitle"]}>{subtitle}</p>
       </div>
     </div>

@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./Graph.module.scss";
 
-const listItems = Array(19)
-  .fill(null)
-  .map(() => <div className={styles["graph__vertical-line"]}></div>);
-
 const Graph = () => {
+  const listItems = Array(19)
+    .fill(null)
+    .map(() => <div className={styles["graph__vertical-line"]}></div>);
+
   return (
     <div className={styles["graph"]}>
       <div className={styles["graph__diagram"]}>{listItems}</div>

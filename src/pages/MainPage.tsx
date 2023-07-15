@@ -7,7 +7,6 @@ import ImagesCalculator from "../components/mainPage/ImagesCalculator/ImagesCalc
 import NewsBlock from "../components/mainPage/newsBlock/NewsBlock/NewsBlock";
 import Cards from "../components/general/cards/Cards/Cards";
 import { ICard } from "../models/types";
-// import BottomBlock from "../components/mainPage/BottomBlock/BottomBlock";
 
 const MainPage: FC = () => {
   const cards: ICard[] = [
@@ -61,8 +60,6 @@ const MainPage: FC = () => {
 
       <ImagesCalculator />
       <NewsBlock />
-
-      {/* <BottomBlock /> */}
     </>
   );
 };

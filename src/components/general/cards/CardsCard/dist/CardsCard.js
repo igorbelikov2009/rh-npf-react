@@ -11,7 +11,6 @@ var CardsCard = function (_a) {
         react_1["default"].createElement("div", null,
             react_1["default"].createElement("p", { className: CardsCard_module_scss_1["default"]["cards-card__title"] },
                 title,
-                " ",
                 react_1["default"].createElement("span", { className: CardsCard_module_scss_1["default"]["cards-card__span"] },
                     " ",
                     span,

@@ -4,7 +4,7 @@ import DarkIcon from "../../general/DarkIcon/DarkIcon";
 import styles from "./BusinnesStatistic.module.scss";
 
 const BusinnesStatistic = () => {
-  const cards: ICard[] = [
+  const cardsBusinnesStatistic: ICard[] = [
     {
       icon: "Invest",
       subtitle: "Полная прозрачность инвестиционного процесса",
@@ -34,7 +34,7 @@ const BusinnesStatistic = () => {
       <h2 className={styles["businnes-statistic__subheading"]}>Преимущества Фонда</h2>
 
       <div className={styles["businnes-statistic__container"]}>
-        {cards.map((card, index) => (
+        {cardsBusinnesStatistic.map((card, index) => (
           <div key={index} className={styles["businnes-statistic__card"]}>
             <div className={styles["businnes-statistic__icon"]}>
               <DarkIcon icon={card.icon} />
