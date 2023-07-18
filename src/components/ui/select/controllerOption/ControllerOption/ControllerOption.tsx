@@ -6,7 +6,7 @@ import styles from "./ControllerOption.module.scss";
 
 interface ControllerOptionProps {
   isRadioListVisible: boolean;
-  radioItems: IOptionItem[];
+  optionsItems: IOptionItem[];
   currentValue: string;
   onClickController: () => void;
   emitOnChangeRadioListBlock: (value: React.SetStateAction<string>, id: string) => void;
@@ -15,7 +15,7 @@ interface ControllerOptionProps {
 
 const ControllerOption: FC<ControllerOptionProps> = ({
   isRadioListVisible,
-  radioItems,
+  optionsItems,
   currentValue,
   onClickController,
   emitOnChangeRadioListBlock,
@@ -37,7 +37,7 @@ const ControllerOption: FC<ControllerOptionProps> = ({
 
       <div className={isRadioListVisible ? styles["select-options_show"] : styles["select-options_hide"]}>
         <OptionBlock
-          radioItems={radioItems}
+          optionsItems={optionsItems}
           currentValue={currentValue}
           emitValue={onChangeRadioListBlock}
           onClickOptionsBlock={onClickRadioListBlock}

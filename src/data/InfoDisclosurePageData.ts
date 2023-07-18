@@ -1,6 +1,6 @@
 import { ArchiveLinkProps, IOptionItem, INotificsContent, ISpecDepositoryBlock, RadioItemProps } from "../models/types";
 
-export const radioItemsFundPerformance: IOptionItem[] = [
+export const optionsItemsFundPerformance: IOptionItem[] = [
   {
     date: "2021",
     value: "2021",
@@ -47,7 +47,7 @@ export const linksDocumentsOfTitle: ArchiveLinkProps[] = [
   },
 ];
 
-export const radioItemsReporting: IOptionItem[] = [
+export const optionsItemsReporting: IOptionItem[] = [
   {
     date: "2021",
     value: "2021",
@@ -85,7 +85,7 @@ export const radioItemsReporting: IOptionItem[] = [
   },
 ];
 
-export const radioItemsSpecDepository: RadioItemProps[] = [
+export const optionsItemsSpecDepository: RadioItemProps[] = [
   {
     name: "information",
     value: "0",

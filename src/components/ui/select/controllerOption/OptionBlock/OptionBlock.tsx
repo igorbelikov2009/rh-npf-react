@@ -4,14 +4,14 @@ import Option from "../Option/Option";
 import styles from "./OptionBlock.module.scss";
 
 interface OptionsBlockProps {
-  radioItems: IOptionItem[];
+  optionsItems: IOptionItem[];
   emitValue: (event: React.SetStateAction<string>, id: string) => void;
   onClickOptionsBlock: () => void;
   currentValue: string;
 }
 
 // ControllerOption здесь всё чётко
-const OptionBlock: FC<OptionsBlockProps> = ({ radioItems, emitValue, onClickOptionsBlock, currentValue }) => {
+const OptionBlock: FC<OptionsBlockProps> = ({ optionsItems, emitValue, onClickOptionsBlock, currentValue }) => {
   const onChangeOption = (value: React.SetStateAction<string>, id: string) => {
     emitValue(value, id);
     // console.log(value, id);
@@ -20,7 +20,7 @@ const OptionBlock: FC<OptionsBlockProps> = ({ radioItems, emitValue, onClickOpti
   return (
     <div className={styles["options-block"]} onClick={onClickOptionsBlock}>
       <div className={styles["scrollable-block"]}>
-        {radioItems.map((option, index) => (
+        {optionsItems.map((option, index) => (
           <Option
             key={index}
             date={option.date}

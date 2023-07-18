@@ -1,5 +1,5 @@
 import React, { FC, SetStateAction, useState } from "react";
-import { depository1, depository2, radioItemsSpecDepository } from "../../../../data/InfoDisclosurePageData";
+import { depository1, depository2, optionsItemsSpecDepository } from "../../../../data/InfoDisclosurePageData";
 
 import RadioPrimary from "../../../ui/radios/RadioPrimary/RadioPrimary";
 import SpecDepositoryBlock from "../SpecDepositoryBlock/SpecDepositoryBlock";
@@ -25,7 +25,7 @@ const SpecDepository: FC = () => {
 
           <div className={styles["spec-depository__param-switch"]}>
             <RadioPrimary
-              radioItems={radioItemsSpecDepository}
+              optionsItems={optionsItemsSpecDepository}
               currentValue={currentValue}
               emitValue={onClickRadioPrimary}
             />

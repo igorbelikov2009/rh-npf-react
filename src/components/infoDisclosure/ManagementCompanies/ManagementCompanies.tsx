@@ -7,7 +7,7 @@ const ManagementCompanies = () => {
   const [isVisible, setVisible] = useState(true);
   const [currentValue] = useState("0");
 
-  const radioItems: RadioItemProps[] = [
+  const optionsItems: RadioItemProps[] = [
     {
       name: "information",
       value: "0",
@@ -34,7 +34,7 @@ const ManagementCompanies = () => {
         <h2 className={styles["management-companies__heading"]}>Управляющие компании</h2>
 
         <div className={styles["management-companies__param-switch"]}>
-          <RadioPrimary radioItems={radioItems} currentValue={currentValue} emitValue={onClickRadioPrimary} />
+          <RadioPrimary optionsItems={optionsItems} currentValue={currentValue} emitValue={onClickRadioPrimary} />
         </div>
 
         <div className={styles["management-companies__content"]}>

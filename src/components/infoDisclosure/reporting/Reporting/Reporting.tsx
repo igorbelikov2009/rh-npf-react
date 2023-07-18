@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { radioItemsReporting } from "../../../../data/InfoDisclosurePageData";
+import { optionsItemsReporting } from "../../../../data/InfoDisclosurePageData";
 import { reportingsAPI } from "../../../../services/reportingsAPI";
 import ButtonToArchive from "../../../ui/buttons/ButtonToArchive/ButtonToArchive";
 import AdaptiveRadio from "../../../ui/radios/AdaptiveRadio/AdaptiveRadio";
@@ -47,14 +47,14 @@ const Reporting: FC<ReportingProps> = ({ onClickArchiveReporting }) => {
               isRadioListVisible={isControllerOptionVisible}
               emitOnClickRadioListBlock={onClickControllerOption}
               onClickController={onClickController}
-              radioItems={radioItemsReporting}
+              optionsItems={optionsItemsReporting}
             />
           </div>
 
           <div className={styles["reporting__adaptive-radio"]}>
             <AdaptiveRadio
               currentValue={currentValue}
-              radioItems={radioItemsReporting}
+              optionsItems={optionsItemsReporting}
               emitValue={onChangeAdaptiveRadio}
             />
           </div>

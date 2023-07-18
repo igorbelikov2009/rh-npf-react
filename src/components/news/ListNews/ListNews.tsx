@@ -22,7 +22,7 @@ const ListNews: FC = () => {
     dispatch(getFormatedNews());
   }, [dispatch]);
 
-  // получаем radioYears (radioItems)
+  // получаем radioYears (optionsItems)
   const radioYears = [...news]
     .map((item) => new Date(item.date).getFullYear())
     .filter((item, index, self) => index === self.indexOf(item))
@@ -77,7 +77,7 @@ const ListNews: FC = () => {
         <div className={styles["news__select"]}>
           <ControllerOption
             currentValue={selectedYear}
-            radioItems={radioYears}
+            optionsItems={radioYears}
             isRadioListVisible={isRadioListVisible}
             onClickController={onClickController}
             emitOnChangeRadioListBlock={onChangeRadioListBlock}
@@ -86,7 +86,7 @@ const ListNews: FC = () => {
         </div>
 
         <div className={styles["news__radio"]}>
-          <AdaptiveRadio currentValue={selectedYear} radioItems={radioYears} emitValue={onChangeAdaptiveRadio} />
+          <AdaptiveRadio currentValue={selectedYear} optionsItems={radioYears} emitValue={onChangeAdaptiveRadio} />
         </div>
       </div>
 

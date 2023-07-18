@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
-exports.contentsNotifics = exports.depository2 = exports.depository1 = exports.radioItemsSpecDepository = exports.radioItemsReporting = exports.linksDocumentsOfTitle = exports.radioItemsFundPerformance = void 0;
-exports.radioItemsFundPerformance = [
+exports.contentsNotifics = exports.depository2 = exports.depository1 = exports.optionsItemsSpecDepository = exports.optionsItemsReporting = exports.linksDocumentsOfTitle = exports.optionsItemsFundPerformance = void 0;
+exports.optionsItemsFundPerformance = [
     {
         date: "2021",
         value: "2021",
@@ -46,7 +46,7 @@ exports.linksDocumentsOfTitle = [
         title: "Свидетельство о постановке на учет в налоговом органе"
     },
 ];
-exports.radioItemsReporting = [
+exports.optionsItemsReporting = [
     {
         date: "2021",
         value: "2021",
@@ -83,7 +83,7 @@ exports.radioItemsReporting = [
         id: "6"
     },
 ];
-exports.radioItemsSpecDepository = [
+exports.optionsItemsSpecDepository = [
     {
         name: "information",
         value: "0",

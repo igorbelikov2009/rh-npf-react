@@ -6,7 +6,7 @@ var ManagementCompanies_module_scss_1 = require("./ManagementCompanies.module.sc
 var ManagementCompanies = function () {
     var _a = react_1.useState(true), isVisible = _a[0], setVisible = _a[1];
     var currentValue = react_1.useState("0")[0];
-    var radioItems = [
+    var optionsItems = [
         {
             name: "information",
             value: "0",
@@ -28,7 +28,7 @@ var ManagementCompanies = function () {
         react_1["default"].createElement("div", { className: ManagementCompanies_module_scss_1["default"]["management-companies__container"] },
             react_1["default"].createElement("h2", { className: ManagementCompanies_module_scss_1["default"]["management-companies__heading"] }, "\u0423\u043F\u0440\u0430\u0432\u043B\u044F\u044E\u0449\u0438\u0435 \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438"),
             react_1["default"].createElement("div", { className: ManagementCompanies_module_scss_1["default"]["management-companies__param-switch"] },
-                react_1["default"].createElement(RadioPrimary_1["default"], { radioItems: radioItems, currentValue: currentValue, emitValue: onClickRadioPrimary })),
+                react_1["default"].createElement(RadioPrimary_1["default"], { optionsItems: optionsItems, currentValue: currentValue, emitValue: onClickRadioPrimary })),
             react_1["default"].createElement("div", { className: ManagementCompanies_module_scss_1["default"]["management-companies__content"] }, isVisible ? (react_1["default"].createElement("div", null,
                 react_1["default"].createElement("p", { className: ManagementCompanies_module_scss_1["default"]["management-companies__paragraph"] },
                     react_1["default"].createElement("span", { className: ManagementCompanies_module_scss_1["default"]["management-companies__paragraph-bold"] }, "\u0410\u043A\u0446\u0438\u043E\u043D\u0435\u0440\u043D\u043E\u0435 \u043E\u0431\u0449\u0435\u0441\u0442\u0432\u043E \u00AB\u0421\u0431\u0435\u0440 \u0423\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0438\u0435 \u0410\u043A\u0442\u0438\u0432\u0430\u043C\u0438\u00BB"),

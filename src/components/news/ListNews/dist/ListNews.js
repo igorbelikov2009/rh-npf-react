@@ -26,7 +26,7 @@ var ListNews = function () {
     react_1.useEffect(function () {
         dispatch(newsReducer_1.getFormatedNews());
     }, [dispatch]);
-    // получаем radioYears (radioItems)
+    // получаем radioYears (optionsItems)
     var radioYears = __spreadArrays(news).map(function (item) { return new Date(item.date).getFullYear(); })
         .filter(function (item, index, self) { return index === self.indexOf(item); })
         .map(function (item, index) { return ({
@@ -72,9 +72,9 @@ var ListNews = function () {
                 " "))),
         react_1["default"].createElement("div", { className: ListNews_module_scss_1["default"]["news__container-select-radio"] },
             react_1["default"].createElement("div", { className: ListNews_module_scss_1["default"]["news__select"] },
-                react_1["default"].createElement(ControllerOption_1["default"], { currentValue: selectedYear, radioItems: radioYears, isRadioListVisible: isRadioListVisible, onClickController: onClickController, emitOnChangeRadioListBlock: onChangeRadioListBlock, emitOnClickRadioListBlock: onClickRadioListBlock })),
+                react_1["default"].createElement(ControllerOption_1["default"], { currentValue: selectedYear, optionsItems: radioYears, isRadioListVisible: isRadioListVisible, onClickController: onClickController, emitOnChangeRadioListBlock: onChangeRadioListBlock, emitOnClickRadioListBlock: onClickRadioListBlock })),
             react_1["default"].createElement("div", { className: ListNews_module_scss_1["default"]["news__radio"] },
-                react_1["default"].createElement(AdaptiveRadio_1["default"], { currentValue: selectedYear, radioItems: radioYears, emitValue: onChangeAdaptiveRadio }))),
+                react_1["default"].createElement(AdaptiveRadio_1["default"], { currentValue: selectedYear, optionsItems: radioYears, emitValue: onChangeAdaptiveRadio }))),
         react_1["default"].createElement("div", { className: ListNews_module_scss_1["default"]["news__container-news"] },
             react_1["default"].createElement("div", { className: ListNews_module_scss_1["default"]["news__list-news"] }, formatedFilteredByYear.map(function (item) { return (react_1["default"].createElement(NewsLink_1["default"], { key: item.id, date: item.date, title: item.title, id: item.id })); })),
             react_1["default"].createElement("div", { className: ListNews_module_scss_1["default"]["contact"] },

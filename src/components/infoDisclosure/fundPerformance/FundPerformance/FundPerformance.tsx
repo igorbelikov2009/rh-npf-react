@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { radioItemsFundPerformance } from "../../../../data/InfoDisclosurePageData";
+import { optionsItemsFundPerformance } from "../../../../data/InfoDisclosurePageData";
 import { fundIndicatorsAPI } from "../../../../services/fundIndicatorsAPI";
 import AdaptiveRadio from "../../../ui/radios/AdaptiveRadio/AdaptiveRadio";
 import ControllerOption from "../../../ui/select/controllerOption/ControllerOption/ControllerOption";
@@ -39,7 +39,7 @@ const FundPerformance: FC = () => {
           <div className={styles["fund-performance__select"]}>
             <ControllerOption
               currentValue={currentValue}
-              radioItems={radioItemsFundPerformance}
+              optionsItems={optionsItemsFundPerformance}
               isRadioListVisible={isRadioListVisible}
               onClickController={onClickController}
               emitOnChangeRadioListBlock={onChangeRadioListBlock}
@@ -49,7 +49,7 @@ const FundPerformance: FC = () => {
 
           <div className={styles["fund-performance__adaptive-radio"]}>
             <AdaptiveRadio
-              radioItems={radioItemsFundPerformance}
+              optionsItems={optionsItemsFundPerformance}
               currentValue={currentValue}
               emitValue={onChangeAdaptiveRadio}
             />

@@ -5,7 +5,7 @@ var RadioPrimary_1 = require("../../ui/radios/RadioPrimary/RadioPrimary");
 var GeneralInfo_module_scss_1 = require("./GeneralInfo.module.scss");
 var GeneralInfo = function () {
     var _a = react_1.useState("information"), currentValue = _a[0], setCurrentValue = _a[1];
-    var radioItems = [
+    var optionsItems = [
         { name: "information", title: "Сведения", value: "information" },
         { name: "information", title: "Реквизиты", value: "requisites" },
     ];
@@ -16,7 +16,7 @@ var GeneralInfo = function () {
         react_1["default"].createElement("div", { className: GeneralInfo_module_scss_1["default"]["general-Info__container"] },
             react_1["default"].createElement("h1", { className: GeneralInfo_module_scss_1["default"]["general-Info__heading"] }, "\u041E\u0431\u0449\u0438\u0435 \u0441\u0432\u0435\u0434\u0435\u043D\u0438\u044F"),
             react_1["default"].createElement("div", { className: GeneralInfo_module_scss_1["default"]["general-Info__param-switch"] },
-                react_1["default"].createElement(RadioPrimary_1["default"], { currentValue: currentValue, radioItems: radioItems, emitValue: onChangePrimaryRadio })),
+                react_1["default"].createElement(RadioPrimary_1["default"], { currentValue: currentValue, optionsItems: optionsItems, emitValue: onChangePrimaryRadio })),
             react_1["default"].createElement("div", null, currentValue === "information" ? (react_1["default"].createElement("div", null,
                 react_1["default"].createElement("p", { className: GeneralInfo_module_scss_1["default"]["general-Info__paragraph"] },
                     react_1["default"].createElement("span", { className: GeneralInfo_module_scss_1["default"]["general-Info__span"] }, "\u041F\u043E\u043B\u043D\u043E\u0435 \u0444\u0438\u0440\u043C\u0435\u043D\u043D\u043E\u0435 \u043D\u0430\u0438\u043C\u0435\u043D\u043E\u0432\u0430\u043D\u0438\u0435 \u0424\u043E\u043D\u0434\u0430 \u043D\u0430 \u0440\u0443\u0441\u0441\u043A\u043E\u043C \u044F\u0437\u044B\u043A\u0435"),

@@ -6,7 +6,7 @@ import style from "./GeneralInfo.module.scss";
 const GeneralInfo = () => {
   const [currentValue, setCurrentValue] = useState("information");
 
-  const radioItems: RadioItemProps[] = [
+  const optionsItems: RadioItemProps[] = [
     { name: "information", title: "Сведения", value: "information" },
     { name: "information", title: "Реквизиты", value: "requisites" },
   ];
@@ -20,7 +20,7 @@ const GeneralInfo = () => {
       <div className={style["general-Info__container"]}>
         <h1 className={style["general-Info__heading"]}>Общие сведения</h1>
         <div className={style["general-Info__param-switch"]}>
-          <RadioPrimary currentValue={currentValue} radioItems={radioItems} emitValue={onChangePrimaryRadio} />
+          <RadioPrimary currentValue={currentValue} optionsItems={optionsItems} emitValue={onChangePrimaryRadio} />
         </div>
 
         <div>

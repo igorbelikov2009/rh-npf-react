@@ -34,9 +34,9 @@ var Reporting = function (_a) {
             react_1["default"].createElement("h1", { className: Reporting_module_scss_1["default"]["reporting__heading"] }, "\u041E\u0442\u0447\u0435\u0442\u043D\u043E\u0441\u0442\u044C"),
             react_1["default"].createElement("div", { className: Reporting_module_scss_1["default"]["reporting__flex-container"] },
                 react_1["default"].createElement("div", { className: Reporting_module_scss_1["default"]["reporting__select"] },
-                    react_1["default"].createElement(ControllerOption_1["default"], { currentValue: currentValue, emitOnChangeRadioListBlock: onChangeControllerOption, isRadioListVisible: isControllerOptionVisible, emitOnClickRadioListBlock: onClickControllerOption, onClickController: onClickController, radioItems: InfoDisclosurePageData_1.radioItemsReporting })),
+                    react_1["default"].createElement(ControllerOption_1["default"], { currentValue: currentValue, emitOnChangeRadioListBlock: onChangeControllerOption, isRadioListVisible: isControllerOptionVisible, emitOnClickRadioListBlock: onClickControllerOption, onClickController: onClickController, optionsItems: InfoDisclosurePageData_1.optionsItemsReporting })),
                 react_1["default"].createElement("div", { className: Reporting_module_scss_1["default"]["reporting__adaptive-radio"] },
-                    react_1["default"].createElement(AdaptiveRadio_1["default"], { currentValue: currentValue, radioItems: InfoDisclosurePageData_1.radioItemsReporting, emitValue: onChangeAdaptiveRadio })),
+                    react_1["default"].createElement(AdaptiveRadio_1["default"], { currentValue: currentValue, optionsItems: InfoDisclosurePageData_1.optionsItemsReporting, emitValue: onChangeAdaptiveRadio })),
                 react_1["default"].createElement("div", { className: Reporting_module_scss_1["default"]["reporting__container-button"], onClick: onClickArchiveReporting },
                     react_1["default"].createElement(ButtonToArchive_1["default"], null))),
             react_1["default"].createElement("div", null, reportings &&
