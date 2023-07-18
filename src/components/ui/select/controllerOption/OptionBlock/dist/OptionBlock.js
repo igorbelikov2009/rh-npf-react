@@ -11,6 +11,6 @@ var OptionBlock = function (_a) {
         // console.log(value, id);
     };
     return (react_1["default"].createElement("div", { className: OptionBlock_module_scss_1["default"]["options-block"], onClick: onClickOptionsBlock },
-        react_1["default"].createElement("div", { className: OptionBlock_module_scss_1["default"]["scrollable-block"] }, radioItems.map(function (option, index) { return (react_1["default"].createElement(Option_1["default"], { key: index, date: option.title, value: option.value, id: option.id, isActive: option.value === currentValue, emitValue: onChangeOption })); }))));
+        react_1["default"].createElement("div", { className: OptionBlock_module_scss_1["default"]["scrollable-block"] }, radioItems.map(function (option, index) { return (react_1["default"].createElement(Option_1["default"], { key: index, date: option.date, value: option.value, id: option.id, isActive: option.value === currentValue, emitValue: onChangeOption })); }))));
 };
 exports["default"] = OptionBlock;

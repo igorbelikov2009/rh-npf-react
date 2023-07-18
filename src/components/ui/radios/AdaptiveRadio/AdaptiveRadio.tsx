@@ -1,10 +1,10 @@
 import React, { FC } from "react";
-import { IAdaptiveRadioItem } from "../../../../models/types";
+import { IOptionItem } from "../../../../models/types";
 import AdaptiveRadioItem from "../AdaptiveRadioItem/AdaptiveRadioItem";
 import styles from "./AdaptiveRadio.module.scss";
 
 interface AdaptiveRadioProps {
-  radioItems: IAdaptiveRadioItem[];
+  radioItems: IOptionItem[];
   emitValue: (event: any, id: string) => void;
   currentValue: string;
 }
@@ -19,7 +19,7 @@ const AdaptiveRadio: FC<AdaptiveRadioProps> = ({ radioItems, currentValue, emitV
       {radioItems.map((item) => (
         <AdaptiveRadioItem
           key={item.value}
-          title={item.title}
+          title={item.date}
           value={item.value}
           id={item.id}
           name={item.name}

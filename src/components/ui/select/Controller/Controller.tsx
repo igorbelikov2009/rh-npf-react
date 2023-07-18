@@ -8,8 +8,6 @@ interface ControllerProps {
 }
 
 const Controller: FC<ControllerProps> = ({ value, ifPressed, onClickController }) => {
-  // console.log(ifPressed);
-
   return (
     <div className={styles["select-controller"]}>
       <div className={styles["changing-title"]}>

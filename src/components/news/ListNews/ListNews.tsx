@@ -28,7 +28,7 @@ const ListNews: FC = () => {
     .filter((item, index, self) => index === self.indexOf(item))
     .map((item, index) => ({
       id: String(index),
-      title: String(item),
+      date: String(item),
       value: String(item),
     }));
 

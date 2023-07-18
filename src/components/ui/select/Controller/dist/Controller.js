@@ -3,7 +3,6 @@ exports.__esModule = true;
 var react_1 = require("react");
 var Controller_module_scss_1 = require("./Controller.module.scss");
 var Controller = function (_a) {
-    // console.log(ifPressed);
     var value = _a.value, ifPressed = _a.ifPressed, onClickController = _a.onClickController;
     return (react_1["default"].createElement("div", { className: Controller_module_scss_1["default"]["select-controller"] },
         react_1["default"].createElement("div", { className: Controller_module_scss_1["default"]["changing-title"] },

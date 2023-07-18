@@ -31,7 +31,7 @@ var ListNews = function () {
         .filter(function (item, index, self) { return index === self.indexOf(item); })
         .map(function (item, index) { return ({
         id: String(index),
-        title: String(item),
+        date: String(item),
         value: String(item)
     }); });
     // новости, отфильтрованные по годам

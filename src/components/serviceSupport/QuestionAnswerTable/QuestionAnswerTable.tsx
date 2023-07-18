@@ -28,7 +28,7 @@ const QuestionAnswerTable: FC = () => {
             exit={{ height: 0, opacity: 0 }}
             style={{ overflow: "hidden" }}
           >
-            <div className={styles.expanding__content}>
+            <div className={styles["expanding__content"]}>
               <p className={styles["paragraph"]}>Порядок налогообложения при выплате пенсий и выкупных сумм:</p>
 
               <TableQ arrayRows={companyContributions.arrayRows} headings={companyContributions.headings} />

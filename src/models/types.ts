@@ -32,6 +32,7 @@ export interface IOptionItem {
   date: string;
   value: string;
   id: string;
+  name?: string;
 }
 
 export interface IExpandingTable {
@@ -71,12 +72,12 @@ export interface ITableContributions {
   arrayRows: string[][];
 }
 
-export interface IAdaptiveRadioItem {
-  value: string;
-  id: string;
-  title: string;
-  name?: string;
-}
+// export interface IOptionItem {
+//   value: string;
+//   id: string;
+//   title: string;
+//   name?: string;
+// }
 
 export interface IIndicatorRow {
   title: string;

@@ -3,27 +3,27 @@ exports.__esModule = true;
 exports.contentsNotifics = exports.depository2 = exports.depository1 = exports.radioItemsSpecDepository = exports.radioItemsReporting = exports.linksDocumentsOfTitle = exports.radioItemsFundPerformance = void 0;
 exports.radioItemsFundPerformance = [
     {
-        title: "2021",
+        date: "2021",
         value: "2021",
         id: "0"
     },
     {
-        title: "2020",
+        date: "2020",
         value: "2020",
         id: "1"
     },
     {
-        title: "2019",
+        date: "2019",
         value: "2019",
         id: "2"
     },
     {
-        title: "2018",
+        date: "2018",
         value: "2018",
         id: "3"
     },
     {
-        title: "2017",
+        date: "2017",
         value: "2017",
         id: "4"
     },
@@ -48,37 +48,37 @@ exports.linksDocumentsOfTitle = [
 ];
 exports.radioItemsReporting = [
     {
-        title: "2021",
+        date: "2021",
         value: "2021",
         id: "0"
     },
     {
-        title: "2020",
+        date: "2020",
         value: "2020",
         id: "1"
     },
     {
-        title: "2019",
+        date: "2019",
         value: "2019",
         id: "2"
     },
     {
-        title: "2018",
+        date: "2018",
         value: "2018",
         id: "3"
     },
     {
-        title: "2017",
+        date: "2017",
         value: "2017",
         id: "4"
     },
     {
-        title: "2016",
+        date: "2016",
         value: "2016",
         id: "5"
     },
     {
-        title: "2015",
+        date: "2015",
         value: "2015",
         id: "6"
     },

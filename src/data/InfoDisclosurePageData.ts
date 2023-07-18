@@ -1,34 +1,28 @@
-import {
-  ArchiveLinkProps,
-  IAdaptiveRadioItem,
-  INotificsContent,
-  ISpecDepositoryBlock,
-  RadioItemProps,
-} from "../models/types";
+import { ArchiveLinkProps, IOptionItem, INotificsContent, ISpecDepositoryBlock, RadioItemProps } from "../models/types";
 
-export const radioItemsFundPerformance: IAdaptiveRadioItem[] = [
+export const radioItemsFundPerformance: IOptionItem[] = [
   {
-    title: "2021",
+    date: "2021",
     value: "2021",
     id: "0",
   },
   {
-    title: "2020",
+    date: "2020",
     value: "2020",
     id: "1",
   },
   {
-    title: "2019",
+    date: "2019",
     value: "2019",
     id: "2",
   },
   {
-    title: "2018",
+    date: "2018",
     value: "2018",
     id: "3",
   },
   {
-    title: "2017",
+    date: "2017",
     value: "2017",
     id: "4",
   },
@@ -53,39 +47,39 @@ export const linksDocumentsOfTitle: ArchiveLinkProps[] = [
   },
 ];
 
-export const radioItemsReporting: IAdaptiveRadioItem[] = [
+export const radioItemsReporting: IOptionItem[] = [
   {
-    title: "2021",
+    date: "2021",
     value: "2021",
     id: "0",
   },
   {
-    title: "2020",
+    date: "2020",
     value: "2020",
     id: "1",
   },
   {
-    title: "2019",
+    date: "2019",
     value: "2019",
     id: "2",
   },
   {
-    title: "2018",
+    date: "2018",
     value: "2018",
     id: "3",
   },
   {
-    title: "2017",
+    date: "2017",
     value: "2017",
     id: "4",
   },
   {
-    title: "2016",
+    date: "2016",
     value: "2016",
     id: "5",
   },
   {
-    title: "2015",
+    date: "2015",
     value: "2015",
     id: "6",
   },

@@ -1,10 +1,10 @@
 import React, { FC } from "react";
-import { IAdaptiveRadioItem } from "../../../../../models/types";
+import { IOptionItem } from "../../../../../models/types";
 import Option from "../Option/Option";
 import styles from "./OptionBlock.module.scss";
 
 interface OptionsBlockProps {
-  radioItems: IAdaptiveRadioItem[];
+  radioItems: IOptionItem[];
   emitValue: (event: React.SetStateAction<string>, id: string) => void;
   onClickOptionsBlock: () => void;
   currentValue: string;
@@ -23,7 +23,7 @@ const OptionBlock: FC<OptionsBlockProps> = ({ radioItems, emitValue, onClickOpti
         {radioItems.map((option, index) => (
           <Option
             key={index}
-            date={option.title}
+            date={option.date}
             value={option.value}
             id={option.id}
             isActive={option.value === currentValue}

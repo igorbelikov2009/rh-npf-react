@@ -1,12 +1,12 @@
 import React, { FC } from "react";
-import { IAdaptiveRadioItem } from "../../../../../models/types";
+import { IOptionItem } from "../../../../../models/types";
 import Controller from "../Controller/Controller";
 import OptionBlock from "../OptionBlock/OptionBlock";
 import styles from "./ControllerOption.module.scss";
 
 interface ControllerOptionProps {
   isRadioListVisible: boolean;
-  radioItems: IAdaptiveRadioItem[];
+  radioItems: IOptionItem[];
   currentValue: string;
   onClickController: () => void;
   emitOnChangeRadioListBlock: (value: React.SetStateAction<string>, id: string) => void;
