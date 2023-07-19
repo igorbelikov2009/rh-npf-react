@@ -4,20 +4,20 @@ import styles from "./AdaptiveRadioItem.module.scss";
 interface AdaptiveRadioItemProps {
   value: string;
   id: string;
-  title: string;
+  date: string;
   name?: string;
   isActive: boolean;
   emitValue: (event: any, id: string) => void;
 }
 
-const AdaptiveRadioItem: FC<AdaptiveRadioItemProps> = ({ value, id, title, name, isActive, emitValue }) => {
+const AdaptiveRadioItem: FC<AdaptiveRadioItemProps> = ({ value, id, date, name, isActive, emitValue }) => {
   const radioHandler = (event: any) => {
     emitValue(event.target.value, id);
   };
 
   return (
     <label className={isActive ? styles["adaptive-radio-item_active"] : styles["adaptive-radio-item"]}>
-      {title}
+      {date}
       <input
         className={styles["adaptive-radio-item__input"]}
         type="radio"

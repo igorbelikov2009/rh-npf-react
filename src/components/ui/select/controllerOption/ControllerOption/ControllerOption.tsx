@@ -31,6 +31,7 @@ const ControllerOption: FC<ControllerOptionProps> = ({
   const onClickRadioListBlock = () => {
     emitOnClickRadioListBlock();
   };
+
   return (
     <div className={styles["list"]}>
       <Controller value={currentValue} isVisible={isRadioListVisible} onClickController={onClickRadioListController} />
