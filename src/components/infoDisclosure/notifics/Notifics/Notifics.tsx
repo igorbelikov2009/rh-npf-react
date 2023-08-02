@@ -9,13 +9,16 @@ import styles from "./Notifics.module.scss";
 
 const Notifics: FC = () => {
   const [currentValue, setCurrentValue] = useState("0");
+
   const formattedContents: INotificsContent[] = contentsNotifics.map((item) => ({
     date: String(UserDate.format(new Date(item.date))),
     description: String(item.description),
   }));
+
   const radioItems: IRadioCircleItem[] = contentsNotifics
     .map((item) => new Date(item.date).getFullYear())
     .map((item, index) => ({ title: String(item), value: String(index) }));
+
   const onChangeRadio = (value: string) => {
     setCurrentValue(value);
   };

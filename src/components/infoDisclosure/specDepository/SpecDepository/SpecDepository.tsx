@@ -1,6 +1,5 @@
 import React, { FC, SetStateAction, useState } from "react";
 import { depository1, depository2, optionsItemsSpecDepository } from "../../../../data/InfoDisclosurePageData";
-
 import RadioPrimary from "../../../ui/radios/RadioPrimary/RadioPrimary";
 import SpecDepositoryBlock from "../SpecDepositoryBlock/SpecDepositoryBlock";
 import styles from "./SpecDepository.module.scss";
@@ -18,7 +17,7 @@ const SpecDepository: FC = () => {
   };
 
   return (
-    <div>
+    <article>
       <section className={styles["spec-depository"]}>
         <div className={styles["spec-depository__container"]}>
           <h2 className={styles["spec-depository__heading"]}>Специализированный депозитарий</h2>
@@ -58,7 +57,7 @@ const SpecDepository: FC = () => {
           </p>
         </div>
       </section>
-    </div>
+    </article>
   );
 };
 

@@ -14,7 +14,7 @@ var SpecDepository = function () {
     var onChangeVisiblity = function () {
         setVisible(function (prev) { return !prev; });
     };
-    return (react_1["default"].createElement("div", null,
+    return (react_1["default"].createElement("article", null,
         react_1["default"].createElement("section", { className: SpecDepository_module_scss_1["default"]["spec-depository"] },
             react_1["default"].createElement("div", { className: SpecDepository_module_scss_1["default"]["spec-depository__container"] },
                 react_1["default"].createElement("h2", { className: SpecDepository_module_scss_1["default"]["spec-depository__heading"] }, "\u0421\u043F\u0435\u0446\u0438\u0430\u043B\u0438\u0437\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u044B\u0439 \u0434\u0435\u043F\u043E\u0437\u0438\u0442\u0430\u0440\u0438\u0439"),
